@@ -36,22 +36,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /*   BASE
      -------------------------------------------   -------------------------------------------
-     |      |      |  W   |  F   |  P   |  G   |   |  J   |  L   |  U   |  Y   |      |      |
+     |      |      |  W   |  F   |  P   |  G   |   |  J   |  L   |  U   |  Y   | CAPS |      |
      -------------------------------------------   -------------------------------------------
      |  Q   |  A   |  R   |  S   |  T   |  D   |   |  H   |  N   |  E   |  I   |  O   | ' "  |
      |      | CTRL | ALT  | SHIFT| CMD  |      |   |      | CMD  |SHIFT | ALT  | CTRL |      |
      -------------------------------------------   -------------------------------------------
-     | CAPS |  Z   |  X   |  C   |  V   |  B   |   |  K   |  M   |  ,<  |  .>  |  /?  |  ¿   |
+     |  ¿   |  Z   |  X   |  C   |  V   |  B   |   |  K   |  M   |  ,<  |  .>  |  /?  |  ?   |
      -------------------------------------------   -------------------------------------------
                           | DEL  | BKSP |  ⏎   |   |  TAB | [ ]  |  ESC |
                           |WINDOW| NUM  | SYM  |   | MOUSE| NAV  | MEDIA|
                           ----------------------   ----------------------
 */
     [BASE] = LAYOUT_WRAPPER(
-                    ____  ,      KC_W  ,            KC_F   ,         KC_P     ,         KC_G    ,  /**/            KC_J    ,         KC_L    ,         KC_U      ,      KC_Y   ,      ____    ,        ____   ,
-     KC_Q    , F4LT(KC_A) , F3LT(KC_R) ,       F2LT(KC_S)  ,    F1LT(KC_T)    ,         KC_D    ,  /**/            KC_H    ,    F1RT(KC_N)   ,    F2RT(KC_E)     , F3RT(KC_I)  , F4RT(KC_O)   ,     KC_QUOT   ,
-     KC_CAPS ,      KC_Z  ,      KC_X  ,            KC_C   ,         KC_V     ,         KC_B    ,  /**/            KC_K    ,         KC_M    ,         KC_COMM   ,      KC_DOT ,      KC_SLSH , S(A(KC_SLSH)) ,
-                                        LT(WINDOW, KC_DEL) , LT(NUM, KC_BSPC) , LT(SYM, KC_ENT) ,  /**/  LT(MOUSE, KC_TAB) , LT(NAV, KC_SPC) , LT(MEDIA, KC_ESC)
+                          ____  ,      KC_W  ,            KC_F   ,         KC_P     ,         KC_G    ,  /**/            KC_J    ,         KC_L    ,         KC_U      ,      KC_Y   ,   KC_CAPS    ,      ____  ,
+         KC_Q      , F4LT(KC_A) , F3LT(KC_R) ,       F2LT(KC_S)  ,    F1LT(KC_T)    ,         KC_D    ,  /**/            KC_H    ,    F1RT(KC_N)   ,    F2RT(KC_E)     , F3RT(KC_I)  , F4RT(KC_O)   ,   KC_QUOT  ,
+     S(A(KC_SLSH)) ,      KC_Z  ,      KC_X  ,            KC_C   ,         KC_V     ,         KC_B    ,  /**/            KC_K    ,         KC_M    ,         KC_COMM   ,      KC_DOT ,      KC_SLSH , S(KC_SLSH) ,
+                                              LT(WINDOW, KC_DEL) , LT(NUM, KC_BSPC) , LT(SYM, KC_ENT) ,  /**/  LT(MOUSE, KC_TAB) , LT(NAV, KC_SPC) , LT(MEDIA, KC_ESC)
     ),
 
 /*   NAV
@@ -120,16 +120,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      -------------------------------------------   -------------------------------------------
      |FKEYS | CTRL | ALT  |SHIFT | CMD  |      |   |  =   |  4   |  5   |  6   |  ;   |      |
      -------------------------------------------   -------------------------------------------
-     |      |      |      |      |      |      |   |  +   |  1   |  2   |  3   |  `   |      |
+     |      | UNDO | CUT  | COPY |PASTE | REDO |   |  +   |  1   |  2   |  3   |  `   |      |
      -------------------------------------------   -------------------------------------------
                           |      |  ▼▼  |      |   |  -   |  0   |  .   |
                           ----------------------   ----------------------
 */
     [NUM] = LAYOUT_WRAPPER(
-                ___ , ___ , ___ , ___ , ___ ,  /**/  KC_LBRC , KC_7 , KC_8   , KC_9, KC_RBRC , ___ ,
-     MO(FKEY) , F4L , F3L , F2L , F1L , ___ ,  /**/  KC_EQL  , KC_4 , KC_5   , KC_6, KC_SCLN , ___ ,
-        ____  , ___ , ___ , ___ , ___ , ___ ,  /**/  KC_PLUS , KC_1 , KC_2   , KC_3, KC_GRV  , ___ ,
-                            ___ , ___ , ___ ,  /**/  KC_MINS , KC_0 , KC_DOT
+                  ___ ,   ___ ,   ___ ,   ___ ,   ___ ,  /**/  KC_LBRC , KC_7 , KC_8   , KC_9, KC_RBRC , ___ ,
+     MO(FKEY) ,   F4L ,   F3L ,   F2L ,   F1L ,   ___ ,  /**/  KC_EQL  , KC_4 , KC_5   , KC_6, KC_SCLN , ___ ,
+        ____  , U_UND , U_CUT , U_CPY , U_PST , U_RDO ,  /**/  KC_PLUS , KC_1 , KC_2   , KC_3, KC_GRV  , ___ ,
+                                  ___ ,   ___ ,   ___ ,  /**/  KC_MINS , KC_0 , KC_DOT
     ),
 
 /*   FUNCTION KEYS
@@ -154,7 +154,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      -------------------------------------------   -------------------------------------------
      |      |      |      |      |      |      |   |  {   |  &   |  *   |  (   |  }   |      |
      -------------------------------------------   -------------------------------------------
-     |      | CTRL | ALT  |SHIFT | CMD  |      |   |  \   |  $   |  %   |  ^   |  :   |   ;   |
+     |      | CTRL | ALT  |SHIFT | CMD  |      |   |  \   |  $   |  %   |  ^   |  :   |  ;   |
      -------------------------------------------   -------------------------------------------
      |      |      |      |      |      |      |   |  |   |  !   |  @   |  #   |  ~   |      |
      -------------------------------------------   -------------------------------------------
@@ -162,9 +162,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ----------------------   ----------------------
 */
     [SYM] = LAYOUT_WRAPPER(
-           ___ , ___ , ___ , ___ , ___ ,  /**/  KC_LCBR , KC_AMPR , KC_ASTR , KC_LPRN , KC_RCBR , ___ ,
-     ___ , F4L , F3L , F2L , F1L , ___ ,  /**/  KC_BSLS , KC_DLR  , KC_PERC , KC_CIRC , KC_COLN , ___ ,
-     ___ , ___ , ___ , ___ , ___ , ___ ,  /**/  KC_PIPE , KC_EXLM , KC_AT   , KC_HASH , KC_TILD , ___ ,
+           ___ , ___ , ___ , ___ , ___ ,  /**/  KC_LCBR , KC_AMPR , KC_ASTR , KC_LPRN , KC_RCBR ,    ____ ,
+     ___ , F4L , F3L , F2L , F1L , ___ ,  /**/  KC_BSLS , KC_DLR  , KC_PERC , KC_CIRC , KC_COLN , KC_SCLN ,
+     ___ , ___ , ___ , ___ , ___ , ___ ,  /**/  KC_PIPE , KC_EXLM , KC_AT   , KC_HASH , KC_TILD ,    ____ ,
                        ___ , ___ , ___ ,  /**/  KC_UNDS , KC_LPRN , KC_RPRN
     ),
 
