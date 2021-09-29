@@ -32,6 +32,8 @@ enum layers {
 #define F1RT RCMD_T
 #define F1R  KC_RCMD
 
+#define LAYOUT_KYRIA LAYOUT_STD_THUMBS
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /*   BASE
@@ -47,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           |WINDOW| NUM  | SYM  |   | MOUSE| NAV  | MEDIA|
                           ----------------------   ----------------------
 */
-    [BASE] = LAYOUT_WRAPPER(
+    [BASE] = LAYOUT_KYRIA(
                           ____  ,      KC_W  ,            KC_F   ,         KC_P     ,         KC_G    ,  /**/            KC_J    ,         KC_L    ,         KC_U      ,      KC_Y   ,   KC_CAPS    ,      ____  ,
          KC_Q      , F4LT(KC_A) , F3LT(KC_R) ,       F2LT(KC_S)  ,    F1LT(KC_T)    ,         KC_D    ,  /**/            KC_H    ,    F1RT(KC_N)   ,    F2RT(KC_E)     , F3RT(KC_I)  , F4RT(KC_O)   ,   KC_QUOT  ,
      S(A(KC_SLSH)) ,      KC_Z  ,      KC_X  ,            KC_C   ,         KC_V     ,         KC_B    ,  /**/            KC_K    ,         KC_M    ,         KC_COMM   ,      KC_DOT ,      KC_SLSH , S(KC_SLSH) ,
@@ -65,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           | DEL  | BKSP |  ⏎   |   |      |  ▼▼  |      |
                           ----------------------   ----------------------
 */
-    [NAV] = LAYOUT_WRAPPER(
+    [NAV] = LAYOUT_KYRIA(
               ____ ,    ___ ,    ____ ,    ____ ,    ___ ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
      ___ , KC_LEFT , KC_UP  , KC_DOWN , KC_RGHT ,    ___ ,  /**/  ___ , F1R , F2R , F3R , F4R , ___ ,
      ___ ,  U_UND  ,  U_CUT ,  U_CPY  ,  U_PST  ,  U_RDO ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
@@ -87,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            MB = MOUSE BUTTON
      L1/R2/M3 = MOUSE BUTTON LEFT/RIGHT/MIDDLE
 */
-    [MOUSE] = LAYOUT_WRAPPER(
+    [MOUSE] = LAYOUT_KYRIA(
            KC_WH_R , KC_WH_D , KC_WH_U , KC_WH_L ,  ____   ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
      ___ , KC_MS_L , KC_MS_U , KC_MS_D , KC_MS_R ,  ____   ,  /**/  ___ , F1R , F2R , F3R , F4R , ___ ,
      ___ ,  U_UND  ,  U_CUT  ,  U_CPY  ,  U_PST  ,  U_RDO  ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
@@ -107,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ----------------------   ----------------------
      H-X = HYPER(KC_X)
 */
-    [MEDIA] = LAYOUT_WRAPPER(
+    [MEDIA] = LAYOUT_KYRIA(
                        ____  ,      ____  ,  G(S(KC_3)) ,  G(S(KC_4)) , SCMD(KC_2) ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
      HYPR(KC_A) , HYPR(KC_B) , HYPR(KC_C) , HYPR(KC_D)  , HYPR(KC_E)  ,   KC_BRIU  ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
      HYPR(KC_F) , HYPR(KC_G) , HYPR(KC_H) , HYPR(KC_I)  , HYPR(KC_J)  ,   KC_BRID  ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
@@ -125,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           |      |  ▼▼  |      |   |  -   |  0   |  .   |
                           ----------------------   ----------------------
 */
-    [NUM] = LAYOUT_WRAPPER(
+    [NUM] = LAYOUT_KYRIA(
                   ___ ,   ___ ,   ___ ,   ___ ,   ___ ,  /**/  KC_LBRC , KC_7 , KC_8   , KC_9, KC_RBRC , ___ ,
      MO(FKEY) ,   F4L ,   F3L ,   F2L ,   F1L ,   ___ ,  /**/  KC_EQL  , KC_4 , KC_5   , KC_6, KC_SCLN , ___ ,
         ____  , U_UND , U_CUT , U_CPY , U_PST , U_RDO ,  /**/  KC_PLUS , KC_1 , KC_2   , KC_3, KC_GRV  , ___ ,
@@ -143,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           |      |  ▼▼  |      |   |      |      |      |
                           ----------------------   ----------------------
 */
-    [FKEY] = LAYOUT_WRAPPER(
+    [FKEY] = LAYOUT_KYRIA(
            ___ , ___ , ___ , ___ , ___ ,  /**/  ___ , KC_F7 , KC_F8 , KC_F9 , KC_F10 , ___ ,
      ___ , ___ , ___ , ___ , ___ , ___ ,  /**/  ___ , KC_F4 , KC_F5 , KC_F6 , KC_F11 , ___ ,
      ___ , ___ , ___ , ___ , ___ , ___ ,  /**/  ___ , KC_F1 , KC_F2 , KC_F3 , KC_F12 , ___ ,
@@ -161,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           |      |      |  ▼▼  |   |  _   |  (   |  )   |
                           ----------------------   ----------------------
 */
-    [SYM] = LAYOUT_WRAPPER(
+    [SYM] = LAYOUT_KYRIA(
            ___ , ___ , ___ , ___ , ___ ,  /**/  KC_LCBR , KC_AMPR , KC_ASTR , KC_LPRN , KC_RCBR ,    ____ ,
      ___ , F4L , F3L , F2L , F1L , ___ ,  /**/  KC_BSLS , KC_DLR  , KC_PERC , KC_CIRC , KC_COLN , KC_SCLN ,
      ___ , ___ , ___ , ___ , ___ , ___ ,  /**/  KC_PIPE , KC_EXLM , KC_AT   , KC_HASH , KC_TILD ,    ____ ,
@@ -179,7 +181,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           |  ▼▼  |      |      |   |  W🔄 |  W↕️ |  W🔄 |
                           ----------------------   ----------------------
 */
-    [WINDOW] = LAYOUT_WRAPPER(
+    [WINDOW] = LAYOUT_KYRIA(
            ___ , ___ , ___ , ___ , ___ ,  /**/       ____  ,      HYPR(KC_7)  , HYPR(KC_8) , HYPR(KC_9),         ____  , ___ ,
      ___ , ___ , ___ , ___ , ___ , ___ ,  /**/       ____  ,      HYPR(KC_4)  , HYPR(KC_5) , HYPR(KC_6), HYPR(KC_MINS) , ___ ,
      ___ , ___ , ___ , ___ , ___ , ___ ,  /**/       ____  ,      HYPR(KC_1)  , HYPR(KC_2) , HYPR(KC_3),         ____  , ___ ,
@@ -196,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //  -------------------------------------------   -------------------------------------------
     //                       |      |      |      |   |      |      |      |
     //                       ----------------------   ----------------------
-    // [_XXX_] = LAYOUT_WRAPPER(
+    // [_XXX_] = LAYOUT_KYRIA(
     //        ___ , ___ , ___ , ___ , ___ ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
     //  ___ , ___ , ___ , ___ , ___ , ___ ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
     //  ___ , ___ , ___ , ___ , ___ , ___ ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
