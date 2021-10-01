@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /*   BASE
      -------------------------------------------   -------------------------------------------
-     |      |      |  W   |  F   |  P   |  G   |   |  J   |  L   |  U   |  Y   | CAPS |      |
+     |      |  Q   |  W   |  F   |  P   |  G   |   |  J   |  L   |  U   |  Y   | CAPS |      |
      -------------------------------------------   -------------------------------------------
      |  Q   |  A   |  R   |  S   |  T   |  D   |   |  H   |  N   |  E   |  I   |  O   | ' "  |
      |      | CTRL | ALT  | SHIFT| CMD  |      |   |      | CMD  |SHIFT | ALT  | CTRL |      |
@@ -50,10 +50,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ----------------------   ----------------------
 */
     [BASE] = LAYOUT_KYRIA(
-                          ____  ,      KC_W  ,            KC_F   ,         KC_P     ,         KC_G    ,  /**/            KC_J    ,         KC_L    ,         KC_U      ,      KC_Y   ,   KC_CAPS    ,      ____  ,
-         KC_Q      , F4LT(KC_A) , F3LT(KC_R) ,       F2LT(KC_S)  ,    F1LT(KC_T)    ,         KC_D    ,  /**/            KC_H    ,    F1RT(KC_N)   ,    F2RT(KC_E)     , F3RT(KC_I)  , F4RT(KC_O)   ,   KC_QUOT  ,
-     S(A(KC_SLSH)) ,      KC_Z  ,      KC_X  ,            KC_C   ,         KC_V     ,         KC_B    ,  /**/            KC_K    ,         KC_M    ,         KC_COMM   ,      KC_DOT ,      KC_SLSH , S(KC_SLSH) ,
-                                              LT(WINDOW, KC_DEL) , LT(NUM, KC_BSPC) , LT(SYM, KC_ENT) ,  /**/  LT(MOUSE, KC_TAB) , LT(NAV, KC_SPC) , LT(MEDIA, KC_ESC)
+                   KC_Q  ,      KC_W  ,            KC_F   ,         KC_P     ,         KC_G    ,  /**/            KC_J    ,         KC_L    ,         KC_U      ,      KC_Y   ,      KC_CAPS ,    ____ ,
+     KC_Q   , F4LT(KC_A) , F3LT(KC_R) ,       F2LT(KC_S)  ,    F1LT(KC_T)    ,         KC_D    ,  /**/            KC_H    ,    F1RT(KC_N)   ,    F2RT(KC_E)     , F3RT(KC_I)  , F4RT(KC_O)   , KC_QUOT ,
+     U_IQUS ,      KC_Z  ,      KC_X  ,            KC_C   ,         KC_V     ,         KC_B    ,  /**/            KC_K    ,         KC_M    ,         KC_COMM   ,      KC_DOT ,      KC_SLSH , KC_QUES ,
+                                       LT(WINDOW, KC_DEL) , LT(NUM, KC_BSPC) , LT(SYM, KC_ENT) ,  /**/  LT(MOUSE, KC_TAB) , LT(NAV, KC_SPC) , LT(MEDIA, KC_ESC)
     ),
 
 /*   NAV
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      |      |      |      | SCRN | SCRN | SCRN |   |      |      |      |      |      |      |
      |      |      |      | CAP1 | CAP2 | INV  |   |      |      |      |      |      |      |
      -------------------------------------------   -------------------------------------------
-     | H-A  | H-B  | H-C  | H-D  | H-E  | BRT↑ |   |      |      |      |      |      |      |
+     | H-A  | H-B  | H-C  | H-D  | H-E  | BRT↑ |   |      | CMD  |SHIFT | ALT  | CTRL |      |
      -------------------------------------------   -------------------------------------------
      | H-F  | H-G  | H-H  | H-I  | H-J  | BRT↓ |   |      |      |      |      |      |      |
      -------------------------------------------   -------------------------------------------
@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
     [MEDIA] = LAYOUT_KYRIA(
                        ____  ,      ____  ,  G(S(KC_3)) ,  G(S(KC_4)) , SCMD(KC_2) ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
-     HYPR(KC_A) , HYPR(KC_B) , HYPR(KC_C) , HYPR(KC_D)  , HYPR(KC_E)  ,   KC_BRIU  ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
+     HYPR(KC_A) , HYPR(KC_B) , HYPR(KC_C) , HYPR(KC_D)  , HYPR(KC_E)  ,   KC_BRIU  ,  /**/  ___ , F1R , F2R , F3R , F4R , ___ ,
      HYPR(KC_F) , HYPR(KC_G) , HYPR(KC_H) , HYPR(KC_I)  , HYPR(KC_J)  ,   KC_BRID  ,  /**/  ___ , ___ , ___ , ___ , ___ , ___ ,
                                               KC_VOLD   ,   KC_MUTE   ,   KC_VOLU  ,  /**/  ___ , ___ , ___
     ),
