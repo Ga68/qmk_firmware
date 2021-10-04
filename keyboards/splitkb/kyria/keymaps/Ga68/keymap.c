@@ -158,16 +158,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      -------------------------------------------   -------------------------------------------
      |      | CTRL | ALT  |SHIFT | CMD  |      |   |  \   |  $   |  %   |  ^   |  :   |  ;   |
      -------------------------------------------   -------------------------------------------
-     |      |      |      |      |      |      |   |  |   |  !   |  @   |  #   |  ~   |      |
+     |      | UNDO | CUT  | COPY |PASTE | REDO |   |  |   |  !   |  @   |  #   |  ~   |      |
      -------------------------------------------   -------------------------------------------
                           |      |      |  ▼▼  |   |  _   |  (   |  )   |
                           ----------------------   ----------------------
 */
     [SYM] = LAYOUT_KYRIA(
-           ___ , ___ , ___ , ___ , ___ ,  /**/  KC_LCBR , KC_AMPR , KC_ASTR , KC_LPRN , KC_RCBR ,    ____ ,
-     ___ , F4L , F3L , F2L , F1L , ___ ,  /**/  KC_BSLS , KC_DLR  , KC_PERC , KC_CIRC , KC_COLN , KC_SCLN ,
-     ___ , ___ , ___ , ___ , ___ , ___ ,  /**/  KC_PIPE , KC_EXLM , KC_AT   , KC_HASH , KC_TILD ,    ____ ,
-                       ___ , ___ , ___ ,  /**/  KC_UNDS , KC_LPRN , KC_RPRN
+             ___ ,   ___ ,   ___ ,   ___ ,   ___ ,  /**/  KC_LCBR , KC_AMPR , KC_ASTR , KC_LPRN , KC_RCBR ,    ____ ,
+     ___ ,   F4L ,   F3L ,   F2L ,   F1L ,   ___ ,  /**/  KC_BSLS , KC_DLR  , KC_PERC , KC_CIRC , KC_COLN , KC_SCLN ,
+     ___ , U_UND , U_CUT , U_CPY , U_PST , U_RDO ,  /**/  KC_PIPE , KC_EXLM , KC_AT   , KC_HASH , KC_TILD ,    ____ ,
+                             ___ ,   ___ ,   ___ ,  /**/  KC_UNDS , KC_LPRN , KC_RPRN
     ),
 
 /*   WINDOW
