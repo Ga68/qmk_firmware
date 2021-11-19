@@ -1,0 +1,15 @@
+Zoom
+Brave
+Calendar
+Messages
+Slack
+
+Zoho
+Mail
+Outlook
+Sublime Text
+
+Evernote
+Postico / DBVisualizer
+Reminders
+Tableau
