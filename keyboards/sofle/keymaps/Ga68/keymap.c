@@ -14,9 +14,6 @@ enum sofle_layers {
 
 enum tap_dance_key_codes {
     TD_ESC_CAPS,
-    TD_COMM_LT,
-    TD_DOT_GT,
-    TD_QUOT_DQUO,
     TD_COLN_SCLN,
     TD_LEFT_HOME,
     TD_RGHT_END,
@@ -25,10 +22,10 @@ enum tap_dance_key_codes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_COLEMAK] = LAYOUT(
-        TD(TD_ESC_CAPS), KC_1, KC_2, KC_3, KC_4, KC_5,                 KC_6, KC_7, KC_8          , KC_9         , KC_0   , TD(TD_COLN_SCLN),
-        U_IQUES        , KC_Q, KC_W, KC_F, KC_P, KC_G,                 KC_J, KC_L, KC_U          , KC_Y         , KC_MINS, KC_QUES         ,
-        KC_TAB         , KC_A, KC_R, KC_S, KC_T, KC_D,                 KC_H, KC_N, KC_E          , KC_I         , KC_O   , TD(TD_QUOT_DQUO),
-        TO(_NAV)       , KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, _____, KC_K, KC_M, TD(TD_COMM_LT), TD(TD_DOT_GT), KC_SLSH, KC_ENT          ,
+        TD(TD_ESC_CAPS), KC_1, KC_2, KC_3, KC_4, KC_5,                 KC_6, KC_7, KC_8   , KC_9  , KC_0   , TD(TD_COLN_SCLN),
+        U_IQUES        , KC_Q, KC_W, KC_F, KC_P, KC_G,                 KC_J, KC_L, KC_U   , KC_Y  , KC_MINS, KC_QUES         ,
+        KC_TAB         , KC_A, KC_R, KC_S, KC_T, KC_D,                 KC_H, KC_N, KC_E   , KC_I  , KC_O   , KC_QUOT         ,
+        TO(_NAV)       , KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, _____, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_ENT          ,
         
                  KC_LCTL, KC_LALT, KC_LGUI, TO(_NMSY), KC_BSPC, KC_SPC, OSM(MOD_RSFT), KC_RGUI, KC_RALT, KC_RCTL
     ),
@@ -169,6 +166,22 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 #endif
 
+
+// --- ---------- ---
+// --- Auto Shift ---
+// --- ---------- ---
+
+bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_COMM:
+        case KC_DOT:
+        case KC_QUOT:
+        case KC_A ... KC_Y:
+            return true;
+    }
+    return false;
+}
+
 // --- --------- ---
 // --- Tap Dance ---
 // --- --------- ---
@@ -208,108 +221,6 @@ uint8_t dance_standard_double_step(qk_tap_dance_state_t *state) {
         else return DOUBLE_TAP;
     }
     return MORE_TAPS;
-}
-
-// --- Comma, Less Than ---
-void on_dance_comm_lt(qk_tap_dance_state_t *state, void *user_data);
-void dance_comm_lt_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_comm_lt_reset(qk_tap_dance_state_t *state, void *user_data);
-void on_dance_comm_lt(qk_tap_dance_state_t *state, void *user_data) {
-    if(state->count == 3) {
-        tap_code16(KC_COMM);
-        tap_code16(KC_COMM);
-        tap_code16(KC_COMM);
-    }
-    if(state->count > 3) {
-        tap_code16(KC_COMM);
-    }
-}
-void dance_comm_lt_finished(qk_tap_dance_state_t *state, void *user_data) {
-    dance_state.step = dance_standard_double_step(state);
-    switch (dance_state.step) {
-        case SINGLE_TAP: register_code16(KC_COMM); break;
-        case SINGLE_HOLD: register_code16(KC_LT); break;
-        case DOUBLE_TAP: register_code16(KC_COMM); register_code16(KC_COMM); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(KC_COMM); register_code16(KC_COMM);
-    }
-}
-void dance_comm_lt_reset(qk_tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state.step) {
-        case SINGLE_TAP: unregister_code16(KC_COMM); break;
-        case SINGLE_HOLD: unregister_code16(KC_LT); break;
-        case DOUBLE_TAP: unregister_code16(KC_COMM); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(KC_LT); break;
-    }
-    dance_state.step = 0;
-}
-
-// --- Period, Greater Than ---
-void on_dance_dot_gt(qk_tap_dance_state_t *state, void *user_data);
-void dance_dot_gt_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_dot_gt_reset(qk_tap_dance_state_t *state, void *user_data);
-void on_dance_dot_gt(qk_tap_dance_state_t *state, void *user_data) {
-    if(state->count == 3) {
-        tap_code16(KC_DOT);
-        tap_code16(KC_DOT);
-        tap_code16(KC_DOT);
-    }
-    if(state->count > 3) {
-        tap_code16(KC_DOT);
-    }
-}
-void dance_dot_gt_finished(qk_tap_dance_state_t *state, void *user_data) {
-    dance_state.step = dance_standard_double_step(state);
-    switch (dance_state.step) {
-        case SINGLE_TAP: register_code16(KC_DOT); break;
-        case SINGLE_HOLD: register_code16(KC_GT); break;
-        case DOUBLE_TAP: register_code16(KC_DOT); register_code16(KC_DOT); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(KC_DOT); register_code16(KC_DOT);
-    }
-}
-void dance_dot_gt_reset(qk_tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state.step) {
-        case SINGLE_TAP: unregister_code16(KC_DOT); break;
-        case SINGLE_HOLD: unregister_code16(KC_GT); break;
-        case DOUBLE_TAP: unregister_code16(KC_DOT); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(KC_GT); break;
-    }
-    dance_state.step = 0;
-}
-
-// --- Single Quot, Double Quote ---
-void on_dance_quot_dquo(qk_tap_dance_state_t *state, void *user_data);
-void dance_quot_dquo_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_quot_dquo_reset(qk_tap_dance_state_t *state, void *user_data);
-void on_dance_quot_dquo(qk_tap_dance_state_t *state, void *user_data) {
-    if(state->count == 3) {
-        tap_code16(KC_QUOT);
-        tap_code16(KC_QUOT);
-        tap_code16(KC_QUOT);
-    }
-    if(state->count > 3) {
-        tap_code16(KC_QUOT);
-    }
-}
-void dance_quot_dquo_finished(qk_tap_dance_state_t *state, void *user_data) {
-    dance_state.step = dance_standard_double_step(state);
-    switch (dance_state.step) {
-        case SINGLE_TAP: register_code16(KC_QUOT); break;
-        case SINGLE_HOLD: register_code16(KC_DQUO); break;
-        case DOUBLE_TAP: register_code16(KC_QUOT); register_code16(KC_QUOT); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(KC_QUOT); register_code16(KC_QUOT);
-    }
-}
-void dance_quot_dquo_reset(qk_tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state.step) {
-        case SINGLE_TAP: unregister_code16(KC_QUOT); break;
-        case SINGLE_HOLD: unregister_code16(KC_DQUO); break;
-        case DOUBLE_TAP: unregister_code16(KC_QUOT); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(KC_DQUO); break;
-    }
-    dance_state.step = 0;
 }
 
 // --- Colon, Semi Colon ---
@@ -417,12 +328,6 @@ void dance_rght_end_reset(qk_tap_dance_state_t *state, void *user_data) {
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
     [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
-    // Comma tap, Less Than (<) hold
-    [TD_COMM_LT] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_comm_lt, dance_comm_lt_finished, dance_comm_lt_reset),
-    // Period tap, Greter Than (>) hold
-    [TD_DOT_GT] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_dot_gt, dance_dot_gt_finished, dance_dot_gt_reset),
-    // Single Quote tap, Double Quote hold
-    [TD_QUOT_DQUO] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_quot_dquo, dance_quot_dquo_finished, dance_quot_dquo_reset),
     // Colon tap, Semi-Colon hold
     [TD_COLN_SCLN] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_coln_scln, dance_coln_scln_finished, dance_coln_scln_reset),
     // Left tap, Home hold

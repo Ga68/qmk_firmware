@@ -29,3 +29,22 @@
 // --- -------- ---
 #undef ENCODER_RESOLUTION
 #define ENCODER_RESOLUTION 1
+
+// --- ---------- ---
+// --- Auto Shift ---
+// --- ---------- ---
+#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
+#define NO_AUTO_SHIFT_SPECIAL
+#define NO_AUTO_SHIFT_NUMERIC
+#define NO_AUTO_SHIFT_ALPHA
+
+// --- ------------ ---
+// --- Space Saving ---
+// --- ------------ ---
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
+
+#undef NO_DEBUG
+#define NO_DEBUG
+#undef NO_PRINT
+#define NO_PRINT
