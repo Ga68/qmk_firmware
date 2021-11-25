@@ -5,6 +5,7 @@
 // --- ------- ---
 #undef TAPPING_TERM
 #define TAPPING_TERM 200
+#define TAPPING_TERM_PER_KEY
 
 // --- ----- ---
 // --- Mouse ---
@@ -28,7 +29,8 @@
 // --- Encoders ---
 // --- -------- ---
 #undef ENCODER_RESOLUTION
-#define ENCODER_RESOLUTION 1
+#define ENCODER_RESOLUTION 4
+#define ENCODER_DIRECTION_FLIP
 
 // --- ---------- ---
 // --- Auto Shift ---

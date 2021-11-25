@@ -12,22 +12,26 @@ enum sofle_layers {
 #define _BASE _COLEMAK
 #define _NMSY _NUMPADSYM
 
-enum tap_dance_key_codes {
-    TD_ESC_CAPS,
-    TD_COLN_SCLN,
-    TD_LEFT_HOME,
-    TD_RGHT_END,
-};
+// Custom Tap-Hold behaviors
+// This will use the Mod-Tap intercept "trick" (as documented by QMK) to provide customizable
+//   behavior on any key. The DEFINEs are just to help with code legibility.
+// 
+//   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
+#define TH_Z_ZOOM LT(0, KC_Z)
+#define TH_ESC_CAPS LT(0, KC_ESC)
+#define TH_COLN_SCLN LT(0, KC_COLN)
+#define TH_LEFT_HOME LT(0, KC_LEFT)
+#define TH_RGHT_END LT(0, KC_RGHT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_COLEMAK] = LAYOUT(
-        TD(TD_ESC_CAPS), KC_1, KC_2, KC_3, KC_4, KC_5,                 KC_6, KC_7, KC_8   , KC_9  , KC_0   , TD(TD_COLN_SCLN),
-        U_IQUES        , KC_Q, KC_W, KC_F, KC_P, KC_G,                 KC_J, KC_L, KC_U   , KC_Y  , KC_MINS, KC_QUES         ,
-        KC_TAB         , KC_A, KC_R, KC_S, KC_T, KC_D,                 KC_H, KC_N, KC_E   , KC_I  , KC_O   , KC_QUOT         ,
-        TO(_NAV)       , KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, _____, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_ENT          ,
+        TH_ESC_CAPS, KC_1     , KC_2, KC_3, KC_4, KC_5,                 KC_6, KC_7, KC_8   , KC_9  , KC_0   , TH_COLN_SCLN,
+        U_IQUES    , KC_Q     , KC_W, KC_F, KC_P, KC_G,                 KC_J, KC_L, KC_U   , KC_Y  , KC_MINS, KC_QUES     ,
+        KC_TAB     , KC_A     , KC_R, KC_S, KC_T, KC_D,                 KC_H, KC_N, KC_E   , KC_I  , KC_O   , KC_QUOT     ,
+        TO(_NAV)   , TH_Z_ZOOM, KC_X, KC_C, KC_V, KC_B, KC_MUTE, _____, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_ENT      ,
         
-                 KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), KC_SPC, KC_RGUI, KC_RALT, KC_RCTL
+                  KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), KC_SPC, KC_RGUI, KC_RALT, KC_RCTL
     ),
 
     [_NUMPADSYM] = LAYOUT(
@@ -40,10 +44,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_NAV] = LAYOUT(
-        RESET, SGUI(KC_1) , SGUI(KC_2) , SGUI(KC_3) , _____      , _____     ,               _____        , _____           , _____  , _____  , _____          , _____        ,
-        _____, _____      , HYPR(KC_P7), HYPR(KC_P8), HYPR(KC_P9), _____     ,               KC_BTN1      , KC_MS_L         , KC_MS_D, KC_MS_U, KC_MS_R        , KC_BTN2      ,
-        _____, _____      , HYPR(KC_P4), HYPR(KC_P5), HYPR(KC_P6), _____     ,               RALT(KC_LEFT), TD(TD_LEFT_HOME), KC_DOWN, KC_UP  , TD(TD_RGHT_END), RALT(KC_RGHT),
-        _____, HYPR(KC_P0), HYPR(KC_P1), HYPR(KC_P2), HYPR(KC_P3), HYPR(KC_M), _____, _____, _____        , KC_WH_R         , KC_WH_U, KC_WH_D, KC_WH_L        , KC_ENT       ,
+        RESET, SGUI(KC_1) , SGUI(KC_2) , SGUI(KC_3) , _____      , _____     ,               _____        , _____       , _____  , _____  , _____      , _____        ,
+        _____, _____      , HYPR(KC_P7), HYPR(KC_P8), HYPR(KC_P9), _____     ,               KC_BTN1      , KC_MS_L     , KC_MS_D, KC_MS_U, KC_MS_R    , KC_BTN2      ,
+        _____, _____      , HYPR(KC_P4), HYPR(KC_P5), HYPR(KC_P6), _____     ,               RALT(KC_LEFT), TH_LEFT_HOME, KC_DOWN, KC_UP  , TH_RGHT_END, RALT(KC_RGHT),
+        _____, HYPR(KC_P0), HYPR(KC_P1), HYPR(KC_P2), HYPR(KC_P3), HYPR(KC_M), _____, _____, _____        , KC_WH_R     , KC_WH_U, KC_WH_D, KC_WH_L    , KC_ENT       ,
 
                                        KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
         ),
@@ -66,6 +70,58 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_LCTL, KC_LALT, KC_LGUI, TO(_NAV), KC_BSPC, TO(_BASE), OSM(MOD_RSFT), KC_RGUI, KC_RALT, KC_RCTL) 
 
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case TH_Z_ZOOM:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_Z);
+            } else if (record->event.pressed) {
+                layer_on(_ZOOM);
+            }
+            return false;
+        case TH_ESC_CAPS:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_ESC);
+            } else if (record->event.pressed) {
+                tap_code(KC_CAPSLOCK);
+            }
+            return false;
+        case TH_COLN_SCLN:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_COLN);
+            } else if (record->event.pressed) {
+                tap_code(KC_SCLN);
+            }
+            return false;
+        case TH_LEFT_HOME:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_LEFT);
+            } else if (record->event.pressed) {
+                tap_code16(LGUI(KC_LEFT));
+            }
+            return false;
+        case TH_RGHT_END:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_RGHT);
+            } else if (record->event.pressed) {
+                tap_code16(LGUI(KC_RGHT));
+            }
+            return false;
+    }
+    return true;
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case TH_Z_ZOOM:
+            return TAPPING_TERM + 1000;
+        case TH_ESC_CAPS:
+            return TAPPING_TERM + 500;
+        default:
+            return TAPPING_TERM;
+    }
+}
 
 #ifdef OLED_ENABLE
 
@@ -113,10 +169,6 @@ void oled_task_user(void) {
 
 #endif
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    return true;
-}
-
 #ifdef ENCODER_ENABLE
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
@@ -153,158 +205,3 @@ bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
 }
-
-// --- --------- ---
-// --- Tap Dance ---
-// --- --------- ---
-
-extern bool g_suspend_state;
-#define GET_TAP_KC(dual_role_key) dual_role_key & 0xFF
-uint16_t last_keycode = KC_NO;
-uint8_t last_modifier = 0;
-
-typedef struct {
-    bool is_press_action;
-    uint8_t step;
-} tap;
-
-enum {
-    SINGLE_TAP = 1,
-    SINGLE_HOLD,
-    DOUBLE_TAP,
-    DOUBLE_HOLD,
-    DOUBLE_SINGLE_TAP,
-    MORE_TAPS
-};
-
-static tap dance_state = {
-    .is_press_action = true,
-    .step = 0
-};
-
-uint8_t dance_standard_double_step(qk_tap_dance_state_t *state);
-uint8_t dance_standard_double_step(qk_tap_dance_state_t *state) {
-    if (state->count == 1) {
-        if (state->interrupted || !state->pressed) return SINGLE_TAP;
-        else return SINGLE_HOLD;
-    } else if (state->count == 2) {
-        if (state->interrupted) return DOUBLE_SINGLE_TAP;
-        else if (state->pressed) return DOUBLE_HOLD;
-        else return DOUBLE_TAP;
-    }
-    return MORE_TAPS;
-}
-
-// --- Colon, Semi Colon ---
-void on_dance_coln_scln(qk_tap_dance_state_t *state, void *user_data);
-void dance_coln_scln_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_coln_scln_reset(qk_tap_dance_state_t *state, void *user_data);
-void on_dance_coln_scln(qk_tap_dance_state_t *state, void *user_data) {
-    if(state->count == 3) {
-        tap_code16(KC_COLN);
-        tap_code16(KC_COLN);
-        tap_code16(KC_COLN);
-    }
-    if(state->count > 3) {
-        tap_code16(KC_COLN);
-    }
-}
-void dance_coln_scln_finished(qk_tap_dance_state_t *state, void *user_data) {
-    dance_state.step = dance_standard_double_step(state);
-    switch (dance_state.step) {
-        case SINGLE_TAP: register_code16(KC_COLN); break;
-        case SINGLE_HOLD: register_code16(KC_SCLN); break;
-        case DOUBLE_TAP: register_code16(KC_COLN); register_code16(KC_COLN); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(KC_COLN); register_code16(KC_COLN);
-    }
-}
-void dance_coln_scln_reset(qk_tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state.step) {
-        case SINGLE_TAP: unregister_code16(KC_COLN); break;
-        case SINGLE_HOLD: unregister_code16(KC_SCLN); break;
-        case DOUBLE_TAP: unregister_code16(KC_COLN); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(KC_SCLN); break;
-    }
-    dance_state.step = 0;
-}
-
-// --- Left, Home ---
-void on_dance_left_home(qk_tap_dance_state_t *state, void *user_data);
-void dance_left_home_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_left_home_reset(qk_tap_dance_state_t *state, void *user_data);
-void on_dance_left_home(qk_tap_dance_state_t *state, void *user_data) {
-    if(state->count == 3) {
-        tap_code16(KC_LEFT);
-        tap_code16(KC_LEFT);
-        tap_code16(KC_LEFT);
-    }
-    if(state->count > 3) {
-        tap_code16(KC_LEFT);
-    }
-}
-void dance_left_home_finished(qk_tap_dance_state_t *state, void *user_data) {
-    dance_state.step = dance_standard_double_step(state);
-    switch (dance_state.step) {
-        case SINGLE_TAP: register_code16(KC_LEFT); break;
-        case SINGLE_HOLD: register_code16(KC_HOME); break;
-        case DOUBLE_TAP: register_code16(KC_LEFT); register_code16(KC_LEFT); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(KC_LEFT); register_code16(KC_LEFT);
-    }
-}
-void dance_left_home_reset(qk_tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state.step) {
-        case SINGLE_TAP: unregister_code16(KC_LEFT); break;
-        case SINGLE_HOLD: unregister_code16(KC_HOME); break;
-        case DOUBLE_TAP: unregister_code16(KC_LEFT); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(KC_HOME); break;
-    }
-    dance_state.step = 0;
-}
-
-// --- Right, End ---
-void on_dance_rght_end(qk_tap_dance_state_t *state, void *user_data);
-void dance_rght_end_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_rght_end_reset(qk_tap_dance_state_t *state, void *user_data);
-void on_dance_rght_end(qk_tap_dance_state_t *state, void *user_data) {
-    if(state->count == 3) {
-        tap_code16(KC_RGHT);
-        tap_code16(KC_RGHT);
-        tap_code16(KC_RGHT);
-    }
-    if(state->count > 3) {
-        tap_code16(KC_RGHT);
-    }
-}
-void dance_rght_end_finished(qk_tap_dance_state_t *state, void *user_data) {
-    dance_state.step = dance_standard_double_step(state);
-    switch (dance_state.step) {
-        case SINGLE_TAP: register_code16(KC_RGHT); break;
-        case SINGLE_HOLD: register_code16(KC_END); break;
-        case DOUBLE_TAP: register_code16(KC_RGHT); register_code16(KC_RGHT); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(KC_RGHT); register_code16(KC_RGHT);
-    }
-}
-void dance_rght_end_reset(qk_tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state.step) {
-        case SINGLE_TAP: unregister_code16(KC_RGHT); break;
-        case SINGLE_HOLD: unregister_code16(KC_END); break;
-        case DOUBLE_TAP: unregister_code16(KC_RGHT); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(KC_END); break;
-    }
-    dance_state.step = 0;
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for Escape, twice for Caps Lock
-    [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
-    // Colon tap, Semi-Colon hold
-    [TD_COLN_SCLN] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_coln_scln, dance_coln_scln_finished, dance_coln_scln_reset),
-    // Left tap, Home hold
-    [TD_LEFT_HOME] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_left_home, dance_left_home_finished, dance_left_home_reset),
-    // Right tap, End hold
-    [TD_RGHT_END] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_rght_end, dance_rght_end_finished, dance_rght_end_reset),
-};
-
