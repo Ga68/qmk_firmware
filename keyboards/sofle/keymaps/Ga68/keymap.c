@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB         , KC_A, KC_R, KC_S, KC_T, KC_D,                 KC_H, KC_N, KC_E   , KC_I  , KC_O   , KC_QUOT         ,
         TO(_NAV)       , KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, _____, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_ENT          ,
         
-                 KC_LCTL, KC_LALT, KC_LGUI, TO(_NMSY), KC_BSPC, KC_SPC, OSM(MOD_RSFT), KC_RGUI, KC_RALT, KC_RCTL
+                 KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), KC_SPC, KC_RGUI, KC_RALT, KC_RCTL
     ),
 
     [_NUMPADSYM] = LAYOUT(
@@ -36,16 +36,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LBRC, KC_RBRC, KC_DLR , KC_PERC, KC_CIRC, KC_LCBR,               KC_ASTR, KC_4 , KC_5 , KC_6  , KC_MINS, KC_PLUS,
         KC_UNDS, KC_BSLS, KC_EXLM, KC_AT  , KC_HASH, KC_RCBR, _____, _____, KC_0   , KC_1 , KC_2 , KC_3  , KC_DOT , KC_ENT ,
 
-                       KC_LCTL, KC_LALT, KC_LGUI, TO(_NAV), KC_BSPC, TO(_BASE), OSM(MOD_RSFT), KC_RGUI, KC_RALT, KC_RCTL
+                       KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NAV), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
         ),
 
     [_NAV] = LAYOUT(
         RESET, SGUI(KC_1) , SGUI(KC_2) , SGUI(KC_3) , _____      , _____     ,               _____        , _____           , _____  , _____  , _____          , _____        ,
         _____, _____      , HYPR(KC_P7), HYPR(KC_P8), HYPR(KC_P9), _____     ,               KC_BTN1      , KC_MS_L         , KC_MS_D, KC_MS_U, KC_MS_R        , KC_BTN2      ,
         _____, _____      , HYPR(KC_P4), HYPR(KC_P5), HYPR(KC_P6), _____     ,               RALT(KC_LEFT), TD(TD_LEFT_HOME), KC_DOWN, KC_UP  , TD(TD_RGHT_END), RALT(KC_RGHT),
-        _____, HYPR(KC_P0), HYPR(KC_P1), HYPR(KC_P2), HYPR(KC_P3), HYPR(KC_M), _____, _____, _____        , KC_WH_L         , KC_WH_D, KC_WH_U, KC_WH_R        , KC_ENT       ,
+        _____, HYPR(KC_P0), HYPR(KC_P1), HYPR(KC_P2), HYPR(KC_P3), HYPR(KC_M), _____, _____, _____        , KC_WH_R         , KC_WH_U, KC_WH_D, KC_WH_L        , KC_ENT       ,
 
-                                       KC_LCTL, KC_LALT, KC_LGUI, TO(_NMSY), KC_BSPC, TO(_BASE), OSM(MOD_RSFT), KC_RGUI, KC_RALT, KC_RCTL
+                                       KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
         ),
 
     [_ZOOM] = LAYOUT(
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO     , KC_NO , KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, SGUI(KC_V), KC_NO , KC_NO, KC_NO, KC_NO, KC_NO,
 
-                 KC_NO, KC_NO, KC_NO, TO(_BASE), KC_SPC, TO(_BASE), SGUI(KC_A), KC_SPC, SGUI(KC_S), SGUI(KC_W)
+                KC_NO, KC_NO, KC_NO, KC_SPC, SGUI(KC_V), SGUI(KC_A), TO(_BASE), KC_SPC, SGUI(KC_S), SGUI(KC_W)
         ),
 
     [_NUMSYM] = LAYOUT(
@@ -80,43 +80,15 @@ static void render_logo(void) {
 }
 
 static void print_status_narrow(void) {
-    // Print current mode
-    oled_write_P(PSTR("\n\n"), false);
-    oled_write_ln_P(PSTR("MODE"), false);
-    oled_write_ln_P(PSTR(""), false);
-    if (keymap_config.swap_lctl_lgui) {
-        oled_write_ln_P(PSTR("MAC"), false);
-    } else {
-        oled_write_ln_P(PSTR("WIN"), false);
-    }
-
-    switch (get_highest_layer(default_layer_state)) {
-        case _COLEMAK:
-            oled_write_ln_P(PSTR("Clmk"), false);
-            break;
-        default:
-            oled_write_P(PSTR("Undef"), false);
-    }
-    oled_write_P(PSTR("\n\n"), false);
     // Print current layer
-    oled_write_ln_P(PSTR("LAYER"), false);
-    switch (get_highest_layer(layer_state)) {
-        case _COLEMAK:
-            oled_write_P(PSTR("Base\n"), false);
-            break;
-        case _NUMSYM:
-        case _NUMPADSYM:
-            oled_write_P(PSTR("NumSy"), false);
-            break;
-        case _NAV:
-            oled_write_P(PSTR("Nav"), false);
-            break;
-        case _ZOOM:
-            oled_write_P(PSTR("Zoom\n"), false);
-            break;
-        default:
-            oled_write_ln_P(PSTR("Undef"), false);
-    }
+    oled_write_P(PSTR("\n\n"), false);
+    int ls = get_highest_layer(layer_state);
+    oled_write_P(PSTR("Base\n\n"), ls==_BASE);
+    oled_write_P(PSTR("NumSy\n"), ls==_NMSY);
+    oled_write_P(PSTR("Nav\n\n"), ls==_NAV);
+    oled_write_P(PSTR("Zoom\n\n"), ls==_ZOOM);
+
+    // Caps Lock
     oled_write_P(PSTR("\n\n"), false);
     led_t led_usb_state = host_keyboard_led_state();
     oled_write_ln_P(PSTR("CPSLK"), led_usb_state.caps_lock);

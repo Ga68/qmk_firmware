@@ -4,7 +4,7 @@
 // --- Tapping ---
 // --- ------- ---
 #undef TAPPING_TERM
-#define TAPPING_TERM 185
+#define TAPPING_TERM 200
 
 // --- ----- ---
 // --- Mouse ---
