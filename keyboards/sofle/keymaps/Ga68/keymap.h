@@ -4,14 +4,14 @@
 
 #include QMK_KEYBOARD_H
 
-#define _____ KC_NO
-#define ____  KC_NO
-#define ___   KC_NO
+#define _____ KC_TRANSPARENT
+#define __x__ KC_NO
 
-#define U_REDO  SCMD(KC_Z)
-#define U_PASTE LCMD(KC_V)
-#define U_COPY  LCMD(KC_C)
 #define U_CUT   LCMD(KC_X)
-#define U_UNDO  LCMD(KC_Z)
+#define U_COPY  LCMD(KC_C)
+#define U_PASTE LCMD(KC_V)
 
 #define U_IQUES LSA(KC_SLSH) // ¿
+
+#define U_WD_LEFT RALT(KC_LEFT)
+#define U_WD_RGHT RALT(KC_RGHT)
