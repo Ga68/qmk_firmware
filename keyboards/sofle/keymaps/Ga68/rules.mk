@@ -12,3 +12,8 @@ KEY_OVERRIDE_ENABLE = yes
 TAP_DANCE_ENABLE = no
 
 AUTO_SHIFT_ENABLE = no
+
+COMBO_ENABLE = yes
+
+# For space saving
+EXTRAFLAGS += -flto

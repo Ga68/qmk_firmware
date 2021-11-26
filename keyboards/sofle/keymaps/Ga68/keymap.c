@@ -12,6 +12,13 @@ enum sofle_layers {
 #define _BASE _COLEMAK
 #define _NMSY _NUMPADSYM
 
+
+enum my_keycodes {
+    CB_PRNS = SAFE_RANGE, // ()
+    CB_BRCS, // []
+    CB_CBRS, // {}
+    CB_LTGT, // <>
+};
 // Custom Tap-Hold behaviors
 // This will use the Mod-Tap intercept "trick" (as documented by QMK) to provide customizable
 //   behavior on any key. The DEFINEs are just to help with code legibility.
@@ -76,6 +83,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         
                        KC_LCTL, KC_LALT, KC_LGUI, TO(_NAV), KC_BSPC, TO(_BASE), OSM(MOD_RSFT), KC_RGUI, KC_RALT, KC_RCTL) 
 
+// --------------
+// --- Combos ---
+// --------------
+
+const uint16_t PROGMEM combo_parentheses[] = {KC_DOT, KC_COMM, COMBO_END};
+const uint16_t PROGMEM combo_braces[] = {KC_LBRC, KC_RBRC, COMBO_END};
+const uint16_t PROGMEM combo_curly_braces[] = {KC_LCBR, KC_RCBR, COMBO_END};
+const uint16_t PROGMEM combo_less_than_greater_than[] = {KC_LT, KC_GT, COMBO_END};
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(combo_parentheses, CB_PRNS),
+    COMBO(combo_braces, CB_BRCS),
+    COMBO(combo_curly_braces, CB_CBRS),
+    COMBO(combo_less_than_greater_than, CB_LTGT),
 };
 
 const key_override_t delete_key_override_shift = ko_make_basic(MOD_MASK_SHIFT, KC_BSPACE, KC_DELETE);
@@ -90,6 +110,34 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case CB_PRNS:
+            if (record->event.pressed) {
+                tap_code16(KC_LPRN);
+                tap_code16(KC_RPRN);
+                tap_code(KC_LEFT);
+            }
+            return false;
+        case CB_BRCS:
+            if (record->event.pressed) {
+                tap_code16(KC_LBRC);
+                tap_code16(KC_RBRC);
+                tap_code(KC_LEFT);
+            }
+            return false;
+        case CB_CBRS:
+            if (record->event.pressed) {
+                tap_code16(KC_LCBR);
+                tap_code16(KC_RCBR);
+                tap_code(KC_LEFT);
+            }
+            return false;
+        case CB_LTGT:
+            if (record->event.pressed) {
+                tap_code16(KC_LT);
+                tap_code16(KC_GT);
+                tap_code(KC_LEFT);
+            }
+            return false;
         case TH_Z_ZOOM:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_Z);

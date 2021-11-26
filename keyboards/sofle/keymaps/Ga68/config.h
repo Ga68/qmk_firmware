@@ -40,6 +40,12 @@
 #define NO_AUTO_SHIFT_NUMERIC
 #define NO_AUTO_SHIFT_ALPHA
 
+
+// --- ------ ---
+// --- Combos ---
+// --- ------ ---
+#define COMBO_COUNT 4
+
 // --- ------------ ---
 // --- Space Saving ---
 // --- ------------ ---
