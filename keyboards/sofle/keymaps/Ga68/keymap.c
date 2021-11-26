@@ -1,6 +1,10 @@
 #include QMK_KEYBOARD_H
 #include "keymap.h"
 
+// --------------
+// --- Layers ---
+// --------------
+
 enum sofle_layers {
     _COLEMAK,
     _NUMPADSYM,
@@ -8,10 +12,19 @@ enum sofle_layers {
     _ZOOM,
     _NUMSYM,
 };
-
 #define _BASE _COLEMAK
 #define _NMSY _NUMPADSYM
 
+
+// -----------------------
+// --- Custom Keycodes ---
+// -----------------------
+//   CB = Combo
+//   TH = Tap Hold
+//   UKC = User Key Code
+
+#define _____ KC_TRANSPARENT
+#define __x__ KC_NO
 
 enum my_keycodes {
     CB_PRNS = SAFE_RANGE, // ()
@@ -19,31 +32,48 @@ enum my_keycodes {
     CB_CBRS, // {}
     CB_LTGT, // <>
 };
+
+#define UKC_CUT   LCMD(KC_X)
+#define UKC_COPY  LCMD(KC_C)
+#define UKC_PASTE LCMD(KC_V)
+
+#define UKC_IQUES  LSA(KC_SLASH) // ¿
+#define UKC_EMDASH LSA(KC_MINUS)
+
+#define UKC_WD_LEFT RALT(KC_LEFT)
+#define UKC_WD_RGHT RALT(KC_RGHT)
+
 // Custom Tap-Hold behaviors
 // This will use the Mod-Tap intercept "trick" (as documented by QMK) to provide customizable
 //   behavior on any key. The DEFINEs are just to help with code legibility.
 // 
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
-#define TH_Z_ZOOM LT(_BASE, KC_Z)
-#define TH_ESC_CAPS LT(_BASE, KC_ESC)
+#define TH_Z_ZOOM    LT(_BASE, KC_Z)
+#define TH_ESC_CAPS  LT(_BASE, KC_ESC)
 #define TH_COLN_SCLN LT(_BASE, KC_COLN)
-#define TH_X_CUT LT(_BASE, KC_X)
-#define TH_C_COPY LT(_BASE, KC_C)
+#define TH_MINS_UNDS LT(_BASE, KC_MINS)
+
+#define TH_X_CUT   LT(_BASE, KC_X)
+#define TH_C_COPY  LT(_BASE, KC_C)
 #define TH_V_PASTE LT(_BASE, KC_V)
 
-#define TH_LEFT_GUI LT(_NAV, KC_LEFT)
-#define TH_RGHT_GUI LT(_NAV, KC_RGHT)
-#define TH_UP_GUI LT(_NAV, KC_UP)
-#define TH_DOWN_GUI LT(_NAV, KC_DOWN)
+#define TH_LEFT_GUI  LT(_NAV, KC_LEFT)
+#define TH_RGHT_GUI  LT(_NAV, KC_RGHT)
+#define TH_UP_PGUP   LT(_NAV, KC_UP)
+#define TH_DOWN_PGDN LT(_NAV, KC_DOWN)
 
+
+// --------------
+// --- Keymap ---
+// --------------
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_COLEMAK] = LAYOUT(
-        TH_ESC_CAPS, KC_1     , KC_2    , KC_3     , KC_4      , KC_5,                 KC_6, KC_7, KC_8   , KC_9  , KC_0   , TH_COLN_SCLN,
-        U_IQUES    , KC_Q     , KC_W    , KC_F     , KC_P      , KC_G,                 KC_J, KC_L, KC_U   , KC_Y  , KC_MINS, KC_QUES     ,
-        KC_TAB     , KC_A     , KC_R    , KC_S     , KC_T      , KC_D,                 KC_H, KC_N, KC_E   , KC_I  , KC_O   , KC_QUOT     ,
-        TO(_NAV)   , TH_Z_ZOOM, TH_X_CUT, TH_C_COPY, TH_V_PASTE, KC_B, KC_MUTE, __x__, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_ENT      ,
+        TH_ESC_CAPS, KC_1     , KC_2    , KC_3     , KC_4      , KC_5,                   KC_6, KC_7, KC_8   , KC_9  , KC_0        , __x__       ,
+        KC_QUES    , KC_Q     , KC_W    , KC_F     , KC_P      , KC_G,                   KC_J, KC_L, KC_U   , KC_Y  , TH_COLN_SCLN, TH_MINS_UNDS,
+        KC_TAB     , KC_A     , KC_R    , KC_S     , KC_T      , KC_D,                   KC_H, KC_N, KC_E   , KC_I  , KC_O        , KC_QUOT     ,
+        TO(_NAV)   , TH_Z_ZOOM, TH_X_CUT, TH_C_COPY, TH_V_PASTE, KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH     , KC_ENT      ,
         
                                  KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), KC_SPC, KC_RGUI, KC_RALT, KC_RCTL
     ),
@@ -52,16 +82,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,               KC_F7  , KC_F8, KC_F9, KC_F10, KC_F11 , KC_F12 ,
         KC_TILD, KC_GRV , KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,               KC_SLSH, KC_7 , KC_8 , KC_9  , KC_EQL , KC_PIPE,
         KC_LBRC, KC_RBRC, KC_DLR , KC_PERC, KC_CIRC, KC_LCBR,               KC_ASTR, KC_4 , KC_5 , KC_6  , KC_MINS, KC_PLUS,
-        KC_UNDS, KC_BSLS, KC_EXLM, KC_AT  , KC_HASH, KC_RCBR, _____, __x__, KC_0   , KC_1 , KC_2 , KC_3  , KC_DOT , KC_ENT ,
+        KC_UNDS, KC_BSLS, KC_EXLM, KC_AT  , KC_HASH, KC_RCBR, _____, _____, KC_0   , KC_1 , KC_2 , KC_3  , KC_DOT , KC_ENT ,
 
                        KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NAV), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
         ),
 
     [_NAV] = LAYOUT(
-        RESET, SGUI(KC_1) , SGUI(KC_2) , SGUI(KC_3) , __x__      , __x__     ,               __x__    , __x__      , __x__      , __x__    , __x__      , __x__    ,
-        __x__, __x__      , HYPR(KC_P7), HYPR(KC_P8), HYPR(KC_P9), __x__     ,               KC_BTN1  , KC_MS_L    , KC_MS_D    , KC_MS_U  , KC_MS_R    , KC_BTN2  ,
-        __x__, __x__      , HYPR(KC_P4), HYPR(KC_P5), HYPR(KC_P6), __x__     ,               U_WD_LEFT, TH_LEFT_GUI, TH_DOWN_GUI, TH_UP_GUI, TH_RGHT_GUI, U_WD_RGHT,
-        __x__, HYPR(KC_P0), HYPR(KC_P1), HYPR(KC_P2), HYPR(KC_P3), HYPR(KC_M), _____, __x__, __x__    , KC_WH_R    , KC_WH_U    , KC_WH_D  , KC_WH_L    , KC_ENT   ,
+        RESET, SGUI(KC_1) , SGUI(KC_2) , SGUI(KC_3) , __x__      , __x__     ,               __x__      , KC_MS_L    , KC_MS_D     , KC_MS_U   , KC_MS_R    , __x__      ,
+        __x__, __x__      , HYPR(KC_P7), HYPR(KC_P8), HYPR(KC_P9), __x__     ,               KC_BTN1    , KC_WH_R    , KC_WH_U     , KC_WH_D   , KC_WH_L    , KC_BTN2    ,
+        __x__, __x__      , HYPR(KC_P4), HYPR(KC_P5), HYPR(KC_P6), __x__     ,               UKC_WD_LEFT, TH_LEFT_GUI, TH_DOWN_PGDN, TH_UP_PGUP, TH_RGHT_GUI, UKC_WD_RGHT,
+        __x__, HYPR(KC_P0), HYPR(KC_P1), HYPR(KC_P2), HYPR(KC_P3), HYPR(KC_M), _____, _____, __x__      , UKC_PASTE  , UKC_COPY    , UKC_CUT   , __x__      , KC_ENT     ,
 
                                        KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
         ),
@@ -70,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__, __x__, __x__, __x__, __x__, __x__,               __x__     , __x__ , __x__, __x__, __x__, __x__,
         __x__, __x__, __x__, __x__, __x__, __x__,               __x__     , __x__ , __x__, __x__, __x__, __x__,
         __x__, __x__, __x__, __x__, __x__, __x__,               __x__     , __x__ , __x__, __x__, __x__, __x__,
-        __x__, __x__, __x__, __x__, __x__, __x__, _____, __x__, SGUI(KC_V), __x__ , __x__, __x__, __x__, __x__,
+        __x__, __x__, __x__, __x__, __x__, __x__, _____, _____, SGUI(KC_V), __x__ , __x__, __x__, __x__, __x__,
 
                 __x__, __x__, __x__, KC_SPC, SGUI(KC_V), SGUI(KC_A), TO(_BASE), KC_SPC, SGUI(KC_S), SGUI(KC_W)
         ),
@@ -79,9 +109,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TILD, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,               KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 ,
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,               KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_F12 ,
         KC_UNDS, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC,               KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DQUO,
-        __x__  , KC_BSLS, KC_PIPE, KC_EQL , KC_PLUS, __x__  , __x__, __x__, KC_DOT , KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_ENT ,
+        __x__  , KC_BSLS, KC_PIPE, KC_EQL , KC_PLUS, __x__  , _____, _____, KC_DOT , KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_ENT ,
         
-                       KC_LCTL, KC_LALT, KC_LGUI, TO(_NAV), KC_BSPC, TO(_BASE), OSM(MOD_RSFT), KC_RGUI, KC_RALT, KC_RCTL) 
+                       KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NAV), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
+        ),
+};
 
 // --------------
 // --- Combos ---
@@ -98,6 +130,10 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_less_than_greater_than, CB_LTGT),
 };
 
+
+// -----------------
+// --- Overrides ---
+// -----------------
 const key_override_t delete_key_override_shift = ko_make_basic(MOD_MASK_SHIFT, KC_BSPACE, KC_DELETE);
 const key_override_t delete_key_override_ctrl = ko_make_basic(MOD_MASK_CTRL, KC_BSPACE, KC_DELETE);
 
@@ -159,6 +195,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_SCLN);
             }
             return false;
+        case TH_MINS_UNDS:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_MINS);
+            } else if (record->event.pressed) {
+                tap_code16(KC_UNDS);
+            }
+            return false;
         case TH_LEFT_GUI:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_LEFT);
@@ -173,39 +216,39 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(LGUI(KC_RGHT));
             }
             return false;
-        case TH_UP_GUI:
+        case TH_UP_PGUP:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_UP);
             } else if (record->event.pressed) {
-                tap_code16(LGUI(KC_UP));
+                tap_code16(KC_PGUP);
             }
             return false;
-        case TH_DOWN_GUI:
+        case TH_DOWN_PGDN:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_DOWN);
             } else if (record->event.pressed) {
-                tap_code16(LGUI(KC_DOWN));
+                tap_code(KC_PGDOWN);
             }
             return false;
         case TH_X_CUT:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_X);
             } else if (record->event.pressed) {
-                tap_code16(U_CUT);
+                tap_code16(UKC_CUT);
             }
             return false;
         case TH_C_COPY:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_C);
             } else if (record->event.pressed) {
-                tap_code16(U_COPY);
+                tap_code16(UKC_COPY);
             }
             return false;
         case TH_V_PASTE:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_V);
             } else if (record->event.pressed) {
-                tap_code16(U_PASTE);
+                tap_code16(UKC_PASTE);
             }
             return false;
     }
@@ -225,18 +268,13 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef ENCODER_ENABLE
     bool encoder_update_user(uint8_t index, bool clockwise) {
-        if (index == 0) {
+        if (index == 0 || index == 1) {
+            // For now I'm doing the same thing for both encoders
             if (clockwise) {
                 tap_code(KC_VOLU);
             } else {
                 tap_code(KC_VOLD);
             }
-        } else if (index == 1) {
-            // if (clockwise) {
-            //     tap_code(KC_PGDOWN);
-            // } else {
-            //     tap_code(KC_PGUP);
-            // }
         }
         return true;
     }
@@ -245,9 +283,10 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 #ifdef OLED_ENABLE
     static void render_logo(void) {
         static const char PROGMEM qmk_logo[] = {
-            0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,0x91,0x92,0x93,0x94,
-            0xa0,0xa1,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xab,0xac,0xad,0xae,0xaf,0xb0,0xb1,0xb2,0xb3,0xb4,
-            0xc0,0xc1,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,0xc9,0xca,0xcb,0xcc,0xcd,0xce,0xcf,0xd0,0xd1,0xd2,0xd3,0xd4,0
+            0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,
+            0x91,0x92,0x93,0x94,0xa0,0xa1,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xab,0xac,
+            0xad,0xae,0xaf,0xb0,0xb1,0xb2,0xb3,0xb4,0xc0,0xc1,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,
+            0xc9,0xca,0xcb,0xcc,0xcd,0xce,0xcf,0xd0,0xd1,0xd2,0xd3,0xd4,0
         };
 
         oled_write_P(qmk_logo, false);
