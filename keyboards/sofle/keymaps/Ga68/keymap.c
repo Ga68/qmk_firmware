@@ -5,7 +5,7 @@
 // --- Layers ---
 // --------------
 
-enum sofle_layers {
+enum my_layers {
     _COLEMAK,
     _NUMPADSYM,
     _NAV,
@@ -26,6 +26,8 @@ enum sofle_layers {
 #define __x__ KC_NO
 
 enum my_keycodes {
+    // Combos
+    //   See process_combo_keycode_user to see these keycodes' implementation.
     CB_PRNS = SAFE_RANGE, // ()
     CB_BRCS, // []
     CB_CBRS, // {}
@@ -39,17 +41,17 @@ enum my_keycodes {
 #define UKC_UNDO LCMD(KC_Z)
 #define UKC_REDO LCMD(LSFT(KC_Z))
 
-#define UKC_IQUS   LSA(KC_SLASH) // ¿
-#define UKC_EMDASH LSA(KC_MINUS)
+#define UKC_IQUS   LSFT(LALT(KC_SLASH)) // ¿
+#define UKC_EMDASH LSFT(LALT(KC_MINUS))
 
 #define UKC_WD_LEFT RALT(KC_LEFT)
 #define UKC_WD_RGHT RALT(KC_RGHT)
 
 // Custom Tap-Hold behaviors
 // This will use the Mod-Tap intercept "trick" (as documented by QMK) to provide customizable
-//   behavior on any key. The DEFINEs are just to help with code legibility.
-// 
+//   behavior on any key's hold. The DEFINEs are to help with code legibility.
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
+// See process_tap_hold_keycode_user to see these keycodes' implementation.
 #define TH_Z_ZOOM    LT(_BASE, KC_Z)
 #define TH_ESC_CAPS  LT(_BASE, KC_ESC)
 #define TH_COLN_SCLN LT(_BASE, KC_COLN)
@@ -112,7 +114,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // --------------
 // --- Combos ---
 // --------------
-
 const uint16_t PROGMEM combo_parentheses[] = {KC_DOT, KC_COMM, COMBO_END};
 const uint16_t PROGMEM combo_braces[] = {KC_LBRC, KC_RBRC, COMBO_END};
 const uint16_t PROGMEM combo_curly_braces[] = {KC_LCBR, KC_RCBR, COMBO_END};
@@ -128,20 +129,7 @@ combo_t key_combos[] = {
     COMBO(combo_paste_plain, UKC_PPST),
 };
 
-// -----------------
-// --- Overrides ---
-// -----------------
-const key_override_t delete_key_override_shift = ko_make_basic(MOD_MASK_SHIFT, KC_BSPACE, KC_DELETE);
-const key_override_t delete_key_override_ctrl = ko_make_basic(MOD_MASK_CTRL, KC_BSPACE, KC_DELETE);
-
-// This globally defines all key overrides to be used
-const key_override_t **key_overrides = (const key_override_t *[]){
-    &delete_key_override_shift,
-    &delete_key_override_ctrl,
-    NULL // Terminate the array of overrides
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_combo_keycode_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case CB_PRNS:
             if (record->event.pressed) {
@@ -171,6 +159,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_LEFT);
             }
             return false;
+    }
+    return true;
+}
+
+
+// -----------------
+// --- Overrides ---
+// -----------------
+
+const key_override_t delete_key_override_shift = ko_make_basic(MOD_MASK_SHIFT, KC_BSPACE, KC_DELETE);
+const key_override_t delete_key_override_ctrl = ko_make_basic(MOD_MASK_CTRL, KC_BSPACE, KC_DELETE);
+
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &delete_key_override_shift,
+    &delete_key_override_ctrl,
+    NULL // Terminate the array of overrides
+};
+
+
+// ---------------
+// --- Tapping ---
+// ---------------
+// Some of the below could be accomplished with Auto Shift (KC_MINS - KC_UNDS); however, most of
+//   them cannot as they're custom (ex. the KC_COLN - KC_SCLN inversion). So rather than
+//   mix-and-matching Auto-Shift and Tap-Hold, I'm going just with Tap-Hold. Plus, enabling
+//   Auto Shift for just a few keys comes with a lot of overhead (bytes).
+
+bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
         case TH_Z_ZOOM:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_Z);
@@ -272,6 +290,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 #endif
 
+
+// ----------------
+// --- Encoders ---
+// ----------------
+
 #ifdef ENCODER_ENABLE
     bool encoder_update_user(uint8_t index, bool clockwise) {
         if (index == 0 || index == 1) {
@@ -285,6 +308,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
     }
 #endif
+
+
+// ---------------------------
+// --- process_record_user ---
+// ---------------------------
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_tap_hold_keycode_user(keycode, record)) {
+        return false;
+    }
+    if (!process_combo_keycode_user(keycode, record)) {
+        return false;
+    }
+    return true;
+}
+
+
+// -------------
+// --- OLEDs ---
+// -------------
 
 #ifdef OLED_ENABLE
     static void render_logo(void) {
