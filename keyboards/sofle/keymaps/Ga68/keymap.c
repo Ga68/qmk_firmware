@@ -10,7 +10,6 @@ enum sofle_layers {
     _NUMPADSYM,
     _NAV,
     _ZOOM,
-    _NUMSYM,
 };
 #define _BASE _COLEMAK
 #define _NMSY _NUMPADSYM
@@ -33,11 +32,14 @@ enum my_keycodes {
     CB_LTGT, // <>
 };
 
-#define UKC_CUT   LCMD(KC_X)
-#define UKC_COPY  LCMD(KC_C)
-#define UKC_PASTE LCMD(KC_V)
+#define UKC_CUT  LCMD(KC_X)
+#define UKC_COPY LCMD(KC_C)
+#define UKC_PSTE LCMD(KC_V)
+#define UKC_PPST LCMD(LALT(LSFT(KC_V))) // Plain Paste = paste a plain copy of the text
+#define UKC_UNDO LCMD(KC_Z)
+#define UKC_REDO LCMD(LSFT(KC_Z))
 
-#define UKC_IQUES  LSA(KC_SLASH) // ¿
+#define UKC_IQUS   LSA(KC_SLASH) // ¿
 #define UKC_EMDASH LSA(KC_MINUS)
 
 #define UKC_WD_LEFT RALT(KC_LEFT)
@@ -52,15 +54,16 @@ enum my_keycodes {
 #define TH_ESC_CAPS  LT(_BASE, KC_ESC)
 #define TH_COLN_SCLN LT(_BASE, KC_COLN)
 #define TH_MINS_UNDS LT(_BASE, KC_MINS)
+#define TH_QUES_IQUS LT(_BASE, KC_QUES)
 
-#define TH_X_CUT   LT(_BASE, KC_X)
-#define TH_C_COPY  LT(_BASE, KC_C)
-#define TH_V_PASTE LT(_BASE, KC_V)
+#define TH_X_CUT  LT(_BASE, KC_X)
+#define TH_C_COPY LT(_BASE, KC_C)
+#define TH_V_PSTE LT(_BASE, KC_V)
 
 #define TH_LEFT_GUI  LT(_NAV, KC_LEFT)
 #define TH_RGHT_GUI  LT(_NAV, KC_RGHT)
-#define TH_UP_PGUP   LT(_NAV, KC_UP)
-#define TH_DOWN_PGDN LT(_NAV, KC_DOWN)
+#define TH_UP_GUI    LT(_NAV, KC_UP)
+#define TH_DOWN_GUI  LT(_NAV, KC_DOWN)
 
 
 // --------------
@@ -70,10 +73,10 @@ enum my_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_COLEMAK] = LAYOUT(
-        TH_ESC_CAPS, KC_1     , KC_2    , KC_3     , KC_4      , KC_5,                   KC_6, KC_7, KC_8   , KC_9  , KC_0        , __x__       ,
-        KC_QUES    , KC_Q     , KC_W    , KC_F     , KC_P      , KC_G,                   KC_J, KC_L, KC_U   , KC_Y  , TH_COLN_SCLN, TH_MINS_UNDS,
-        KC_TAB     , KC_A     , KC_R    , KC_S     , KC_T      , KC_D,                   KC_H, KC_N, KC_E   , KC_I  , KC_O        , KC_QUOT     ,
-        TO(_NAV)   , TH_Z_ZOOM, TH_X_CUT, TH_C_COPY, TH_V_PASTE, KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH     , KC_ENT      ,
+        TH_ESC_CAPS , KC_1     , KC_2    , KC_3     , KC_4     , KC_5,                   KC_6, KC_7, KC_8   , KC_9  , KC_0        , __x__       ,
+        TH_QUES_IQUS, KC_Q     , KC_W    , KC_F     , KC_P     , KC_G,                   KC_J, KC_L, KC_U   , KC_Y  , TH_COLN_SCLN, TH_MINS_UNDS,
+        KC_TAB      , KC_A     , KC_R    , KC_S     , KC_T     , KC_D,                   KC_H, KC_N, KC_E   , KC_I  , KC_O        , KC_QUOT     ,
+        TO(_NAV)    , TH_Z_ZOOM, TH_X_CUT, TH_C_COPY, TH_V_PSTE, KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH     , KC_ENT      ,
         
                                  KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), KC_SPC, KC_RGUI, KC_RALT, KC_RCTL
     ),
@@ -88,12 +91,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_NAV] = LAYOUT(
-        RESET, SGUI(KC_1) , SGUI(KC_2) , SGUI(KC_3) , __x__      , __x__     ,               __x__      , KC_MS_L    , KC_MS_D     , KC_MS_U   , KC_MS_R    , __x__      ,
-        __x__, __x__      , HYPR(KC_P7), HYPR(KC_P8), HYPR(KC_P9), __x__     ,               KC_BTN1    , KC_WH_R    , KC_WH_U     , KC_WH_D   , KC_WH_L    , KC_BTN2    ,
-        __x__, __x__      , HYPR(KC_P4), HYPR(KC_P5), HYPR(KC_P6), __x__     ,               UKC_WD_LEFT, TH_LEFT_GUI, TH_DOWN_PGDN, TH_UP_PGUP, TH_RGHT_GUI, UKC_WD_RGHT,
-        __x__, HYPR(KC_P0), HYPR(KC_P1), HYPR(KC_P2), HYPR(KC_P3), HYPR(KC_M), _____, _____, __x__      , UKC_PASTE  , UKC_COPY    , UKC_CUT   , __x__      , KC_ENT     ,
+        __x__      , __x__      , __x__     , __x__      , __x__      , __x__      ,               __x__   , __x__   , __x__   , __x__  , __x__   , __x__  ,
+        __x__      , SGUI(KC_1) , SGUI(KC_2), SGUI(KC_3) , SGUI(KC_4) , __x__      ,               __x__   , KC_WH_R , KC_WH_U , KC_WH_D, KC_WH_L , __x__  ,
+        UKC_WD_LEFT, TH_LEFT_GUI, TH_UP_GUI , TH_DOWN_GUI, TH_RGHT_GUI, UKC_WD_RGHT,               KC_BTN1 , KC_MS_L , KC_MS_D , KC_MS_U, KC_MS_R , KC_BTN2,
+        __x__      , UKC_UNDO   , UKC_CUT   , UKC_COPY   , UKC_PSTE   , UKC_REDO   , _____, _____, UKC_REDO, UKC_PSTE, UKC_COPY, UKC_CUT, UKC_UNDO, KC_ENT ,
 
-                                       KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
+                                             KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
         ),
 
     [_ZOOM] = LAYOUT(
@@ -103,15 +106,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__, __x__, __x__, __x__, __x__, __x__, _____, _____, SGUI(KC_V), __x__ , __x__, __x__, __x__, __x__,
 
                 __x__, __x__, __x__, KC_SPC, SGUI(KC_V), SGUI(KC_A), TO(_BASE), KC_SPC, SGUI(KC_S), SGUI(KC_W)
-        ),
-
-    [_NUMSYM] = LAYOUT(
-        KC_TILD, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,               KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 ,
-        KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,               KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_F12 ,
-        KC_UNDS, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC,               KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DQUO,
-        __x__  , KC_BSLS, KC_PIPE, KC_EQL , KC_PLUS, __x__  , _____, _____, KC_DOT , KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_ENT ,
-        
-                       KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NAV), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
         ),
 };
 
@@ -123,13 +117,16 @@ const uint16_t PROGMEM combo_parentheses[] = {KC_DOT, KC_COMM, COMBO_END};
 const uint16_t PROGMEM combo_braces[] = {KC_LBRC, KC_RBRC, COMBO_END};
 const uint16_t PROGMEM combo_curly_braces[] = {KC_LCBR, KC_RCBR, COMBO_END};
 const uint16_t PROGMEM combo_less_than_greater_than[] = {KC_LT, KC_GT, COMBO_END};
-combo_t key_combos[COMBO_COUNT] = {
+const uint16_t PROGMEM combo_paste_plain[] = {KC_C, KC_V, COMBO_END};
+
+uint16_t COMBO_LEN = 5;
+combo_t key_combos[] = {
     COMBO(combo_parentheses, CB_PRNS),
     COMBO(combo_braces, CB_BRCS),
     COMBO(combo_curly_braces, CB_CBRS),
     COMBO(combo_less_than_greater_than, CB_LTGT),
+    COMBO(combo_paste_plain, UKC_PPST),
 };
-
 
 // -----------------
 // --- Overrides ---
@@ -202,6 +199,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(KC_UNDS);
             }
             return false;
+        case TH_QUES_IQUS:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_QUES);
+            } else if (record->event.pressed) {
+                tap_code16(UKC_IQUS);
+            }
+            return false;
         case TH_LEFT_GUI:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_LEFT);
@@ -216,18 +220,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(LGUI(KC_RGHT));
             }
             return false;
-        case TH_UP_PGUP:
+        case TH_UP_GUI:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_UP);
             } else if (record->event.pressed) {
-                tap_code16(KC_PGUP);
+                tap_code16(LGUI(KC_UP));
             }
             return false;
-        case TH_DOWN_PGDN:
+        case TH_DOWN_GUI:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_DOWN);
             } else if (record->event.pressed) {
-                tap_code(KC_PGDOWN);
+                tap_code16(LGUI(KC_DOWN));
             }
             return false;
         case TH_X_CUT:
@@ -244,27 +248,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(UKC_COPY);
             }
             return false;
-        case TH_V_PASTE:
+        case TH_V_PSTE:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_V);
             } else if (record->event.pressed) {
-                tap_code16(UKC_PASTE);
+                tap_code16(UKC_PSTE);
             }
             return false;
     }
     return true;
 }
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case TH_Z_ZOOM:
-            return TAPPING_TERM + 1000;
-        case TH_ESC_CAPS:
-            return TAPPING_TERM + 500;
-        default:
-            return TAPPING_TERM;
+#ifdef TAPPING_TERM_PER_KEY
+    uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+        switch (keycode) {
+            case TH_Z_ZOOM:
+                return TAPPING_TERM + 1000;
+            case TH_ESC_CAPS:
+                return TAPPING_TERM + 500;
+            default:
+                return TAPPING_TERM;
+        }
     }
-}
+#endif
 
 #ifdef ENCODER_ENABLE
     bool encoder_update_user(uint8_t index, bool clockwise) {
