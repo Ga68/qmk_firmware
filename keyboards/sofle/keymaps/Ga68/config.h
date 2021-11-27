@@ -32,27 +32,16 @@
 #define ENCODER_RESOLUTION 4
 #define ENCODER_DIRECTION_FLIP
 
-// --- ---------- ---
-// --- Auto Shift ---
-// --- ---------- ---
-#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
-#define NO_AUTO_SHIFT_SPECIAL
-#define NO_AUTO_SHIFT_NUMERIC
-#define NO_AUTO_SHIFT_ALPHA
-
-
-// --- ------ ---
-// --- Combos ---
-// --- ------ ---
-#define COMBO_COUNT 4
-
 // --- ------------ ---
 // --- Space Saving ---
 // --- ------------ ---
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
+#define DISABLE_LEADER
 
-#undef NO_DEBUG
-#define NO_DEBUG
-#undef NO_PRINT
-#define NO_PRINT
+#ifndef NO_DEBUG
+  #define NO_DEBUG
+#endif // !NO_DEBUG
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+  #define NO_PRINT
+#endif // !NO_PRINT
