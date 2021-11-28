@@ -31,10 +31,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUMPADSYM] = LAYOUT(
-        KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,               KC_F7  , KC_F8, KC_F9, KC_F10, KC_F11, KC_F12 ,
-        KC_LCBR, KC_RCBR, KC_AMPR, KC_ASTR, KC_GRV , KC_TILD,               KC_SLSH, KC_7 , KC_8 , KC_9  , KC_EQL, KC_MINS,
-        KC_LT  , KC_GT  , KC_DLR , KC_PERC, KC_CIRC, KC_PIPE,               KC_ASTR, KC_4 , KC_5 , KC_6  , KC_0  , KC_PLUS,
-        KC_LBRC, KC_RBRC, KC_EXLM, KC_AT  , KC_HASH, __x__  , _____, _____, __x__  , KC_1 , KC_2 , KC_3  , KC_DOT, KC_ENT ,
+        KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,               KC_F7       , KC_F8, KC_F9, KC_F10, KC_F11, KC_F12 ,
+        KC_LCBR, KC_RCBR, KC_AMPR, KC_ASTR, KC_GRV , KC_TILD,               KC_SLSH     , TH_P7, TH_P8, TH_P9 , KC_EQL, KC_MINS,
+        KC_LT  , KC_GT  , KC_DLR , KC_PERC, KC_CIRC, KC_PIPE,               KC_ASTR     , TH_P4, TH_P5, TH_P6 , TH_P0 , KC_PLUS,
+        KC_LBRC, KC_RBRC, KC_EXLM, KC_AT  , KC_HASH, __x__  , _____, _____, UKC_WDW_FULL, TH_P1, TH_P2, TH_P3 , KC_DOT, KC_ENT ,
 
                        KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NAV), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
         ),
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__, __x__, __x__, __x__, __x__, __x__,               ZM_TG_CAM , __x__ , __x__, __x__      , __x__      , ZM_CLS_MEET,
         __x__, __x__, __x__, __x__, __x__, __x__, _____, _____, ZM_TG_VIEW, __x__ , __x__, ZM_WDW_FULL, ZM_WDW_HALF, KC_ENT     ,
 
-                __x__, __x__, __x__, KC_SPC, ZM_TG_VIDO, ZM_TG_AUDO, TO(_BASE), ZM_TG_VIDO, ZM_SCR_SHR, KC_SPC
+                 __x__, __x__, __x__, __x__, ZM_TG_VIDO, ZM_TG_AUDO, TO(_BASE), ZM_TG_VIDO, ZM_SCR_SHR, KC_SPC
         ),
 };
 
@@ -146,6 +146,7 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_CAPSLOCK);
             }
             return false;
+
         case TH_COLN_SCLN:
             if (record->tap.count && record->event.pressed) {
                 tap_code16(KC_COLON);
@@ -195,6 +196,7 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(KC_LEFT_PAREN);
             }
             return false;
+
         case TH_LEFT_GUI:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_LEFT);
@@ -223,6 +225,77 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(LGUI(KC_DOWN));
             }
             return false;
+
+        case TH_P0:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_P0);
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_P0));
+            }
+            return false;
+        case TH_P1:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_P1);
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_P1));
+            }
+            return false;
+        case TH_P2:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_P2);
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_P2));
+            }
+            return false;
+        case TH_P3:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_P3);
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_P3));
+            }
+            return false;
+        case TH_P4:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_P4);
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_P4));
+            }
+            return false;
+        case TH_P5:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_P5);
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_P5));
+            }
+            return false;
+        case TH_P6:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_P6);
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_P6));
+            }
+            return false;
+        case TH_P7:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_P7);
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_P7));
+            }
+            return false;
+        case TH_P8:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_P8);
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_P8));
+            }
+            return false;
+        case TH_P9:
+            if (record->tap.count && record->event.pressed) {
+                tap_code(KC_P9);
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_P9));
+            }
+            return false;
     }
     return true;
 }
@@ -234,6 +307,17 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
                 return TAPPING_TERM + 1000;
             case TH_ESC_CAPS:
                 return TAPPING_TERM + 500;
+            case TH_P0:
+            case TH_P1:
+            case TH_P2:
+            case TH_P3:
+            case TH_P4:
+            case TH_P5:
+            case TH_P6:
+            case TH_P7:
+            case TH_P8:
+            case TH_P9:
+                return TAPPING_TERM + 250;
             default:
                 return TAPPING_TERM;
         }

@@ -48,6 +48,11 @@ enum my_keycodes {
 #define UKC_WD_LEFT RALT(KC_LEFT)
 #define UKC_WD_RGHT RALT(KC_RGHT)
 
+#define UKC_TOGGLE_WINDOW_FULL_SCREEN LCMD(LCTL(KC_F))
+#define UKC_TOGGLE_WINDOW_FULL        UKC_TOGGLE_WINDOW_FULL_SCREEN
+#define UKC_WDW_FULL                  UKC_TOGGLE_WINDOW_FULL_SCREEN
+
+
 // ----------------
 // --- Tap Hold ---
 // ----------------
@@ -70,6 +75,18 @@ enum my_keycodes {
 #define TH_UP_GUI    LT(_NAV, KC_UP)
 #define TH_DOWN_GUI  LT(_NAV, KC_DOWN)
 
+#define TH_P0 LT(_NMSY, KC_P0)
+#define TH_P1 LT(_NMSY, KC_P1)
+#define TH_P2 LT(_NMSY, KC_P2)
+#define TH_P3 LT(_NMSY, KC_P3)
+#define TH_P4 LT(_NMSY, KC_P4)
+#define TH_P5 LT(_NMSY, KC_P5)
+#define TH_P6 LT(_NMSY, KC_P6)
+#define TH_P7 LT(_NMSY, KC_P7)
+#define TH_P8 LT(_NMSY, KC_P8)
+#define TH_P9 LT(_NMSY, KC_P9)
+
+
 // -------------------------------
 // --- Zoom Keyboard Shortcuts ---
 // -------------------------------
@@ -79,7 +96,7 @@ enum my_keycodes {
 #define ZM_TG_CAM   LCMD(LSFT(KC_N))
 #define ZM_SCR_SHR  LCMD(LSFT(KC_S))
 #define ZM_CLS_MEET LCMD(KC_W)
-#define ZM_WDW_FULL LCMD(LCTL(KC_F))
+#define ZM_WDW_FULL UKC_TOGGLE_WINDOW_FULL_SCREEN
 #define ZM_WDW_HALF MEH(KC_6)
 
 
