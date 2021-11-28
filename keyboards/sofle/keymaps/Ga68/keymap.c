@@ -31,21 +31,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUMPADSYM] = LAYOUT(
-        KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,               KC_F7  , KC_F8, KC_F9, KC_F10, KC_F11 , KC_F12 ,
-        KC_LCBR, KC_RCBR, KC_AMPR, KC_ASTR, KC_GRV , KC_TILD,               KC_SLSH, KC_7 , KC_8 , KC_9  , KC_EQL , KC_MINS,
-        KC_LT  , KC_GT  , KC_DLR , KC_PERC, KC_CIRC, KC_PIPE,               KC_ASTR, KC_4 , KC_5 , KC_6  , KC_MINS, KC_PLUS,
-        KC_LBRC, KC_RBRC, KC_EXLM, KC_AT  , KC_HASH, __x__  , _____, _____, __x__  , KC_1 , KC_2 , KC_3  , KC_DOT , KC_ENT ,
+        KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,               KC_F7  , KC_F8, KC_F9, KC_F10, KC_F11, KC_F12 ,
+        KC_LCBR, KC_RCBR, KC_AMPR, KC_ASTR, KC_GRV , KC_TILD,               KC_SLSH, KC_7 , KC_8 , KC_9  , KC_EQL, KC_MINS,
+        KC_LT  , KC_GT  , KC_DLR , KC_PERC, KC_CIRC, KC_PIPE,               KC_ASTR, KC_4 , KC_5 , KC_6  , KC_0  , KC_PLUS,
+        KC_LBRC, KC_RBRC, KC_EXLM, KC_AT  , KC_HASH, __x__  , _____, _____, __x__  , KC_1 , KC_2 , KC_3  , KC_DOT, KC_ENT ,
 
                        KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NAV), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
         ),
 
     [_NAV] = LAYOUT(
-        __x__      , __x__      , __x__     , __x__      , __x__      , __x__      ,               __x__   , __x__   , __x__   , __x__  , __x__   , __x__  ,
-        __x__      , SGUI(KC_1) , SGUI(KC_2), SGUI(KC_3) , SGUI(KC_4) , __x__      ,               __x__   , KC_WH_R , KC_WH_U , KC_WH_D, KC_WH_L , __x__  ,
-        UKC_WD_LEFT, TH_LEFT_GUI, TH_UP_GUI , TH_DOWN_GUI, TH_RGHT_GUI, UKC_WD_RGHT,               KC_BTN1 , KC_MS_L , KC_MS_D , KC_MS_U, KC_MS_R , KC_BTN2,
-        __x__      , UKC_UNDO   , UKC_CUT   , UKC_COPY   , UKC_PSTE   , UKC_REDO   , _____, _____, UKC_REDO, UKC_PSTE, UKC_COPY, UKC_CUT, UKC_UNDO, KC_ENT ,
+        __x__      , __x__       , __x__       , __x__       , __x__        , __x__      ,               __x__   , __x__   , __x__   , __x__  , __x__   , __x__  ,
+        __x__      , UKC_CYC_INPT, UKC_INV_CLRS, UKC_SCCP_SEL, UKC_SCCP_FULL, __x__      ,               __x__   , KC_WH_R , KC_WH_U , KC_WH_D, KC_WH_L , __x__  ,
+        UKC_WD_LEFT, TH_LEFT_GUI , TH_UP_GUI   , TH_DOWN_GUI , TH_RGHT_GUI  , UKC_WD_RGHT,               KC_BTN1 , KC_MS_L , KC_MS_D , KC_MS_U, KC_MS_R , KC_BTN2,
+        __x__      , UKC_UNDO    , UKC_CUT     , UKC_COPY    , UKC_PSTE     , UKC_REDO   , _____, _____, UKC_REDO, UKC_PSTE, UKC_COPY, UKC_CUT, UKC_UNDO, KC_ENT ,
 
-                                             KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
+                                                   KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), TO(_BASE), KC_RGUI, KC_RALT, KC_RCTL
         ),
 
     [_ZOOM] = LAYOUT(
@@ -66,20 +66,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     const uint16_t PROGMEM combo_braces[] = {KC_LEFT_BRACE, KC_RIGHT_BRACE, COMBO_END};
     const uint16_t PROGMEM combo_curly_braces[] = {KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, COMBO_END};
     const uint16_t PROGMEM combo_angle_braces[] = {KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE, COMBO_END};
-    const uint16_t PROGMEM combo_z_x[] = {KC_Z, KC_X, COMBO_END};
-    const uint16_t PROGMEM combo_x_c[] = {KC_X, KC_C, COMBO_END};
-    const uint16_t PROGMEM combo_c_v[] = {KC_C, KC_V, COMBO_END};
-    const uint16_t PROGMEM combo_v_b[] = {KC_V, KC_B, COMBO_END};
 
-    uint16_t COMBO_LEN = 7;
+    uint16_t COMBO_LEN = 3;
     combo_t key_combos[] = {
         COMBO(combo_braces, CB_BRACES),
         COMBO(combo_curly_braces, CB_CURLY_BRACES),
         COMBO(combo_angle_braces, CB_ANGLE_BRACES),
-        COMBO(combo_z_x, UKC_CUT),
-        COMBO(combo_x_c, UKC_COPY),
-        COMBO(combo_c_v, UKC_PASTE),
-        COMBO(combo_v_b, UKC_PLAIN_PASTE),
     };
 
     bool process_combo_keycode_user(uint16_t keycode, keyrecord_t *record) {

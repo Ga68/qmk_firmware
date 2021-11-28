@@ -33,6 +33,15 @@ enum my_keycodes {
 #define UKC_UNDO        LCMD(KC_Z)
 #define UKC_REDO        LCMD(LSFT(KC_Z))
 
+#define UKC_CYCLE_INPUT          LCMD(LSFT(KC_1)) // Cycle keyboard input modes
+#define UKC_CYC_INPT             UKC_CYCLE_INPUT
+#define UKC_INVERT_COLORS        LCMD(LSFT(KC_2)) // Inverst screen colors
+#define UKC_INV_CLRS             UKC_INVERT_COLORS
+#define UKC_SCREEN_CAP_SELECTION LCMD(LSFT(KC_3)) // Screen capture a portion of the screen
+#define UKC_SCCP_SEL             UKC_SCREEN_CAP_SELECTION
+#define UKC_SCREEN_CAP_FULL      LCMD(LSFT(KC_4))
+#define UKC_SCCP_FULL            UKC_SCREEN_CAP_FULL // Screen capture the full screen
+
 #define UKC_INV_QUESTION LSFT(LALT(KC_SLASH))  // ¿
 #define UKC_IQUS         UKC_INV_QUESTION
 
