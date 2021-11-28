@@ -15,80 +15,6 @@ enum my_layers {
 #define _NMSY _NUMPADSYM
 
 
-// -----------------------
-// --- Custom Keycodes ---
-// -----------------------
-//   CB = Combo
-//   TH = Tap Hold
-//   UKC = User Keycode
-//   ZM = Zoom
-
-#define _____ KC_TRANSPARENT
-#define __x__ KC_NO
-
-enum my_keycodes {
-    // Combos
-    //   See process_combo_keycode_user to see these keycodes' implementation.
-    CB_PARENS = SAFE_RANGE, // ()
-    CB_BRACES, // []
-    CB_CURLY_BRACES, // {}
-    CB_ANGLE_BRACES, // <>
-    // Other
-    UKC_QUESTION,
-        // Using this as a substitute for a KC_QUESTION tap-hold since the KC_QUESTION keycode
-        // overlaps with KC_SLASH, since KC_QUESTION = LSHFT(KC_SLASH)
-};
-
-#define UKC_CUT         LCMD(KC_X)
-#define UKC_COPY        LCMD(KC_C)
-#define UKC_PASTE       LCMD(KC_V)
-#define UKC_PSTE        UKC_PASTE
-#define UKC_PLAIN_PASTE LALT(LSFT(UKC_PASTE)) // Plain Paste = paste a plain copy of the text
-#define UKC_PPST        UKC_PLAIN_PASTE
-#define UKC_UNDO        LCMD(KC_Z)
-#define UKC_REDO        LCMD(LSFT(KC_Z))
-
-#define UKC_INV_QUESTION LSFT(LALT(KC_SLASH))  // ¿
-#define UKC_IQUS         UKC_INV_QUESTION
-
-#define UKC_WD_LEFT RALT(KC_LEFT)
-#define UKC_WD_RGHT RALT(KC_RGHT)
-
-// Custom Tap-Hold behaviors
-// This will use the Mod-Tap intercept "trick" (as documented by QMK) to provide customizable
-//   behavior on any key's hold. The DEFINEs are to help with code legibility.
-//   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
-// See process_tap_hold_keycode_user to see these keycodes' implementation.
-#define TH_Z_ZOOM    LT(_BASE, KC_Z)
-#define TH_ESC_CAPS  LT(_BASE, KC_ESC)
-#define TH_COLN_SCLN LT(_BASE, KC_COLON)
-#define TH_MINS_UNDS LT(_BASE, KC_MINUS)
-#define TH_QUES_IQUS LT(_BASE, UKC_QUESTION)
-#define TH_QUOT_DQUO LT(_BASE, KC_QUOTE)
-#define TH_SLSH_BSLS LT(_BASE, KC_SLASH)
-#define TH_DOT_RPRN  LT(_BASE, KC_DOT)
-#define TH_COMM_LPRN LT(_BASE, KC_COMMA)
-
-#define TH_X_CUT  LT(_BASE, KC_X)
-#define TH_C_COPY LT(_BASE, KC_C)
-#define TH_V_PSTE LT(_BASE, KC_V)
-
-#define TH_LEFT_GUI  LT(_NAV, KC_LEFT)
-#define TH_RGHT_GUI  LT(_NAV, KC_RGHT)
-#define TH_UP_GUI    LT(_NAV, KC_UP)
-#define TH_DOWN_GUI  LT(_NAV, KC_DOWN)
-
-// Zoom
-#define ZM_TG_AUDO  LCMD(LSFT(KC_A))
-#define ZM_TG_VIDO  LCMD(LSFT(KC_V))
-#define ZM_TG_VIEW  LCMD(LSFT(KC_W))
-#define ZM_TG_CAM   LCMD(LSFT(KC_N))
-#define ZM_SCR_SHR  LCMD(LSFT(KC_S))
-#define ZM_CLS_MEET LCMD(KC_W)
-#define ZM_WDW_FULL LCMD(LCTL(KC_F))
-#define ZM_WDW_HALF MEH(KC_6)
-
-
 // --------------
 // --- Keymap ---
 // --------------
@@ -140,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     const uint16_t PROGMEM combo_parentheses[] = {KC_DOT, KC_COMMA, COMBO_END};
     const uint16_t PROGMEM combo_braces[] = {KC_LEFT_BRACE, KC_RIGHT_BRACE, COMBO_END};
     const uint16_t PROGMEM combo_curly_braces[] = {KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, COMBO_END};
-    const uint16_t PROGMEM combo_less_than_greater_than[] = {KC_LT, KC_GT, COMBO_END};
+    const uint16_t PROGMEM combo_angle_braces[] = {KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE, COMBO_END};
     const uint16_t PROGMEM combo_paste_plain[] = {KC_C, KC_V, COMBO_END};
 
     uint16_t COMBO_LEN = 5;
@@ -148,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         COMBO(combo_parentheses, CB_PARENS),
         COMBO(combo_braces, CB_BRACES),
         COMBO(combo_curly_braces, CB_CURLY_BRACES),
-        COMBO(combo_less_than_greater_than, CB_ANGLE_BRACES),
+        COMBO(combo_angle_braces, CB_ANGLE_BRACES),
         COMBO(combo_paste_plain, UKC_PLAIN_PASTE),
     };
 
@@ -354,7 +280,7 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef ENCODER_ENABLE
     bool encoder_update_user(uint8_t index, bool clockwise) {
         if (index == 0 || index == 1) {
-            // For now I'm doing the same thing for both encoders
+            // For now I'm doing the same thing for both encoders' rotation actions
             if (clockwise) {
                 tap_code(KC_AUDIO_VOL_UP);
             } else {
@@ -398,7 +324,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     static void print_status_narrow(void) {
-        // Print current layer
+        // Prints all the layers, and "highlights" (inverted printing) the active layer
         oled_write_P(PSTR("\n\n"), false);
         int ls = get_highest_layer(layer_state);
         oled_write_P(PSTR("Base\n\n"), ls==_BASE);
