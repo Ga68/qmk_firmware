@@ -1,8 +1,9 @@
+#pragma once
+
 // ----------------------
 // --- Keycode Legend ---
 // ----------------------
 //   CB = Combo
-//   TH = Tap Hold
 //   UKC = User Keycode
 //   ZM = Zoom
 
@@ -15,11 +16,11 @@ enum my_keycodes {
     UKC_QUESTION  = SAFE_RANGE,
         // Using this as a substitute for a KC_QUESTION tap-hold since the KC_QUESTION keycode
         // overlaps with KC_SLASH, since KC_QUESTION = LSHFT(KC_SLASH).
-    UKC_NAV, // Same as UKC_QUESTION, but for the Nav-Zoom layers tap-hold
+    UKC_NAV,
+        // Same as UKC_QUESTION, but for the Nav-Zoom layers tap-hold
 
-    // Combos
-    //   See process_combo_keycode_user to see these keycodes' implementation.
-    CB_BRACES, // []
+    // Combos: see implementation in combos.c
+    CB_BRACES,       // []
     CB_CURLY_BRACES, // {}
     CB_ANGLE_BRACES, // <>
 };
@@ -51,40 +52,6 @@ enum my_keycodes {
 #define UKC_TOGGLE_WINDOW_FULL_SCREEN LCMD(LCTL(KC_F))
 #define UKC_TOGGLE_WINDOW_FULL        UKC_TOGGLE_WINDOW_FULL_SCREEN
 #define UKC_WDW_FULL                  UKC_TOGGLE_WINDOW_FULL_SCREEN
-
-
-// ----------------
-// --- Tap Hold ---
-// ----------------
-// This will use the Mod-Tap intercept "trick" (as documented by QMK) to provide customizable
-//   behavior on any key's hold. The DEFINEs are to help with code legibility.
-//   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
-// See process_tap_hold_keycode_user to see these keycodes' implementation.
-#define TH_NAV_ZOOM  LT(_BASE, UKC_NAV)
-#define TH_ESC_CAPS  LT(_BASE, KC_ESC)
-#define TH_COLN_SCLN LT(_BASE, KC_COLON)
-#define TH_MINS_UNDS LT(_BASE, KC_MINUS)
-#define TH_SLSH_BSLS LT(_BASE, KC_SLASH)
-#define TH_QUES_IQUS LT(_BASE, UKC_QUESTION)
-#define TH_QUOT_DQUO LT(_BASE, KC_QUOTE)
-#define TH_DOT_RPRN  LT(_BASE, KC_DOT)
-#define TH_COMM_LPRN LT(_BASE, KC_COMMA)
-
-#define TH_LEFT_GUI  LT(_NAV, KC_LEFT)
-#define TH_RGHT_GUI  LT(_NAV, KC_RIGHT)
-#define TH_UP_GUI    LT(_NAV, KC_UP)
-#define TH_DOWN_GUI  LT(_NAV, KC_DOWN)
-
-#define TH_P0 LT(_NMSY, KC_P0)
-#define TH_P1 LT(_NMSY, KC_P1)
-#define TH_P2 LT(_NMSY, KC_P2)
-#define TH_P3 LT(_NMSY, KC_P3)
-#define TH_P4 LT(_NMSY, KC_P4)
-#define TH_P5 LT(_NMSY, KC_P5)
-#define TH_P6 LT(_NMSY, KC_P6)
-#define TH_P7 LT(_NMSY, KC_P7)
-#define TH_P8 LT(_NMSY, KC_P8)
-#define TH_P9 LT(_NMSY, KC_P9)
 
 
 // -------------------------------

@@ -1,11 +1,28 @@
 #pragma once
 
-// --- ------- ---
+// ---------------
 // --- Tapping ---
-// --- ------- ---
+// ---------------
 #undef TAPPING_TERM
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
+
+// ----------------
+// --- Encoders ---
+// ----------------
+#undef ENCODER_RESOLUTION
+#define ENCODER_RESOLUTION 4 // One click of the encoder is one unit on my system works when 4
+#define ENCODER_DIRECTION_FLIP
+
+// ------------------
+// --- Auto Shift ---
+// ------------------
+// All determination of what will auto shift is done in the per-key function
+#define NO_AUTO_SHIFT_SPECIAL
+#define NO_AUTO_SHIFT_NUMERIC
+#define NO_AUTO_SHIFT_ALPHA
+
+#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
 
 // --- ----- ---
 // --- Mouse ---
@@ -20,22 +37,6 @@
 #define MOUSEKEY_MAX_SPEED   6
 #undef MOUSEKEY_TIME_TO_MAX
 #define MOUSEKEY_TIME_TO_MAX 64
-
-// --- -------- ---
-// --- Encoders ---
-// --- -------- ---
-#undef ENCODER_RESOLUTION
-#define ENCODER_RESOLUTION 4 // One click of the encoder is one unit on my system works when 4
-#define ENCODER_DIRECTION_FLIP
-
-// --- ---------- ---
-// --- Auto Shift ---
-// --- ---------- ---
-#define NO_AUTO_SHIFT_SPECIAL
-// #define NO_AUTO_SHIFT_NUMERIC
-// #define NO_AUTO_SHIFT_ALPHA
-
-#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
 
 // --- ------------ ---
 // --- Space Saving ---

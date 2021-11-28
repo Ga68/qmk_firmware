@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
-#include "keymap.h"
+#include "keycodes.h"
+
 
 // --------------
 // --- Layers ---
@@ -15,9 +16,32 @@ enum my_layers {
 #define _NMSY _NUMPADSYM
 
 
-// --------------
-// --- Keymap ---
-// --------------
+// ----------------
+// --- Features ---
+// ----------------
+
+#include "tapping.c"
+
+#ifdef ENCODER_ENABLE
+    #include "encoders.c"
+#endif
+#ifdef OLED_ENABLE
+    #include "oled.c"
+#endif
+#ifdef COMBO_ENABLE
+    #include "combos.c"
+#endif
+#ifdef KEY_OVERRIDE_ENABLE
+    #include "overrides.c"
+#endif
+#ifdef AUTO_SHIFT_ENABLE
+    #include "autoshift.c"
+#endif
+
+
+// ---------------------------------
+// --- Keymap and Key Processing ---
+// ---------------------------------
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -58,352 +82,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 };
 
-// --------------
-// --- Combos ---
-// --------------
-#ifdef COMBO_ENABLE
-
-    const uint16_t PROGMEM combo_braces[] = {KC_LEFT_BRACE, KC_RIGHT_BRACE, COMBO_END};
-    const uint16_t PROGMEM combo_curly_braces[] = {KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, COMBO_END};
-    const uint16_t PROGMEM combo_angle_braces[] = {KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE, COMBO_END};
-
-    uint16_t COMBO_LEN = 3;
-    combo_t key_combos[] = {
-        COMBO(combo_braces, CB_BRACES),
-        COMBO(combo_curly_braces, CB_CURLY_BRACES),
-        COMBO(combo_angle_braces, CB_ANGLE_BRACES),
-    };
-
-    bool process_combo_keycode_user(uint16_t keycode, keyrecord_t *record) {
-        switch (keycode) {
-            case CB_BRACES:
-                if (record->event.pressed) {
-                    tap_code16(KC_LEFT_BRACE);
-                    tap_code16(KC_RIGHT_BRACE);
-                    tap_code(KC_LEFT);
-                }
-                return false;
-            case CB_CURLY_BRACES:
-                if (record->event.pressed) {
-                    tap_code16(KC_LEFT_CURLY_BRACE);
-                    tap_code16(KC_RIGHT_CURLY_BRACE);
-                    tap_code(KC_LEFT);
-                }
-                return false;
-            case CB_ANGLE_BRACES:
-                if (record->event.pressed) {
-                    tap_code16(KC_LEFT_ANGLE_BRACE);
-                    tap_code16(KC_RIGHT_ANGLE_BRACE);
-                    tap_code(KC_LEFT);
-                }
-                return false;
-        }
-        return true;
-    }
-
-#endif
-
-// -----------------
-// --- Overrides ---
-// -----------------
-
-#ifdef KEY_OVERRIDE_ENABLE
-
-    // Shift Backspace = Delete
-    const key_override_t delete_key_override_shift = ko_make_basic(MOD_MASK_SHIFT, KC_BACKSPACE, KC_DELETE);
-    // Ctrl Backspace = Delete
-    const key_override_t delete_key_override_ctrl = ko_make_basic(MOD_MASK_CTRL, KC_BACKSPACE, KC_DELETE);
-
-    const key_override_t **key_overrides = (const key_override_t *[]){
-        &delete_key_override_shift,
-        &delete_key_override_ctrl,
-        NULL // Terminate the array of overrides
-    };
-
-#endif
-
-// ---------------
-// --- Tapping ---
-// ---------------
-// Some of the below could be accomplished with Auto Shift (KC_MINS - KC_UNDS); however, most of
-//   them cannot as they're custom (ex. the KC_COLN - KC_SCLN inversion). So rather than
-//   mix-and-matching Auto-Shift and Tap-Hold, I'm going just with Tap-Hold. Plus, enabling
-//   Auto Shift for just a few keys comes with a lot of overhead (bytes).
-
-bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case TH_NAV_ZOOM:
-            if (record->tap.count && record->event.pressed) {
-                layer_on(_NAV);
-            } else if (record->event.pressed) {
-                layer_on(_ZOOM);
-            }
-            return false;        
-        case TH_ESC_CAPS:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_ESC);
-            } else if (record->event.pressed) {
-                tap_code(KC_CAPSLOCK);
-            }
-            return false;
-
-        case TH_COLN_SCLN:
-            if (record->tap.count && record->event.pressed) {
-                tap_code16(KC_COLON);
-            } else if (record->event.pressed) {
-                tap_code(KC_SEMICOLON);
-            }
-            return false;
-        case TH_MINS_UNDS:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_MINUS);
-            } else if (record->event.pressed) {
-                tap_code16(KC_UNDERSCORE);
-            }
-            return false;
-        case TH_QUES_IQUS:
-            if (record->tap.count && record->event.pressed) {
-                tap_code16(KC_QUESTION);
-            } else if (record->event.pressed) {
-                tap_code16(UKC_INV_QUESTION);
-            }
-            return false;
-        case TH_QUOT_DQUO:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_QUOTE);
-            } else if (record->event.pressed) {
-                tap_code16(KC_DOUBLE_QUOTE);
-            }
-            return false;
-        case TH_SLSH_BSLS:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_SLASH);
-            } else if (record->event.pressed) {
-                tap_code16(KC_BACKSLASH);
-            }
-            return false;
-        case TH_DOT_RPRN:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_DOT);
-            } else if (record->event.pressed) {
-                tap_code16(KC_RIGHT_PAREN);
-            }
-            return false;
-        case TH_COMM_LPRN:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_COMMA);
-            } else if (record->event.pressed) {
-                tap_code16(KC_LEFT_PAREN);
-            }
-            return false;
-
-        case TH_LEFT_GUI:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_LEFT);
-            } else if (record->event.pressed) {
-                tap_code16(LGUI(KC_LEFT));
-            }
-            return false;
-        case TH_RGHT_GUI:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_RIGHT);
-            } else if (record->event.pressed) {
-                tap_code16(LGUI(KC_RIGHT));
-            }
-            return false;
-        case TH_UP_GUI:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_UP);
-            } else if (record->event.pressed) {
-                tap_code16(LGUI(KC_UP));
-            }
-            return false;
-        case TH_DOWN_GUI:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_DOWN);
-            } else if (record->event.pressed) {
-                tap_code16(LGUI(KC_DOWN));
-            }
-            return false;
-
-        case TH_P0:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P0);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P0));
-            }
-            return false;
-        case TH_P1:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P1);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P1));
-            }
-            return false;
-        case TH_P2:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P2);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P2));
-            }
-            return false;
-        case TH_P3:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P3);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P3));
-            }
-            return false;
-        case TH_P4:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P4);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P4));
-            }
-            return false;
-        case TH_P5:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P5);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P5));
-            }
-            return false;
-        case TH_P6:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P6);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P6));
-            }
-            return false;
-        case TH_P7:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P7);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P7));
-            }
-            return false;
-        case TH_P8:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P8);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P8));
-            }
-            return false;
-        case TH_P9:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P9);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P9));
-            }
-            return false;
-    }
-    return true;
-}
-
-#ifdef TAPPING_TERM_PER_KEY
-    uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-        switch (keycode) {
-            case TH_NAV_ZOOM:
-                return TAPPING_TERM + 1000;
-            case TH_ESC_CAPS:
-                return TAPPING_TERM + 500;
-            case TH_P0:
-            case TH_P1:
-            case TH_P2:
-            case TH_P3:
-            case TH_P4:
-            case TH_P5:
-            case TH_P6:
-            case TH_P7:
-            case TH_P8:
-            case TH_P9:
-                return TAPPING_TERM + 250;
-            default:
-                return TAPPING_TERM;
-        }
-    }
-#endif
-
-
-// ----------------
-// --- Encoders ---
-// ----------------
-
-#ifdef ENCODER_ENABLE
-    bool encoder_update_user(uint8_t index, bool clockwise) {
-        if (index == 0 || index == 1) {
-            // For now I'm doing the same thing for both encoders' rotation actions
-            if (clockwise) {
-                tap_code(KC_AUDIO_VOL_UP);
-            } else {
-                tap_code(KC_AUDIO_VOL_DOWN);
-            }
-        }
-        return true;
-    }
-#endif
-
-
-// ---------------------------
-// --- process_record_user ---
-// ---------------------------
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_tap_hold_keycode_user(keycode, record)) {
         return false;
     }
-    if (!process_combo_keycode_user(keycode, record)) {
-        return false;
-    }
+
+    #ifdef COMBO_ENABLE
+        if (!process_combo_keycode_user(keycode, record)) {
+            return false;
+        }
+    #endif
+
     return true;
 }
-
-
-// -------------
-// --- OLEDs ---
-// -------------
-
-#ifdef OLED_ENABLE
-    static void render_logo(void) {
-        static const char PROGMEM qmk_logo[] = {
-            0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,
-            0x91,0x92,0x93,0x94,0xa0,0xa1,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xab,0xac,
-            0xad,0xae,0xaf,0xb0,0xb1,0xb2,0xb3,0xb4,0xc0,0xc1,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,
-            0xc9,0xca,0xcb,0xcc,0xcd,0xce,0xcf,0xd0,0xd1,0xd2,0xd3,0xd4,0
-        };
-
-        oled_write_P(qmk_logo, false);
-    }
-
-    static void print_status_narrow(void) {
-        // Prints all the layers, and "highlights" (inverted printing) the active layer
-        oled_write_P(PSTR("\n\n"), false);
-        int ls = get_highest_layer(layer_state);
-        oled_write_P(PSTR("Base\n\n"), ls==_BASE);
-        oled_write_P(PSTR("NumSy\n"), ls==_NMSY);
-        oled_write_P(PSTR("Nav\n\n"), ls==_NAV);
-        oled_write_P(PSTR("Zoom\n\n"), ls==_ZOOM);
-
-        // Caps Lock
-        oled_write_P(PSTR("\n\n"), false);
-        led_t led_usb_state = host_keyboard_led_state();
-        oled_write_ln_P(PSTR("CPSLK"), led_usb_state.caps_lock);
-    }
-
-    oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-        if (is_keyboard_master()) {
-            return OLED_ROTATION_270;
-        }
-        return rotation;
-    }
-
-    void oled_task_user(void) {
-        if (is_keyboard_master()) {
-            print_status_narrow();
-        } else if (false) {
-        // leaving it this way, false, so it'll never run, but the compiler doesn't error on me by
-        // saying that "render_logo" is never used. I may want to use it in the future.
-            render_logo();
-        }
-    }
-#endif
