@@ -15,10 +15,10 @@ enum my_keycodes {
     UKC_QUESTION  = SAFE_RANGE,
         // Using this as a substitute for a KC_QUESTION tap-hold since the KC_QUESTION keycode
         // overlaps with KC_SLASH, since KC_QUESTION = LSHFT(KC_SLASH).
-    
+    UKC_NAV, // Same as UKC_QUESTION, but for the Nav-Zoom layers tap-hold
+
     // Combos
     //   See process_combo_keycode_user to see these keycodes' implementation.
-    CB_PARENS, // ()
     CB_BRACES, // []
     CB_CURLY_BRACES, // {}
     CB_ANGLE_BRACES, // <>
@@ -46,7 +46,7 @@ enum my_keycodes {
 //   behavior on any key's hold. The DEFINEs are to help with code legibility.
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
-#define TH_Z_ZOOM    LT(_BASE, KC_Z)
+#define TH_NAV_ZOOM  LT(_BASE, UKC_NAV)
 #define TH_ESC_CAPS  LT(_BASE, KC_ESC)
 #define TH_COLN_SCLN LT(_BASE, KC_COLON)
 #define TH_MINS_UNDS LT(_BASE, KC_MINUS)
@@ -55,10 +55,6 @@ enum my_keycodes {
 #define TH_QUOT_DQUO LT(_BASE, KC_QUOTE)
 #define TH_DOT_RPRN  LT(_BASE, KC_DOT)
 #define TH_COMM_LPRN LT(_BASE, KC_COMMA)
-
-#define TH_X_CUT  LT(_BASE, KC_X)
-#define TH_C_COPY LT(_BASE, KC_C)
-#define TH_V_PSTE LT(_BASE, KC_V)
 
 #define TH_LEFT_GUI  LT(_NAV, KC_LEFT)
 #define TH_RGHT_GUI  LT(_NAV, KC_RIGHT)

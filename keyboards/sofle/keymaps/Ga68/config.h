@@ -28,6 +28,15 @@
 #define ENCODER_RESOLUTION 4 // One click of the encoder is one unit on my system works when 4
 #define ENCODER_DIRECTION_FLIP
 
+// --- ---------- ---
+// --- Auto Shift ---
+// --- ---------- ---
+#define NO_AUTO_SHIFT_SPECIAL
+// #define NO_AUTO_SHIFT_NUMERIC
+// #define NO_AUTO_SHIFT_ALPHA
+
+#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
+
 // --- ------------ ---
 // --- Space Saving ---
 // --- ------------ ---

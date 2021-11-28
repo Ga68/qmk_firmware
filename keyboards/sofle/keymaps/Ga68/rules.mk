@@ -1,6 +1,7 @@
 # ###############
 # ### Enabled ###
 # ###############
+AUTO_SHIFT_ENABLE   = yes
 COMBO_ENABLE 				= yes
 ENCODER_ENABLE 			= yes
 EXTRAKEY_ENABLE 		= yes # Audio control and System control
@@ -12,7 +13,6 @@ OLED_ENABLE 				= yes
 # ################
 # ### Disabled ###
 # ################
-AUTO_SHIFT_ENABLE = no
 TAP_DANCE_ENABLE  = no
 
 # ####################

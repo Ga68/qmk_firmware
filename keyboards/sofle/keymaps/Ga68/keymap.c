@@ -22,12 +22,12 @@ enum my_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_COLEMAK] = LAYOUT(
-        TH_ESC_CAPS , KC_1     , KC_2    , KC_3     , KC_4     , KC_5,                   KC_6, KC_7, KC_8        , KC_9       , KC_0        , __x__       ,
-        TH_QUES_IQUS, KC_Q     , KC_W    , KC_F     , KC_P     , KC_G,                   KC_J, KC_L, KC_U        , KC_Y       , TH_COLN_SCLN, TH_MINS_UNDS,
-        KC_TAB      , KC_A     , KC_R    , KC_S     , KC_T     , KC_D,                   KC_H, KC_N, KC_E        , KC_I       , KC_O        , TH_QUOT_DQUO,
-        TO(_NAV)    , TH_Z_ZOOM, TH_X_CUT, TH_C_COPY, TH_V_PSTE, KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M, TH_COMM_LPRN, TH_DOT_RPRN, TH_SLSH_BSLS, KC_ENT      ,
+        TH_ESC_CAPS , KC_1, KC_2, KC_3, KC_4, KC_5,                   KC_6, KC_7, KC_8        , KC_9       , KC_0        , __x__       ,
+        TH_QUES_IQUS, KC_Q, KC_W, KC_F, KC_P, KC_G,                   KC_J, KC_L, KC_U        , KC_Y       , TH_COLN_SCLN, TH_MINS_UNDS,
+        KC_TAB      , KC_A, KC_R, KC_S, KC_T, KC_D,                   KC_H, KC_N, KC_E        , KC_I       , KC_O        , TH_QUOT_DQUO,
+        TH_NAV_ZOOM , KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M, TH_COMM_LPRN, TH_DOT_RPRN, TH_SLSH_BSLS, KC_ENT      ,
         
-                                 KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), KC_SPC, KC_RGUI, KC_RALT, KC_RCTL
+              KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), OSM(MOD_RSFT), KC_SPC, KC_RGUI, KC_RALT, KC_RCTL
     ),
 
     [_NUMPADSYM] = LAYOUT(
@@ -63,30 +63,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // --------------
 #ifdef COMBO_ENABLE
 
-    const uint16_t PROGMEM combo_parentheses[] = {KC_DOT, KC_COMMA, COMBO_END};
     const uint16_t PROGMEM combo_braces[] = {KC_LEFT_BRACE, KC_RIGHT_BRACE, COMBO_END};
     const uint16_t PROGMEM combo_curly_braces[] = {KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, COMBO_END};
     const uint16_t PROGMEM combo_angle_braces[] = {KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE, COMBO_END};
-    const uint16_t PROGMEM combo_paste_plain[] = {KC_C, KC_V, COMBO_END};
+    const uint16_t PROGMEM combo_z_x[] = {KC_Z, KC_X, COMBO_END};
+    const uint16_t PROGMEM combo_x_c[] = {KC_X, KC_C, COMBO_END};
+    const uint16_t PROGMEM combo_c_v[] = {KC_C, KC_V, COMBO_END};
+    const uint16_t PROGMEM combo_v_b[] = {KC_V, KC_B, COMBO_END};
 
-    uint16_t COMBO_LEN = 5;
+    uint16_t COMBO_LEN = 7;
     combo_t key_combos[] = {
-        COMBO(combo_parentheses, CB_PARENS),
         COMBO(combo_braces, CB_BRACES),
         COMBO(combo_curly_braces, CB_CURLY_BRACES),
         COMBO(combo_angle_braces, CB_ANGLE_BRACES),
-        COMBO(combo_paste_plain, UKC_PLAIN_PASTE),
+        COMBO(combo_z_x, UKC_CUT),
+        COMBO(combo_x_c, UKC_COPY),
+        COMBO(combo_c_v, UKC_PASTE),
+        COMBO(combo_v_b, UKC_PLAIN_PASTE),
     };
 
     bool process_combo_keycode_user(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
-            case CB_PARENS:
-                if (record->event.pressed) {
-                    tap_code16(KC_LEFT_PAREN);
-                    tap_code16(KC_RIGHT_PAREN);
-                    tap_code(KC_LEFT);
-                }
-                return false;
             case CB_BRACES:
                 if (record->event.pressed) {
                     tap_code16(KC_LEFT_BRACE);
@@ -143,13 +140,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case TH_Z_ZOOM:
+        case TH_NAV_ZOOM:
             if (record->tap.count && record->event.pressed) {
-                tap_code(KC_Z);
+                layer_on(_NAV);
             } else if (record->event.pressed) {
                 layer_on(_ZOOM);
             }
-            return false;
+            return false;        
         case TH_ESC_CAPS:
             if (record->tap.count && record->event.pressed) {
                 tap_code(KC_ESC);
@@ -234,27 +231,6 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(LGUI(KC_DOWN));
             }
             return false;
-        case TH_X_CUT:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_X);
-            } else if (record->event.pressed) {
-                tap_code16(UKC_CUT);
-            }
-            return false;
-        case TH_C_COPY:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_C);
-            } else if (record->event.pressed) {
-                tap_code16(UKC_COPY);
-            }
-            return false;
-        case TH_V_PSTE:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_V);
-            } else if (record->event.pressed) {
-                tap_code16(UKC_PASTE);
-            }
-            return false;
     }
     return true;
 }
@@ -262,7 +238,7 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef TAPPING_TERM_PER_KEY
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
-            case TH_Z_ZOOM:
+            case TH_NAV_ZOOM:
                 return TAPPING_TERM + 1000;
             case TH_ESC_CAPS:
                 return TAPPING_TERM + 500;
