@@ -1,7 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "keycodes.h"
 
-
 // --------------
 // --- Layers ---
 // --------------
@@ -95,4 +94,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #endif
 
     return true;
+}
+
+
+void tap_code16_user(uint16_t keycode) {
+    if (keycode == KC_CAPS) {
+        tap_code(KC_CAPS);
+    }
+    else {
+        tap_code16(keycode);
+    }
 }

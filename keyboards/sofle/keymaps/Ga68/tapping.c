@@ -8,7 +8,8 @@
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
 
-#define TH_NAV_ZOOM  LT(_BASE, UKC_NAV)
+#define TH_NAV_ZOOM LT(_BASE, UKC_NAV)
+
 #define TH_GRV_ESC   LT(_BASE, UKC_GRAVE_ESCAPE)
 #define TH_F1_ESC    LT(_BASE, UKC_F1_ESCAPE)
 #define TH_COLN_SCLN LT(_BASE, KC_COLON)
@@ -38,6 +39,44 @@
 #define TH_P8 LT(_NMSY, KC_P8)
 #define TH_P9 LT(_NMSY, KC_P9)
 
+struct tap_hold_keycode_t {
+    uint16_t name;
+    uint16_t tap_keycode;
+    uint16_t hold_keycode;
+};
+
+#define CUSTOM_TAP_HOLD_KEY_COUNT 23
+struct tap_hold_keycode_t custom_tap_hold_keys[CUSTOM_TAP_HOLD_KEY_COUNT] = {
+
+    { TH_GRV_ESC  , KC_GRAVE , KC_ESCAPE        },
+    { TH_F1_ESC   , KC_F1    , KC_ESCAPE        },
+    { TH_COLN_SCLN, KC_COLON , KC_SEMICOLON     },
+    { TH_DOT_IQUS , KC_PERIOD, UKC_INV_QUESTION },
+    { TH_TILD_MDSH, KC_TILDE , UKC_EMDASH       },
+    { TH_TAB_CAPS , KC_TAB   , KC_CAPS          },
+
+    { TH_SQ_BRCS , KC_LEFT_BRACE      , KC_RIGHT_BRACE       },
+    { TH_CUR_BRCS, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE },
+    { TH_ANG_BRCS, KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE },
+
+    { TH_LEFT_GUI, KC_LEFT, LGUI(KC_LEFT) },
+    { TH_RGHT_GUI, KC_RGHT, LGUI(KC_RGHT) },
+    { TH_UP_GUI  , KC_UP  , LGUI(KC_UP)   },
+    { TH_DOWN_GUI, KC_DOWN, LGUI(KC_DOWN) },
+
+    { TH_P0, KC_P0, WINDOW_HOTKEY(KC_P0) },
+    { TH_P1, KC_P1, WINDOW_HOTKEY(KC_P1) },
+    { TH_P2, KC_P2, WINDOW_HOTKEY(KC_P2) },
+    { TH_P3, KC_P3, WINDOW_HOTKEY(KC_P3) },
+    { TH_P4, KC_P4, WINDOW_HOTKEY(KC_P4) },
+    { TH_P5, KC_P5, WINDOW_HOTKEY(KC_P5) },
+    { TH_P6, KC_P6, WINDOW_HOTKEY(KC_P6) },
+    { TH_P7, KC_P7, WINDOW_HOTKEY(KC_P7) },
+    { TH_P8, KC_P8, WINDOW_HOTKEY(KC_P8) },
+    { TH_P9, KC_P9, WINDOW_HOTKEY(KC_P9) },
+
+};
+
 #ifdef TAPPING_TERM_PER_KEY
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
@@ -61,9 +100,6 @@
     }
 #endif
 
-bool was_left_shift_pressed;
-bool was_right_shift_pressed;
-bool is_one_shot_shift_active;
 // The goal of this function is to send the keycode parameter if tapped, or send the alt_keycode
 //   parameter if the held or tapped with shift active. Shift can be active by a shift key being
 //   held, or via one-shot-mods. This should be true no matter what the keycode and alt_keycode
@@ -74,132 +110,60 @@ bool is_one_shot_shift_active;
 //   semicolon). So the reason there's so much handling below, is to make sure that if you're holding
 //   shift (or using a one shot mod), and you want to send a typically-unshifted keycode (like
 //   semicolon), then you have to get out of the shifted state first.
-void tap_custom_shifted_tap_hold_key(uint16_t keycode, uint16_t alt_keycode, keyrecord_t *record) {
-    was_left_shift_pressed = get_mods() & MOD_BIT(KC_LEFT_SHIFT);
-    was_right_shift_pressed = get_mods() & MOD_BIT(KC_RIGHT_SHIFT);
+void tap_custom_tap_hold(uint16_t tap_keycode, uint16_t hold_keycode, keyrecord_t *record) {
+    bool is_left_shift_pressed = get_mods() & MOD_BIT(KC_LEFT_SHIFT);
+    bool is_right_shift_pressed = get_mods() & MOD_BIT(KC_RIGHT_SHIFT);
     
     // see if a OSM for shift and only shift is active
-    is_one_shot_shift_active = (\
-        (get_oneshot_mods() & MOD_BIT(KC_RIGHT_SHIFT)) == MOD_BIT(KC_RIGHT_SHIFT))\
-        || ((get_oneshot_mods() & MOD_BIT(KC_LEFT_SHIFT)) == MOD_BIT(KC_LEFT_SHIFT)\
+    bool is_one_shot_shift_active = (
+        (get_oneshot_mods() & MOD_BIT(KC_RIGHT_SHIFT)) == MOD_BIT(KC_RIGHT_SHIFT))
+        || ((get_oneshot_mods() & MOD_BIT(KC_LEFT_SHIFT)) == MOD_BIT(KC_LEFT_SHIFT)
     );
     
     // If this is a press event (not hold)
     if (record->tap.count && record->event.pressed) {
         if (is_one_shot_shift_active) {
             clear_oneshot_mods();
-            if (alt_keycode == KC_CAPS) { tap_code(KC_CAPS);       }
-            else                        { tap_code16(alt_keycode); }
+            tap_code16_user(hold_keycode);
         }
-        else if (was_left_shift_pressed || was_right_shift_pressed) {
+        else if (is_left_shift_pressed || is_right_shift_pressed) {
             unregister_code(KC_LEFT_SHIFT);
             unregister_code(KC_RIGHT_SHIFT);
 
-            if (alt_keycode == KC_CAPS) { tap_code(KC_CAPS);       }
-            else                        { tap_code16(alt_keycode); }
+            tap_code16_user(hold_keycode);
 
-            if (was_left_shift_pressed ) { register_code(KC_LEFT_SHIFT); }
-            if (was_right_shift_pressed) { register_code(KC_RIGHT_SHIFT); }
+            if (is_left_shift_pressed ) { register_code(KC_LEFT_SHIFT); }
+            if (is_right_shift_pressed) { register_code(KC_RIGHT_SHIFT); }
         }
         else {
-            // Note that this is the ONLY branch with "keycode"
-            if (keycode == KC_CAPS) { tap_code(KC_CAPS);   }
-            else                    { tap_code16(keycode); }
+            // Note that this is the ONLY branch with the tap_keycode
+            tap_code16_user(tap_keycode);
         }
     // If this is a hold event (not press)
     } else if (record->event.pressed) {
-        if (alt_keycode == KC_CAPS) { tap_code(KC_CAPS);       }
-        else                        { tap_code16(alt_keycode); }
+        tap_code16_user(hold_keycode);
     }
 }
 
 
 bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
 
-        // Custom key combinations
+    for (int i = 0; i < CUSTOM_TAP_HOLD_KEY_COUNT; i = i + 1) {
+        if (keycode == custom_tap_hold_keys[i].name) {
+            tap_custom_tap_hold(custom_tap_hold_keys[i].tap_keycode, custom_tap_hold_keys[i].hold_keycode, record);
+            return false;
+        }
+    }
+    
+    switch (keycode) {
         case TH_NAV_ZOOM:
             if (record->tap.count && record->event.pressed) {
                 layer_on(_NAV);
             } else if (record->event.pressed) {
                 layer_on(_ZOOM);
             }
-            return false;        
-        case TH_GRV_ESC:
-            tap_custom_shifted_tap_hold_key(KC_GRAVE, KC_ESCAPE, record);
-            return false;
-        case TH_F1_ESC:
-            tap_custom_shifted_tap_hold_key(KC_F1, KC_ESCAPE, record);
-            return false;
-        case TH_COLN_SCLN:
-            tap_custom_shifted_tap_hold_key(KC_COLON, KC_SEMICOLON, record);
-            return false;
-        case TH_DOT_IQUS:
-            tap_custom_shifted_tap_hold_key(KC_PERIOD, UKC_INV_QUESTION, record);
-            return false;
-        case TH_TILD_MDSH:
-            tap_custom_shifted_tap_hold_key(KC_TILDE, UKC_EMDASH, record);
-            return false;
-        case TH_TAB_CAPS:
-            tap_custom_shifted_tap_hold_key(KC_TAB, KC_CAPS, record);
-            return false;
-
-        // Braces
-        case TH_SQ_BRCS:
-            tap_custom_shifted_tap_hold_key(KC_LEFT_BRACE, KC_RIGHT_BRACE, record);
-            return false;
-        case TH_CUR_BRCS:
-            tap_custom_shifted_tap_hold_key(KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, record);
-            return false;
-        case TH_ANG_BRCS:
-            tap_custom_shifted_tap_hold_key(KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE, record);
-            return false;
-
-        // Navigation keys get tap-held to include GUI
-        case TH_LEFT_GUI:
-            tap_custom_shifted_tap_hold_key(KC_LEFT, LGUI(KC_LEFT), record);
-            return false;
-        case TH_RGHT_GUI:
-            tap_custom_shifted_tap_hold_key(KC_RIGHT, LGUI(KC_RIGHT), record);
-            return false;
-        case TH_UP_GUI:
-            tap_custom_shifted_tap_hold_key(KC_UP, LGUI(KC_UP), record);
-            return false;
-        case TH_DOWN_GUI:
-            tap_custom_shifted_tap_hold_key(KC_DOWN, LGUI(KC_DOWN), record);
-            return false;
-
-        // NumPad keys get tap-held to include MEH
-        case TH_P0:
-            tap_custom_shifted_tap_hold_key(KC_P0, WINDOW_HOTKEY(KC_P0), record);
-            return false;
-        case TH_P1:
-            tap_custom_shifted_tap_hold_key(KC_P1, WINDOW_HOTKEY(KC_P1), record);
-            return false;
-        case TH_P2:
-            tap_custom_shifted_tap_hold_key(KC_P2, WINDOW_HOTKEY(KC_P2), record);
-            return false;
-        case TH_P3:
-            tap_custom_shifted_tap_hold_key(KC_P3, WINDOW_HOTKEY(KC_P3), record);
-            return false;
-        case TH_P4:
-            tap_custom_shifted_tap_hold_key(KC_P4, WINDOW_HOTKEY(KC_P4), record);
-            return false;
-        case TH_P5:
-            tap_custom_shifted_tap_hold_key(KC_P5, WINDOW_HOTKEY(KC_P5), record);
-            return false;
-        case TH_P6:
-            tap_custom_shifted_tap_hold_key(KC_P6, WINDOW_HOTKEY(KC_P6), record);
-            return false;
-        case TH_P7:
-            tap_custom_shifted_tap_hold_key(KC_P7, WINDOW_HOTKEY(KC_P7), record);
-            return false;
-        case TH_P8:
-            tap_custom_shifted_tap_hold_key(KC_P8, WINDOW_HOTKEY(KC_P8), record);
-            return false;
-        case TH_P9:
-            tap_custom_shifted_tap_hold_key(KC_P9, WINDOW_HOTKEY(KC_P9), record);
             return false;
     }
+    
     return true;
 }
