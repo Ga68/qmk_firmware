@@ -9,17 +9,23 @@
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
 
 #define TH_NAV_ZOOM  LT(_BASE, UKC_NAV)
-#define TH_ESC_CAPS  LT(_BASE, KC_ESC)
+#define TH_GRV_ESC   LT(_BASE, UKC_GRAVE_ESCAPE)
+#define TH_F1_ESC    LT(_BASE, UKC_F1_ESCAPE)
 #define TH_COLN_SCLN LT(_BASE, KC_COLON)
-#define TH_SLSH_BSLS LT(_BASE, KC_SLASH)
-#define TH_QUES_IQUS LT(_BASE, UKC_QUESTION)
-#define TH_DOT_RPRN  LT(_BASE, KC_DOT)
-#define TH_COMM_LPRN LT(_BASE, KC_COMMA)
+#define TH_DOT_IQUS  LT(_BASE, KC_DOT)
+#define TH_TILD_MDSH LT(_BASE, UKC_TILDE_EMDASH)
+#define TH_TAB_CAPS  LT(_BASE, KC_TAB)
+
+#define TH_SQ_BRCS   LT(_NMSY, UKC_SQUARE_BRACES)
+#define TH_CUR_BRCS  LT(_NMSY, UKC_CURLY_BRACES)
+#define TH_ANG_BRCS  LT(_NMSY, UKC_ANGLE_BRACES)
 
 #define TH_LEFT_GUI  LT(_NAV, KC_LEFT)
 #define TH_RGHT_GUI  LT(_NAV, KC_RIGHT)
 #define TH_UP_GUI    LT(_NAV, KC_UP)
 #define TH_DOWN_GUI  LT(_NAV, KC_DOWN)
+
+#define WINDOW_HOTKEY MEH
 
 #define TH_P0 LT(_NMSY, KC_P0)
 #define TH_P1 LT(_NMSY, KC_P1)
@@ -37,8 +43,7 @@
         switch (keycode) {
             case TH_NAV_ZOOM:
                 return TAPPING_TERM + 1000;
-            case TH_ESC_CAPS:
-                return TAPPING_TERM + 500;
+            case TH_TAB_CAPS:
             case TH_P0:
             case TH_P1:
             case TH_P2:
@@ -83,27 +88,36 @@ void tap_custom_shifted_tap_hold_key(uint16_t keycode, uint16_t alt_keycode, key
     if (record->tap.count && record->event.pressed) {
         if (is_one_shot_shift_active) {
             clear_oneshot_mods();
-            tap_code16(alt_keycode);
+            if (alt_keycode == KC_CAPS) { tap_code(KC_CAPS);       }
+            else                        { tap_code16(alt_keycode); }
         }
         else if (was_left_shift_pressed || was_right_shift_pressed) {
             unregister_code(KC_LEFT_SHIFT);
             unregister_code(KC_RIGHT_SHIFT);
-            tap_code16(alt_keycode);
+
+            if (alt_keycode == KC_CAPS) { tap_code(KC_CAPS);       }
+            else                        { tap_code16(alt_keycode); }
+
             if (was_left_shift_pressed ) { register_code(KC_LEFT_SHIFT); }
             if (was_right_shift_pressed) { register_code(KC_RIGHT_SHIFT); }
         }
         else {
-            tap_code16(keycode); // Note that this is the ONLY branch with "keycode"
+            // Note that this is the ONLY branch with "keycode"
+            if (keycode == KC_CAPS) { tap_code(KC_CAPS);   }
+            else                    { tap_code16(keycode); }
         }
     // If this is a hold event (not press)
     } else if (record->event.pressed) {
-        tap_code16(alt_keycode);
+        if (alt_keycode == KC_CAPS) { tap_code(KC_CAPS);       }
+        else                        { tap_code16(alt_keycode); }
     }
 }
 
 
 bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+
+        // Custom key combinations
         case TH_NAV_ZOOM:
             if (record->tap.count && record->event.pressed) {
                 layer_on(_NAV);
@@ -111,132 +125,80 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
                 layer_on(_ZOOM);
             }
             return false;        
-        case TH_ESC_CAPS:
-            // tap_custom_shifted_tap_hold_key(KC_ESC, KC_CAPSLOCK, record);
-            // I'd have thought the above would work; however, CAPS doesn't seem to play along
-            //   with tapcode16 for some reason. https://www.reddit.com/r/olkb/comments/r4224m
-
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_ESC);
-            } else if (record->event.pressed) {
-                tap_code(KC_CAPSLOCK);
-            }
+        case TH_GRV_ESC:
+            tap_custom_shifted_tap_hold_key(KC_GRAVE, KC_ESCAPE, record);
             return false;
-
+        case TH_F1_ESC:
+            tap_custom_shifted_tap_hold_key(KC_F1, KC_ESCAPE, record);
+            return false;
         case TH_COLN_SCLN:
             tap_custom_shifted_tap_hold_key(KC_COLON, KC_SEMICOLON, record);
             return false;
-        case TH_QUES_IQUS:
-            tap_custom_shifted_tap_hold_key(KC_QUESTION, UKC_INV_QUESTION, record);
+        case TH_DOT_IQUS:
+            tap_custom_shifted_tap_hold_key(KC_PERIOD, UKC_INV_QUESTION, record);
             return false;
-        case TH_SLSH_BSLS:
-            tap_custom_shifted_tap_hold_key(KC_SLASH, KC_BACKSLASH, record);
+        case TH_TILD_MDSH:
+            tap_custom_shifted_tap_hold_key(KC_TILDE, UKC_EMDASH, record);
             return false;
-        case TH_DOT_RPRN:
-            tap_custom_shifted_tap_hold_key(KC_DOT, KC_RIGHT_PAREN, record);
-            return false;
-        case TH_COMM_LPRN:
-            tap_custom_shifted_tap_hold_key(KC_COMMA, KC_LEFT_PAREN, record);
+        case TH_TAB_CAPS:
+            tap_custom_shifted_tap_hold_key(KC_TAB, KC_CAPS, record);
             return false;
 
+        // Braces
+        case TH_SQ_BRCS:
+            tap_custom_shifted_tap_hold_key(KC_LEFT_BRACE, KC_RIGHT_BRACE, record);
+            return false;
+        case TH_CUR_BRCS:
+            tap_custom_shifted_tap_hold_key(KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, record);
+            return false;
+        case TH_ANG_BRCS:
+            tap_custom_shifted_tap_hold_key(KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE, record);
+            return false;
+
+        // Navigation keys get tap-held to include GUI
         case TH_LEFT_GUI:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_LEFT);
-            } else if (record->event.pressed) {
-                tap_code16(LGUI(KC_LEFT));
-            }
+            tap_custom_shifted_tap_hold_key(KC_LEFT, LGUI(KC_LEFT), record);
             return false;
         case TH_RGHT_GUI:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_RIGHT);
-            } else if (record->event.pressed) {
-                tap_code16(LGUI(KC_RIGHT));
-            }
+            tap_custom_shifted_tap_hold_key(KC_RIGHT, LGUI(KC_RIGHT), record);
             return false;
         case TH_UP_GUI:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_UP);
-            } else if (record->event.pressed) {
-                tap_code16(LGUI(KC_UP));
-            }
+            tap_custom_shifted_tap_hold_key(KC_UP, LGUI(KC_UP), record);
             return false;
         case TH_DOWN_GUI:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_DOWN);
-            } else if (record->event.pressed) {
-                tap_code16(LGUI(KC_DOWN));
-            }
+            tap_custom_shifted_tap_hold_key(KC_DOWN, LGUI(KC_DOWN), record);
             return false;
 
+        // NumPad keys get tap-held to include MEH
         case TH_P0:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P0);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P0));
-            }
+            tap_custom_shifted_tap_hold_key(KC_P0, WINDOW_HOTKEY(KC_P0), record);
             return false;
         case TH_P1:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P1);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P1));
-            }
+            tap_custom_shifted_tap_hold_key(KC_P1, WINDOW_HOTKEY(KC_P1), record);
             return false;
         case TH_P2:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P2);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P2));
-            }
+            tap_custom_shifted_tap_hold_key(KC_P2, WINDOW_HOTKEY(KC_P2), record);
             return false;
         case TH_P3:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P3);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P3));
-            }
+            tap_custom_shifted_tap_hold_key(KC_P3, WINDOW_HOTKEY(KC_P3), record);
             return false;
         case TH_P4:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P4);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P4));
-            }
+            tap_custom_shifted_tap_hold_key(KC_P4, WINDOW_HOTKEY(KC_P4), record);
             return false;
         case TH_P5:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P5);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P5));
-            }
+            tap_custom_shifted_tap_hold_key(KC_P5, WINDOW_HOTKEY(KC_P5), record);
             return false;
         case TH_P6:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P6);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P6));
-            }
+            tap_custom_shifted_tap_hold_key(KC_P6, WINDOW_HOTKEY(KC_P6), record);
             return false;
         case TH_P7:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P7);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P7));
-            }
+            tap_custom_shifted_tap_hold_key(KC_P7, WINDOW_HOTKEY(KC_P7), record);
             return false;
         case TH_P8:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P8);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P8));
-            }
+            tap_custom_shifted_tap_hold_key(KC_P8, WINDOW_HOTKEY(KC_P8), record);
             return false;
         case TH_P9:
-            if (record->tap.count && record->event.pressed) {
-                tap_code(KC_P9);
-            } else if (record->event.pressed) {
-                tap_code16(MEH(KC_P9));
-            }
+            tap_custom_shifted_tap_hold_key(KC_P9, WINDOW_HOTKEY(KC_P9), record);
             return false;
     }
     return true;

@@ -13,11 +13,14 @@
 // ---------------------
 
 enum my_keycodes {
-    UKC_QUESTION  = SAFE_RANGE,
-        // Using this as a substitute for a KC_QUESTION tap-hold since the KC_QUESTION keycode
-        // overlaps with KC_SLASH, since KC_QUESTION = LSHFT(KC_SLASH).
-    UKC_NAV,
-        // Same as UKC_QUESTION, but for the Nav-Zoom layers tap-hold
+    UKC_NAV = SAFE_RANGE,
+        // Same as a place-holder for tap-hold functionality
+    UKC_TILDE_EMDASH,
+    UKC_GRAVE_ESCAPE,
+    UKC_F1_ESCAPE,
+    UKC_SQUARE_BRACES,
+    UKC_CURLY_BRACES,
+    UKC_ANGLE_BRACES,
 
     // Combos: see implementation in combos.c
     CB_BRACES,       // []
@@ -45,6 +48,8 @@ enum my_keycodes {
 
 #define UKC_INV_QUESTION LSFT(LALT(KC_SLASH))  // ¿
 #define UKC_IQUS         UKC_INV_QUESTION
+#define UKC_EMDASH       LSFT(LALT(KC_MINUS))
+#define UKC_MDSH         UKC_EMDASH
 
 #define UKC_WD_LEFT RALT(KC_LEFT)
 #define UKC_WD_RGHT RALT(KC_RGHT)

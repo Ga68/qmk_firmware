@@ -3,13 +3,18 @@
 // ---------------
 // --- Tapping ---
 // ---------------
+
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_FORCE_HOLD
 #undef TAPPING_TERM
 #define TAPPING_TERM 200
+#define RETRO_TAPPING
 #define TAPPING_TERM_PER_KEY
 
 // ----------------
 // --- Encoders ---
 // ----------------
+
 #undef ENCODER_RESOLUTION
 #define ENCODER_RESOLUTION 4 // One click of the encoder is one unit on my system works when 4
 #define ENCODER_DIRECTION_FLIP
@@ -18,6 +23,7 @@
 // --- Auto Shift ---
 // ------------------
 // All determination of what will auto shift is done in the per-key function
+
 #define NO_AUTO_SHIFT_SPECIAL
 #define NO_AUTO_SHIFT_NUMERIC
 #define NO_AUTO_SHIFT_ALPHA
@@ -27,6 +33,7 @@
 // --- ----- ---
 // --- Mouse ---
 // --- ----- ---
+
 #undef MOUSEKEY_DELAY
 #define MOUSEKEY_DELAY       0
 #undef MOUSEKEY_INTERVAL
@@ -41,6 +48,7 @@
 // --- ------------ ---
 // --- Space Saving ---
 // --- ------------ ---
+
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
 #define DISABLE_LEADER
