@@ -97,9 +97,7 @@ enum my_keycodes {
 
 // Allow for "brace" and "bracket" to be used interchangeably
 //   Braces [ ], Curly Braces { }, Angled Braces < >
-#define KC_RIGHT_BRACKET       KC_RBRACKET
 #define KC_RIGHT_BRACE         KC_RBRACKET
-#define KC_LEFT_BRACKET        KC_LBRACKET
 #define KC_LEFT_BRACE          KC_LBRACKET
 #define KC_RIGHT_CURLY_BRACKET KC_RIGHT_CURLY_BRACE
 #define KC_LEFT_CURLY_BRACKET  KC_LEFT_CURLY_BRACE
