@@ -21,16 +21,16 @@ enum th_keycodes {
     UKC_TH_UP_GUI,
     UKC_TH_DOWN_GUI,
     
-    UKC_TH_P0,
-    UKC_TH_P1,
-    UKC_TH_P2,
-    UKC_TH_P3,
-    UKC_TH_P4,
-    UKC_TH_P5,
-    UKC_TH_P6,
-    UKC_TH_P7,
-    UKC_TH_P8,
-    UKC_TH_P9,
+    UKC_TH_0,
+    UKC_TH_1,
+    UKC_TH_2,
+    UKC_TH_3,
+    UKC_TH_4,
+    UKC_TH_5,
+    UKC_TH_6,
+    UKC_TH_7,
+    UKC_TH_8,
+    UKC_TH_9,
 };
 
 // ----------------
@@ -60,24 +60,24 @@ enum th_keycodes {
 #define TH_DOWN_GUI  LT(_NAV, UKC_TH_DOWN_GUI)
 
 #define WINDOW_HOTKEY MEH
-#define TH_P0 LT(_NMSY, UKC_TH_P0)
-#define TH_P1 LT(_NMSY, UKC_TH_P1)
-#define TH_P2 LT(_NMSY, UKC_TH_P2)
-#define TH_P3 LT(_NMSY, UKC_TH_P3)
-#define TH_P4 LT(_NMSY, UKC_TH_P4)
-#define TH_P5 LT(_NMSY, UKC_TH_P5)
-#define TH_P6 LT(_NMSY, UKC_TH_P6)
-#define TH_P7 LT(_NMSY, UKC_TH_P7)
-#define TH_P8 LT(_NMSY, UKC_TH_P8)
-#define TH_P9 LT(_NMSY, UKC_TH_P9)
+#define TH_0 LT(_NMSY, UKC_TH_0)
+#define TH_1 LT(_NMSY, UKC_TH_1)
+#define TH_2 LT(_NMSY, UKC_TH_2)
+#define TH_3 LT(_NMSY, UKC_TH_3)
+#define TH_4 LT(_NMSY, UKC_TH_4)
+#define TH_5 LT(_NMSY, UKC_TH_5)
+#define TH_6 LT(_NMSY, UKC_TH_6)
+#define TH_7 LT(_NMSY, UKC_TH_7)
+#define TH_8 LT(_NMSY, UKC_TH_8)
+#define TH_9 LT(_NMSY, UKC_TH_9)
 
-struct tap_hold_keycode_t {
+typedef struct _tap_hold_keycode_t {
     uint16_t keymap_keycode;
     uint16_t tap_keycode;
     uint16_t hold_keycode;
-};
+} tap_hold_keycode_t;
 
-struct tap_hold_keycode_t custom_tap_hold_keys[] = {
+tap_hold_keycode_t custom_tap_hold_keys[] = {
 
     { TH_GRV_ESC  , KC_GRAVE , KC_ESCAPE        },
     { TH_F1_ESC   , KC_F1    , KC_ESCAPE        },
@@ -95,19 +95,19 @@ struct tap_hold_keycode_t custom_tap_hold_keys[] = {
     { TH_UP_GUI  , KC_UP  , LGUI(KC_UP)   },
     { TH_DOWN_GUI, KC_DOWN, LGUI(KC_DOWN) },
 
-    { TH_P0, KC_P0, WINDOW_HOTKEY(KC_P0) },
-    { TH_P1, KC_P1, WINDOW_HOTKEY(KC_P1) },
-    { TH_P2, KC_P2, WINDOW_HOTKEY(KC_P2) },
-    { TH_P3, KC_P3, WINDOW_HOTKEY(KC_P3) },
-    { TH_P4, KC_P4, WINDOW_HOTKEY(KC_P4) },
-    { TH_P5, KC_P5, WINDOW_HOTKEY(KC_P5) },
-    { TH_P6, KC_P6, WINDOW_HOTKEY(KC_P6) },
-    { TH_P7, KC_P7, WINDOW_HOTKEY(KC_P7) },
-    { TH_P8, KC_P8, WINDOW_HOTKEY(KC_P8) },
-    { TH_P9, KC_P9, WINDOW_HOTKEY(KC_P9) },
+    { TH_0, KC_0, WINDOW_HOTKEY(KC_0) },
+    { TH_1, KC_1, WINDOW_HOTKEY(KC_1) },
+    { TH_2, KC_2, WINDOW_HOTKEY(KC_2) },
+    { TH_3, KC_3, WINDOW_HOTKEY(KC_3) },
+    { TH_4, KC_4, WINDOW_HOTKEY(KC_4) },
+    { TH_5, KC_5, WINDOW_HOTKEY(KC_5) },
+    { TH_6, KC_6, WINDOW_HOTKEY(KC_6) },
+    { TH_7, KC_7, WINDOW_HOTKEY(KC_7) },
+    { TH_8, KC_8, WINDOW_HOTKEY(KC_8) },
+    { TH_9, KC_9, WINDOW_HOTKEY(KC_9) },
 
 };
-uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(struct tap_hold_keycode_t);
+uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_hold_keycode_t);
 
 #ifdef TAPPING_TERM_PER_KEY
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -115,17 +115,18 @@ uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(struct
             case TH_NAV_ZOOM:
                 return TAPPING_TERM + 1000;
             case TH_TAB_CAPS:
-            case TH_P0:
-            case TH_P1:
-            case TH_P2:
-            case TH_P3:
-            case TH_P4:
-            case TH_P5:
-            case TH_P6:
-            case TH_P7:
-            case TH_P8:
-            case TH_P9:
                 return TAPPING_TERM + 250;
+            case TH_0:
+            case TH_1:
+            case TH_2:
+            case TH_3:
+            case TH_4:
+            case TH_5:
+            case TH_6:
+            case TH_7:
+            case TH_8:
+            case TH_9:
+                return TAPPING_TERM + 150;
             default:
                 return TAPPING_TERM;
         }

@@ -55,9 +55,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NUMPADSYM] = LAYOUT(
         TH_F1_ESC   , KC_F2      , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,               KC_F7       , KC_F8, KC_F9, KC_F10, KC_F11, KC_F12      ,
-        TH_TAB_CAPS , TH_CUR_BRCS, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,               KC_SLSH     , TH_P7, TH_P8, TH_P9 , KC_EQL, KC_MINS     ,
-        __x__       , TH_ANG_BRCS, KC_DLR , KC_PERC, KC_CIRC, KC_BSLS,               KC_ASTR     , TH_P4, TH_P5, TH_P6 , TH_P0 , KC_PLUS     ,
-        KC_LSFT_LPRN, TH_SQ_BRCS , KC_EXLM, KC_AT  , KC_HASH, KC_PIPE, _____, _____, UKC_WDW_FULL, TH_P1, TH_P2, TH_P3 , KC_DOT, KC_RSFT_RPRN,
+        TH_TAB_CAPS , TH_CUR_BRCS, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,               KC_SLSH     , TH_7 , TH_8 , TH_9  , KC_EQL, KC_MINS     ,
+        __x__       , TH_ANG_BRCS, KC_DLR , KC_PERC, KC_CROT, KC_BSLS,               KC_ASTR     , TH_4 , TH_5 , TH_6  , TH_0  , KC_PLUS     ,
+        KC_LSFT_LPRN, TH_SQ_BRCS , KC_EXLM, KC_AT  , KC_HASH, KC_PIPE, _____, _____, UKC_WDW_FULL, TH_1 , TH_2 , TH_3  , KC_DOT, KC_RSFT_RPRN,
 
                                         _____, _____, _____, _____, TO(_NAV), _____, TO(_BASE), _____, _____, _____
         ),

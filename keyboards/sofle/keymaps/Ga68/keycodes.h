@@ -77,6 +77,9 @@ enum my_keycodes {
 // Some more verbose/clear keycode names (aliases), simply as a personal preference for legibility
 // when help is needed and/or space isn't the primary concern.
 
+#define KC_CARROT KC_CIRCUMFLEX
+#define KC_CROT   KC_CARROT
+
 #define _____ KC_TRANSPARENT
 #define __x__ KC_NO
 
