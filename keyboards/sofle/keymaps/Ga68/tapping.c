@@ -1,5 +1,38 @@
 #pragma once
 
+enum th_keycodes {
+    TH_STARTING_POINT = MAX_USER_KEYCODE,
+    
+    UKC_TH_NAV_ZOOM,
+    
+    UKC_TH_GRV_ESC,
+    UKC_TH_F1_ESC,
+    UKC_TH_COLN_SCLN,
+    UKC_TH_DOT_IQUS,
+    UKC_TH_TILD_MDSH,
+    UKC_TH_TAB_CAPS,
+    
+    UKC_TH_SQ_BRCS,
+    UKC_TH_CUR_BRCS,
+    UKC_TH_ANG_BRCS,
+    
+    UKC_TH_LEFT_GUI,
+    UKC_TH_RGHT_GUI,
+    UKC_TH_UP_GUI,
+    UKC_TH_DOWN_GUI,
+    
+    UKC_TH_P0,
+    UKC_TH_P1,
+    UKC_TH_P2,
+    UKC_TH_P3,
+    UKC_TH_P4,
+    UKC_TH_P5,
+    UKC_TH_P6,
+    UKC_TH_P7,
+    UKC_TH_P8,
+    UKC_TH_P9,
+};
+
 // ----------------
 // --- Tap Hold ---
 // ----------------
@@ -8,45 +41,43 @@
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
 
-#define TH_NAV_ZOOM LT(_BASE, UKC_NAV)
+#define TH_NAV_ZOOM LT(_BASE, UKC_TH_NAV_ZOOM)
 
-#define TH_GRV_ESC   LT(_BASE, UKC_GRAVE_ESCAPE)
-#define TH_F1_ESC    LT(_BASE, UKC_F1_ESCAPE)
-#define TH_COLN_SCLN LT(_BASE, KC_COLON)
-#define TH_DOT_IQUS  LT(_BASE, KC_DOT)
-#define TH_TILD_MDSH LT(_BASE, UKC_TILDE_EMDASH)
-#define TH_TAB_CAPS  LT(_BASE, KC_TAB)
+#define TH_GRV_ESC   LT(_BASE, UKC_TH_GRV_ESC  )
+#define TH_F1_ESC    LT(_BASE, UKC_TH_F1_ESC   )
+#define TH_COLN_SCLN LT(_BASE, UKC_TH_COLN_SCLN)
+#define TH_DOT_IQUS  LT(_BASE, UKC_TH_DOT_IQUS )
+#define TH_TILD_MDSH LT(_BASE, UKC_TH_TILD_MDSH)
+#define TH_TAB_CAPS  LT(_BASE, UKC_TH_TAB_CAPS )
 
-#define TH_SQ_BRCS   LT(_NMSY, UKC_SQUARE_BRACES)
-#define TH_CUR_BRCS  LT(_NMSY, UKC_CURLY_BRACES)
-#define TH_ANG_BRCS  LT(_NMSY, UKC_ANGLE_BRACES)
+#define TH_SQ_BRCS   LT(_NMSY, UKC_TH_SQ_BRCS )
+#define TH_CUR_BRCS  LT(_NMSY, UKC_TH_CUR_BRCS)
+#define TH_ANG_BRCS  LT(_NMSY, UKC_TH_ANG_BRCS)
 
-#define TH_LEFT_GUI  LT(_NAV, KC_LEFT)
-#define TH_RGHT_GUI  LT(_NAV, KC_RIGHT)
-#define TH_UP_GUI    LT(_NAV, KC_UP)
-#define TH_DOWN_GUI  LT(_NAV, KC_DOWN)
+#define TH_LEFT_GUI  LT(_NAV, UKC_TH_LEFT_GUI)
+#define TH_RGHT_GUI  LT(_NAV, UKC_TH_RGHT_GUI)
+#define TH_UP_GUI    LT(_NAV, UKC_TH_UP_GUI  )
+#define TH_DOWN_GUI  LT(_NAV, UKC_TH_DOWN_GUI)
 
 #define WINDOW_HOTKEY MEH
-
-#define TH_P0 LT(_NMSY, KC_P0)
-#define TH_P1 LT(_NMSY, KC_P1)
-#define TH_P2 LT(_NMSY, KC_P2)
-#define TH_P3 LT(_NMSY, KC_P3)
-#define TH_P4 LT(_NMSY, KC_P4)
-#define TH_P5 LT(_NMSY, KC_P5)
-#define TH_P6 LT(_NMSY, KC_P6)
-#define TH_P7 LT(_NMSY, KC_P7)
-#define TH_P8 LT(_NMSY, KC_P8)
-#define TH_P9 LT(_NMSY, KC_P9)
+#define TH_P0 LT(_NMSY, UKC_TH_P0)
+#define TH_P1 LT(_NMSY, UKC_TH_P1)
+#define TH_P2 LT(_NMSY, UKC_TH_P2)
+#define TH_P3 LT(_NMSY, UKC_TH_P3)
+#define TH_P4 LT(_NMSY, UKC_TH_P4)
+#define TH_P5 LT(_NMSY, UKC_TH_P5)
+#define TH_P6 LT(_NMSY, UKC_TH_P6)
+#define TH_P7 LT(_NMSY, UKC_TH_P7)
+#define TH_P8 LT(_NMSY, UKC_TH_P8)
+#define TH_P9 LT(_NMSY, UKC_TH_P9)
 
 struct tap_hold_keycode_t {
-    uint16_t name;
+    uint16_t keymap_keycode;
     uint16_t tap_keycode;
     uint16_t hold_keycode;
 };
 
-#define CUSTOM_TAP_HOLD_KEY_COUNT 23
-struct tap_hold_keycode_t custom_tap_hold_keys[CUSTOM_TAP_HOLD_KEY_COUNT] = {
+struct tap_hold_keycode_t custom_tap_hold_keys[] = {
 
     { TH_GRV_ESC  , KC_GRAVE , KC_ESCAPE        },
     { TH_F1_ESC   , KC_F1    , KC_ESCAPE        },
@@ -76,6 +107,7 @@ struct tap_hold_keycode_t custom_tap_hold_keys[CUSTOM_TAP_HOLD_KEY_COUNT] = {
     { TH_P9, KC_P9, WINDOW_HOTKEY(KC_P9) },
 
 };
+uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(struct tap_hold_keycode_t);
 
 #ifdef TAPPING_TERM_PER_KEY
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -149,7 +181,7 @@ void tap_custom_tap_hold(uint16_t tap_keycode, uint16_t hold_keycode, keyrecord_
 bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
 
     for (int i = 0; i < CUSTOM_TAP_HOLD_KEY_COUNT; i = i + 1) {
-        if (keycode == custom_tap_hold_keys[i].name) {
+        if (keycode == custom_tap_hold_keys[i].keymap_keycode) {
             tap_custom_tap_hold(custom_tap_hold_keys[i].tap_keycode, custom_tap_hold_keys[i].hold_keycode, record);
             return false;
         }

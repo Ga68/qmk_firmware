@@ -15,19 +15,16 @@ void tap_code16_user(uint16_t keycode);
 // ---------------------
 
 enum my_keycodes {
-    UKC_NAV = SAFE_RANGE,
-        // Same as a place-holder for tap-hold functionality
-    UKC_TILDE_EMDASH,
-    UKC_GRAVE_ESCAPE,
-    UKC_F1_ESCAPE,
-    UKC_SQUARE_BRACES,
-    UKC_CURLY_BRACES,
-    UKC_ANGLE_BRACES,
+    UKC_STARTING_POINT = SAFE_RANGE,
 
+#ifdef COMBO_ENABLE
     // Combos: see implementation in combos.c
     CB_BRACES,       // []
     CB_CURLY_BRACES, // {}
     CB_ANGLE_BRACES, // <>
+#endif
+
+    MAX_USER_KEYCODE,
 };
 
 #define UKC_CUT         LCMD(KC_X)
@@ -90,6 +87,10 @@ enum my_keycodes {
 
 #define KC_LEFT_SHIFT  KC_LSHIFT
 #define KC_RIGHT_SHIFT KC_RSHIFT
+
+// Space Cadet Shifts
+#define KC_LSFT_LPRN KC_LSPO
+#define KC_RSFT_RPRN KC_RSPC
 
 // Allow for "brace" and "bracket" to be used interchangeably
 //   Braces [ ], Curly Braces { }, Angled Braces < >

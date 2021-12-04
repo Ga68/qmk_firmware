@@ -45,30 +45,30 @@ enum my_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_COLEMAK] = LAYOUT(
-        TH_GRV_ESC , KC_1, KC_2, KC_3, KC_4, KC_5,                   KC_6, KC_7, KC_8   , KC_9       , KC_0        , TH_TILD_MDSH,
-        TH_TAB_CAPS, KC_Q, KC_W, KC_F, KC_P, KC_G,                   KC_J, KC_L, KC_U   , KC_Y       , TH_COLN_SCLN, KC_MINS     ,
-        TH_NAV_ZOOM, KC_A, KC_R, KC_S, KC_T, KC_D,                   KC_H, KC_N, KC_E   , KC_I       , KC_O        , KC_QUOT     ,
-        KC_LSPO    , KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M, KC_COMM, TH_DOT_IQUS, KC_SLASH    , KC_RSPC     ,
+        TH_GRV_ESC  , KC_1, KC_2, KC_3, KC_4, KC_5,                   KC_6, KC_7, KC_8   , KC_9       , KC_0        , TH_TILD_MDSH,
+        TH_TAB_CAPS , KC_Q, KC_W, KC_F, KC_P, KC_G,                   KC_J, KC_L, KC_U   , KC_Y       , TH_COLN_SCLN, KC_MINS     ,
+        TH_NAV_ZOOM , KC_A, KC_R, KC_S, KC_T, KC_D,                   KC_H, KC_N, KC_E   , KC_I       , KC_O        , KC_QUOT     ,
+        KC_LSFT_LPRN, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M, KC_COMM, TH_DOT_IQUS, KC_SLASH    , KC_RSFT_RPRN,
         
-             KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), KC_ENTER, KC_SPC, KC_RGUI, KC_RALT, KC_RCTL
+              KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), KC_ENTER, KC_SPC, KC_RGUI, KC_RALT, KC_RCTL
     ),
 
     [_NUMPADSYM] = LAYOUT(
-        TH_F1_ESC, KC_F2      , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,               KC_F7       , KC_F8, KC_F9, KC_F10, KC_F11, KC_F12 ,
-        KC_TAB   , TH_CUR_BRCS, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,               KC_SLSH     , TH_P7, TH_P8, TH_P9 , KC_EQL, KC_MINS,
-        __x__    , TH_ANG_BRCS, KC_DLR , KC_PERC, KC_CIRC, KC_BSLS,               KC_ASTR     , TH_P4, TH_P5, TH_P6 , TH_P0 , KC_PLUS,
-        KC_LSFT  , TH_SQ_BRCS , KC_EXLM, KC_AT  , KC_HASH, KC_PIPE, _____, _____, UKC_WDW_FULL, TH_P1, TH_P2, TH_P3 , KC_DOT, KC_RSFT,
+        TH_F1_ESC   , KC_F2      , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,               KC_F7       , KC_F8, KC_F9, KC_F10, KC_F11, KC_F12      ,
+        TH_TAB_CAPS , TH_CUR_BRCS, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,               KC_SLSH     , TH_P7, TH_P8, TH_P9 , KC_EQL, KC_MINS     ,
+        __x__       , TH_ANG_BRCS, KC_DLR , KC_PERC, KC_CIRC, KC_BSLS,               KC_ASTR     , TH_P4, TH_P5, TH_P6 , TH_P0 , KC_PLUS     ,
+        KC_LSFT_LPRN, TH_SQ_BRCS , KC_EXLM, KC_AT  , KC_HASH, KC_PIPE, _____, _____, UKC_WDW_FULL, TH_P1, TH_P2, TH_P3 , KC_DOT, KC_RSFT_RPRN,
 
-                                     _____, _____, _____, _____, TO(_NAV), _____, TO(_BASE), _____, _____, _____
+                                        _____, _____, _____, _____, TO(_NAV), _____, TO(_BASE), _____, _____, _____
         ),
 
     [_NAV] = LAYOUT(
-        KC_ESC     , UKC_CYC_INPT, UKC_INV_CLRS, UKC_SCCP_SEL, UKC_SCCP_FULL, __x__      ,               __x__   , __x__   , __x__   , __x__  , __x__   , __x__  ,
-        KC_TAB     , KC_WH_R     , KC_WH_D     , KC_WH_U     , KC_WH_L      , __x__      ,               __x__   , __x__   , __x__   , __x__  , __x__   , __x__  ,
-        UKC_WD_LEFT, TH_LEFT_GUI , TH_UP_GUI   , TH_DOWN_GUI , TH_RGHT_GUI  , UKC_WD_RGHT,               __x__   , KC_RSFT , KC_RGUI , KC_RALT, KC_RCTL , __x__  ,
-        KC_LSFT    , UKC_UNDO    , UKC_CUT     , UKC_COPY    , UKC_PSTE     , UKC_REDO   , _____, _____, KC_BTN1 , KC_MS_L , KC_MS_D , KC_MS_U, KC_MS_R , KC_BTN2,
+        KC_ESC      , UKC_CYC_INPT, UKC_INV_CLRS, UKC_SCCP_SEL, UKC_SCCP_FULL, __x__      ,               __x__   , __x__   , __x__   , __x__  , __x__   , __x__  ,
+        TH_TAB_CAPS , KC_WH_R     , KC_WH_D     , KC_WH_U     , KC_WH_L      , __x__      ,               __x__   , __x__   , __x__   , __x__  , __x__   , __x__  ,
+        UKC_WD_LEFT , TH_LEFT_GUI , TH_UP_GUI   , TH_DOWN_GUI , TH_RGHT_GUI  , UKC_WD_RGHT,               __x__   , KC_RSFT , KC_RGUI , KC_RALT, KC_RCTL , __x__  ,
+        KC_LSFT_LPRN, UKC_UNDO    , UKC_CUT     , UKC_COPY    , UKC_PSTE     , UKC_REDO   , _____, _____, KC_BTN1 , KC_MS_L , KC_MS_D , KC_MS_U, KC_MS_R , KC_BTN2,
 
-                                                           _____, _____, _____, _____, TO(_NMSY), _____, TO(_BASE), _____, _____, _____
+                                                            _____, _____, _____, _____, TO(_NMSY), _____, TO(_BASE), _____, _____, _____
         ),
 
     [_ZOOM] = LAYOUT(
