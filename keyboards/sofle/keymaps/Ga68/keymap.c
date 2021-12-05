@@ -63,10 +63,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_NAV] = LAYOUT(
-        KC_ESC      , UKC_CYC_INPT, UKC_INV_CLRS, UKC_SCCP_SEL, UKC_SCCP_FULL, __x__      ,               __x__   , __x__   , __x__   , __x__  , __x__   , __x__  ,
-        TH_TAB_CAPS , KC_WH_R     , KC_WH_D     , KC_WH_U     , KC_WH_L      , __x__      ,               __x__   , __x__   , __x__   , __x__  , __x__   , __x__  ,
-        UKC_WD_LEFT , TH_LEFT_GUI , TH_UP_GUI   , TH_DOWN_GUI , TH_RGHT_GUI  , UKC_WD_RGHT,               __x__   , KC_RSFT , KC_RGUI , KC_RALT, KC_RCTL , __x__  ,
-        KC_LSFT_LPRN, UKC_UNDO    , UKC_CUT     , UKC_COPY    , UKC_PSTE     , UKC_REDO   , _____, _____, KC_BTN1 , KC_MS_L , KC_MS_D , KC_MS_U, KC_MS_R , KC_BTN2,
+        KC_ESC      , UKC_CYC_INPT, UKC_INV_CLRS, UKC_SCCP_SEL, UKC_SCCP_FULL, __x__      ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__  ,
+        TH_TAB_CAPS , KC_WH_R     , KC_WH_D     , KC_WH_U     , KC_WH_L      , __x__      ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__  ,
+        UKC_WD_LEFT , TH_LEFT_GUI , TH_UP_GUI   , TH_DOWN_GUI , TH_RGHT_GUI  , UKC_WD_RGHT,               __x__  , KC_RGUI, KC_RALT, KC_RCTL, KC_RSFT , __x__  ,
+        KC_LSFT_LPRN, UKC_UNDO    , UKC_CUT     , UKC_COPY    , UKC_PSTE     , UKC_REDO   , _____, _____, KC_BTN1, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R , KC_BTN2,
 
                                                             _____, _____, _____, _____, TO(_NMSY), _____, TO(_BASE), _____, _____, _____
         ),
