@@ -15,12 +15,7 @@ enum th_keycodes {
     UKC_TH_SQ_BRCS,
     UKC_TH_CUR_BRCS,
     UKC_TH_ANG_BRCS,
-    
-    UKC_TH_LEFT_GUI,
-    UKC_TH_RGHT_GUI,
-    UKC_TH_UP_GUI,
-    UKC_TH_DOWN_GUI,
-    
+        
     UKC_TH_0,
     UKC_TH_1,
     UKC_TH_2,
@@ -54,11 +49,6 @@ enum th_keycodes {
 #define TH_CUR_BRCS  LT(_NMSY, UKC_TH_CUR_BRCS)
 #define TH_ANG_BRCS  LT(_NMSY, UKC_TH_ANG_BRCS)
 
-#define TH_LEFT_GUI  LT(_NAV, UKC_TH_LEFT_GUI)
-#define TH_RGHT_GUI  LT(_NAV, UKC_TH_RGHT_GUI)
-#define TH_UP_GUI    LT(_NAV, UKC_TH_UP_GUI  )
-#define TH_DOWN_GUI  LT(_NAV, UKC_TH_DOWN_GUI)
-
 #define WINDOW_HOTKEY MEH
 #define TH_0 LT(_NMSY, UKC_TH_0)
 #define TH_1 LT(_NMSY, UKC_TH_1)
@@ -90,11 +80,6 @@ tap_hold_keycode_t custom_tap_hold_keys[] = {
     { TH_CUR_BRCS, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE },
     { TH_ANG_BRCS, KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE },
 
-    { TH_LEFT_GUI, KC_LEFT, LGUI(KC_LEFT) },
-    { TH_RGHT_GUI, KC_RGHT, LGUI(KC_RGHT) },
-    { TH_UP_GUI  , KC_UP  , LGUI(KC_UP)   },
-    { TH_DOWN_GUI, KC_DOWN, LGUI(KC_DOWN) },
-
     { TH_0, KC_0, WINDOW_HOTKEY(KC_0) },
     { TH_1, KC_1, WINDOW_HOTKEY(KC_1) },
     { TH_2, KC_2, WINDOW_HOTKEY(KC_2) },
@@ -113,19 +98,7 @@ uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_ho
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
             case TH_NAV_ZOOM:
-                return TAPPING_TERM + 1000;
             case TH_TAB_CAPS:
-                return TAPPING_TERM + 250;
-            case TH_0:
-            case TH_1:
-            case TH_2:
-            case TH_3:
-            case TH_4:
-            case TH_5:
-            case TH_6:
-            case TH_7:
-            case TH_8:
-            case TH_9:
                 return TAPPING_TERM + 150;
             default:
                 return TAPPING_TERM;
