@@ -4,17 +4,19 @@ enum th_keycodes {
     TH_STARTING_POINT = MAX_USER_KEYCODE,
     
     UKC_TH_NAV_ZOOM,
+
+    UKC_TH_BACKSPACE,
     
-    UKC_TH_GRV_ESC,
+    UKC_TH_ESC_GRAVE,
     UKC_TH_F1_ESC,
-    UKC_TH_COLN_SCLN,
-    UKC_TH_DOT_IQUS,
-    UKC_TH_TILD_MDSH,
+    UKC_TH_COLON_SEMICOLON,
+    UKC_TH_DOT_INV_QUES,
+    UKC_TH_TILDE_EMDASH,
     UKC_TH_TAB_CAPS,
     
-    UKC_TH_SQ_BRCS,
-    UKC_TH_CUR_BRCS,
-    UKC_TH_ANG_BRCS,
+    UKC_TH_SQUARE_BRACES,
+    UKC_TH_CURLY_BRACES,
+    UKC_TH_ANGLED_BRACES,
         
     UKC_TH_0,
     UKC_TH_1,
@@ -38,16 +40,18 @@ enum th_keycodes {
 
 #define TH_NAV_ZOOM LT(_BASE, UKC_TH_NAV_ZOOM)
 
-#define TH_GRV_ESC   LT(_BASE, UKC_TH_GRV_ESC  )
-#define TH_F1_ESC    LT(_BASE, UKC_TH_F1_ESC   )
-#define TH_COLN_SCLN LT(_BASE, UKC_TH_COLN_SCLN)
-#define TH_DOT_IQUS  LT(_BASE, UKC_TH_DOT_IQUS )
-#define TH_TILD_MDSH LT(_BASE, UKC_TH_TILD_MDSH)
-#define TH_TAB_CAPS  LT(_BASE, UKC_TH_TAB_CAPS )
+#define TH_BSPACE LT(_BASE, UKC_TH_BACKSPACE)
 
-#define TH_SQ_BRCS   LT(_NMSY, UKC_TH_SQ_BRCS )
-#define TH_CUR_BRCS  LT(_NMSY, UKC_TH_CUR_BRCS)
-#define TH_ANG_BRCS  LT(_NMSY, UKC_TH_ANG_BRCS)
+#define TH_ESC_GRV   LT(_BASE, UKC_TH_ESC_GRAVE      )
+#define TH_F1_ESC    LT(_BASE, UKC_TH_F1_ESC         )
+#define TH_COLN_SCLN LT(_BASE, UKC_TH_COLON_SEMICOLON)
+#define TH_DOT_IQUS  LT(_BASE, UKC_TH_DOT_INV_QUES   )
+#define TH_TILD_MDSH LT(_BASE, UKC_TH_TILDE_EMDASH   )
+#define TH_TAB_CAPS  LT(_BASE, UKC_TH_TAB_CAPS       )
+
+#define TH_SQ_BRCS   LT(_NMSY, UKC_TH_SQUARE_BRACES)
+#define TH_CUR_BRCS  LT(_NMSY, UKC_TH_CURLY_BRACES )
+#define TH_ANG_BRCS  LT(_NMSY, UKC_TH_ANGLED_BRACES)
 
 #define WINDOW_HOTKEY MEH
 #define TH_0 LT(_NMSY, UKC_TH_0)
@@ -69,7 +73,7 @@ typedef struct _tap_hold_keycode_t {
 
 tap_hold_keycode_t custom_tap_hold_keys[] = {
 
-    { TH_GRV_ESC  , KC_GRAVE , KC_ESCAPE        },
+    { TH_ESC_GRV  , KC_ESCAPE, KC_GRAVE         },
     { TH_F1_ESC   , KC_F1    , KC_ESCAPE        },
     { TH_COLN_SCLN, KC_COLON , KC_SEMICOLON     },
     { TH_DOT_IQUS , KC_PERIOD, UKC_INV_QUESTION },
@@ -161,14 +165,31 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
     
+    uint8_t mod_state = get_mods();
     switch (keycode) {
         case TH_NAV_ZOOM:
-            if (record->tap.count && record->event.pressed) {
+            if (record->tap.count && record->event.pressed) { // tap
                 layer_on(_NAV);
-            } else if (record->event.pressed) {
+            } else if (record->event.pressed) { // hold
                 layer_on(_ZOOM);
             }
             return false;
+        case TH_BSPACE:
+            // CTRL = Delete and no-CTRL = Backspace
+            // HOLD = whole word (ALT) and TAP = normal key press
+            {
+                uint16_t kc = (mod_state & MOD_MASK_CTRL) ? KC_DELETE : KC_BACKSPACE;
+
+                del_mods(MOD_MASK_CTRL);
+                if (record->tap.count && record->event.pressed) { // tap
+                    tap_code(kc);
+                } else if (record->event.pressed) { // hold
+                    tap_code16(LALT(kc));
+                }
+                set_mods(mod_state);
+
+                return false;
+            }
     }
     
     return true;

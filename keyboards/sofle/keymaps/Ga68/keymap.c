@@ -45,12 +45,12 @@ enum my_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_COLEMAK] = LAYOUT(
-        TH_GRV_ESC  , KC_1, KC_2, KC_3, KC_4, KC_5,                   KC_6, KC_7, KC_8   , KC_9       , KC_0        , TH_TILD_MDSH,
+        TH_ESC_GRV  , KC_1, KC_2, KC_3, KC_4, KC_5,                   KC_6, KC_7, KC_8   , KC_9       , KC_0        , TH_TILD_MDSH,
         TH_TAB_CAPS , KC_Q, KC_W, KC_F, KC_P, KC_G,                   KC_J, KC_L, KC_U   , KC_Y       , TH_COLN_SCLN, KC_MINS     ,
         TH_NAV_ZOOM , KC_A, KC_R, KC_S, KC_T, KC_D,                   KC_H, KC_N, KC_E   , KC_I       , KC_O        , KC_QUOT     ,
         KC_LSFT_LPRN, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M, KC_COMM, TH_DOT_IQUS, KC_SLASH    , KC_RSFT_RPRN,
         
-              KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, TO(_NMSY), KC_ENTER, UKC_MEH_SPACE, KC_RGUI, KC_RALT, KC_RCTL
+            KC_LCTL, KC_LALT, KC_LGUI, TH_BSPACE, TO(_NMSY), KC_ENTER, UKC_MEH_SPACE, KC_RGUI, KC_RALT, KC_RCTL
     ),
 
     [_NUMPADSYM] = LAYOUT(
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__ , __x__, __x__, __x__, __x__, __x__,               ZM_TG_CAM , __x__ , __x__, __x__      , __x__      , ZM_CLS_MEET,
         __x__ , __x__, __x__, __x__, __x__, __x__, _____, _____, ZM_TG_VIEW, __x__ , __x__, ZM_WDW_FULL, ZM_WDW_HALF, KC_ENT     ,
 
-                       __x__, __x__, __x__, __x__, __x__, ZM_TG_AUDO, TO(_BASE), ZM_TG_VIDO, ZM_SCR_SHR, KC_SPC
+                       _____, _____, _____, _____, __x__, ZM_TG_AUDO, TO(_BASE), ZM_TG_VIDO, ZM_SCR_SHR, KC_SPC
         ),
 };
 
