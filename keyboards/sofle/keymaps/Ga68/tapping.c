@@ -4,15 +4,15 @@ enum th_keycodes {
     TH_STARTING_POINT = MAX_USER_KEYCODE,
     
     UKC_TH_NAV_ZOOM,
-
     UKC_TH_BACKSPACE,
+    UKC_TH_TAB_CAPS,
+    UKC_TH_ENT_AENT,
     
     UKC_TH_ESC_GRAVE,
-    UKC_TH_F1_ESC,
+    UKC_TH_ESC_F1,
     UKC_TH_COLON_SEMICOLON,
     UKC_TH_DOT_INV_QUES,
     UKC_TH_TILDE_EMDASH,
-    UKC_TH_TAB_CAPS,
     
     UKC_TH_SQUARE_BRACES,
     UKC_TH_CURLY_BRACES,
@@ -38,62 +38,75 @@ enum th_keycodes {
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
 
-#define TH_NAV_ZOOM LT(_BASE, UKC_TH_NAV_ZOOM)
+#define TH_NAV_ZOOM LT(0, UKC_TH_NAV_ZOOM )
+#define TH_BSPACE   LT(0, UKC_TH_BACKSPACE)
+#define TH_TAB_CAPS LT(0, UKC_TH_TAB_CAPS )
+#define TH_ENT_AENT LT(0, UKC_TH_ENT_AENT )
 
-#define TH_BSPACE LT(_BASE, UKC_TH_BACKSPACE)
+#define TH_ESC_GRV   LT(0, UKC_TH_ESC_GRAVE      )
+#define TH_ESC_F1    LT(0, UKC_TH_ESC_F1         )
+#define TH_COLN_SCLN LT(0, UKC_TH_COLON_SEMICOLON)
+#define TH_DOT_IQUS  LT(0, UKC_TH_DOT_INV_QUES   )
+#define TH_TILD_MDSH LT(0, UKC_TH_TILDE_EMDASH   )
 
-#define TH_ESC_GRV   LT(_BASE, UKC_TH_ESC_GRAVE      )
-#define TH_F1_ESC    LT(_BASE, UKC_TH_F1_ESC         )
-#define TH_COLN_SCLN LT(_BASE, UKC_TH_COLON_SEMICOLON)
-#define TH_DOT_IQUS  LT(_BASE, UKC_TH_DOT_INV_QUES   )
-#define TH_TILD_MDSH LT(_BASE, UKC_TH_TILDE_EMDASH   )
-#define TH_TAB_CAPS  LT(_BASE, UKC_TH_TAB_CAPS       )
-
-#define TH_SQ_BRCS   LT(_NMSY, UKC_TH_SQUARE_BRACES)
-#define TH_CUR_BRCS  LT(_NMSY, UKC_TH_CURLY_BRACES )
-#define TH_ANG_BRCS  LT(_NMSY, UKC_TH_ANGLED_BRACES)
+#define TH_SQ_BRCS   LT(0, UKC_TH_SQUARE_BRACES)
+#define TH_CUR_BRCS  LT(0, UKC_TH_CURLY_BRACES )
+#define TH_ANG_BRCS  LT(0, UKC_TH_ANGLED_BRACES)
 
 #define WINDOW_HOTKEY MEH
-#define TH_0 LT(_NMSY, UKC_TH_0)
-#define TH_1 LT(_NMSY, UKC_TH_1)
-#define TH_2 LT(_NMSY, UKC_TH_2)
-#define TH_3 LT(_NMSY, UKC_TH_3)
-#define TH_4 LT(_NMSY, UKC_TH_4)
-#define TH_5 LT(_NMSY, UKC_TH_5)
-#define TH_6 LT(_NMSY, UKC_TH_6)
-#define TH_7 LT(_NMSY, UKC_TH_7)
-#define TH_8 LT(_NMSY, UKC_TH_8)
-#define TH_9 LT(_NMSY, UKC_TH_9)
+#define TH_0 LT(0, UKC_TH_0)
+#define TH_1 LT(0, UKC_TH_1)
+#define TH_2 LT(0, UKC_TH_2)
+#define TH_3 LT(0, UKC_TH_3)
+#define TH_4 LT(0, UKC_TH_4)
+#define TH_5 LT(0, UKC_TH_5)
+#define TH_6 LT(0, UKC_TH_6)
+#define TH_7 LT(0, UKC_TH_7)
+#define TH_8 LT(0, UKC_TH_8)
+#define TH_9 LT(0, UKC_TH_9)
+
+enum tap_hold_actions { THA_TAP, THA_HOLD, THA_OTHER };
+enum tap_hold_key_types {
+    // Acts like a key where the normal press is tap and the shifted press is hold, and additionally
+    // if you hold the key, it acts like Shift was pressed.
+    THT_SHIFT,
+    // Acts like a key where the normal press is tap and the shifted press is hold, and additionally
+    // if you hold the key, it acts like Shift was pressed.
+    THT_TAP_HOLD,
+};
 
 typedef struct _tap_hold_keycode_t {
     uint16_t keymap_keycode;
-    uint16_t tap_keycode;
-    uint16_t hold_keycode;
+    uint16_t primary_keycode;
+    uint16_t alt_keycode;
+    int      tap_hold_type;
 } tap_hold_keycode_t;
 
 tap_hold_keycode_t custom_tap_hold_keys[] = {
 
-    { TH_ESC_GRV  , KC_ESCAPE, KC_GRAVE         },
-    { TH_F1_ESC   , KC_F1    , KC_ESCAPE        },
-    { TH_COLN_SCLN, KC_COLON , KC_SEMICOLON     },
-    { TH_DOT_IQUS , KC_PERIOD, UKC_INV_QUESTION },
-    { TH_TILD_MDSH, KC_TILDE , UKC_EMDASH       },
-    { TH_TAB_CAPS , KC_TAB   , KC_CAPS          },
+    { TH_ESC_GRV  , KC_ESCAPE, KC_GRAVE        , THT_SHIFT },
+    { TH_ESC_F1   , KC_F1    , KC_ESCAPE       , THT_SHIFT },
+    { TH_COLN_SCLN, KC_COLON , KC_SEMICOLON    , THT_SHIFT },
+    { TH_DOT_IQUS , KC_PERIOD, UKC_INV_QUESTION, THT_SHIFT },
+    { TH_TILD_MDSH, KC_TILDE , UKC_EMDASH      , THT_SHIFT },
 
-    { TH_SQ_BRCS , KC_LEFT_BRACE      , KC_RIGHT_BRACE       },
-    { TH_CUR_BRCS, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE },
-    { TH_ANG_BRCS, KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE },
+    { TH_SQ_BRCS , KC_LEFT_BRACE      , KC_RIGHT_BRACE      , THT_SHIFT },
+    { TH_CUR_BRCS, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, THT_SHIFT },
+    { TH_ANG_BRCS, KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE, THT_SHIFT },
 
-    { TH_0, KC_0, WINDOW_HOTKEY(KC_0) },
-    { TH_1, KC_1, WINDOW_HOTKEY(KC_1) },
-    { TH_2, KC_2, WINDOW_HOTKEY(KC_2) },
-    { TH_3, KC_3, WINDOW_HOTKEY(KC_3) },
-    { TH_4, KC_4, WINDOW_HOTKEY(KC_4) },
-    { TH_5, KC_5, WINDOW_HOTKEY(KC_5) },
-    { TH_6, KC_6, WINDOW_HOTKEY(KC_6) },
-    { TH_7, KC_7, WINDOW_HOTKEY(KC_7) },
-    { TH_8, KC_8, WINDOW_HOTKEY(KC_8) },
-    { TH_9, KC_9, WINDOW_HOTKEY(KC_9) },
+    { TH_TAB_CAPS, KC_TAB  , KC_CAPS       , THT_TAP_HOLD },
+    { TH_ENT_AENT, KC_ENTER, LALT(KC_ENTER), THT_TAP_HOLD },
+
+    { TH_0, KC_0, WINDOW_HOTKEY(KC_0), THT_TAP_HOLD },
+    { TH_1, KC_1, WINDOW_HOTKEY(KC_1), THT_TAP_HOLD },
+    { TH_2, KC_2, WINDOW_HOTKEY(KC_2), THT_TAP_HOLD },
+    { TH_3, KC_3, WINDOW_HOTKEY(KC_3), THT_TAP_HOLD },
+    { TH_4, KC_4, WINDOW_HOTKEY(KC_4), THT_TAP_HOLD },
+    { TH_5, KC_5, WINDOW_HOTKEY(KC_5), THT_TAP_HOLD },
+    { TH_6, KC_6, WINDOW_HOTKEY(KC_6), THT_TAP_HOLD },
+    { TH_7, KC_7, WINDOW_HOTKEY(KC_7), THT_TAP_HOLD },
+    { TH_8, KC_8, WINDOW_HOTKEY(KC_8), THT_TAP_HOLD },
+    { TH_9, KC_9, WINDOW_HOTKEY(KC_9), THT_TAP_HOLD },
 
 };
 uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_hold_keycode_t);
@@ -110,86 +123,88 @@ uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_ho
     }
 #endif
 
-// The goal of this function is to send the keycode parameter if tapped, or send the alt_keycode
-//   parameter if the held or tapped with shift active. Shift can be active by a shift key being
-//   held, or via one-shot-mods. This should be true no matter what the keycode and alt_keycode
-//   parameters are.
-// It gets a bit tricky when you want to mix and match what's typically shifted or not. For example,
-//   you're trying to invert colon and semi-colon. Semi-colon is the unshifted keycode. Your keyboard
-//   doesn't actually send a colon keycode, KC_COLON is just an alias for S(KC_SEMICOLON) (shift and
-//   semicolon). So the reason there's so much handling below, is to make sure that if you're holding
-//   shift (or using a one shot mod), and you want to send a typically-unshifted keycode (like
-//   semicolon), then you have to get out of the shifted state first.
-void tap_custom_tap_hold(uint16_t tap_keycode, uint16_t hold_keycode, keyrecord_t *record) {
-    bool is_left_shift_pressed = get_mods() & MOD_BIT(KC_LEFT_SHIFT);
-    bool is_right_shift_pressed = get_mods() & MOD_BIT(KC_RIGHT_SHIFT);
-    
-    // see if a OSM for shift and only shift is active
-    bool is_one_shot_shift_active = (
-        (get_oneshot_mods() & MOD_BIT(KC_RIGHT_SHIFT)) == MOD_BIT(KC_RIGHT_SHIFT))
-        || ((get_oneshot_mods() & MOD_BIT(KC_LEFT_SHIFT)) == MOD_BIT(KC_LEFT_SHIFT)
-    );
-    
-    // If this is a press event (not hold)
+int tap_hold_action(keyrecord_t *record) {
     if (record->tap.count && record->event.pressed) {
-        if (is_one_shot_shift_active) {
-            clear_oneshot_mods();
-            tap_code16_user(hold_keycode);
-        }
-        else if (is_left_shift_pressed || is_right_shift_pressed) {
-            unregister_code(KC_LEFT_SHIFT);
-            unregister_code(KC_RIGHT_SHIFT);
-
-            tap_code16_user(hold_keycode);
-
-            if (is_left_shift_pressed ) { register_code(KC_LEFT_SHIFT); }
-            if (is_right_shift_pressed) { register_code(KC_RIGHT_SHIFT); }
-        }
-        else {
-            // Note that this is the ONLY branch with the tap_keycode
-            tap_code16_user(tap_keycode);
-        }
-    // If this is a hold event (not press)
+        return THA_TAP;
     } else if (record->event.pressed) {
-        tap_code16_user(hold_keycode);
+        return THA_HOLD;
     }
+    return THA_OTHER;
 }
 
+// The goal here is to customize how each of four different combinations of key presses work, on
+// a single key. It uses the TAP and HOLD tap types, and a mod (CTRL, SHIFT, etc.) applied, or not.
+// The mod (ex. MOD_MASK_SHIFT) is removed during the key press action since it's designed to alter
+// what happens, not the actual key press itself.
+//
+// This is like a combination of auto-shift (shift a key when held) and over-rides (output something
+// bespoke when a key is pressed with a mod).
+void process_custom_tap_hold_mod(uint16_t tap, uint16_t tap_mod, uint16_t hold, uint16_t hold_mod, uint8_t mod_mask, keyrecord_t *record) {
+    uint8_t mod_state = get_mods();
+    int action = tap_hold_action(record);
+    bool is_mod_on = (mod_state & mod_mask);
+
+    del_mods(mod_mask); // clear the mod-mask so it doesn't alter the actual key press
+    if (action == THA_TAP) {
+        if (is_mod_on) { tap_code16_user(tap_mod); }
+        else           { tap_code16_user(tap);     }
+    }
+    else if (action == THA_HOLD) {
+        if (is_mod_on) { tap_code16_user(hold_mod); }
+        else           { tap_code16_user(hold);     }
+    }
+    set_mods(mod_state); // restore mods to what they were before we starte         
+}
 
 bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
 
     for (int i = 0; i < CUSTOM_TAP_HOLD_KEY_COUNT; i = i + 1) {
         if (keycode == custom_tap_hold_keys[i].keymap_keycode) {
-            tap_custom_tap_hold(custom_tap_hold_keys[i].tap_keycode, custom_tap_hold_keys[i].hold_keycode, record);
-            return false;
+            switch (custom_tap_hold_keys[i].tap_hold_type) {
+                case THT_SHIFT:
+                    process_custom_tap_hold_mod(
+                        custom_tap_hold_keys[i].primary_keycode,
+                        custom_tap_hold_keys[i].alt_keycode,
+                        custom_tap_hold_keys[i].alt_keycode,
+                        custom_tap_hold_keys[i].alt_keycode,
+                        MOD_MASK_SHIFT,
+                        record
+                    );
+                    return false;
+                case THT_TAP_HOLD:
+                    process_custom_tap_hold_mod(
+                        custom_tap_hold_keys[i].primary_keycode,
+                        custom_tap_hold_keys[i].primary_keycode,
+                        custom_tap_hold_keys[i].alt_keycode,
+                        custom_tap_hold_keys[i].alt_keycode,
+                        0,
+                        record
+                    );
+                    return false;
+            }
         }
     }
     
-    uint8_t mod_state = get_mods();
     switch (keycode) {
         case TH_NAV_ZOOM:
-            if (record->tap.count && record->event.pressed) { // tap
-                layer_on(_NAV);
-            } else if (record->event.pressed) { // hold
-                layer_on(_ZOOM);
-            }
-            return false;
-        case TH_BSPACE:
-            // CTRL = Delete and no-CTRL = Backspace
-            // HOLD = whole word (ALT) and TAP = normal key press
             {
-                uint16_t kc = (mod_state & MOD_MASK_CTRL) ? KC_DELETE : KC_BACKSPACE;
-
-                del_mods(MOD_MASK_CTRL);
-                if (record->tap.count && record->event.pressed) { // tap
-                    tap_code(kc);
-                } else if (record->event.pressed) { // hold
-                    tap_code16(LALT(kc));
-                }
-                set_mods(mod_state);
-
+                int action = tap_hold_action(record);
+                if      (action == THA_TAP)  { layer_on(_NAV);  }
+                else if (action == THA_HOLD) { layer_on(_ZOOM); }
                 return false;
             }
+        case TH_BSPACE:
+            // SHIFT = Delete and no-SHIFT = Backspace
+            // HOLD = whole word (ALT) and TAP = normal key press
+            process_custom_tap_hold_mod(
+                KC_BACKSPACE,
+                KC_DELETE,
+                LALT(KC_BACKSPACE),
+                LALT(KC_DELETE),
+                MOD_MASK_SHIFT,
+                record
+            );
+            return false;
     }
     
     return true;
