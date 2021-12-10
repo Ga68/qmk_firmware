@@ -85,7 +85,7 @@ typedef struct _tap_hold_keycode_t {
 tap_hold_keycode_t custom_tap_hold_keys[] = {
 
     { TH_ESC_GRV  , KC_ESCAPE, KC_GRAVE        , THT_SHIFT },
-    { TH_ESC_F1   , KC_F1    , KC_ESCAPE       , THT_SHIFT },
+    { TH_ESC_F1   , KC_ESCAPE, KC_F1           , THT_SHIFT },
     { TH_COLN_SCLN, KC_COLON , KC_SEMICOLON    , THT_SHIFT },
     { TH_DOT_IQUS , KC_PERIOD, UKC_INV_QUESTION, THT_SHIFT },
     { TH_TILD_MDSH, KC_TILDE , UKC_EMDASH      , THT_SHIFT },
