@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TH_NAV_ZOOM , KC_A, KC_R, KC_S, KC_T, KC_D,                   KC_H, KC_N, KC_E   , KC_I       , KC_O        , KC_QUOT     ,
         KC_LSFT_LPRN, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M, KC_COMM, TH_DOT_IQUS, KC_SLASH    , KC_RSFT_RPRN,
         
-            KC_LCTL, KC_LALT, KC_LGUI, TO(_NMSY), TH_BSPACE, TH_ENT_AENT, UKC_MEH_SPACE, KC_RGUI, KC_RALT, KC_RCTL
+            KC_LCTL, KC_LALT, KC_LGUI, TH_BSPACE, TO(_NMSY), TH_ENT_AENT, UKC_MEH_SPACE, KC_RGUI, KC_RALT, KC_RCTL
     ),
 
     [_NUMPADSYM] = LAYOUT(
@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TH_NAV_ZOOM , TH_ANG_BRCS, KC_DLR , KC_PERC, KC_CROT, KC_BSLS,               KC_ASTR     , TH_4 , TH_5 , TH_6  , TH_0  , KC_PLUS     ,
         KC_LSFT_LPRN, TH_SQ_BRCS , KC_EXLM, KC_AT  , KC_HASH, KC_PIPE, _____, _____, UKC_WDW_FULL, TH_1 , TH_2 , TH_3  , KC_DOT, KC_RSFT_RPRN,
 
-                                        _____, _____, _____, TO(_NAV), _____, _____, TO(_BASE), _____, _____, _____
+                                        _____, _____, _____, _____, TO(_NAV), _____, TO(_BASE), _____, _____, _____
         ),
 
     [_NAV] = LAYOUT(
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         UKC_WD_LEFT , KC_LEFT     , KC_UP       , KC_DOWN     , KC_RIGHT     , UKC_WD_RGHT,               __x__  , KC_RGUI, KC_RALT, KC_RCTL, KC_RSFT , __x__  ,
         KC_LSFT_LPRN, UKC_UNDO    , UKC_CUT     , UKC_COPY    , UKC_PSTE     , UKC_REDO   , _____, _____, KC_BTN1, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R , KC_BTN2,
 
-                                                            _____, _____, _____, TO(_NMSY), _____, _____, TO(_BASE), _____, _____, _____
+                                                            _____, _____, _____, _____, TO(_NMSY), _____, TO(_BASE), _____, _____, _____
         ),
 
     [_ZOOM] = LAYOUT(
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__      , __x__, __x__, __x__, __x__, __x__,               ZM_TG_CAM , __x__ , __x__, __x__      , __x__      , ZM_CLS_MEET,
         __x__      , __x__, __x__, __x__, __x__, __x__, _____, _____, ZM_TG_VIEW, __x__ , __x__, ZM_WDW_FULL, ZM_WDW_HALF, TH_ENT_AENT,
 
-                            _____, _____, _____, __x__, __x__, ZM_TG_AUDO, TO(_BASE), ZM_TG_VIDO, ZM_SCR_SHR, KC_SPC
+                            _____, _____, _____, _____, __x__, ZM_TG_AUDO, TO(_BASE), ZM_TG_VIDO, ZM_SCR_SHR, KC_SPC
         ),
 };
 
