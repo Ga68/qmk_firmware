@@ -11,39 +11,46 @@
 #define RETRO_TAPPING
 #define TAPPING_TERM_PER_KEY
 
-// ----------------
-// --- Encoders ---
-// ----------------
+#ifdef ENCODER_ENABLE
+  // ----------------
+  // --- Encoders ---
+  // ----------------
 
-#undef ENCODER_RESOLUTION
-#define ENCODER_RESOLUTION 4 // One click of the encoder is one unit on my system works when 4
-#define ENCODER_DIRECTION_FLIP
+  #undef ENCODER_RESOLUTION
+  #define ENCODER_RESOLUTION 4 // One click of the encoder is one unit on my system works when 4
+  #define ENCODER_DIRECTION_FLIP
+#endif
 
-// ------------------
-// --- Auto Shift ---
-// ------------------
-// All determination of what will auto shift is done in the per-key function
+#ifdef AUTO_SHIFT_ENABLE
+  // ------------------
+  // --- Auto Shift ---
+  // ------------------
+  // All determination of what will auto shift is done in the per-key function
 
-#define NO_AUTO_SHIFT_SPECIAL
-#define NO_AUTO_SHIFT_NUMERIC
-#define NO_AUTO_SHIFT_ALPHA
+  #define NO_AUTO_SHIFT_SPECIAL
+  #define NO_AUTO_SHIFT_NUMERIC
+  #define NO_AUTO_SHIFT_ALPHA
 
-#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
+  #define AUTO_SHIFT_TIMEOUT TAPPING_TERM
+#endif
 
-// --- ----- ---
-// --- Mouse ---
-// --- ----- ---
 
-#undef MOUSEKEY_DELAY
-#define MOUSEKEY_DELAY       0
-#undef MOUSEKEY_INTERVAL
-#define MOUSEKEY_INTERVAL    16
-#undef MOUSEKEY_WHEEL_DELAY
-#define MOUSEKEY_WHEEL_DELAY 0
-#undef MOUSEKEY_MAX_SPEED
-#define MOUSEKEY_MAX_SPEED   6
-#undef MOUSEKEY_TIME_TO_MAX
-#define MOUSEKEY_TIME_TO_MAX 64
+#ifdef MOUSEKEY_ENABLE
+  // --- ----- ---
+  // --- Mouse ---
+  // --- ----- ---
+
+  #undef MOUSEKEY_DELAY
+  #define MOUSEKEY_DELAY       0
+  #undef MOUSEKEY_INTERVAL
+  #define MOUSEKEY_INTERVAL    16
+  #undef MOUSEKEY_WHEEL_DELAY
+  #define MOUSEKEY_WHEEL_DELAY 0
+  #undef MOUSEKEY_MAX_SPEED
+  #define MOUSEKEY_MAX_SPEED   6
+  #undef MOUSEKEY_TIME_TO_MAX
+  #define MOUSEKEY_TIME_TO_MAX 64
+#endif
 
 // --- ------------ ---
 // --- Space Saving ---
