@@ -4,34 +4,46 @@
 // --- Tapping ---
 // ---------------
 
-#define IGNORE_MOD_TAP_INTERRUPT
-#define TAPPING_FORCE_HOLD
+// Configure the global tapping term (default: 200ms)
 #undef TAPPING_TERM
 #define TAPPING_TERM 200
-#define RETRO_TAPPING
+
+// Prevent normal rollover on alphas from accidentally triggering mods.
+#define IGNORE_MOD_TAP_INTERRUPT
+
+// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+#define TAPPING_FORCE_HOLD
+
 #define TAPPING_TERM_PER_KEY
 
+// ----------------
+// --- Encoders ---
+// ----------------
 #ifdef ENCODER_ENABLE
-  // ----------------
-  // --- Encoders ---
-  // ----------------
-
-  #undef ENCODER_RESOLUTION
-  #define ENCODER_RESOLUTION 4 // One click of the encoder is one unit on my system works when 4
+  
   #define ENCODER_DIRECTION_FLIP
+
+  // One click of the encoder is one unit on my system works when 4
+  #undef ENCODER_RESOLUTION
+  #define ENCODER_RESOLUTION 4
+
 #endif
 
+// ------------------
+// --- Auto Shift ---
+// ------------------
+// See the get_auto_shifted_key function in autoshift.c for per-key settings as well
 #ifdef AUTO_SHIFT_ENABLE
-  // ------------------
-  // --- Auto Shift ---
-  // ------------------
-  // All determination of what will auto shift is done in the per-key function
 
+  #define RETRO_SHIFT
+
+  #define AUTO_SHIFT_TIMEOUT 150
+
+  // Turning off everything so it can be selectively turned on in the per-key function
   #define NO_AUTO_SHIFT_SPECIAL
   #define NO_AUTO_SHIFT_NUMERIC
   #define NO_AUTO_SHIFT_ALPHA
 
-  #define AUTO_SHIFT_TIMEOUT TAPPING_TERM
 #endif
 
 

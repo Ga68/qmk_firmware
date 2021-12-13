@@ -70,8 +70,8 @@ enum tap_hold_key_types {
     // Acts like a key where the normal press is tap and the shifted press is hold, and additionally
     // if you hold the key, it acts like Shift was pressed.
     THT_SHIFT,
-    // Acts like a key where the normal press is tap and the shifted press is hold, and additionally
-    // if you hold the key, it acts like Shift was pressed.
+    // Acts like a key where the normal press is tap does one key (regardless of mod status) and 
+    // hold does the alternative key (again, regardless of mod status).
     THT_TAP_HOLD,
 };
 

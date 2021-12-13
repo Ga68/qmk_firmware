@@ -15,9 +15,9 @@ SPACE_CADET_ENABLE  = yes
 # ################
 
 KEY_OVERRIDE_ENABLE = no
-COMBO_ENABLE      = no
-TAP_DANCE_ENABLE  = no
-COMMAND_ENABLE    = no # To avoid problems with Space Cadet (LSPO, RSPO, etc.)
+COMBO_ENABLE        = no
+TAP_DANCE_ENABLE    = no
+COMMAND_ENABLE      = no # To avoid problems with Space Cadet (LSPO, RSPO, etc.)
 
 # ####################
 # ### Space Saving ###

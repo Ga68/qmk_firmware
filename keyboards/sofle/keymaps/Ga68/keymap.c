@@ -14,6 +14,14 @@ enum my_layers {
 #define _BASE _COLEMAK
 #define _NMSY _NUMPADSYM
 
+#define MT_LG(k) MT(MOD_LGUI, k)
+#define MT_LA(k) MT(MOD_LALT, k)
+#define MT_LC(k) MT(MOD_LCTL, k)
+#define MT_LS(k) MT(MOD_LSFT, k)
+#define MT_RG(k) MT(MOD_RGUI, k)
+#define MT_RA(k) MT(MOD_RALT, k)
+#define MT_RC(k) MT(MOD_RCTL, k)
+#define MT_RS(k) MT(MOD_RSFT, k)
 
 // ----------------
 // --- Features ---
@@ -45,10 +53,10 @@ enum my_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_COLEMAK] = LAYOUT(
-        TH_ESC_GRV  , KC_1, KC_2, KC_3, KC_4, KC_5,                   KC_6, KC_7, KC_8   , KC_9       , KC_0        , TH_TILD_MDSH,
-        TH_TAB_CAPS , KC_Q, KC_W, KC_F, KC_P, KC_G,                   KC_J, KC_L, KC_U   , KC_Y       , TH_COLN_SCLN, KC_MINS     ,
-        TH_NAV_ZOOM , KC_A, KC_R, KC_S, KC_T, KC_D,                   KC_H, KC_N, KC_E   , KC_I       , KC_O        , KC_QUOT     ,
-        KC_LSFT_LPRN, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M, KC_COMM, TH_DOT_IQUS, KC_SLASH    , KC_RSFT_RPRN,
+        TH_ESC_GRV  , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8       , KC_9       , KC_0        , TH_TILD_MDSH,
+        TH_TAB_CAPS , KC_Q       , KC_W       , KC_F       , KC_P       , KC_G,                   KC_J, KC_L       , KC_U       , KC_Y       , TH_COLN_SCLN, KC_MINS     ,
+        TH_NAV_ZOOM , MT_LS(KC_A), MT_LC(KC_R), MT_LA(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RA(KC_E), MT_RC(KC_I), MT_RS(KC_O) , KC_QUOT     ,
+        KC_LSFT_LPRN, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMM    , TH_DOT_IQUS, KC_SLASH    , KC_RSFT_RPRN,
         
             KC_LCTL, KC_LALT, KC_LGUI, TH_BSPACE, TO(_NMSY), TH_ENT_AENT, UKC_MEH_SPACE, KC_RGUI, KC_RALT, KC_RCTL
     ),
