@@ -194,14 +194,14 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
         case TH_BSPACE:
-            // SHIFT = Delete and no-SHIFT = Backspace
+            // SHIFT = Delete and no-SHIFT = Backspace (CTRL can be used in place of SHIFT)
             // HOLD = whole word (ALT) and TAP = normal key press
             process_custom_tap_hold_mod(
                 KC_BACKSPACE,
                 KC_DELETE,
                 LALT(KC_BACKSPACE),
                 LALT(KC_DELETE),
-                MOD_MASK_SHIFT,
+                MOD_MASK_SHIFT | MOD_MASK_CTRL,
                 record
             );
             return false;
