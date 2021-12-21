@@ -3,20 +3,11 @@
 enum th_keycodes {
     TH_STARTING_POINT = MAX_USER_KEYCODE,
     
-    UKC_TH_NAV_ZOOM,
-    UKC_TH_BACKSPACE,
-    UKC_TH_TAB_CAPS,
-    UKC_TH_ENT_AENT,
-    
-    UKC_TH_ESC_GRAVE,
-    UKC_TH_ESC_F1,
     UKC_TH_COLON_SEMICOLON,
     UKC_TH_DOT_INV_QUES,
-    UKC_TH_TILDE_EMDASH,
     
-    UKC_TH_SQUARE_BRACES,
-    UKC_TH_CURLY_BRACES,
-    UKC_TH_ANGLED_BRACES,
+    UKC_TH_OPEN_BRACES,
+    UKC_TH_CLOSE_BRACES,
         
     UKC_TH_0,
     UKC_TH_1,
@@ -38,20 +29,11 @@ enum th_keycodes {
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
 
-#define TH_NAV_ZOOM LT(0, UKC_TH_NAV_ZOOM )
-#define TH_BSPACE   LT(0, UKC_TH_BACKSPACE)
-#define TH_TAB_CAPS LT(0, UKC_TH_TAB_CAPS )
-#define TH_ENT_AENT LT(0, UKC_TH_ENT_AENT )
-
-#define TH_ESC_GRV   LT(0, UKC_TH_ESC_GRAVE      )
-#define TH_ESC_F1    LT(0, UKC_TH_ESC_F1         )
 #define TH_COLN_SCLN LT(0, UKC_TH_COLON_SEMICOLON)
 #define TH_DOT_IQUS  LT(0, UKC_TH_DOT_INV_QUES   )
-#define TH_TILD_MDSH LT(0, UKC_TH_TILDE_EMDASH   )
 
-#define TH_SQ_BRCS   LT(0, UKC_TH_SQUARE_BRACES)
-#define TH_CUR_BRCS  LT(0, UKC_TH_CURLY_BRACES )
-#define TH_ANG_BRCS  LT(0, UKC_TH_ANGLED_BRACES)
+#define TH_OPEN_BRCS LT(0, UKC_TH_OPEN_BRACES )
+#define TH_CLOS_BRCS LT(0, UKC_TH_CLOSE_BRACES)
 
 #define WINDOW_HOTKEY MEH
 #define TH_0 LT(0, UKC_TH_0)
@@ -84,18 +66,8 @@ typedef struct _tap_hold_keycode_t {
 
 tap_hold_keycode_t custom_tap_hold_keys[] = {
 
-    { TH_ESC_GRV  , KC_ESCAPE, KC_GRAVE        , THT_SHIFT },
-    { TH_ESC_F1   , KC_ESCAPE, KC_F1           , THT_SHIFT },
     { TH_COLN_SCLN, KC_COLON , KC_SEMICOLON    , THT_SHIFT },
     { TH_DOT_IQUS , KC_PERIOD, UKC_INV_QUESTION, THT_SHIFT },
-    { TH_TILD_MDSH, KC_TILDE , UKC_EMDASH      , THT_SHIFT },
-
-    { TH_SQ_BRCS , KC_LEFT_BRACE      , KC_RIGHT_BRACE      , THT_SHIFT },
-    { TH_CUR_BRCS, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, THT_SHIFT },
-    { TH_ANG_BRCS, KC_LEFT_ANGLE_BRACE, KC_RIGHT_ANGLE_BRACE, THT_SHIFT },
-
-    { TH_TAB_CAPS, KC_TAB  , KC_CAPS       , THT_TAP_HOLD },
-    { TH_ENT_AENT, KC_ENTER, LALT(KC_ENTER), THT_TAP_HOLD },
 
     { TH_0, KC_0, WINDOW_HOTKEY(KC_0), THT_TAP_HOLD },
     { TH_1, KC_1, WINDOW_HOTKEY(KC_1), THT_TAP_HOLD },
@@ -114,9 +86,6 @@ uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_ho
 #ifdef TAPPING_TERM_PER_KEY
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
-            case TH_NAV_ZOOM:
-            case TH_TAB_CAPS:
-                return TAPPING_TERM + 150;
             default:
                 return TAPPING_TERM;
         }
@@ -186,22 +155,25 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
     }
     
     switch (keycode) {
-        case TH_NAV_ZOOM:
-            {
-                int action = tap_hold_action(record);
-                if      (action == THA_TAP)  { layer_on(_NAV);  }
-                else if (action == THA_HOLD) { layer_on(_ZOOM); }
-                return false;
-            }
-        case TH_BSPACE:
-            // SHIFT = Delete and no-SHIFT = Backspace (CTRL can be used in place of SHIFT)
-            // HOLD = whole word (ALT) and TAP = normal key press
+        // Open and close braces/parens. Tap is parens, hold is angle baces, shift tap is square
+        // braces, and shift hold is curly braces.
+        case TH_OPEN_BRCS:
             process_custom_tap_hold_mod(
-                KC_BACKSPACE,
-                KC_DELETE,
-                LALT(KC_BACKSPACE),
-                LALT(KC_DELETE),
-                MOD_MASK_SHIFT | MOD_MASK_CTRL,
+                KC_LEFT_PAREN,
+                KC_LEFT_BRACE,
+                KC_LEFT_ANGLE_BRACE,
+                KC_LEFT_CURLY_BRACE,
+                MOD_MASK_SHIFT,
+                record
+            );
+            return false;
+        case TH_CLOS_BRCS:
+            process_custom_tap_hold_mod(
+                KC_RIGHT_PAREN,
+                KC_RIGHT_BRACE,
+                KC_RIGHT_ANGLE_BRACE,
+                KC_RIGHT_CURLY_BRACE,
+                MOD_MASK_SHIFT,
                 record
             );
             return false;

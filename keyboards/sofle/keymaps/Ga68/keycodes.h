@@ -89,12 +89,11 @@ enum my_keycodes {
 #define KC_BACKSLASH KC_BSLASH
 #define KC_PERIOD    KC_DOT
 
-#define KC_LEFT_SHIFT  KC_LSHIFT
-#define KC_RIGHT_SHIFT KC_RSHIFT
-
 // Space Cadet Shifts
-#define KC_LSFT_LPRN KC_LSPO
-#define KC_RSFT_RPRN KC_RSPC
+#ifdef SPACE_CADET_ENABLE
+    #define KC_LSFT_LPRN KC_LSPO
+    #define KC_RSFT_RPRN KC_RSPC
+#endif
 
 // Allow for "brace" and "bracket" to be used interchangeably
 //   Braces [ ], Curly Braces { }, Angled Braces < >
