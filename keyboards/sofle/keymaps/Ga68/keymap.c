@@ -58,14 +58,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MINS     , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O) , KC_QUOT     ,
         TH_OPEN_BRCS, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMM    , TH_DOT_IQUS, KC_SLASH    , TH_CLOS_BRCS,
         
-          __x__, __x__, LT(_NAV, KC_DELETE), LT(_NUM, KC_BACKSPACE), LT(_SYM, KC_ENTER), LT(_MOUSE, KC_TAB), LT(_NAV, KC_SPACE), MT(MOD_MEH, KC_ESC), __x__, __x__
+            __x__, __x__, LT(_NAV, KC_DELETE), LT(_NUM, KC_BACKSPACE), LT(_SYM, KC_TAB), LT(_MOUSE, KC_ENTER), LT(_NAV, KC_SPACE), MT(MOD_MEH, KC_ESC), __x__, __x__
     ),
 
     [_NUM] = LAYOUT(
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__ , __x__  , __x__  , __x__  , __x__   , __x__,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__ , KC_MINS, KC_PLUS, KC_ASTR, KC_SLASH, __x__,
-        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               KC_EQL, TH_1   , TH_2   , TH_3   , TH_4    , TH_5 ,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, __x__ , TH_6   , TH_7   , TH_8   , TH_9    , TH_0 ,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , __x__  , __x__  , __x__  , __x__   , __x__,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , KC_MINS, KC_PLUS, KC_ASTR, KC_SLASH, __x__,
+        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               TH_EQL      , TH_1   , TH_2   , TH_3   , TH_4    , TH_5 ,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, TH_6   , TH_7   , TH_8   , TH_9    , TH_0 ,
 
                                 _____, _____, _____, _____, _____, KC_LEFT_PAREN, KC_DOT, KC_LEFT_PAREN, _____, _____
         ),
@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ZOOM] = LAYOUT(
         __x__, __x__, __x__, __x__, __x__, __x__,               __x__     , __x__, __x__, __x__      , __x__      , TO(_BASE)  ,
         __x__, __x__, __x__, __x__, __x__, __x__,               __x__     , __x__, __x__, __x__      , __x__      , __x__      ,
-        __x__, __x__, __x__, __x__, __x__, __x__,               ZM_TG_CAM , __x__, __x__, __x__      , __x__      , ZM_CLS_MEET,
+        __x__, __x__, __x__, __x__, __x__, __x__,               __x__     , __x__, __x__, __x__      , __x__      , ZM_CLS_MEET,
         __x__, __x__, __x__, __x__, __x__, __x__, _____, _____, ZM_TG_VIEW, __x__, __x__, ZM_WDW_FULL, ZM_WDW_HALF, KC_ENTER   ,
 
                              _____, _____, _____, _____, _____, ZM_TG_AUDO, ZM_TG_VIDO, __x__, __x__, KC_SPC

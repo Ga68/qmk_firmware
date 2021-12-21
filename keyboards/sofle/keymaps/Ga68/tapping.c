@@ -8,7 +8,8 @@ enum th_keycodes {
     
     UKC_TH_OPEN_BRACES,
     UKC_TH_CLOSE_BRACES,
-        
+    
+    UKC_TH_EQL,   
     UKC_TH_0,
     UKC_TH_1,
     UKC_TH_2,
@@ -36,16 +37,17 @@ enum th_keycodes {
 #define TH_CLOS_BRCS LT(0, UKC_TH_CLOSE_BRACES)
 
 #define WINDOW_HOTKEY MEH
-#define TH_0 LT(0, UKC_TH_0)
-#define TH_1 LT(0, UKC_TH_1)
-#define TH_2 LT(0, UKC_TH_2)
-#define TH_3 LT(0, UKC_TH_3)
-#define TH_4 LT(0, UKC_TH_4)
-#define TH_5 LT(0, UKC_TH_5)
-#define TH_6 LT(0, UKC_TH_6)
-#define TH_7 LT(0, UKC_TH_7)
-#define TH_8 LT(0, UKC_TH_8)
-#define TH_9 LT(0, UKC_TH_9)
+#define TH_EQL LT(0, UKC_TH_EQL)
+#define TH_0   LT(0, UKC_TH_0)
+#define TH_1   LT(0, UKC_TH_1)
+#define TH_2   LT(0, UKC_TH_2)
+#define TH_3   LT(0, UKC_TH_3)
+#define TH_4   LT(0, UKC_TH_4)
+#define TH_5   LT(0, UKC_TH_5)
+#define TH_6   LT(0, UKC_TH_6)
+#define TH_7   LT(0, UKC_TH_7)
+#define TH_8   LT(0, UKC_TH_8)
+#define TH_9   LT(0, UKC_TH_9)
 
 enum tap_hold_actions { THA_TAP, THA_HOLD, THA_OTHER };
 enum tap_hold_key_types {
@@ -69,16 +71,17 @@ tap_hold_keycode_t custom_tap_hold_keys[] = {
     { TH_COLN_SCLN, KC_COLON , KC_SEMICOLON    , THT_SHIFT },
     { TH_DOT_IQUS , KC_PERIOD, UKC_INV_QUESTION, THT_SHIFT },
 
-    { TH_0, KC_0, WINDOW_HOTKEY(KC_0), THT_TAP_HOLD },
-    { TH_1, KC_1, WINDOW_HOTKEY(KC_1), THT_TAP_HOLD },
-    { TH_2, KC_2, WINDOW_HOTKEY(KC_2), THT_TAP_HOLD },
-    { TH_3, KC_3, WINDOW_HOTKEY(KC_3), THT_TAP_HOLD },
-    { TH_4, KC_4, WINDOW_HOTKEY(KC_4), THT_TAP_HOLD },
-    { TH_5, KC_5, WINDOW_HOTKEY(KC_5), THT_TAP_HOLD },
-    { TH_6, KC_6, WINDOW_HOTKEY(KC_6), THT_TAP_HOLD },
-    { TH_7, KC_7, WINDOW_HOTKEY(KC_7), THT_TAP_HOLD },
-    { TH_8, KC_8, WINDOW_HOTKEY(KC_8), THT_TAP_HOLD },
-    { TH_9, KC_9, WINDOW_HOTKEY(KC_9), THT_TAP_HOLD },
+    { TH_EQL, KC_EQL, WINDOW_HOTKEY(KC_EQL), THT_TAP_HOLD },
+    { TH_0  , KC_0  , WINDOW_HOTKEY(KC_0)  , THT_TAP_HOLD },
+    { TH_1  , KC_1  , WINDOW_HOTKEY(KC_1)  , THT_TAP_HOLD },
+    { TH_2  , KC_2  , WINDOW_HOTKEY(KC_2)  , THT_TAP_HOLD },
+    { TH_3  , KC_3  , WINDOW_HOTKEY(KC_3)  , THT_TAP_HOLD },
+    { TH_4  , KC_4  , WINDOW_HOTKEY(KC_4)  , THT_TAP_HOLD },
+    { TH_5  , KC_5  , WINDOW_HOTKEY(KC_5)  , THT_TAP_HOLD },
+    { TH_6  , KC_6  , WINDOW_HOTKEY(KC_6)  , THT_TAP_HOLD },
+    { TH_7  , KC_7  , WINDOW_HOTKEY(KC_7)  , THT_TAP_HOLD },
+    { TH_8  , KC_8  , WINDOW_HOTKEY(KC_8)  , THT_TAP_HOLD },
+    { TH_9  , KC_9  , WINDOW_HOTKEY(KC_9)  , THT_TAP_HOLD },
 
 };
 uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_hold_keycode_t);
