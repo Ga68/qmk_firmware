@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MINS     , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O) , KC_QUOT     ,
         TH_OPEN_BRCS, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMM    , TH_DOT_IQUS, KC_SLASH    , TH_CLOS_BRCS,
         
-          __x__, __x__, LT(_NAV, KC_DELETE), LT(_NUM, KC_BACKSPACE), LT(_SYM, KC_ENTER), LT(_MOUSE, KC_TAB), LT(_NAV, KC_SPACE), MEH_T(KC_ESC), __x__, __x__
+          __x__, __x__, LT(_NAV, KC_DELETE), LT(_NUM, KC_BACKSPACE), LT(_SYM, KC_ENTER), LT(_MOUSE, KC_TAB), LT(_NAV, KC_SPACE), MT(MOD_MEH, KC_ESC), __x__, __x__
     ),
 
     [_NUM] = LAYOUT(
@@ -90,8 +90,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MOUSE] = LAYOUT(
         __x__, __x__   , __x__  , __x__   , __x__   , __x__   ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__  ,
-        __x__, __x__   , KC_MS_U, KC_WH_R , KC_WH_U , KC_WH_L ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__  ,
-        __x__, KC_MS_L , KC_MS_D, KC_MS_R , KC_WH_D , __x__   ,               __x__  , KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL , __x__  ,
+        __x__, __x__   , KC_MS_U, KC_WH_R , KC_WH_D , KC_WH_L ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__  ,
+        __x__, KC_MS_L , KC_MS_D, KC_MS_R , KC_WH_U , __x__   ,               __x__  , KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL , __x__  ,
         __x__, UKC_UNDO, UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO, _____, _____, __x__, __x__  , __x__  , __x__    , __x__  , __x__,
 
                                 _____, _____, _____, KC_BTN1, KC_BTN2, _____, _____, _____, _____, _____
