@@ -84,7 +84,6 @@ enum my_keycodes {
 
 #define KC_BACKSPACE KC_BSPACE
 #define KC_SEMICOLON KC_SCOLON
-#define KC_BACKSLASH KC_BSLASH
 #define KC_PERIOD    KC_DOT
 
 // Space Cadet Shifts

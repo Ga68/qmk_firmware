@@ -62,21 +62,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUM] = LAYOUT(
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , __x__  , __x__  , __x__  , __x__   , __x__,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , KC_MINS, KC_PLUS, KC_ASTR, KC_SLASH, __x__,
-        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               TH_EQL      , TH_1   , TH_2   , TH_3   , TH_4    , TH_5 ,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, TH_6   , TH_7   , TH_8   , TH_9    , TH_0 ,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__ , __x__, __x__, __x__, __x__  , __x__   ,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__ , TH_7 , TH_8 , TH_9 , __x__  , __x__   ,
+        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               TH_EQL, TH_4 , TH_5 , TH_6 , KC_PLUS, KC_MINS ,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, __x__ , TH_1 , TH_2 , TH_3 , KC_ASTR, KC_SLASH,
 
-                                _____, _____, _____, _____, _____, KC_LEFT_PAREN, KC_DOT, KC_LEFT_PAREN, _____, _____
+                                _____, _____, _____, _____, _____, UKC_WDW_FULL, TH_0, KC_DOT, _____, _____
         ),
 
     [_SYM] = LAYOUT(
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__  , __x__  , __x__  , __x__  , __x__  , __x__  ,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__  , __x__  , KC_BSLS, KC_PIPE, __x__  , __x__  ,
-        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               KC_GRV , S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, KC_TILD, S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0),
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, __x__  , __x__  , __x__  , __x__    , __x__,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, S(KC_7), S(KC_8), __x__  , __x__    , __x__,
+        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               __x__, S(KC_4), S(KC_5), S(KC_6), KC_PIPE  , __x__,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, __x__, S(KC_1), S(KC_2), S(KC_3), KC_BSLS, __x__,
 
-                                _____, _____, _____, _____, _____, KC_LEFT_PAREN, KC_DOT, KC_LEFT_PAREN, _____, _____
+                                _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
         ),
 
     [_NAV] = LAYOUT(
