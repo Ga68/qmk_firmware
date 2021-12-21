@@ -3,6 +3,8 @@
 enum th_keycodes {
     TH_STARTING_POINT = MAX_USER_KEYCODE,
     
+    UKC_TH_ZOOM,
+
     UKC_TH_COLON_SEMICOLON,
     UKC_TH_DOT_INV_QUES,
     
@@ -29,6 +31,8 @@ enum th_keycodes {
 //   behavior on any key's hold. The DEFINEs are to help with code legibility.
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
+
+#define TH_ZOOM LT(0, UKC_TH_ZOOM )
 
 #define TH_COLN_SCLN LT(0, UKC_TH_COLON_SEMICOLON)
 #define TH_DOT_IQUS  LT(0, UKC_TH_DOT_INV_QUES   )
@@ -89,6 +93,8 @@ uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_ho
 #ifdef TAPPING_TERM_PER_KEY
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
+            case TH_ZOOM:
+                return TAPPING_TERM + 150;
             default:
                 return TAPPING_TERM;
         }
@@ -158,6 +164,10 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
     }
     
     switch (keycode) {
+        case TH_ZOOM:
+            // Only switch to the zoom layer if held (ignore any tap action)
+            if (tap_hold_action(record) == THA_HOLD) { layer_on(_ZOOM); }
+            return false;
         // Open and close braces/parens. Tap is parens, hold is angle baces, shift tap is square
         // braces, and shift hold is curly braces.
         case TH_OPEN_BRCS:
