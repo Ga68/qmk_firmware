@@ -65,8 +65,6 @@ enum my_keycodes {
 #define ZM_TG_AUDO  LCMD(LSFT(KC_A))
 #define ZM_TG_VIDO  LCMD(LSFT(KC_V))
 #define ZM_TG_VIEW  LCMD(LSFT(KC_W))
-#define ZM_TG_CAM   LCMD(LSFT(KC_N))
-#define ZM_SCR_SHR  LCMD(LSFT(KC_S))
 #define ZM_CLS_MEET LCMD(KC_W)
 #define ZM_WDW_FULL UKC_TOGGLE_WINDOW_FULL_SCREEN
 #define ZM_WDW_HALF MEH(KC_6)
@@ -89,12 +87,11 @@ enum my_keycodes {
 #define KC_BACKSLASH KC_BSLASH
 #define KC_PERIOD    KC_DOT
 
-#define KC_LEFT_SHIFT  KC_LSHIFT
-#define KC_RIGHT_SHIFT KC_RSHIFT
-
 // Space Cadet Shifts
-#define KC_LSFT_LPRN KC_LSPO
-#define KC_RSFT_RPRN KC_RSPC
+#ifdef SPACE_CADET_ENABLE
+    #define KC_LSFT_LPRN KC_LSPO
+    #define KC_RSFT_RPRN KC_RSPC
+#endif
 
 // Allow for "brace" and "bracket" to be used interchangeably
 //   Braces [ ], Curly Braces { }, Angled Braces < >

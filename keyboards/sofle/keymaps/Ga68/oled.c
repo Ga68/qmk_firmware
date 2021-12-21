@@ -42,9 +42,11 @@ static void print_status_narrow(void) {
     // Prints all the layers, and "highlights" (inverted printing) the active layer
     oled_write_P(PSTR("\n\n"), false);
     int ls = get_highest_layer(layer_state);
-    oled_write_P(PSTR("Base\n\n"), ls==_BASE);
-    oled_write_P(PSTR("NumSy\n"), ls==_NMSY);
-    oled_write_P(PSTR("Nav\n\n"), ls==_NAV);
+    oled_write_P(PSTR("Base\n"), ls==_BASE);
+    oled_write_P(PSTR("Num\n"), ls==_NUM);
+    oled_write_P(PSTR("Sym\n"), ls==_SYM);
+    oled_write_P(PSTR("Nav\n"), ls==_NAV);
+    oled_write_P(PSTR("Mouse"), ls==_MOUSE);
     oled_write_P(PSTR("Zoom\n\n"), ls==_ZOOM);
 
     // Caps Lock
