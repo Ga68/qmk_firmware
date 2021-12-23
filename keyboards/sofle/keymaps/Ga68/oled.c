@@ -1,5 +1,14 @@
 #pragma once
 
+uint32_t oled_timeout_user(void) {
+    led_t led_usb_state = host_keyboard_led_state();
+
+    if (get_highest_layer(layer_state) == _ZOOM || led_usb_state.caps_lock) {
+        return (uint32_t)1000 * 60 * 10; // 10 minutes
+    }
+    return (uint32_t)1000 * 30; // 30 seconds
+}
+
 static void render_logo(void) {
     static const char PROGMEM logo[] = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
