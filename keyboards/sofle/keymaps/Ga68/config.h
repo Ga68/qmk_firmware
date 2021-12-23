@@ -49,7 +49,8 @@
   // --- Display ---
   // --- ------- ---
 
-  #define OLED_BRIGHTNESS 20
+  #define OLED_CUSTOM_TIMEOUT
+  #define OLED_BRIGHTNESS 10
   #define SPLIT_LAYER_STATE_ENABLE
   #define SPLIT_LED_STATE_ENABLE
 #endif
