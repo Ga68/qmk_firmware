@@ -8,7 +8,6 @@ EXTRAKEY_ENABLE     = yes # Audio control and System control
 MOUSEKEY_ENABLE     = yes # Controlling mouse movement and clicks
 OLED_ENABLE         = yes
   OLED_DRIVER = SSD1306
-SPACE_CADET_ENABLE  = yes
 
 # ################
 # ### Disabled ###
@@ -18,6 +17,7 @@ KEY_OVERRIDE_ENABLE = no
 COMBO_ENABLE        = no
 TAP_DANCE_ENABLE    = no
 COMMAND_ENABLE      = no # To avoid problems with Space Cadet (LSPO, RSPO, etc.)
+SPACE_CADET_ENABLE  = no
 
 # ####################
 # ### Space Saving ###
