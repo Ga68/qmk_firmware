@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__    , __x__, __x__, __x__, __x__, __x__,               __x__     , __x__, __x__, __x__      , __x__      , ZM_CLS_MEET,
         __x__    , __x__, __x__, __x__, __x__, __x__, _____, _____, ZM_TG_VIEW, __x__, __x__, ZM_WDW_FULL, ZM_WDW_HALF, KC_ENTER   ,
 
-                          _____, _____, _____, _____, _____, ZM_TG_AUDO, ZM_TG_VIDO, __x__, __x__, KC_SPC
+                          _____, _____, _____, _____, _____, ZM_TG_AUDO, ZM_TG_VIDO, KC_SPC, __x__, __x__
         ),
 };
 
