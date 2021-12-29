@@ -124,12 +124,12 @@ void process_custom_tap_hold_mod(uint16_t tap, uint16_t tap_mod, uint16_t hold, 
 
     del_mods(mod_mask); // clear the mod-mask so it doesn't alter the actual key press
     if (action == THA_TAP) {
-        if (is_mod_on) { tap_code16_user(tap_mod); }
-        else           { tap_code16_user(tap);     }
+        if (is_mod_on) { tap_code16(tap_mod); }
+        else           { tap_code16(tap);     }
     }
     else if (action == THA_HOLD) {
-        if (is_mod_on) { tap_code16_user(hold_mod); }
-        else           { tap_code16_user(hold);     }
+        if (is_mod_on) { tap_code16(hold_mod); }
+        else           { tap_code16(hold);     }
     }
     set_mods(mod_state); // restore mods to what they were before we starte         
 }

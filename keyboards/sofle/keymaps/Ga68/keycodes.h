@@ -1,7 +1,5 @@
 #pragma once
 
-void tap_code16_user(uint16_t keycode);
-
 // ----------------------
 // --- Keycode Legend ---
 // ----------------------

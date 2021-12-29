@@ -121,16 +121,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     return true;
 }
-
-
-// This gets me the benefits of using tap_code and having it work universally with the needed delay
-// for KC_CAPS and the flexibility of tap_code16 being able to use non-simple keycodes only (such as
-// modded keys).
-void tap_code16_user(uint16_t keycode) {
-    if (keycode == KC_CAPS) {
-        tap_code(KC_CAPS);
-    }
-    else {
-        tap_code16(keycode);
-    }
-}
