@@ -28,6 +28,7 @@ enum my_layers {
 // ----------------
 
 #include "tapping.c"
+#include "caps_word.c"
 
 #ifdef ENCODER_ENABLE
     #include "encoders.c"

@@ -15,6 +15,8 @@
 enum my_keycodes {
     UKC_STARTING_POINT = SAFE_RANGE,
 
+    UKC_CAPS_WORD,
+
 #ifdef COMBO_ENABLE
     // Combos: see implementation in combos.c
     CB_BRACES,       // []
