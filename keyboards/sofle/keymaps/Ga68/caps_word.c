@@ -1,8 +1,6 @@
 #pragma once
 
-#include QMK_KEYBOARD_H
-
-bool process_caps_word(uint16_t keycode, keyrecord_t* record);
+#include "caps_word.h"
 
 bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
   static bool caps_word_enabled = false;
@@ -14,12 +12,8 @@ bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
 #endif  // NO_ACTION_ONESHOT
 
   if (!caps_word_enabled) {
-    // Pressing both shift keys at the same time enables caps word.
-    if ((mods & MOD_MASK_SHIFT) == MOD_MASK_SHIFT) {
-      clear_mods();
-#ifndef NO_ACTION_ONESHOT
-      clear_oneshot_mods();
-#endif  // NO_ACTION_ONESHOT
+    // Pressing a custom keycode enables caps word.
+    if (keycode == UKC_CAPS_WORD) {
       shifted = false;
       caps_word_enabled = true;
       return false;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "caps_word.h"
+
 enum th_keycodes {
     TH_STARTING_POINT = MAX_USER_KEYCODE,
     
@@ -11,6 +13,8 @@ enum th_keycodes {
     UKC_TH_OPEN_BRACES,
     UKC_TH_CLOSE_BRACES,
     
+    UKC_TH_CAPS_WORD,
+
     UKC_TH_EQL,   
     UKC_TH_0,
     UKC_TH_1,
@@ -39,6 +43,8 @@ enum th_keycodes {
 
 #define TH_OPEN_BRCS LT(0, UKC_TH_OPEN_BRACES )
 #define TH_CLOS_BRCS LT(0, UKC_TH_CLOSE_BRACES)
+
+#define TH_CAPS_WORD LT(0, UKC_TH_CAPS_WORD)
 
 #define WINDOW_HOTKEY MEH
 #define TH_EQL LT(0, UKC_TH_EQL)
@@ -171,6 +177,17 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         // Open and close braces/parens. Tap is parens, hold is angle baces, shift tap is square
         // braces, and shift hold is curly braces.
+        case TH_CAPS_WORD:
+            {
+                switch (tap_hold_action(record)) {
+                    case THA_HOLD:
+                        tap_code16(KC_CAPS_LOCK);
+                        return false;
+                    case THA_TAP:
+                        return process_caps_word(UKC_CAPS_WORD, record);
+                }
+                return true;
+            }
         case TH_OPEN_BRCS:
             process_custom_tap_hold_mod(
                 KC_LEFT_PAREN,

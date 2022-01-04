@@ -54,7 +54,7 @@ enum my_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_BASE] = LAYOUT(
-        TH_ZOOM     , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8       , KC_9       , KC_0        , KC_CAPS     ,
+        TH_ZOOM     , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8       , KC_9       , KC_0        , TH_CAPS_WORD,
         KC_GRAVE    , KC_Q       , KC_W       , KC_F       , KC_P       , KC_G,                   KC_J, KC_L       , KC_U       , KC_Y       , TH_COLN_SCLN, KC_EQL      ,
         KC_MINS     , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O) , KC_QUOT     ,
         TH_OPEN_BRCS, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMM    , TH_DOT_IQUS, KC_SLASH    , TH_CLOS_BRCS,
@@ -110,14 +110,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_tap_hold_keycode_user(keycode, record)) {
-        return false;
-    }
+    if (!process_caps_word(keycode, record)) { return false; }
+    if (!process_tap_hold_keycode_user(keycode, record)) { return false; }
 
     #ifdef COMBO_ENABLE
-        if (!process_combo_keycode_user(keycode, record)) {
-            return false;
-        }
+        if (!process_combo_keycode_user(keycode, record)) { return false; }
     #endif
 
     return true;
