@@ -143,6 +143,48 @@ void process_custom_tap_hold_mod(uint16_t tap, uint16_t tap_mod, uint16_t hold, 
 
 bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
 
+    switch (keycode) {
+        case TH_ZOOM:
+            // Only switch to the zoom layer if held (ignore any tap action)
+            if (tap_hold_action(record) == THA_HOLD) { layer_on(_ZOOM); }
+            return false;
+        // Open and close braces/parens. Tap is parens, hold is angle baces, shift tap is square
+        // braces, and shift hold is curly braces.
+        case TH_CAPS_WORD:
+            {
+                switch (tap_hold_action(record)) {
+                    case THA_HOLD:
+                        toggle_caps_lock();
+                        return false;
+                    case THA_TAP:
+                        toggle_caps_word();
+                        return false;
+                }
+                return true;
+            }
+        case TH_OPEN_BRCS:
+            process_custom_tap_hold_mod(
+                KC_LEFT_PAREN,
+                KC_LEFT_BRACE,
+                KC_LEFT_ANGLE_BRACE,
+                KC_LEFT_CURLY_BRACE,
+                MOD_MASK_SHIFT,
+                record
+            );
+            return false;
+        case TH_CLOS_BRCS:
+            process_custom_tap_hold_mod(
+                KC_RIGHT_PAREN,
+                KC_RIGHT_BRACE,
+                KC_RIGHT_ANGLE_BRACE,
+                KC_RIGHT_CURLY_BRACE,
+                MOD_MASK_SHIFT,
+                record
+            );
+            return false;
+    }
+
+    // cycle through all the pre-defined codes to see if they've been tapped or held
     for (int i = 0; i < CUSTOM_TAP_HOLD_KEY_COUNT; i = i + 1) {
         if (keycode == custom_tap_hold_keys[i].keymap_keycode) {
             switch (custom_tap_hold_keys[i].tap_hold_type) {
@@ -168,46 +210,6 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
                     return false;
             }
         }
-    }
-    
-    switch (keycode) {
-        case TH_ZOOM:
-            // Only switch to the zoom layer if held (ignore any tap action)
-            if (tap_hold_action(record) == THA_HOLD) { layer_on(_ZOOM); }
-            return false;
-        // Open and close braces/parens. Tap is parens, hold is angle baces, shift tap is square
-        // braces, and shift hold is curly braces.
-        case TH_CAPS_WORD:
-            {
-                switch (tap_hold_action(record)) {
-                    case THA_HOLD:
-                        tap_code16(KC_CAPS_LOCK);
-                        return false;
-                    case THA_TAP:
-                        return process_caps_word(TH_CAPS_WORD, record);
-                }
-                return true;
-            }
-        case TH_OPEN_BRCS:
-            process_custom_tap_hold_mod(
-                KC_LEFT_PAREN,
-                KC_LEFT_BRACE,
-                KC_LEFT_ANGLE_BRACE,
-                KC_LEFT_CURLY_BRACE,
-                MOD_MASK_SHIFT,
-                record
-            );
-            return false;
-        case TH_CLOS_BRCS:
-            process_custom_tap_hold_mod(
-                KC_RIGHT_PAREN,
-                KC_RIGHT_BRACE,
-                KC_RIGHT_ANGLE_BRACE,
-                KC_RIGHT_CURLY_BRACE,
-                MOD_MASK_SHIFT,
-                record
-            );
-            return false;
     }
     
     return true;
