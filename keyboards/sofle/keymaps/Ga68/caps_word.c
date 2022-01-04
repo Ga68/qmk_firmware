@@ -10,11 +10,11 @@ bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
   const uint8_t mods = get_mods();
 #endif  // NO_ACTION_ONESHOT
 
-  if (!CAPS_WORD_caps_word_enabled) {
+  if (!g_caps_word_enabled) {
     // Pressing a custom keycode enables caps word.
     if (keycode == UKC_CAPS_WORD) {
       shifted = false;
-      CAPS_WORD_caps_word_enabled = true;
+      g_caps_word_enabled = true;
       return false;
     }
     return true;
@@ -53,7 +53,7 @@ bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
   }
 
   // Disable caps word.
-  CAPS_WORD_caps_word_enabled = false;
+  g_caps_word_enabled = false;
   if (shifted) { unregister_code(KC_LSFT); }
   shifted = false;
   return true;

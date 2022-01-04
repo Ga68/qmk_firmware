@@ -183,7 +183,7 @@ bool oled_task_user(void) {
     else if (led_usb_state.caps_lock) {
         render_caps();
     }
-    else if (CAPS_WORD_caps_word_enabled) {
+    else if (g_caps_word_enabled) {
         render_caps_word();
     }
     else {
