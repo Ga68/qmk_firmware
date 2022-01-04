@@ -68,6 +68,7 @@ enum my_keycodes {
 #define ZM_CLS_MEET LCMD(KC_W)
 #define ZM_WDW_FULL UKC_TOGGLE_WINDOW_FULL_SCREEN
 #define ZM_WDW_HALF MEH(KC_6)
+#define ZM_FOCUS    MEH(KC_Z)
 
 
 // ---------------
