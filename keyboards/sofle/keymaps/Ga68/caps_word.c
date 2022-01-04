@@ -2,23 +2,26 @@
 
 #include "caps_word.h"
 
+void toggle_caps_word_status(void) {
+  g_caps_word_enabled = !g_caps_word_enabled;
+  if (!g_caps_word_enabled && g_caps_word_shifted) { unregister_code(KC_LSFT); }
+  g_caps_word_shifted = false;
+}
+
+
 bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
-  static bool shifted = false;
 #ifndef NO_ACTION_ONESHOT
   const uint8_t mods = get_mods() | get_oneshot_mods();
 #else
   const uint8_t mods = get_mods();
 #endif  // NO_ACTION_ONESHOT
 
-  if (!g_caps_word_enabled) {
-    // Pressing a custom keycode enables caps word.
-    if (keycode == UKC_CAPS_WORD) {
-      shifted = false;
-      g_caps_word_enabled = true;
-      return false;
-    }
+  if (keycode == TH_CAPS_WORD) {
+    toggle_caps_word_status();
     return true;
   }
+
+  if (!g_caps_word_enabled) { return true; }
 
   if (!record->event.pressed) { return true; }
 
@@ -35,8 +38,8 @@ bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
       // Letter keys should be shifted.
       case KC_A ... KC_Z:
-        if (!shifted) { register_code(KC_LSFT); }
-        shifted = true;
+        if (!g_caps_word_shifted) { register_code(KC_LSFT); }
+        g_caps_word_shifted = true;
         return true;
 
       // Keycodes that continue caps word but shouldn't get shifted.
@@ -44,8 +47,8 @@ bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
       case KC_BSPC:
       case KC_MINS:
       case KC_UNDS:
-        if (shifted) { unregister_code(KC_LSFT); }
-        shifted = false;
+        if (g_caps_word_shifted) { unregister_code(KC_LSFT); }
+        g_caps_word_shifted = false;
         return true;
 
       // Any other keycode disables caps word.
@@ -53,8 +56,6 @@ bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
   }
 
   // Disable caps word.
-  g_caps_word_enabled = false;
-  if (shifted) { unregister_code(KC_LSFT); }
-  shifted = false;
+  toggle_caps_word_status();
   return true;
 }

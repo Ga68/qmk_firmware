@@ -184,7 +184,7 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code16(KC_CAPS_LOCK);
                         return false;
                     case THA_TAP:
-                        return process_caps_word(UKC_CAPS_WORD, record);
+                        return process_caps_word(TH_CAPS_WORD, record);
                 }
                 return true;
             }
