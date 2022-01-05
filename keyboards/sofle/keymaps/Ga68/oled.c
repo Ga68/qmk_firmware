@@ -1,7 +1,5 @@
 #pragma once
 
-#include "caps_word.h"
-
 
 uint32_t oled_timeout_user(void) {
     led_t led_usb_state = host_keyboard_led_state();
@@ -182,7 +180,7 @@ bool oled_task_user(void) {
     }
     // Because caps word uses caps lock to affect the shifting, it's important that caps word be
     // checked first. Otherwise, you can't tell whether we're in caps lock mode or caps word mode.
-    else if (g_caps_word_enabled) {
+    else if (get_highest_layer(layer_state) == _CAPS_WORD) {
         render_caps_word();
     }
     else if (led_usb_state.caps_lock) {

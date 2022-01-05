@@ -21,6 +21,12 @@ void toggle_caps_word(void) {
   led_t led_usb_state = host_keyboard_led_state();
   // toggle the caps_word status
   g_caps_word_enabled = !g_caps_word_enabled;
+  // The caps word layer is fully transparent so actually accomplishes nothing, for key presses,
+  // however, to get a split keyboard's oled to know state on the non-master side, a layer is 
+  // easier to use than custom communication across the halves.
+  if (g_caps_word_enabled) { layer_on(_CAPS_WORD); }
+  else                     { layer_off(_CAPS_WORD); }
+
   // if the caps_word status and the caps lack status are out of sync, then toggle caps_lock
   // to re-sync them
   if (g_caps_word_enabled != led_usb_state.caps_lock) { tap_code16(KC_CAPS_LOCK); }
@@ -29,10 +35,11 @@ void toggle_caps_word(void) {
 
 void toggle_caps_lock(void) {
   // If we're in caps word and want to move to caps lock, all we have to do is disable caps word
-  // (which will mean that a breaking character NO LONGER turns off caps). Because caps word uses
-  // caps lock to shift characters, we know it's already on and thus don't have to tap KC_CAPS_LOCK.
-  if (g_caps_word_enabled) { g_caps_word_enabled = false; }
-  else                     { tap_code16(KC_CAPS_LOCK); }
+  // (which will mean that a breaking character NO LONGER turns off caps), which will turn off the
+  // caps lock mechanism, but then be sure to cycle it right back on. If we weren't in caps word,
+  // then we're just toggling caps lock via a key press.
+  if (g_caps_word_enabled) { toggle_caps_word(); }
+  tap_code16(KC_CAPS_LOCK);
 }
 
 
