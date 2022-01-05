@@ -12,6 +12,7 @@ enum my_layers {
     _NAV,
     _MOUSE,
     _ZOOM,
+    _CAPS_WORD,
 };
 
 #define MT_LG(k) MT(MOD_LGUI, k)
@@ -105,6 +106,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__    , __x__, __x__, __x__, __x__, __x__, _____, _____, ZM_TG_VIEW, __x__, __x__, ZM_WDW_FULL, ZM_WDW_HALF, KC_ENTER   ,
 
                           _____, _____, _____, _____, _____, ZM_TG_AUDO, ZM_TG_VIDO, KC_SPC, __x__, __x__
+        ),
+
+    // Used to make OLED indication of caps word on the non-master side easier (than custom communication protocols).
+    // See caps_word.c for more details.
+    [_CAPS_WORD] = LAYOUT(
+        _____, _____, _____, _____, _____, _____,               _____, _____, _____, _____, _____, _____,
+        _____, _____, _____, _____, _____, _____,               _____, _____, _____, _____, _____, _____,
+        _____, _____, _____, _____, _____, _____,               _____, _____, _____, _____, _____, _____,
+        _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____, _____,
+
+                          _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
         ),
 };
 
