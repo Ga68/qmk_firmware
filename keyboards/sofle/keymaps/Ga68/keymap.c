@@ -52,12 +52,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUM] = LAYOUT(
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__ , __x__, __x__, __x__, __x__  , __x__   ,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__ , TH_7 , TH_8 , TH_9 , __x__  , __x__   ,
-        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               TH_EQL, TH_4 , TH_5 , TH_6 , KC_PLUS, KC_MINS ,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, __x__ , TH_1 , TH_2 , TH_3 , KC_ASTR, KC_SLASH,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , __x__, __x__, __x__, __x__  , __x__   ,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , TH_7 , TH_8 , TH_9 , __x__  , __x__   ,
+        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               TH_EQL      , TH_4 , TH_5 , TH_6 , KC_PLUS, KC_MINS ,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, TH_1 , TH_2 , TH_3 , KC_ASTR, KC_SLASH,
 
-                                _____, _____, _____, _____, _____, UKC_WDW_FULL, TH_0, KC_DOT, _____, _____
+                                _____, _____, _____, _____, _____, _____, TH_0, KC_DOT, _____, _____
         ),
 
     [_SYM] = LAYOUT(
@@ -79,12 +79,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_MOUSE] = LAYOUT(
-        __x__, __x__   , __x__  , __x__   , __x__   , __x__   ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__  ,
-        __x__, __x__   , KC_MS_U, KC_WH_R , KC_WH_D , KC_WH_L ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__  ,
-        __x__, KC_MS_L , KC_MS_D, KC_MS_R , KC_WH_U , __x__   ,               __x__  , KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL , __x__  ,
-        __x__, UKC_UNDO, UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO, __x__, __x__, __x__, __x__  , __x__  , __x__    , __x__  , __x__,
+        __x__  , __x__   , __x__  , __x__   , __x__   , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        KC_WH_R, KC_WH_D , KC_WH_L, KC_MS_U , __x__   , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        __x__  , KC_WH_U , KC_MS_L, KC_MS_D , KC_MS_R , __x__   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, __x__,
+        __x__  , UKC_UNDO, UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO, __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__,
 
-                                _____, _____, _____, KC_BTN1, KC_BTN2, _____, _____, _____, _____, _____
+                            _____, _____, UKC_MS_2CLK, KC_BTN1, KC_BTN2, _____, _____, _____, _____, _____
         ),
 
     [_ZOOM] = LAYOUT(
@@ -93,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__    , KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__   ,               __x__     , __x__, __x__, __x__      , __x__      , ZM_CLS_MEET,
         __x__    , __x__  , __x__  , __x__    , __x__  , __x__   , _____, _____, ZM_TG_VIEW, __x__, __x__, ZM_WDW_FULL, ZM_WDW_HALF, KC_ENTER   ,
 
-                                       _____, _____, _____, _____, _____, ZM_TG_AUDO, ZM_TG_VIDO, KC_SPC, __x__, __x__
+                                       _____, _____, _____, _____, _____, ZM_TG_AUDO, ZM_TG_VIDO, KC_SPC, _____, _____
         ),
 
     // Used to make OLED indication of caps word on the non-master side easier (than custom communication protocols).
@@ -134,6 +134,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #ifdef COMBO_ENABLE
         if (!process_combo_keycode_user(keycode, record)) { return false; }
     #endif
+
+    switch (keycode) {
+        case UKC_MS_2CLK:
+            tap_code16(KC_BTN1);
+            wait_ms(20);
+            tap_code16(KC_BTN1);
+            return false;
+    }
 
     return true;
 }
