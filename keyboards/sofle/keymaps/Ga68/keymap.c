@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ZOOM] = LAYOUT(
         TO(_BASE), __x__  , __x__  , __x__    , __x__  , ZM_FOCUS,               ZM_FOCUS  , __x__, __x__, __x__      , __x__      , TO(_BASE)  ,
         __x__    , __x__  , __x__  , __x__    , __x__  , __x__   ,               __x__     , __x__, __x__, __x__      , __x__      , __x__      ,
-        __x__    , KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__   ,               __x__     , __x__, __x__, __x__      , __x__      , ZM_CLS_MEET,
+        __x__    , KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__   ,               __x__     , __x__, __x__, __x__      , ZM_WDW_SWAP, ZM_CLS_MEET,
         __x__    , __x__  , __x__  , __x__    , __x__  , __x__   , _____, _____, ZM_TG_VIEW, __x__, __x__, ZM_WDW_FULL, ZM_WDW_HALF, KC_ENTER   ,
 
                                        _____, _____, _____, _____, _____, ZM_TG_AUDO, ZM_TG_VIDO, KC_SPC, _____, _____
