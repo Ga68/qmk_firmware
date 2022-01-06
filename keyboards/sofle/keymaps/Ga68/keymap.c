@@ -70,21 +70,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_NAV] = LAYOUT(
-        __x__, __x__        , __x__     , __x__   , __x__      , __x__         ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
-        __x__, S(A(KC_LEFT)), S(KC_LEFT), KC_UP   , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
-        __x__, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, __x__,
-        __x__, UKC_UNDO     , UKC_CUT   , UKC_COPY, UKC_PSTE   , UKC_REDO      , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        __x__   , __x__        , __x__     , __x__   , __x__      , __x__         ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        __x__   , S(A(KC_LEFT)), S(KC_LEFT), KC_UP   , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        KC_ENTER, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, __x__,
+        __x__   , UKC_UNDO     , UKC_CUT   , UKC_COPY, UKC_PSTE   , UKC_REDO      , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__,
 
                                                      _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
         ),
 
     [_MOUSE] = LAYOUT(
-        __x__  , __x__   , __x__  , __x__   , __x__   , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
-        KC_WH_R, KC_WH_D , KC_WH_L, KC_MS_U , __x__   , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
-        __x__  , KC_WH_U , KC_MS_L, KC_MS_D , KC_MS_R , __x__   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, __x__,
-        __x__  , UKC_UNDO, UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO, __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        __x__  , __x__   , __x__  , __x__   , __x__   , __x__      ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        KC_WH_R, KC_WH_D , KC_WH_L, KC_MS_U , KC_BTN1 , KC_BTN2    ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        __x__  , KC_WH_U , KC_MS_L, KC_MS_D , KC_MS_R , UKC_MS_2CLK,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, __x__,
+        __x__  , UKC_UNDO, UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO   , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__,
 
-                            _____, _____, UKC_MS_2CLK, KC_BTN1, KC_BTN2, _____, _____, _____, _____, _____
+                                         _____, _____, _____, _____, _____, UKC_MS_2CLK, KC_BTN1, KC_BTN2, _____, _____
         ),
 
     [_ZOOM] = LAYOUT(
