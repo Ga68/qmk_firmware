@@ -38,6 +38,10 @@ void toggle_caps_lock(void) {
   // (which will mean that a breaking character NO LONGER turns off caps), which will turn off the
   // caps lock mechanism, but then be sure to cycle it right back on. If we weren't in caps word,
   // then we're just toggling caps lock via a key press.
+  // Ideally we wouldn't toggle caps off, then right back on when going from caps word into caps
+  // caps lock; however, because we have to cycle not just the caps_word_enabled status, but also
+  // the layer (for OLED purposes), it seems simpler to just do the extra toggle and keep all that
+  // state in sync.
   if (g_caps_word_enabled) { toggle_caps_word(); }
   tap_code16(KC_CAPS_LOCK);
 }
