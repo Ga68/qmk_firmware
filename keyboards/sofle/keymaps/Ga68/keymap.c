@@ -61,19 +61,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_SYM] = LAYOUT(
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, __x__  , __x__  , __x__  , __x__    , __x__,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, S(KC_7), S(KC_8), __x__  , __x__    , __x__,
-        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               __x__, S(KC_4), S(KC_5), S(KC_6), KC_PIPE  , __x__,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, S(KC_7), S(KC_8), __x__  , __x__  , __x__,
+        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               __x__, S(KC_4), S(KC_5), S(KC_6), KC_PIPE, __x__,
         __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, __x__, S(KC_1), S(KC_2), S(KC_3), __x__  , __x__,
 
                                 _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
         ),
 
     [_NAV] = LAYOUT(
-        __x__, __x__        , __x__     , __x__   , __x__      , __x__         ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__,
-        __x__, S(A(KC_LEFT)), S(KC_LEFT), KC_UP   , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__  , __x__  , __x__  , __x__  , __x__   , __x__,
-        __x__, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__  , KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL , __x__,
-        __x__, UKC_UNDO     , UKC_CUT   , UKC_COPY, UKC_PSTE   , UKC_REDO      , __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__   , __x__,
+        __x__, __x__        , __x__     , __x__   , __x__      , __x__         ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        __x__, S(A(KC_LEFT)), S(KC_LEFT), KC_UP   , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        __x__, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, __x__,
+        __x__, UKC_UNDO     , UKC_CUT   , UKC_COPY, UKC_PSTE   , UKC_REDO      , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__,
 
                                                      _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
         ),

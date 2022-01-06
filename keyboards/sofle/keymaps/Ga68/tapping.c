@@ -84,7 +84,6 @@ tap_hold_keycode_t custom_tap_hold_keys[] = {
     { TH_DOT_IQUS , KC_PERIOD, UKC_INV_QUESTION, THT_SHIFT },
     { TH_COMM_BSLS, KC_COMMA , KC_BSLS         , THT_SHIFT },
 
-    { TH_EQL, KC_EQL, WINDOW_HOTKEY(KC_EQL), THT_TAP_HOLD },
     { TH_0  , KC_0  , WINDOW_HOTKEY(KC_0)  , THT_TAP_HOLD },
     { TH_1  , KC_1  , WINDOW_HOTKEY(KC_1)  , THT_TAP_HOLD },
     { TH_2  , KC_2  , WINDOW_HOTKEY(KC_2)  , THT_TAP_HOLD },
