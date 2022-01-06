@@ -70,12 +70,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_NAV] = LAYOUT(
-        __x__, __x__      , __x__  , __x__   , __x__   , __x__      ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__,
-        __x__, __x__      , __x__  , KC_UP   , __x__   , __x__      ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__,
-        __x__, UKC_WD_LEFT, KC_LEFT, KC_DOWN , KC_RIGHT, UKC_WD_RGHT,               __x__  , KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL , __x__,
-        __x__, UKC_UNDO   , UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO   , __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__   , __x__,
+        __x__, __x__        , __x__     , __x__   , __x__      , __x__         ,               __x__  , __x__  , __x__  , __x__  , __x__   , __x__,
+        __x__, S(A(KC_LEFT)), S(KC_LEFT), KC_UP   , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__  , __x__  , __x__  , __x__  , __x__   , __x__,
+        __x__, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__  , KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL , __x__,
+        __x__, UKC_UNDO     , UKC_CUT   , UKC_COPY, UKC_PSTE   , UKC_REDO      , __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__   , __x__,
 
-                                          _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
+                                                     _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
         ),
 
     [_MOUSE] = LAYOUT(
