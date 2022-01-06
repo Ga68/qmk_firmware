@@ -43,28 +43,28 @@ enum my_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_BASE] = LAYOUT(
-        TH_ZOOM     , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8       , KC_9       , KC_0        , TH_CAPS_WORD,
-        KC_GRAVE    , KC_Q       , KC_W       , KC_F       , KC_P       , KC_G,                   KC_J, KC_L       , KC_U       , KC_Y       , TH_COLN_SCLN, KC_EQL      ,
-        KC_MINS     , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O) , KC_QUOT     ,
-        TH_OPEN_BRCS, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMM    , TH_DOT_IQUS, KC_SLASH    , TH_CLOS_BRCS,
+        TH_ESC_ZOOM , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8        , KC_9       , KC_0        , TH_CAPS_WORD,
+        KC_GRAVE    , KC_Q       , KC_W       , KC_F       , KC_P       , KC_G,                   KC_J, KC_L       , KC_U        , KC_Y       , TH_COLN_SCLN, KC_EQL      ,
+        KC_MINS     , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E) , MT_RA(KC_I), MT_RC(KC_O) , KC_QUOT     ,
+        TH_OPEN_BRCS, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , TH_COMM_BSLS, TH_DOT_IQUS, KC_SLASH    , TH_CLOS_BRCS,
         
-            __x__, __x__, LT(_NAV, KC_DELETE), LT(_NUM, KC_BACKSPACE), LT(_SYM, KC_TAB), MT(MOD_MEH, KC_ENTER), LT(_NAV, KC_SPACE), LT(_MOUSE, KC_ESC), __x__, __x__
+       __x__, __x__, MT(MOD_MEH, KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), LT(_SYM, KC_ENTER), LT(_NUM, KC_SPACE), KC_RIGHT_SHIFT, __x__, __x__
     ),
 
     [_NUM] = LAYOUT(
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , __x__, __x__, __x__, __x__  , __x__   ,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , TH_7 , TH_8 , TH_9 , __x__  , __x__   ,
-        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               TH_EQL      , TH_4 , TH_5 , TH_6 , KC_PLUS, KC_MINS ,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, TH_1 , TH_2 , TH_3 , KC_ASTR, KC_SLASH,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , __x__, __x__, __x__, __x__   , __x__  ,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , TH_7 , TH_8 , TH_9 , KC_MINS , KC_PLUS,
+        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               KC_EQL      , TH_4 , TH_5 , TH_6 , TH_0    , KC_DOT ,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, TH_1 , TH_2 , TH_3 , KC_SLASH, KC_ASTR,
 
-                                _____, _____, _____, _____, _____, _____, TH_0, KC_DOT, _____, _____
+                                _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
         ),
 
     [_SYM] = LAYOUT(
         __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, __x__  , __x__  , __x__  , __x__    , __x__,
         __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, S(KC_7), S(KC_8), __x__  , __x__    , __x__,
         __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               __x__, S(KC_4), S(KC_5), S(KC_6), KC_PIPE  , __x__,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, __x__, S(KC_1), S(KC_2), S(KC_3), KC_BSLS, __x__,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, __x__, S(KC_1), S(KC_2), S(KC_3), __x__  , __x__,
 
                                 _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
         ),

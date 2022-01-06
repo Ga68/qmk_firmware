@@ -66,7 +66,6 @@ enum my_keycodes {
 #define UKC_TOGGLE_WINDOW_FULL_SCREEN LCMD(LCTL(KC_F))
 #define UKC_TOGGLE_WINDOW_FULL        UKC_TOGGLE_WINDOW_FULL_SCREEN
 #define UKC_WDW_FULL                  UKC_TOGGLE_WINDOW_FULL_SCREEN
-#define UKC_MEH_SPACE                 MT(MOD_MEH, KC_SPACE)
 
 
 // -------------------------------
