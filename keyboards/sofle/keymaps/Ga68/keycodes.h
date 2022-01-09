@@ -1,5 +1,18 @@
 #pragma once
 
+// ----------------
+// --- Mod Taps ---
+// ----------------
+
+#define MT_LG(k) MT(MOD_LGUI, k)
+#define MT_LA(k) MT(MOD_LALT, k)
+#define MT_LC(k) MT(MOD_LCTL, k)
+#define MT_LS(k) MT(MOD_LSFT, k)
+#define MT_RG(k) MT(MOD_RGUI, k)
+#define MT_RA(k) MT(MOD_RALT, k)
+#define MT_RC(k) MT(MOD_RCTL, k)
+#define MT_RS(k) MT(MOD_RSFT, k)
+
 // ----------------------
 // --- Keycode Legend ---
 // ----------------------
@@ -14,6 +27,8 @@
 
 enum my_keycodes {
     UKC_STARTING_POINT = SAFE_RANGE,
+
+    UKC_MS_2CLK,
 
 #ifdef COMBO_ENABLE
     // Combos: see implementation in combos.c
@@ -48,13 +63,9 @@ enum my_keycodes {
 #define UKC_EMDASH       LSFT(LALT(KC_MINUS))
 #define UKC_MDSH         UKC_EMDASH
 
-#define UKC_WD_LEFT RALT(KC_LEFT)
-#define UKC_WD_RGHT RALT(KC_RGHT)
-
 #define UKC_TOGGLE_WINDOW_FULL_SCREEN LCMD(LCTL(KC_F))
 #define UKC_TOGGLE_WINDOW_FULL        UKC_TOGGLE_WINDOW_FULL_SCREEN
 #define UKC_WDW_FULL                  UKC_TOGGLE_WINDOW_FULL_SCREEN
-#define UKC_MEH_SPACE                 MT(MOD_MEH, KC_SPACE)
 
 
 // -------------------------------
@@ -66,6 +77,8 @@ enum my_keycodes {
 #define ZM_CLS_MEET LCMD(KC_W)
 #define ZM_WDW_FULL UKC_TOGGLE_WINDOW_FULL_SCREEN
 #define ZM_WDW_HALF MEH(KC_6)
+#define ZM_WDW_SWAP MEH(KC_0)
+#define ZM_FOCUS    MEH(KC_Z)
 
 
 // ---------------

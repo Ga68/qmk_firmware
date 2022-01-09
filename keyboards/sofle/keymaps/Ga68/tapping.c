@@ -5,10 +5,11 @@
 enum th_keycodes {
     TH_STARTING_POINT = MAX_USER_KEYCODE,
     
-    UKC_TH_ZOOM,
+    UKC_TH_ESC_ZOOM,
 
     UKC_TH_COLON_SEMICOLON,
     UKC_TH_DOT_INV_QUES,
+    UKC_TH_COMM_BSLS,
     
     UKC_TH_OPEN_BRACES,
     UKC_TH_CLOSE_BRACES,
@@ -36,10 +37,11 @@ enum th_keycodes {
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
 
-#define TH_ZOOM LT(0, UKC_TH_ZOOM )
+#define TH_ESC_ZOOM LT(0, UKC_TH_ESC_ZOOM )
 
 #define TH_COLN_SCLN LT(0, UKC_TH_COLON_SEMICOLON)
 #define TH_DOT_IQUS  LT(0, UKC_TH_DOT_INV_QUES   )
+#define TH_COMM_BSLS LT(0, UKC_TH_COMM_BSLS      )
 
 #define TH_OPEN_BRCS LT(0, UKC_TH_OPEN_BRACES )
 #define TH_CLOS_BRCS LT(0, UKC_TH_CLOSE_BRACES)
@@ -80,8 +82,8 @@ tap_hold_keycode_t custom_tap_hold_keys[] = {
 
     { TH_COLN_SCLN, KC_COLON , KC_SEMICOLON    , THT_SHIFT },
     { TH_DOT_IQUS , KC_PERIOD, UKC_INV_QUESTION, THT_SHIFT },
+    { TH_COMM_BSLS, KC_COMMA , KC_BSLS         , THT_SHIFT },
 
-    { TH_EQL, KC_EQL, WINDOW_HOTKEY(KC_EQL), THT_TAP_HOLD },
     { TH_0  , KC_0  , WINDOW_HOTKEY(KC_0)  , THT_TAP_HOLD },
     { TH_1  , KC_1  , WINDOW_HOTKEY(KC_1)  , THT_TAP_HOLD },
     { TH_2  , KC_2  , WINDOW_HOTKEY(KC_2)  , THT_TAP_HOLD },
@@ -99,7 +101,7 @@ uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_ho
 #ifdef TAPPING_TERM_PER_KEY
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
-            case TH_ZOOM:
+            case TH_ESC_ZOOM:
                 return TAPPING_TERM + 150;
             default:
                 return TAPPING_TERM;
@@ -144,10 +146,18 @@ void process_custom_tap_hold_mod(uint16_t tap, uint16_t tap_mod, uint16_t hold, 
 bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
-        case TH_ZOOM:
-            // Only switch to the zoom layer if held (ignore any tap action)
-            if (tap_hold_action(record) == THA_HOLD) { layer_on(_ZOOM); }
-            return false;
+        case TH_ESC_ZOOM:
+            {
+                switch (tap_hold_action(record)) {
+                    case THA_HOLD:
+                        layer_on(_ZOOM);
+                        return false;
+                    case THA_TAP:
+                        tap_code16(KC_ESC);
+                        return false; 
+                }
+                return true;
+            }
         // Open and close braces/parens. Tap is parens, hold is angle baces, shift tap is square
         // braces, and shift hold is curly braces.
         case TH_CAPS_WORD:
