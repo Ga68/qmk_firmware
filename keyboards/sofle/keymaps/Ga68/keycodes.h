@@ -1,5 +1,7 @@
 #pragma once
 
+#define MOUSE_DOUBLE_CLICK_WAIT 25
+
 // ------------
 // --- Mods ---
 // ------------

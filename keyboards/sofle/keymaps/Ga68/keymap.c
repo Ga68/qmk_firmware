@@ -136,9 +136,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #endif
 
     switch (keycode) {
+        // Double click for the mouse
         case UKC_MS_2CLK:
             tap_code16(KC_BTN1);
-            wait_ms(20);
+            wait_ms(MOUSE_DOUBLE_CLICK_WAIT);
             tap_code16(KC_BTN1);
             return false;
         // MEH on hold and OSM-SHIFT on tap
