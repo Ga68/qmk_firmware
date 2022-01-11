@@ -22,7 +22,6 @@
 //   UKC = User Keycode
 //   ZM = Zoom
 
-
 // ---------------------
 // --- User Keycodes ---
 // ---------------------
@@ -32,13 +31,6 @@ enum my_keycodes {
 
     UKC_MS_2CLK,
     UKC_CAPS_WORD,
-
-#ifdef COMBO_ENABLE
-    // Combos: see implementation in combos.c
-    CB_BRACES,       // []
-    CB_CURLY_BRACES, // {}
-    CB_ANGLE_BRACES, // <>
-#endif
 
     MAX_USER_KEYCODE,
 };
@@ -52,15 +44,6 @@ enum my_keycodes {
 #define UKC_UNDO        LCMD(KC_Z)
 #define UKC_REDO        LCMD(LSFT(KC_Z))
 
-#define UKC_CYCLE_INPUT          LCMD(LSFT(KC_1)) // Cycle keyboard input modes
-#define UKC_CYC_INPT             UKC_CYCLE_INPUT
-#define UKC_INVERT_COLORS        LCMD(LSFT(KC_2)) // Inverst screen colors
-#define UKC_INV_CLRS             UKC_INVERT_COLORS
-#define UKC_SCREEN_CAP_SELECTION LCMD(LSFT(KC_3)) // Screen capture a portion of the screen
-#define UKC_SCCP_SEL             UKC_SCREEN_CAP_SELECTION
-#define UKC_SCREEN_CAP_FULL      LCMD(LSFT(KC_4))
-#define UKC_SCCP_FULL            UKC_SCREEN_CAP_FULL // Screen capture the full screen
-
 #define UKC_INV_QUESTION LSFT(LALT(KC_SLASH))  // ¿
 #define UKC_IQUS         UKC_INV_QUESTION
 #define UKC_EMDASH       LSFT(LALT(KC_MINUS))
@@ -69,6 +52,10 @@ enum my_keycodes {
 #define UKC_TOGGLE_WINDOW_FULL_SCREEN LCMD(LCTL(KC_F))
 #define UKC_TOGGLE_WINDOW_FULL        UKC_TOGGLE_WINDOW_FULL_SCREEN
 #define UKC_WDW_FULL                  UKC_TOGGLE_WINDOW_FULL_SCREEN
+#define UKC_WINDOW_SWAP_SCREENS       MEH(KC_0)
+#define UKC_WDW_SWAP                  UKC_WINDOW_SWAP_SCREENS
+#define UKC_WINDOW_RIGHT_HALF         MEH(KC_6)
+#define UKC_WDW_RH                    UKC_WINDOW_RIGHT_HALF
 
 
 // -------------------------------
@@ -78,9 +65,6 @@ enum my_keycodes {
 #define ZM_TG_VIDO  LCMD(LSFT(KC_V))
 #define ZM_TG_VIEW  LCMD(LSFT(KC_W))
 #define ZM_CLS_MEET LCMD(KC_W)
-#define ZM_WDW_FULL UKC_TOGGLE_WINDOW_FULL_SCREEN
-#define ZM_WDW_HALF MEH(KC_6)
-#define ZM_WDW_SWAP MEH(KC_0)
 #define ZM_FOCUS    MEH(KC_Z)
 
 

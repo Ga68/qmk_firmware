@@ -1,5 +1,6 @@
 #pragma once
 
+#include "tapping.h"
 #include "caps_word.h"
 
 enum th_keycodes {
@@ -10,9 +11,6 @@ enum th_keycodes {
     UKC_TH_COLON_SEMICOLON,
     UKC_TH_DOT_INV_QUES,
     UKC_TH_COMM_BSLS,
-    
-    UKC_TH_OPEN_BRACES,
-    UKC_TH_CLOSE_BRACES,
     
     UKC_TH_EQL,   
     UKC_TH_0,
@@ -41,9 +39,6 @@ enum th_keycodes {
 #define TH_DOT_IQUS  LT(0, UKC_TH_DOT_INV_QUES   )
 #define TH_COMM_BSLS LT(0, UKC_TH_COMM_BSLS      )
 
-#define TH_OPEN_BRCS LT(0, UKC_TH_OPEN_BRACES )
-#define TH_CLOS_BRCS LT(0, UKC_TH_CLOSE_BRACES)
-
 #define WINDOW_HOTKEY MEH
 #define TH_EQL LT(0, UKC_TH_EQL)
 #define TH_0   LT(0, UKC_TH_0)
@@ -57,7 +52,6 @@ enum th_keycodes {
 #define TH_8   LT(0, UKC_TH_8)
 #define TH_9   LT(0, UKC_TH_9)
 
-enum tap_hold_actions { THA_TAP, THA_HOLD, THA_OTHER };
 enum tap_hold_key_types {
     // Acts like a key where the normal press is tap and the shifted press is hold, and additionally
     // if you hold the key, it acts like Shift was pressed.
@@ -97,20 +91,19 @@ uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_ho
 #ifdef TAPPING_TERM_PER_KEY
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
-            case TH_ESC_ZOOM:
-                return TAPPING_TERM + 150;
             default:
                 return TAPPING_TERM;
         }
     }
 #endif
 
-int tap_hold_action(keyrecord_t *record) {
+enum tap_hold_actions tap_hold_action(keyrecord_t *record) {
     if (record->tap.count && record->event.pressed) {
         return THA_TAP;
     } else if (record->event.pressed) {
         return THA_HOLD;
     }
+    
     return THA_OTHER;
 }
 
@@ -122,16 +115,17 @@ int tap_hold_action(keyrecord_t *record) {
 // This is like a combination of auto-shift (shift a key when held) and over-rides (output something
 // bespoke when a key is pressed with a mod).
 void process_custom_tap_hold_mod(uint16_t tap, uint16_t tap_mod, uint16_t hold, uint16_t hold_mod, uint8_t mod_mask, keyrecord_t *record) {
+    enum tap_hold_actions tha_action = tap_hold_action(record);
+    if (tha_action == THA_OTHER) { return; }
+    
     uint8_t mod_state = get_mods();
-    int action = tap_hold_action(record);
     bool is_mod_on = (mod_state & mod_mask);
-
     del_mods(mod_mask); // clear the mod-mask so it doesn't alter the actual key press
-    if (action == THA_TAP) {
+    if (tha_action == THA_TAP) {
         if (is_mod_on) { tap_code16(tap_mod); }
         else           { tap_code16(tap);     }
     }
-    else if (action == THA_HOLD) {
+    else if (tha_action == THA_HOLD) {
         if (is_mod_on) { tap_code16(hold_mod); }
         else           { tap_code16(hold);     }
     }
@@ -140,44 +134,6 @@ void process_custom_tap_hold_mod(uint16_t tap, uint16_t tap_mod, uint16_t hold, 
 
 
 bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
-
-    switch (keycode) {
-        case TH_ESC_ZOOM:
-            {
-                switch (tap_hold_action(record)) {
-                    case THA_HOLD:
-                        layer_on(_ZOOM);
-                        return false;
-                    case THA_TAP:
-                        tap_code16(KC_ESC);
-                        return false; 
-                }
-                return true;
-            }
-        // Open and close braces/parens. Tap is parens, hold is angle baces, shift tap is square
-        // braces, and shift hold is curly braces.
-        case TH_OPEN_BRCS:
-            process_custom_tap_hold_mod(
-                KC_LEFT_PAREN,
-                KC_LEFT_BRACE,
-                KC_LEFT_ANGLE_BRACE,
-                KC_LEFT_CURLY_BRACE,
-                MOD_MASK_SHIFT,
-                record
-            );
-            return false;
-        case TH_CLOS_BRCS:
-            process_custom_tap_hold_mod(
-                KC_RIGHT_PAREN,
-                KC_RIGHT_BRACE,
-                KC_RIGHT_ANGLE_BRACE,
-                KC_RIGHT_CURLY_BRACE,
-                MOD_MASK_SHIFT,
-                record
-            );
-            return false;
-    }
-
     // cycle through all the pre-defined codes to see if they've been tapped or held
     for (int i = 0; i < CUSTOM_TAP_HOLD_KEY_COUNT; i = i + 1) {
         if (keycode == custom_tap_hold_keys[i].keymap_keycode) {
@@ -205,6 +161,6 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
     }
-    
+
     return true;
 }

@@ -43,13 +43,13 @@ enum my_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_BASE] = LAYOUT(
-        TH_ESC_ZOOM  , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8        , KC_9       , KC_0        , KC_CAPS_LOCK  ,
+        TO(_ZOOM)    , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8        , KC_9       , KC_0        , KC_CAPS_LOCK  ,
         KC_GRAVE     , KC_Q       , KC_W       , KC_F       , KC_P       , KC_G,                   KC_J, KC_L       , KC_U        , KC_Y       , TH_COLN_SCLN, KC_EQL        ,
         KC_MINS      , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E) , MT_RA(KC_I), MT_RC(KC_O) , KC_QUOT       ,
         KC_LEFT_PAREN, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , TH_COMM_BSLS, TH_DOT_IQUS, KC_SLASH    , KC_RIGHT_PAREN,
         
         __x__, __x__, MT(MOD_MEH, KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), LT(_SYM, KC_ENTER), LT(_NUM, KC_SPACE), MEH_T(KC_S), __x__, __x__
-    ),
+    ),                                                                                                                            // MEH on hold, OSM-SHIFT on tap
 
     [_NUM] = LAYOUT(
         __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , __x__, __x__, __x__, __x__   , __x__  ,
@@ -88,10 +88,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_ZOOM] = LAYOUT(
-        TO(_BASE), __x__  , __x__  , __x__    , __x__  , ZM_FOCUS,               ZM_FOCUS   , __x__     , __x__, __x__      , __x__      , TO(_BASE)  ,
-        __x__    , __o__  , __o__  , __x__    , __x__  , __x__   ,               __x__      , __x__     , __x__, __x__      , __x__      , __x__      ,
-        __x__    , KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__   ,               __x__      , __x__     , __x__, ZM_WDW_HALF, ZM_WDW_SWAP, ZM_CLS_MEET,
-        __x__    , __o__  , __o__  , __o__    , __o__  , __x__   , __x__, __x__, ZM_WDW_FULL, ZM_TG_VIEW, __x__, __x__      , __x__      , KC_ENTER   ,
+        TO(_BASE), __x__  , __x__  , __x__    , __x__  , ZM_FOCUS,               ZM_FOCUS    , __x__     , __x__, __x__     , __x__       , TO(_BASE)  ,
+        __x__    , __o__  , __o__  , __x__    , __x__  , __x__   ,               __x__       , __x__     , __x__, __x__     , __x__       , __x__      ,
+        __x__    , KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__   ,               __x__       , __x__     , __x__, UKC_WDW_RH, UKC_WDW_SWAP, ZM_CLS_MEET,
+        __x__    , __o__  , __o__  , __o__    , __o__  , __x__   , __x__, __x__, UKC_WDW_FULL, ZM_TG_VIEW, __x__, __x__     , __x__       , KC_ENTER   ,
 
                                        _____, _____, _____, _____, _____, ZM_TG_AUDO, KC_SPC, ZM_TG_VIDO, _____, _____
         ),
@@ -135,16 +135,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (!process_combo_keycode_user(keycode, record)) { return false; }
     #endif
 
+    enum tap_hold_actions tha_action = tap_hold_action(record);
     switch (keycode) {
         // Double click for the mouse
         case UKC_MS_2CLK:
-            tap_code16(KC_BTN1);
-            wait_ms(MOUSE_DOUBLE_CLICK_WAIT);
-            tap_code16(KC_BTN1);
-            return false;
+            if (tha_action == THA_TAP) {
+                tap_code16(KC_BTN1);
+                wait_ms(MOUSE_DOUBLE_CLICK_WAIT);
+                tap_code16(KC_BTN1);
+                return false;
+            }
+            break;
         // MEH on hold and OSM-SHIFT on tap
         case MEH_T(KC_S):
-            if (record->tap.count && record->event.pressed) {
+            if (tha_action == THA_TAP) {
                 set_oneshot_mods(MOD_BIT(KC_LEFT_SHIFT));
                 return false;
             }
