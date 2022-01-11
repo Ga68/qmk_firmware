@@ -164,11 +164,9 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
             {
                 switch (tap_hold_action(record)) {
                     case THA_HOLD:
-                        toggle_caps_lock();
-                        return false;
+                        if (!process_record_user(KC_CAPS_LOCK, record)) { return false; }
                     case THA_TAP:
-                        toggle_caps_word();
-                        return false;
+                        if (!process_record_user(UKC_CAPS_WORD, record)) { return false; }
                 }
                 return true;
             }

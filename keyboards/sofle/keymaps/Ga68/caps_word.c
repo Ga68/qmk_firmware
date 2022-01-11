@@ -17,40 +17,60 @@
 
 #include "caps_word.h"
 
-void toggle_caps_word(void) {
-  led_t led_usb_state = host_keyboard_led_state();
-  // toggle the caps_word status
-  g_caps_word_enabled = !g_caps_word_enabled;
+void caps_word_on(void) {
+  g_caps_word_enabled = true;
   // The caps word layer is fully transparent so actually accomplishes nothing, for key presses,
   // however, to get a split keyboard's oled to know state on the non-master side, a layer is 
   // easier to use than custom communication across the halves.
-  if (g_caps_word_enabled) { layer_on(_CAPS_WORD); }
-  else                     { layer_off(_CAPS_WORD); }
+  layer_on(_CAPS_WORD);
+  if (!host_keyboard_led_state().caps_lock) { tap_code16(KC_CAPS_LOCK); }
+}
 
-  // if the caps_word status and the caps lack status are out of sync, then toggle caps_lock
-  // to re-sync them
-  if (g_caps_word_enabled != led_usb_state.caps_lock) { tap_code16(KC_CAPS_LOCK); }
+
+void caps_word_off_lock_untouched(void) {
+  g_caps_word_enabled = false;
+  layer_off(_CAPS_WORD);
+}
+
+
+void caps_word_off(void) {
+  caps_word_off_lock_untouched();
+  if (host_keyboard_led_state().caps_lock) { tap_code16(KC_CAPS_LOCK); }
+}
+
+
+void toggle_caps_word(void) {
+  // toggle the caps_word status
+  g_caps_word_enabled = !g_caps_word_enabled;
+  if (g_caps_word_enabled) { caps_word_on();  }
+  else                     { caps_word_off(); }
 }
 
 
 void toggle_caps_lock(void) {
   // If we're in caps word and want to move to caps lock, all we have to do is disable caps word
-  // (which will mean that a breaking character NO LONGER turns off caps), which will turn off the
-  // caps lock mechanism, but then be sure to cycle it right back on. If we weren't in caps word,
-  // then we're just toggling caps lock via a key press.
-  // Ideally we wouldn't toggle caps off, then right back on when going from caps word into caps
-  // caps lock; however, because we have to cycle not just the caps_word_enabled status, but also
-  // the layer (for OLED purposes), it seems simpler to just do the extra toggle and keep all that
-  // state in sync.
-  if (g_caps_word_enabled) { toggle_caps_word(); }
-  tap_code16(KC_CAPS_LOCK);
+  // (which will mean that a breaking character NO LONGER turns off caps), but we don't want to
+  // turn off caps lock, since we're going into it. If we're not in caps_word, then just toggle
+  // caps_lock as normal with a tap.
+  if (g_caps_word_enabled) { caps_word_off_lock_untouched(); }
+  else                     { tap_code16(KC_CAPS_LOCK);       }
 }
 
 
 bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
 
-  if (!g_caps_word_enabled) { return true; }
   if (!record->event.pressed) { return true; }
+
+  switch (keycode) {
+    case UKC_CAPS_WORD:
+      toggle_caps_word();
+      return false;
+    case KC_CAPS_LOCK:
+      toggle_caps_lock();
+      return false;
+  }
+  
+  if (!g_caps_word_enabled) { return true; }
 
   switch (keycode) {
     case QK_MOD_TAP ... QK_MOD_TAP_MAX:
