@@ -13,8 +13,6 @@
 #define MT_RC(k) MT(MOD_RCTL, k)
 #define MT_RS(k) MT(MOD_RSFT, k)
 
-#define OSM_SHIFT OSM(MOD_RSFT)
-
 // ----------------------
 // --- Keycode Legend ---
 // ----------------------
