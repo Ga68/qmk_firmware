@@ -94,6 +94,7 @@ enum my_keycodes {
 #define KC_CROT   KC_CARROT
 
 #define _____ KC_TRANSPARENT
+#define __o__ KC_TRANSPARENT
 #define __x__ KC_NO
 
 #define KC_PERIOD KC_DOT
