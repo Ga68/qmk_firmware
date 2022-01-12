@@ -8,10 +8,6 @@ enum th_keycodes {
     
     UKC_TH_ZOOM,
 
-    UKC_TH_COLON_SEMICOLON,
-    UKC_TH_DOT_INV_QUES,
-    UKC_TH_COMM_BSLS,
-    
     UKC_TH_EQL,   
     UKC_TH_0,
     UKC_TH_1,
@@ -34,10 +30,6 @@ enum th_keycodes {
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
 
 #define TH_ZOOM LT(0, UKC_TH_ZOOM )
-
-#define TH_COLN_SCLN LT(0, UKC_TH_COLON_SEMICOLON)
-#define TH_DOT_IQUS  LT(0, UKC_TH_DOT_INV_QUES   )
-#define TH_COMM_BSLS LT(0, UKC_TH_COMM_BSLS      )
 
 #define WINDOW_HOTKEY MEH
 #define TH_EQL LT(0, UKC_TH_EQL)
@@ -69,11 +61,6 @@ typedef struct _tap_hold_keycode_t {
 } tap_hold_keycode_t;
 
 tap_hold_keycode_t custom_tap_hold_keys[] = {
-
-    { TH_COLN_SCLN, KC_COLON , KC_SEMICOLON    , THT_SHIFT },
-    { TH_DOT_IQUS , KC_PERIOD, UKC_INV_QUESTION, THT_SHIFT },
-    { TH_COMM_BSLS, KC_COMMA , KC_BSLS         , THT_SHIFT },
-
     { TH_0  , KC_0  , WINDOW_HOTKEY(KC_0)  , THT_TAP_HOLD },
     { TH_1  , KC_1  , WINDOW_HOTKEY(KC_1)  , THT_TAP_HOLD },
     { TH_2  , KC_2  , WINDOW_HOTKEY(KC_2)  , THT_TAP_HOLD },
@@ -93,10 +80,6 @@ uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_ho
         switch (keycode) {
             case TH_ZOOM:
                 return TAPPING_TERM + 150;
-            case TH_COLN_SCLN:
-            case TH_DOT_IQUS:
-            case TH_COMM_BSLS:
-                return AUTO_SHIFT_TIMEOUT;
             default:
                 return TAPPING_TERM;
         }
