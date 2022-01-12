@@ -757,8 +757,7 @@ void process_action(keyrecord_t *record, action_t action) {
 #        endif
                     retro_tapping_counter == 2) {
 #        if defined(AUTO_SHIFT_ENABLE) && defined(RETRO_SHIFT)
-                    //process_auto_shift(action.layer_tap.code, record);
-                    tap_code16(S(action.layer_tap.code));
+                    process_auto_shift(action.layer_tap.code, record);
 #        else
                     tap_code(action.layer_tap.code);
 #        endif
