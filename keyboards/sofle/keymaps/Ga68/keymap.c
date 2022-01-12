@@ -1,40 +1,10 @@
-#include QMK_KEYBOARD_H
+#include "keymap.h"
+#include "caps_word.h"
+#include "tap_hold.h"
 
-// --------------
-// --- Layers ---
-// --------------
-
-enum my_layers {
-    _BASE,
-    _NUM,
-    _SYM,
-    _NAV,
-    _MOUSE,
-    _ZOOM,
-    _CAPS_WORD,
-};
-
-// ----------------
-// --- Features ---
-// ----------------
-
-#include "keycodes.h"
-#include "tapping.c"
-#include "caps_word.c"
-
-#ifdef OLED_ENABLE
-    #include "oled.c"
-#endif
 #ifdef COMBO_ENABLE
-    #include "combos.c"
+    #include "combos.h"
 #endif
-#ifdef KEY_OVERRIDE_ENABLE
-    #include "overrides.c"
-#endif
-#ifdef AUTO_SHIFT_ENABLE
-    #include "autoshift.c"
-#endif
-
 
 // ---------------------------------
 // --- Keymap and Key Processing ---
@@ -124,6 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     }
 #endif
     
+enum tap_hold_actions tha_action;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_tap_hold_keycode_user(keycode, record)) { return false; }
@@ -135,7 +106,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (!process_combo_keycode_user(keycode, record)) { return false; }
     #endif
 
-    enum tap_hold_actions tha_action = tap_hold_action(record);
+    tha_action = tap_hold_action(record);
     switch (keycode) {
         // Double click for the mouse
         case UKC_MS_2CLK:

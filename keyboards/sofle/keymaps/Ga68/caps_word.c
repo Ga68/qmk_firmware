@@ -13,9 +13,10 @@
    properly.
 */
 
-#pragma once
-
 #include "caps_word.h"
+#include "keymap.h"
+
+bool g_caps_word_enabled = false;
 
 void caps_word_on(void) {
   g_caps_word_enabled = true;

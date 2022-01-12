@@ -1,4 +1,5 @@
-#pragma once
+#include QMK_KEYBOARD_H
+
 
 // Shift/Control Backspace = Delete
 const key_override_t delete_key_override_shift = ko_make_basic(MOD_MASK_SHIFT, KC_BACKSPACE, KC_DELETE);

@@ -1,6 +1,23 @@
 #pragma once
+#include QMK_KEYBOARD_H
+
 
 #define MOUSE_DOUBLE_CLICK_WAIT 25
+
+// --------------
+// --- Layers ---
+// --------------
+
+enum my_layers {
+    _BASE,
+    _NUM,
+    _SYM,
+    _NAV,
+    _MOUSE,
+    _ZOOM,
+    _CAPS_WORD,
+};
+
 
 // ------------
 // --- Mods ---

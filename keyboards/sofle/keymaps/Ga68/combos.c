@@ -1,6 +1,7 @@
-#pragma once
+#include "combos.h"
+#include "keymap.h"
 
-// CB_xxx key codes are defined in keycodes.h since they have to be consolidated with others
+// CB_xxx key codes are defined in keymap.h since they have to be consolidated with others
 //   to respect SAFE_RANGE
 
 const uint16_t PROGMEM combo_23l_up[]   = {KC_W    , KC_F          , COMBO_END};

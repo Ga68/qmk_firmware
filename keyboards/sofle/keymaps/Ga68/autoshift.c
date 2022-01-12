@@ -1,4 +1,6 @@
-#pragma once
+#include QMK_KEYBOARD_H
+#include "keymap.h"
+
 
 bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
@@ -22,6 +24,9 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
 }
+
+// code extended from the example on the QMK docs
+// https://docs.qmk.fm/#/feature_auto_shift?id=custom-shifted-values
 
 void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
     switch(keycode) {

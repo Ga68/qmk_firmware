@@ -1,5 +1,5 @@
-#pragma once
-
+#include QMK_KEYBOARD_H
+#include "keymap.h"
 
 uint32_t oled_timeout_user(void) {
     led_t led_usb_state = host_keyboard_led_state();

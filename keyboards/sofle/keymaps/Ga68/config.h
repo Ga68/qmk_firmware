@@ -1,5 +1,6 @@
 #pragma once
 
+
 // ---------------
 // --- Tapping ---
 // ---------------
@@ -34,7 +35,7 @@
 // See the get_auto_shifted_key function in autoshift.c for per-key settings as well
 #ifdef AUTO_SHIFT_ENABLE
 
-  #define AUTO_SHIFT_TIMEOUT 170
+  #define AUTO_SHIFT_TIMEOUT 160
 
   #define NO_AUTO_SHIFT_SPECIAL
 
