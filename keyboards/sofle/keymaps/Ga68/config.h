@@ -34,12 +34,12 @@
 // See the get_auto_shifted_key function in autoshift.c for per-key settings as well
 #ifdef AUTO_SHIFT_ENABLE
 
-  #define AUTO_SHIFT_TIMEOUT 150
+  #define AUTO_SHIFT_TIMEOUT 170
 
-  // Turning off everything so it can be selectively turned on in the per-key function
   #define NO_AUTO_SHIFT_SPECIAL
-  #define NO_AUTO_SHIFT_NUMERIC
-  #define NO_AUTO_SHIFT_ALPHA
+
+  // Lets mod-taps get used in auto-shift, but not if held for a long time (ex. mouse clicks)
+  #define RETRO_SHIFT 500
 
 #endif
 
