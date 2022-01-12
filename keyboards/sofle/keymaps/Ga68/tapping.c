@@ -6,7 +6,7 @@
 enum th_keycodes {
     TH_STARTING_POINT = MAX_USER_KEYCODE,
     
-    UKC_TH_ESC_ZOOM,
+    UKC_TH_ZOOM,
 
     UKC_TH_COLON_SEMICOLON,
     UKC_TH_DOT_INV_QUES,
@@ -33,7 +33,7 @@ enum th_keycodes {
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
 
-#define TH_ESC_ZOOM LT(0, UKC_TH_ESC_ZOOM )
+#define TH_ZOOM LT(0, UKC_TH_ZOOM )
 
 #define TH_COLN_SCLN LT(0, UKC_TH_COLON_SEMICOLON)
 #define TH_DOT_IQUS  LT(0, UKC_TH_DOT_INV_QUES   )
@@ -91,6 +91,12 @@ uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_ho
 #ifdef TAPPING_TERM_PER_KEY
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
+            case TH_ZOOM:
+                return TAPPING_TERM + 150;
+            case TH_COLN_SCLN:
+            case TH_DOT_IQUS:
+            case TH_COMM_BSLS:
+                return AUTO_SHIFT_TIMEOUT;
             default:
                 return TAPPING_TERM;
         }
@@ -134,6 +140,13 @@ void process_custom_tap_hold_mod(uint16_t tap, uint16_t tap_mod, uint16_t hold, 
 
 
 bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // Switch to the ZOOM layer, only if held, and do nothing if not held
+        case TH_ZOOM:
+            if (tap_hold_action(record) == THA_HOLD) { layer_on(_ZOOM); }
+            return false;
+    }
+
     // cycle through all the pre-defined codes to see if they've been tapped or held
     for (int i = 0; i < CUSTOM_TAP_HOLD_KEY_COUNT; i = i + 1) {
         if (keycode == custom_tap_hold_keys[i].keymap_keycode) {

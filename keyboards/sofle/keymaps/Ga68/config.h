@@ -7,6 +7,7 @@
 // Configure the global tapping term (default: 200ms)
 #undef TAPPING_TERM
 #define TAPPING_TERM 200
+#define TAPPING_TERM_PER_KEY
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -33,7 +34,7 @@
 // See the get_auto_shifted_key function in autoshift.c for per-key settings as well
 #ifdef AUTO_SHIFT_ENABLE
 
-  #define AUTO_SHIFT_TIMEOUT TAPPING_TERM
+  #define AUTO_SHIFT_TIMEOUT 150
 
   // Turning off everything so it can be selectively turned on in the per-key function
   #define NO_AUTO_SHIFT_SPECIAL
