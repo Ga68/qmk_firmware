@@ -22,12 +22,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),                                                                                                                            // MEH on hold, OSM-SHIFT on tap
 
     [_NUM] = LAYOUT(
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , __x__, __x__, __x__, __x__   , __x__  ,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , TH_7 , TH_8 , TH_9 , KC_MINS , KC_PLUS,
-        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               KC_EQL      , TH_4 , TH_5 , TH_6 , TH_0    , KC_DOT ,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, TH_1 , TH_2 , TH_3 , KC_SLASH, KC_ASTR,
+        __x__   , __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , __x__, __x__, __x__, __x__   , __x__  ,
+        __x__   , __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , TH_7 , TH_8 , TH_9 , KC_MINS , KC_PLUS,
+        KC_ENTER, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               KC_EQL      , TH_4 , TH_5 , TH_6 , TH_0    , KC_DOT ,
+        KC_SPACE, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, TH_1 , TH_2 , TH_3 , KC_SLASH, KC_ASTR,
 
-                    __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __x__, __o__, __x__, __x__, __x__
+                       __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __x__, __o__, __x__, __x__, __x__
         ),
 
     [_SYM] = LAYOUT(
@@ -40,21 +40,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_NAV] = LAYOUT(
-        __x__   , __x__        , __x__     , __x__   , __x__      , __x__         ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
-        __x__   , S(A(KC_LEFT)), S(KC_LEFT), KC_UP   , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
-        KC_ENTER, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, __x__,
-        KC_SPACE, G(KC_LEFT)   , UKC_CUT   , UKC_COPY, UKC_PSTE   , G(KC_RIGHT)   , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        __x__   , __x__        , __x__     , __x__   , __x__      , __x__         ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        __x__   , S(A(KC_LEFT)), S(KC_LEFT), KC_UP   , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        KC_ENTER, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
+        KC_SPACE, G(KC_LEFT)   , UKC_CUT   , UKC_COPY, UKC_PSTE   , G(KC_RIGHT)   , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
                                                         __x__, __x__, __x__, __o__, __x__, KC_ENTER, KC_SPACE, KC_MEH, __x__, __x__
         ),
 
     [_MOUSE] = LAYOUT(
-        __x__  , __x__   , __x__  , __x__   , __x__   , __x__      ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
-        KC_WH_R, KC_WH_D , KC_WH_L, KC_MS_U , KC_BTN1 , KC_BTN2    ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
-        __x__  , KC_WH_U , KC_MS_L, KC_MS_D , KC_MS_R , UKC_MS_2CLK,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, __x__,
-        __x__  , UKC_UNDO, UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO   , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__,
+        __x__   , __x__   , __x__  , __x__   , __x__   , __x__      ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        KC_WH_R , KC_WH_D , KC_WH_L, KC_MS_U , KC_BTN1 , KC_BTN2    ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        KC_ENTER, KC_WH_U , KC_MS_L, KC_MS_D , KC_MS_R , UKC_MS_2CLK,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
+        KC_SPACE, UKC_UNDO, UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO   , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
-                                         __x__, __x__, __x__, __x__, __o__, UKC_MS_2CLK, KC_BTN1, KC_BTN2, __x__, __x__
+                                          __x__, __x__, __x__, __x__, __o__, UKC_MS_2CLK, KC_BTN1, KC_BTN2, __x__, __x__
         ),
 
     [_ZOOM] = LAYOUT(

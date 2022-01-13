@@ -12,6 +12,8 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case KC_DOT:
         case KC_COMMA:
         case KC_COLON:
+        case KC_LEFT_PAREN:
+        case KC_RIGHT_PAREN:
         case MT_LC(KC_A):
         case MT_LA(KC_R):
         case MT_LS(KC_S):
@@ -39,6 +41,12 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
         case KC_COLON:
             register_code16((!shifted) ? KC_COLON : KC_SEMICOLON);
             break;
+        case KC_LEFT_PAREN:
+            register_code16((!shifted) ? KC_LEFT_PAREN : KC_LEFT_ANGLE_BRACE);
+            break;
+        case KC_RIGHT_PAREN:
+            register_code16((!shifted) ? KC_RIGHT_PAREN : KC_RIGHT_ANGLE_BRACE);
+            break;
         default:
             if (shifted) {
                 add_weak_mods(MOD_BIT(KC_LSFT));
@@ -58,6 +66,12 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
             break;
         case KC_COLON:
             unregister_code16((!shifted) ? KC_COLON : KC_SEMICOLON);
+            break;
+        case KC_LEFT_PAREN:
+            unregister_code16((!shifted) ? KC_LEFT_PAREN : KC_LEFT_ANGLE_BRACE);
+            break;
+        case KC_RIGHT_PAREN:
+            unregister_code16((!shifted) ? KC_RIGHT_PAREN : KC_RIGHT_ANGLE_BRACE);
             break;
         default:
             // & 0xFF gets the Tap key for Tap Holds, required when using Retro Shift
