@@ -48,6 +48,7 @@ enum my_keycodes {
 
     UKC_MS_2CLK,
     UKC_CAPS_WORD,
+    UKC_OSM_S,
 
     MAX_USER_KEYCODE,
 };

@@ -18,7 +18,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MINS      , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O), KC_QUOT       ,
         KC_LEFT_PAREN, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMMA   , KC_DOT     , KC_SLASH   , KC_RIGHT_PAREN,
         
-        __x__, __x__, MT(MOD_MEH, KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), LT(_SYM, KC_ENTER), LT(_NUM, KC_SPACE), MEH_T(KC_S), __x__, __x__
+        __x__, __x__, MT(MOD_MEH, KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), LT(_SYM, KC_ENTER), LT(_NUM, KC_SPACE), MEH_T(UKC_OSM_S), __x__, __x__
     ),                                                                                                                            // MEH on hold, OSM-SHIFT on tap
 
     [_NUM] = LAYOUT(
@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               KC_EQL      , TH_4 , TH_5 , TH_6 , TH_0    , KC_DOT ,
         __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, TH_1 , TH_2 , TH_3 , KC_SLASH, KC_ASTR,
 
-                                _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
+                    __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __x__, __o__, __x__, __x__, __x__
         ),
 
     [_SYM] = LAYOUT(
@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               __x__, S(KC_4), S(KC_5), S(KC_6), KC_PIPE, __x__,
         __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, __x__, S(KC_1), S(KC_2), S(KC_3), __x__  , __x__,
 
-                                _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
+                    __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __o__, __x__, __x__, __x__, __x__
         ),
 
     [_NAV] = LAYOUT(
@@ -45,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ENTER, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, __x__,
         KC_SPACE, G(KC_LEFT)   , UKC_CUT   , UKC_COPY, UKC_PSTE   , G(KC_RIGHT)   , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__,
 
-                                                        _____, _____, _____, _____, _____, _____, _____, _____, _____, _____
+                                                        __x__, __x__, __x__, __o__, __x__, KC_ENTER, KC_SPACE, KC_MEH, __x__, __x__
         ),
 
     [_MOUSE] = LAYOUT(
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__  , KC_WH_U , KC_MS_L, KC_MS_D , KC_MS_R , UKC_MS_2CLK,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, __x__,
         __x__  , UKC_UNDO, UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO   , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , __x__,
 
-                                         _____, _____, _____, _____, _____, UKC_MS_2CLK, KC_BTN1, KC_BTN2, _____, _____
+                                         __x__, __x__, __x__, __x__, __o__, UKC_MS_2CLK, KC_BTN1, KC_BTN2, __x__, __x__
         ),
 
     [_ZOOM] = LAYOUT(
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__    , KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__   ,               __x__       , __x__     , __x__, UKC_WDW_RH, UKC_WDW_SWAP, ZM_CLS_MEET,
         __x__    , __o__  , __o__  , __o__    , __o__  , __x__   , __x__, __x__, UKC_WDW_FULL, ZM_TG_VIEW, __x__, __x__     , __x__       , KC_ENTER   ,
 
-                                       _____, _____, _____, _____, _____, ZM_TG_AUDO, KC_SPC, ZM_TG_VIDO, _____, _____
+                                       __x__, __x__, __x__, __x__, __x__, ZM_TG_AUDO, KC_SPC, ZM_TG_VIDO, __x__, __x__
         ),
 
     // Used to make OLED indication of caps word on the non-master side easier (than custom communication protocols).
@@ -118,7 +118,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
         // MEH on hold and OSM-SHIFT on tap
-        case MEH_T(KC_S):
+        case MEH_T(UKC_OSM_S):
             if (tha_action == THA_TAP) {
                 set_oneshot_mods(MOD_BIT(KC_LEFT_SHIFT));
                 return false;
