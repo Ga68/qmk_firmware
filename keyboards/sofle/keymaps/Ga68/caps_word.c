@@ -5,12 +5,9 @@
    and remove (disable) caps word. You'll have capital letters until you turn off caps lock, at
    which point you're back to normal (NOT in caps word again).
 
-   If you're going to use this caps word implementation, it's probably best not to use the standard
-   KC_CAPS_LOCK key, since simply toggling that will not check, and potentially alter, the caps 
-   word status. Instead you'll want to use the toggle_caps_[word/lock] functions to do that. That
-   means that if you want to use KC_CAPS_LOCK on a separate key, as opposed to a tap-hold with caps
-   word, then you'll likely need to use a custom key code and process_record_user to do this
-   properly.
+   If you're going to use this caps word implementation, it's probably best not to process
+   CAPS_LOCK traditionally. Below you'll find that KC_CAPS_LOCK is intercepted by process_caps_word
+   and returns false, thus preventing further processing by the rest of the quanum code.
 */
 
 #pragma once
@@ -40,8 +37,7 @@ void caps_word_off(void) {
 
 
 void toggle_caps_word(void) {
-  // toggle the caps_word status
-  g_caps_word_enabled = !g_caps_word_enabled;
+  g_caps_word_enabled = !g_caps_word_enabled;  // toggle the caps_word status
   if (g_caps_word_enabled) { caps_word_on();  }
   else                     { caps_word_off(); }
 }
@@ -91,7 +87,8 @@ bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
       return true;
   }
 
-  // Anything other than the above keys, disables caps word.
-  toggle_caps_word();
+  // Anything other than the above keys, disables caps word and returns true so that the keypress
+  // is handled as normal
+  caps_word_off();
   return true;
 }
