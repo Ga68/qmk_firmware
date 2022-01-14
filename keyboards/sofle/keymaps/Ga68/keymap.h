@@ -79,7 +79,7 @@ enum my_keycodes {
 // -------------------------------
 // --- Zoom Keyboard Shortcuts ---
 // -------------------------------
-#define ZM_TG_AUDO  LCMD(LSFT(KC_A))
+#define ZM_TG_AUDO  MEH(KC_A)
 #define ZM_TG_VIDO  LCMD(LSFT(KC_V))
 #define ZM_TG_VIEW  LCMD(LSFT(KC_W))
 #define ZM_CLS_MEET LCMD(KC_W)
