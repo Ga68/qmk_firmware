@@ -1,4 +1,4 @@
-/* Copyright 2021 @ Keychron (https://www.keychron.com)
+/* Copyright 2021 Conor Burns
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,10 @@
 
 #pragma once
 
-#include "quantum.h"
-
-#if   defined(KEYBOARD_keychron_q1_rev_0100)
-#    include "rev_0100.h"
-#elif defined(KEYBOARD_keychron_q1_rev_0101)
-#    include "rev_0101.h"
-#elif defined(KEYBOARD_keychron_q1_rev_0102)
-#    include "rev_0102.h"
-#endif
+#define RGBLIGHT_LAYERS
+#define GRAVE_ESC_GUI_OVERRIDE
+#define RGBLIGHT_DEFAULT_MODE RGBLIGHT_EFFECT_BREATHING + 2
+#define RGBLIGHT_DEFAULT_HUE 152
+#define RGBLIGHT_DEFAULT_SAT 232
+#define RGBLIGHT_DEFAULT_VAR 255
+#define RGBLIGHT_DEFAULT_SPD 2
