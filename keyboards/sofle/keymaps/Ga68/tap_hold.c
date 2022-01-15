@@ -36,8 +36,6 @@ uint8_t CUSTOM_TAP_HOLD_KEY_COUNT = sizeof(custom_tap_hold_keys) / sizeof(tap_ho
 #ifdef TAPPING_TERM_PER_KEY
     uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
-            case TH_ZOOM:
-                return TAPPING_TERM + 150;
             default:
                 return TAPPING_TERM;
         }
@@ -82,10 +80,6 @@ void process_custom_tap_hold_mod(uint16_t tap, uint16_t tap_mod, uint16_t hold, 
 
 bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // Switch to the ZOOM layer, only if held, and do nothing if not held
-        case TH_ZOOM:
-            if (tap_hold_action(record) == THA_HOLD) { layer_on(_ZOOM); }
-            return false;
     }
 
     // cycle through all the pre-defined codes to see if they've been tapped or held

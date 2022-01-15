@@ -8,7 +8,6 @@
 // Configure the global tapping term (default: 200ms)
 #undef TAPPING_TERM
 #define TAPPING_TERM 200
-#define TAPPING_TERM_PER_KEY
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -36,6 +35,7 @@
 #ifdef AUTO_SHIFT_ENABLE
 
   #define AUTO_SHIFT_TIMEOUT 160
+  #define AUTO_SHIFT_TIMEOUT_PER_KEY
 
   #define NO_AUTO_SHIFT_SPECIAL
 

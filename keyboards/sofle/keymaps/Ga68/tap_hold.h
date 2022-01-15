@@ -5,8 +5,6 @@
 enum th_keycodes {
     TH_STARTING_POINT = MAX_USER_KEYCODE,
     
-    UKC_TH_ZOOM,
-
     UKC_TH_EQL,   
     UKC_TH_0,
     UKC_TH_1,
@@ -32,8 +30,6 @@ bool process_tap_hold_keycode_user(uint16_t keycode, keyrecord_t *record);
 //   behavior on any key's hold. The DEFINEs are to help with code legibility.
 //   https://beta.docs.qmk.fm/using-qmk/advanced-keycodes/mod_tap#changing-both-tap-and-hold
 // See process_tap_hold_keycode_user to see these keycodes' implementation.
-
-#define TH_ZOOM LT(0, UKC_TH_ZOOM )
 
 #define WINDOW_HOTKEY MEH
 #define TH_EQL LT(0, UKC_TH_EQL)
