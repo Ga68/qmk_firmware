@@ -2,8 +2,6 @@
 #include QMK_KEYBOARD_H
 
 
-#define MOUSE_DOUBLE_CLICK_WAIT 25
-
 // --------------
 // --- Layers ---
 // --------------
