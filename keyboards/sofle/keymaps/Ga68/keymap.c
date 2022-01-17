@@ -95,9 +95,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // if (!process_tap_hold_keycode_user(keycode, record)) { return false; }
-    // It's important that caps word comes AFTER tap_hold since the caps word key is on a tap hold.
-    // If done the other way around, then you end up double processing the toggle key.
     if (!process_caps_word(keycode, record)) { return false; }
 
     #ifdef COMBO_ENABLE

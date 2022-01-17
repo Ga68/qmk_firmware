@@ -55,6 +55,7 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
             }
             break;
         case UKC_TH_1...UKC_TH_0:
+            // Register KC_X when the corresponding UKC_TH_X is tapped and tap MEH(KC_X) on hold
             if (!shifted) { register_code16(KC_1 + (keycode - UKC_TH_1)); }
             else          { tap_code16(MEH(KC_1 + (keycode - UKC_TH_1))); }
             break;
@@ -88,6 +89,7 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
         case UKC_ZOOM_LAYER:
             break;
         case UKC_TH_1...UKC_TH_0:
+            // Because the MEH(KC_X) uses tap_code, there's no unregister to handle here
             if (!shifted) { unregister_code16(KC_1 + (keycode - UKC_TH_1)); }
             break;
         default:
