@@ -1,6 +1,5 @@
 #include "keymap.h"
 #include "caps_word.h"
-#include "tap_hold.h"
 
 #ifdef COMBO_ENABLE
     #include "combos.h"
@@ -22,10 +21,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),                                                                                                                            // MEH on hold, OSM-SHIFT on tap
 
     [_NUM] = LAYOUT(
-        __x__   , __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , __x__, __x__, __x__, __x__   , __x__  ,
-        __x__   , __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , TH_7 , TH_8 , TH_9 , KC_MINS , KC_PLUS,
-        KC_ENTER, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               KC_EQL      , TH_4 , TH_5 , TH_6 , TH_0    , KC_DOT ,
-        KC_SPACE, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, TH_1 , TH_2 , TH_3 , KC_SLASH, KC_ASTR,
+        __x__   , __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , __x__   , __x__   , __x__   , __x__   , __x__  ,
+        __x__   , __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , UKC_TH_7, UKC_TH_8, UKC_TH_9, KC_MINS , KC_PLUS,
+        KC_ENTER, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               KC_EQL      , UKC_TH_4, UKC_TH_5, UKC_TH_6, UKC_TH_0, KC_DOT ,
+        KC_SPACE, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, UKC_TH_1, UKC_TH_2, UKC_TH_3, KC_SLASH, KC_ASTR,
 
                        __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __x__, __o__, __x__, __x__, __x__
         ),
@@ -93,11 +92,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         return true;
     }
 #endif
-    
-enum tap_hold_actions tha_action;
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_tap_hold_keycode_user(keycode, record)) { return false; }
+    // if (!process_tap_hold_keycode_user(keycode, record)) { return false; }
     // It's important that caps word comes AFTER tap_hold since the caps word key is on a tap hold.
     // If done the other way around, then you end up double processing the toggle key.
     if (!process_caps_word(keycode, record)) { return false; }
@@ -106,11 +104,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (!process_combo_keycode_user(keycode, record)) { return false; }
     #endif
 
-    tha_action = tap_hold_action(record);
     switch (keycode) {
         // Double click for the mouse
         case UKC_MS_2CLK:
-            if (tha_action == THA_TAP) {
+            if (record->tap.count && record->event.pressed) {
                 tap_code16(KC_BTN1);
                 wait_ms(MOUSE_DOUBLE_CLICK_WAIT);
                 tap_code16(KC_BTN1);
@@ -119,7 +116,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         // MEH on hold and OSM-SHIFT on tap
         case MEH_T(UKC_OSM_S):
-            if (tha_action == THA_TAP) {
+            if (record->tap.count && record->event.pressed) {
                 set_oneshot_mods(MOD_BIT(KC_LEFT_SHIFT));
                 return false;
             }

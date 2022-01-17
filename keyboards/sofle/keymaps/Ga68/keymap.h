@@ -51,7 +51,16 @@ enum my_keycodes {
     UKC_OSM_S,
     UKC_ZOOM_LAYER,
 
-    MAX_USER_KEYCODE,
+    UKC_TH_1,
+    UKC_TH_2,
+    UKC_TH_3,
+    UKC_TH_4,
+    UKC_TH_5,
+    UKC_TH_6,
+    UKC_TH_7,
+    UKC_TH_8,
+    UKC_TH_9,
+    UKC_TH_0,
 };
 
 #define UKC_CUT         LCMD(KC_X)
