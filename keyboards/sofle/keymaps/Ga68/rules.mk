@@ -2,7 +2,6 @@
 # ### Enabled ###
 # ###############
 
-SRC += tap_hold.c
 SRC += caps_word.c
 
 AUTO_SHIFT_ENABLE   = yes
