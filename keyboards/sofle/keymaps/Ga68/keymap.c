@@ -57,12 +57,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_ZOOM] = LAYOUT(
-        TO(_BASE), __x__  , __x__  , __x__    , __x__  , ZM_FOCUS,               ZM_FOCUS    , __x__     , __x__, __x__     , __x__       , TO(_BASE)  ,
-        __x__    , __o__  , __o__  , __x__    , __x__  , __x__   ,               __x__       , __x__     , __x__, __x__     , __x__       , __x__      ,
-        __x__    , KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__   ,               __x__       , __x__     , __x__, UKC_WDW_RH, UKC_WDW_SWAP, ZM_CLS_MEET,
-        __x__    , __o__  , __o__  , __o__    , __o__  , __x__   , __x__, __x__, UKC_WDW_FULL, ZM_TG_VIEW, __x__, __x__     , __x__       , KC_ENTER   ,
+        UKC_ZOOM_OFF, __x__  , __x__  , __x__    , __x__  , ZM_FOCUS,               ZM_FOCUS    , __x__     , __x__, __x__     , __x__       , UKC_ZOOM_OFF,
+        __x__       , __o__  , __o__  , UKC_ZM_F , __x__  , __x__   ,               __x__       , __x__     , __x__, __x__     , __x__       , __x__       ,
+        __x__       , KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__   ,               __x__       , __x__     , __x__, UKC_WDW_RH, UKC_WDW_SWAP, ZM_CLS_MEET ,
+        __x__       , __o__  , __o__  , __o__    , __o__  , __x__   , __x__, __x__, UKC_WDW_FULL, ZM_TG_VIEW, __x__, __x__     , __x__       , KC_ENTER    ,
 
-                                       __x__, __x__, __x__, __x__, __x__, ZM_TG_AUDO, KC_SPC, ZM_TG_VIDO, __x__, __x__
+                                          __x__, __x__, __x__, __x__, __x__, ZM_TG_AUDO, KC_SPC, ZM_TG_VIDO, __x__, __x__
         ),
 
     // Used to make OLED indication of caps word on the non-master side easier (than custom communication protocols).
@@ -106,6 +106,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MEH_T(UKC_OSM_S):
             if (record->tap.count && record->event.pressed) {
                 set_oneshot_mods(MOD_BIT(KC_LEFT_SHIFT));
+                return false;
+            }
+            break;
+        case UKC_ZOOM_OFF:
+            if (record->event.pressed) { // I don't understand yet why the tap.count can't be here
+                layer_off(_ZOOM);
                 return false;
             }
             break;

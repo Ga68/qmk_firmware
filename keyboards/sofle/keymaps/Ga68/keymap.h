@@ -48,6 +48,8 @@ enum my_keycodes {
     UKC_CAPS_WORD,
     UKC_OSM_S,
     UKC_ZOOM_LAYER,
+    UKC_ZM_F,
+    UKC_ZOOM_OFF,
 
     UKC_TH_1,
     UKC_TH_2,
