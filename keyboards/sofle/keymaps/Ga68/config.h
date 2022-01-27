@@ -7,7 +7,7 @@
 
 // Configure the global tapping term (default: 200ms)
 #undef TAPPING_TERM
-#define TAPPING_TERM 200
+#define TAPPING_TERM 220
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -40,7 +40,7 @@
   #define NO_AUTO_SHIFT_SPECIAL
 
   // Lets mod-taps get used in auto-shift, but not if held for a long time (ex. mouse clicks)
-  #define RETRO_SHIFT 500
+  #define RETRO_SHIFT 350
 
 #endif
 
