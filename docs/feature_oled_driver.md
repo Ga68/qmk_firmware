@@ -84,6 +84,8 @@ static void render_logo(void) {
 }
 ```
 
+?> The default font file is located at `drivers/oled/glcdfont.c` and its location can be overwritten with the `OLED_FONT_H` configuration option. Font file content can be edited with external tools such as [Helix Font Editor](https://helixfonteditor.netlify.app/) and [Logo Editor](https://joric.github.io/qle/).
+
 ## Buffer Read Example
 For some purposes, you may need to read the current state of the OLED display
 buffer. The `oled_read_raw` function can be used to safely read bytes from the
@@ -145,19 +147,6 @@ bool oled_task_user(void) {
     return false;
 }
 #endif
-```
-
-If you want your display to have a default logo that timeouts quickly; however, when in CAPS or on a toggled-on layer, you want the display to stay on for a much longer period of time (so you don't forget you're in it, or perhaps it's a layer that enabled, but used less frequently), you can customize the timeout based on your keyboard state.
-
-```c
-uint32_t oled_timeout_user(void) {
-    led_t led_usb_state = host_keyboard_led_state();
-
-    if (get_highest_layer(layer_state) == _MY_LOW_USE_LAYER || led_usb_state.caps_lock) {
-        return (uint32_t)1000 * 60 * 10; // 10 minutes
-    }
-    return (uint32_t)1000 * 30; // 30 seconds
-}
 ```
 
 ## Basic Configuration
