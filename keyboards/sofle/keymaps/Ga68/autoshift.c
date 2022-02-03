@@ -2,6 +2,24 @@
 #include "keymap.h"
 
 
+#ifdef AUTO_SHIFT_TIMEOUT_PER_KEY
+    uint16_t get_autoshift_timeout(uint16_t keycode, keyrecord_t *record) {
+        switch(keycode) {
+            case KC_MINUS:
+            case KC_SLASH:
+            case KC_QUOTE:
+                return 0.75 * get_generic_autoshift_timeout();
+            case UKC_ZOOM_LAYER:
+                return 2 * get_generic_autoshift_timeout();
+            case UKC_TH_1...UKC_TH_0:
+                return 1.5 * get_generic_autoshift_timeout();
+            default:
+                return get_generic_autoshift_timeout();
+        }
+    }
+#endif
+
+
 bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
         case KC_GRAVE:
@@ -100,16 +118,3 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
     }
 }
 
-
-#ifdef AUTO_SHIFT_TIMEOUT_PER_KEY
-    uint16_t get_autoshift_timeout(uint16_t keycode, keyrecord_t *record) {
-        switch(keycode) {
-            case UKC_ZOOM_LAYER:
-                return 2 * get_generic_autoshift_timeout();
-            case UKC_TH_1...UKC_TH_0:
-                return 1.5 * get_generic_autoshift_timeout();
-            default:
-                return get_generic_autoshift_timeout();
-        }
-    }
-#endif
