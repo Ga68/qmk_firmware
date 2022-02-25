@@ -12,6 +12,7 @@
             case UKC_ZOOM_LAYER:
                 return 2 * get_generic_autoshift_timeout();
             case UKC_TH_1...UKC_TH_0:
+            case UKC_TH_DOT:
                 return 1.5 * get_generic_autoshift_timeout();
             default:
                 return get_generic_autoshift_timeout();
@@ -34,6 +35,7 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case KC_RIGHT_PAREN:
         case UKC_ZOOM_LAYER:
         case UKC_TH_1...UKC_TH_0:
+        case UKC_TH_DOT:
         case MT_LC(KC_A):
         case MT_LA(KC_R):
         case MT_LS(KC_S):
@@ -77,6 +79,10 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
             if (!shifted) { register_code16(KC_1 + (keycode - UKC_TH_1)); }
             else          { tap_code16(MEH(KC_1 + (keycode - UKC_TH_1))); }
             break;
+        case UKC_TH_DOT:
+            if (!shifted) { register_code16(KC_DOT); }
+            else          { tap_code16(MEH(KC_DOT)); }
+            break;            break;
         default:
             if (shifted) {
                 add_weak_mods(MOD_BIT(KC_LSFT));
@@ -109,6 +115,9 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
         case UKC_TH_1...UKC_TH_0:
             // Because the MEH(KC_X) uses tap_code, there's no unregister to handle here
             if (!shifted) { unregister_code16(KC_1 + (keycode - UKC_TH_1)); }
+            break;
+        case UKC_TH_DOT:
+            if (!shifted) { unregister_code16(KC_DOT); }
             break;
         default:
             // & 0xFF gets the Tap key for Tap Holds, required when using Retro Shift

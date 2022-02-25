@@ -21,10 +21,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),                                                                                                                            // MEH on hold, OSM-SHIFT on tap
 
     [_NUM] = LAYOUT(
-        __x__   , __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , KC_7    , KC_8    , KC_9    , __x__   , __x__  ,
-        __x__   , __x__  , __x__  , __x__    , __x__  , __x__,               KC_EQL      , UKC_TH_4, UKC_TH_5, UKC_TH_6, KC_MINS , KC_PLUS,
-        KC_ENTER, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               KC_DOT      , UKC_TH_1, UKC_TH_2, UKC_TH_3, UKC_TH_0, KC_DOT ,
-        KC_SPACE, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, UKC_TH_7, UKC_TH_8, UKC_TH_9, KC_SLASH, KC_ASTR,
+        __x__   , __x__  , __x__  , __x__    , __x__  , __x__,               __x__       , KC_7    , KC_8    , KC_9    , __x__   , __x__     ,
+        __x__   , __x__  , __x__  , __x__    , __x__  , __x__,               KC_EQL      , UKC_TH_4, UKC_TH_5, UKC_TH_6, KC_MINS , KC_PLUS   ,
+        KC_ENTER, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               KC_DOT      , UKC_TH_1, UKC_TH_2, UKC_TH_3, UKC_TH_0, UKC_TH_DOT,
+        KC_SPACE, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, UKC_WDW_FULL, UKC_TH_7, UKC_TH_8, UKC_TH_9, KC_SLASH, KC_ASTR   ,
 
                        __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __x__, __o__, __x__, __x__, __x__
         ),

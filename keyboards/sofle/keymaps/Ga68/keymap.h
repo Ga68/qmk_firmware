@@ -44,7 +44,6 @@ enum my_layers {
 enum my_keycodes {
     UKC_STARTING_POINT = SAFE_RANGE,
 
-    UKC_MS_2CLK,
     UKC_CAPS_WORD,
     UKC_OSM_S,
     UKC_ZOOM_LAYER,
@@ -61,6 +60,7 @@ enum my_keycodes {
     UKC_TH_8,
     UKC_TH_9,
     UKC_TH_0,
+    UKC_TH_DOT,
 };
 
 #define UKC_CUT         LCMD(KC_X)
