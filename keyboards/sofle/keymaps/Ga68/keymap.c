@@ -12,10 +12,10 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_BASE] = LAYOUT(
-        KC_CAPS_LOCK , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8       , KC_9       , KC_0       , UKC_ZOOM_LAYER,
-        KC_GRAVE     , KC_Q       , KC_W       , KC_F       , KC_P       , KC_G,                   KC_J, KC_L       , KC_U       , KC_Y       , KC_COLON   , KC_EQL        ,
-        KC_MINS      , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O), KC_QUOT       ,
-        KC_LEFT_PAREN, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMMA   , KC_DOT     , KC_SLASH   , KC_RIGHT_PAREN,
+        KC_CAPS_LOCK , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8           , KC_9         , KC_0           , UKC_ZOOM_LAYER,
+        KC_GRAVE     , KC_Q       , KC_W       , KC_F       , KC_P       , KC_G,                   KC_J, KC_L       , KC_U           , KC_Y         , KC_COLON       , KC_EQL        ,
+        KC_MINS      , KC_A       , KC_R       , KC_S       , KC_T       , KC_D,                   KC_H, KC_N       , KC_E           , KC_I         , KC_O           , KC_QUOT       ,
+        KC_LEFT_PAREN, MT_LC(KC_Z), MT_LA(KC_X), MT_LS(KC_C), MT_LG(KC_V), KC_B, KC_MUTE, KC_MUTE, KC_K, MT_RG(KC_M), MT_RS(KC_COMMA), MT_RA(KC_DOT), MT_RC(KC_SLASH), KC_RIGHT_PAREN,
         
          __x__, __x__, MT(MOD_MEH, KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), LT(_SYM, KC_ENTER), LT(_NUM, KC_SPACE), MEH_T(UKC_OSM_S), __x__, __x__
     ),                                                                                                                            // MEH on hold, OSM-SHIFT on tap
@@ -32,8 +32,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_SYM] = LAYOUT(
         __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, __x__  , __x__  , __x__  , __x__  , __x__,
         __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, S(KC_7), S(KC_8), __x__  , __o__  , __o__,
-        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__,               __x__, S(KC_4), S(KC_5), S(KC_6), KC_PIPE, __o__,
-        __x__, __x__  , __x__  , __x__    , __x__  , __x__, __x__, __x__, __x__, S(KC_1), S(KC_2), S(KC_3), __o__  , __o__,
+        __x__, __x__  , __x__  , __x__    , __x__  , __x__,               __x__, S(KC_4), S(KC_5), S(KC_6), KC_PIPE, __o__,
+        __x__, KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__, __x__, __x__, __x__, S(KC_1), S(KC_2), S(KC_3), __o__  , __o__,
 
                     __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __o__, __x__, __x__, __x__, __x__
         ),
@@ -41,8 +41,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NAV] = LAYOUT(
         __x__   , __x__        , __x__     , __x__   , __x__      , __x__         ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
         G(KC_O) , S(A(KC_LEFT)), S(KC_LEFT), KC_UP   , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
-        KC_ENTER, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
-        KC_SPACE, G(KC_LEFT)   , UKC_CUT   , UKC_COPY, UKC_PSTE   , G(KC_RIGHT)   , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
+        KC_ENTER, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, __x__  , __x__  , __x__  , __x__  , KC_BACKSPACE,
+        KC_SPACE, G(KC_LEFT)   , UKC_CUT   , UKC_COPY, UKC_PSTE   , G(KC_RIGHT)   , __x__, __x__, __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_DELETE   ,
 
                                                         __x__, __x__, __x__, __o__, __x__, KC_ENTER, KC_SPACE, KC_MEH, __x__, __x__
         ),
@@ -50,8 +50,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MOUSE] = LAYOUT(
         __x__   , __x__   , __x__  , __x__   , __x__   , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
         KC_WH_R , KC_WH_D , KC_WH_L, KC_MS_U , KC_BTN1 , KC_BTN2 ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
-        KC_ENTER, KC_WH_U , KC_MS_L, KC_MS_D , KC_MS_R , __x__   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
-        KC_SPACE, UKC_UNDO, UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO, __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
+        KC_ENTER, KC_WH_U , KC_MS_L, KC_MS_D , KC_MS_R , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , KC_BACKSPACE,
+        KC_SPACE, UKC_UNDO, UKC_CUT, UKC_COPY, UKC_PSTE, UKC_REDO, __x__, __x__, __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_DELETE   ,
 
                                           __x__, __x__, __x__, __x__, __o__, __x__, KC_BTN1, KC_BTN2, __x__, __x__
         ),
