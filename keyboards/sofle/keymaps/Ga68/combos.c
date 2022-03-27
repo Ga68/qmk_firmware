@@ -4,13 +4,14 @@
 // CB_xxx key codes are defined in keymap.h since they have to be consolidated with others
 //   to respect SAFE_RANGE
 
-const uint16_t PROGMEM combo_23_left_up[]      = {KC_W           , KC_F           , COMBO_END};
-const uint16_t PROGMEM combo_23_left_up_zoom[] = {KC_W           , UKC_ZM_F       , COMBO_END};
-const uint16_t PROGMEM combo_23_right_up[]     = {KC_U           , KC_Y           , COMBO_END};
-const uint16_t PROGMEM combo_23_left_down[]    = {MT_LA(KC_X)    , MT_LS(KC_C)    , COMBO_END};
-const uint16_t PROGMEM combo_23_right_down[]   = {MT_RS(KC_COMMA), MT_RA(KC_DOT)  , COMBO_END};
-const uint16_t PROGMEM combo_34_left_down[]    = {MT_LC(KC_Z)    , MT_LA(KC_X)    , COMBO_END};
-const uint16_t PROGMEM combo_34_right_down[]   = {MT_RA(KC_DOT)  , MT_RC(KC_SLASH), COMBO_END};
+const uint16_t PROGMEM combo_23_left_up[]      = {KC_W           , KC_F           , COMBO_END           };
+const uint16_t PROGMEM combo_23_left_up_zoom[] = {KC_W           , UKC_ZM_F       , COMBO_END           };
+const uint16_t PROGMEM combo_23_right_up[]     = {KC_U           , KC_Y           , COMBO_END           };
+const uint16_t PROGMEM combo_23_left_down[]    = {MT_LA(KC_X)    , MT_LS(KC_C)    , COMBO_END           };
+const uint16_t PROGMEM combo_23_right_down[]   = {MT_RS(KC_COMMA), MT_RA(KC_DOT)  , COMBO_END           };
+const uint16_t PROGMEM combo_34_left_down[]    = {MT_LC(KC_Z)    , MT_LA(KC_X)    , COMBO_END           };
+const uint16_t PROGMEM combo_34_right_down[]   = {MT_RA(KC_DOT)  , MT_RC(KC_SLASH), COMBO_END           };
+const uint16_t PROGMEM combo_123_right_up[]    = {KC_L           , KC_U           , KC_Y     , COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(combo_23_left_up     , KC_ESC               ),
@@ -20,6 +21,7 @@ combo_t key_combos[] = {
     COMBO(combo_23_right_down  , KC_RIGHT_CURLY_BRACE ),
     COMBO(combo_34_left_down   , KC_LEFT_SQUARE_BRACE ),
     COMBO(combo_34_right_down  , KC_RIGHT_SQUARE_BRACE),
+    COMBO(combo_123_right_up   , KC_CAPS_LOCK         ),
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(combo_t);
 

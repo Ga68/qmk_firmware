@@ -12,7 +12,7 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_BASE] = LAYOUT(
-        KC_CAPS_LOCK , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8           , KC_9         , KC_0           , UKC_ZOOM_LAYER,
+        LCMD(KC_TAB) , KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8           , KC_9         , KC_0           , UKC_ZOOM_LAYER,
         KC_GRAVE     , KC_Q       , KC_W       , KC_F       , KC_P       , KC_G,                   KC_J, KC_L       , KC_U           , KC_Y         , KC_COLON       , KC_EQL        ,
         KC_MINS      , KC_A       , KC_R       , KC_S       , KC_T       , KC_D,                   KC_H, KC_N       , KC_E           , KC_I         , KC_O           , KC_QUOT       ,
         KC_LEFT_PAREN, MT_LC(KC_Z), MT_LA(KC_X), MT_LS(KC_C), MT_LG(KC_V), KC_B, KC_MUTE, KC_MUTE, KC_K, MT_RG(KC_M), MT_RS(KC_COMMA), MT_RA(KC_DOT), MT_RC(KC_SLASH), KC_RIGHT_PAREN,
