@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ZOOM] = LAYOUT(
         UKC_ZOOM_OFF, __x__  , __x__  , __x__    , __x__  , ZM_FOCUS,               ZM_FOCUS    , __x__     , __x__, __x__     , __x__       , UKC_ZOOM_OFF,
-        __x__       , __x__  , __x__  , UKC_ZM_F , __x__  , __x__   ,               __x__       , __x__     , __x__, __x__     , __x__       , __x__       ,
+        __x__       , __x__  , __x__  , __x__    , __x__  , __x__   ,               __x__       , __x__     , __x__, __x__     , __x__       , __x__       ,
         __x__       , KC_LCTL, KC_LALT, KC_LSHIFT, KC_LGUI, __x__   ,               __x__       , __x__     , __x__, UKC_WDW_RH, UKC_WDW_SWAP, ZM_CLS_MEET ,
         __x__       , __x__  , __x__  , __x__    , __x__  , __x__   , __x__, __x__, UKC_WDW_FULL, ZM_TG_VIEW, __x__, __x__     , __x__       , KC_ENTER    ,
 
