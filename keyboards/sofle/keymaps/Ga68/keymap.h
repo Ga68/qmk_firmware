@@ -1,21 +1,6 @@
 #pragma once
 #include QMK_KEYBOARD_H
-
-
-// --------------
-// --- Layers ---
-// --------------
-
-enum my_layers {
-    _BASE,
-    _NUM,
-    _SYM,
-    _NAV,
-    _MOUSE,
-    _ZOOM,
-    _CAPS_WORD,
-};
-
+#include "layers.h"
 
 // ------------
 // --- Mods ---
