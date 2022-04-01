@@ -1,6 +1,16 @@
 #pragma once
 
 
+// --------------
+// --- Combos ---
+// --------------
+
+#ifdef COMBO_ENABLE
+  
+  #define EXTRA_SHORT_COMBOS
+
+#endif
+
 // ---------------
 // --- Tapping ---
 // ---------------

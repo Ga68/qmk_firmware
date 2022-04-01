@@ -69,7 +69,8 @@ enum my_keycodes {
 #define UKC_PLAIN_PASTE LALT(LSFT(UKC_PASTE)) // Plain Paste = paste a plain copy of the text
 #define UKC_PPST        UKC_PLAIN_PASTE
 #define UKC_UNDO        LCMD(KC_Z)
-#define UKC_REDO        LCMD(LSFT(KC_Z))
+#define UKC_REDO        LSFT(UKC_UNDO)
+#define UKC_SELECT_ALL  LCMD(KC_A)
 
 #define UKC_INV_QUESTION LSFT(LALT(KC_SLASH))  // ¿
 #define UKC_IQUS         UKC_INV_QUESTION
@@ -84,6 +85,9 @@ enum my_keycodes {
 #define UKC_WINDOW_RIGHT_HALF         MEH(KC_6)
 #define UKC_WDW_RH                    UKC_WINDOW_RIGHT_HALF
 
+#define UKC_APP_SWITCH     LGUI(KC_TAB)
+#define UKC_ALFRED         LGUI(KC_SPACE)
+#define UKC_SCREEN_CAPTURE LGUI(LSFT(KC_3))
 
 // -------------------------------
 // --- Zoom Keyboard Shortcuts ---
