@@ -17,8 +17,8 @@ const uint16_t PROGMEM combo_caps_word    [] = {        CB_RT2, CB_RT3,         
 const uint16_t PROGMEM combo_caps_lock    [] = {        CB_RT2, CB_RT3, CB_RT4, CB_X_};
 
 // Left hand, bottom row
-const uint16_t PROGMEM combo_cut         [] = {CB_LB4, CB_LB3,                 CB_X_};
-const uint16_t PROGMEM combo_undo        [] = {CB_LB4,         CB_LB2,         CB_X_};
+const uint16_t PROGMEM combo_undo                   [] = {CB_LB4, CB_LB3,                 CB_X_};
+const uint16_t PROGMEM combo_cut                    [] = {CB_LB4,         CB_LB2,         CB_X_};
 const uint16_t PROGMEM combo_select_all  [] = {CB_LB4,                 CB_LB1, CB_X_};
 const uint16_t PROGMEM combo_copy        [] = {        CB_LB3, CB_LB2,         CB_X_};
 const uint16_t PROGMEM combo_cmd_t       [] = {        CB_LB3,         CB_LB1, CB_X_};
