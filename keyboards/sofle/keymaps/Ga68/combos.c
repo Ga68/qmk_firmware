@@ -11,8 +11,8 @@ const uint16_t PROGMEM combo_screen_capture [] = {CB_LT4, CB_LT3, CB_LT2,       
 
 // Right hand, top row
 const uint16_t PROGMEM combo_colon        [] = {CB_RT1, CB_RT2,                 CB_X_};
-const uint16_t PROGMEM combo_plus         [] = {CB_RT1,         CB_RT3,         CB_X_};
-const uint16_t PROGMEM combo_double_quote [] = {CB_RT1,                 CB_RT4, CB_X_};
+const uint16_t PROGMEM combo_double_quote [] = {CB_RT1,         CB_RT3,         CB_X_};
+const uint16_t PROGMEM combo_plus         [] = {CB_RT1,                 CB_RT4, CB_X_};
 const uint16_t PROGMEM combo_caps_word    [] = {        CB_RT2, CB_RT3,         CB_X_};
 const uint16_t PROGMEM combo_caps_lock    [] = {        CB_RT2, CB_RT3, CB_RT4, CB_X_};
 
@@ -29,12 +29,12 @@ const uint16_t PROGMEM combo_paste_plain [] = {        CB_LB3, CB_LB2, CB_LB1, C
 // Right hand, bottom row
 const uint16_t PROGMEM combo_left_angle_brace       [] = {CB_RB1, CB_RB2,                 CB_X_};
 const uint16_t PROGMEM combo_right_angle_brace      [] = {CB_RB1,         CB_RB3,         CB_X_};
-const uint16_t PROGMEM combo_left_square_brace      [] = {        CB_RB2,         CB_RB4, CB_X_};
-const uint16_t PROGMEM combo_right_square_brace     [] = {                CB_RB3, CB_RB4, CB_X_};
+const uint16_t PROGMEM combo_inverted_question_mark [] = {        CB_RB2,         CB_RB4, CB_X_};
+const uint16_t PROGMEM combo_question_mark          [] = {                CB_RB3, CB_RB4, CB_X_};
 const uint16_t PROGMEM combo_left_curly_brace       [] = {CB_RB1, CB_RB2, CB_RB3,         CB_X_};
 const uint16_t PROGMEM combo_right_curly_brace      [] = {        CB_RB2, CB_RB3, CB_RB4, CB_X_};
-const uint16_t PROGMEM combo_inverted_question_mark [] = {CB_RB1,                 CB_RB4, CB_X_};
-const uint16_t PROGMEM combo_question_mark          [] = {        CB_RB2, CB_RB3,         CB_X_};
+const uint16_t PROGMEM combo_left_square_brace      [] = {CB_RB1,                 CB_RB4, CB_X_};
+const uint16_t PROGMEM combo_right_square_brace     [] = {        CB_RB2, CB_RB3,         CB_X_};
 
 combo_t key_combos[] = {
 
