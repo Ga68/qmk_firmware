@@ -18,7 +18,6 @@
 // ----------------------
 // --- Keycode Legend ---
 // ----------------------
-//   CB = Combo
 //   UKC = User Keycode
 //   ZM = Zoom
 
