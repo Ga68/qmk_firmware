@@ -47,6 +47,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         __x__, __x__, __x__, __o__, __x__, KC_ENTER, KC_SPACE, KC_MEH, __x__, __x__
         ),
 
+    [_WINDOW] = LAYOUT(
+        __x__ , __x__, __x__    , __x__    , __x__    , __x__,               __x__, __x__    , __x__    , __x__    , __x__, __x__,
+        __x__ , __x__, MEH(KC_7), MEH(KC_8), MEH(KC_9), __x__,               __x__, MEH(KC_7), MEH(KC_8), MEH(KC_9), __x__, __x__,
+        __x__ , __x__, MEH(KC_4), MEH(KC_5), MEH(KC_6), __x__,               __x__, MEH(KC_4), MEH(KC_5), MEH(KC_6), __x__, __x__,
+        __x__ , __x__, MEH(KC_1), MEH(KC_2), MEH(KC_3), __x__, __x__, __x__, __x__, MEH(KC_1), MEH(KC_2), MEH(KC_3), __x__, __x__,
+
+                  __x__, __x__, MEH(KC_0), UKC_WDW_FULL, MEH(KC_DOT), MEH(KC_0), UKC_WDW_FULL, MEH(KC_DOT), __x__, __x__
+        ),
+
     [_MOUSE] = LAYOUT(
         __x__ , __x__    , __x__  , __x__   , __x__   , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
         __x__ , __x__    , KC_BTN1, KC_MS_U , KC_BTN2 , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,

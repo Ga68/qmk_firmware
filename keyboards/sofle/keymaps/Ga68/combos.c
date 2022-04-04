@@ -8,6 +8,7 @@ const uint16_t PROGMEM combo_escape                 [] = {        CB_LT3, CB_LT2
 const uint16_t PROGMEM combo_alfred                 [] = {        CB_LT3,         CB_LT1, CB_X_};
 const uint16_t PROGMEM combo_window_swap            [] = {                CB_LT2, CB_LT1, CB_X_};
 const uint16_t PROGMEM combo_screen_capture         [] = {CB_LT4, CB_LT3, CB_LT2,         CB_X_};
+const uint16_t PROGMEM combo_window_management      [] = {        CB_LT3, CB_LT2, CB_LT1, CB_X_};
 
 // Right hand, top row
 const uint16_t PROGMEM combo_colon                  [] = {CB_RT1, CB_RT2,                 CB_X_};
@@ -44,6 +45,7 @@ combo_t key_combos[] = {
     COMBO(combo_alfred, UKC_ALFRED),
     COMBO(combo_window_swap, UKC_APP_SWITCH),
     COMBO(combo_screen_capture, UKC_SCREEN_CAPTURE),
+    COMBO(combo_window_management, OSL(_WINDOW)),
 
     COMBO(combo_caps_lock, KC_CAPS_LOCK),
     COMBO(combo_double_quote, KC_DOUBLE_QUOTE),
