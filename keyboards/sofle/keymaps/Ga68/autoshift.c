@@ -16,6 +16,7 @@
 
 bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
+        case KC_MINUS:
         case KC_SLASH:
         case UKC_ZOOM_LAYER:
         case MT_LC(KC_A):

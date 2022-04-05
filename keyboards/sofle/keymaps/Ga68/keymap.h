@@ -31,7 +31,6 @@ enum my_keycodes {
     UKC_CAPS_WORD,
     UKC_OSM_S,
     UKC_ZOOM_LAYER,
-    UKC_ZOOM_OFF,
 };
 
 #define UKC_CUT         LCMD(KC_X)
