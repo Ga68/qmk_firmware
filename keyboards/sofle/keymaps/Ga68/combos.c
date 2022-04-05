@@ -1,6 +1,32 @@
 #include "combos.h"
 #include "keymap.h"
 
+// L/R Left/Right hand
+// B/T Bottom/Top row
+// 1 = index finger ... 4 = pinky
+
+#define CB_LB1 KC_V
+#define CB_LB2 KC_C
+#define CB_LB3 KC_X
+#define CB_LB4 KC_Z
+
+#define CB_LT1 KC_P
+#define CB_LT2 KC_F
+#define CB_LT3 KC_W
+#define CB_LT4 KC_Q
+
+#define CB_RB1 KC_M
+#define CB_RB2 KC_COMMA
+#define CB_RB3 KC_DOT
+#define CB_RB4 KC_SLASH
+
+#define CB_RT1 KC_L
+#define CB_RT2 KC_U
+#define CB_RT3 KC_Y
+#define CB_RT4 KC_COLON
+
+#define CB_X_ COMBO_END
+
 // Left hand, top row
 const uint16_t PROGMEM combo_grave                  [] = {CB_LT4, CB_LT3,                 CB_X_};
 const uint16_t PROGMEM combo_tilde                  [] = {CB_LT4,         CB_LT2,         CB_X_};
@@ -11,10 +37,10 @@ const uint16_t PROGMEM combo_screen_capture         [] = {CB_LT4, CB_LT3, CB_LT2
 const uint16_t PROGMEM combo_window_management      [] = {        CB_LT3, CB_LT2, CB_LT1, CB_X_};
 
 // Right hand, top row
-const uint16_t PROGMEM combo_colon                  [] = {CB_RT1, CB_RT2,                 CB_X_};
 const uint16_t PROGMEM combo_double_quote           [] = {CB_RT1,         CB_RT3,         CB_X_};
 const uint16_t PROGMEM combo_plus                   [] = {CB_RT1,                 CB_RT4, CB_X_};
 const uint16_t PROGMEM combo_option_enter           [] = {        CB_RT2,         CB_RT4, CB_X_};
+const uint16_t PROGMEM combo_semicolon              [] = {                CB_RT3, CB_RT4, CB_X_};
 const uint16_t PROGMEM combo_caps_word              [] = {        CB_RT2, CB_RT3,         CB_X_};
 const uint16_t PROGMEM combo_caps_lock              [] = {        CB_RT2, CB_RT3, CB_RT4, CB_X_};
 
@@ -48,7 +74,7 @@ combo_t key_combos[] = {
     COMBO(combo_screen_capture, UKC_SCREEN_CAPTURE),
     COMBO(combo_window_management, OSL(_WINDOW)),
 
-    COMBO(combo_colon, KC_COLON),
+    COMBO(combo_semicolon, KC_SEMICOLON),
     COMBO(combo_double_quote, KC_DOUBLE_QUOTE),
     COMBO(combo_plus, KC_PLUS),
     COMBO(combo_option_enter, RALT(KC_ENTER)),
