@@ -5,8 +5,8 @@
 const uint16_t PROGMEM combo_grave                  [] = {CB_LT4, CB_LT3,                 CB_X_};
 const uint16_t PROGMEM combo_tilde                  [] = {CB_LT4,         CB_LT2,         CB_X_};
 const uint16_t PROGMEM combo_escape                 [] = {        CB_LT3, CB_LT2,         CB_X_};
-const uint16_t PROGMEM combo_alfred                 [] = {        CB_LT3,         CB_LT1, CB_X_};
-const uint16_t PROGMEM combo_window_swap            [] = {                CB_LT2, CB_LT1, CB_X_};
+const uint16_t PROGMEM combo_app_switch             [] = {        CB_LT3,         CB_LT1, CB_X_};
+const uint16_t PROGMEM combo_alfred                 [] = {                CB_LT2, CB_LT1, CB_X_};
 const uint16_t PROGMEM combo_screen_capture         [] = {CB_LT4, CB_LT3, CB_LT2,         CB_X_};
 const uint16_t PROGMEM combo_window_management      [] = {        CB_LT3, CB_LT2, CB_LT1, CB_X_};
 
@@ -14,6 +14,7 @@ const uint16_t PROGMEM combo_window_management      [] = {        CB_LT3, CB_LT2
 const uint16_t PROGMEM combo_colon                  [] = {CB_RT1, CB_RT2,                 CB_X_};
 const uint16_t PROGMEM combo_double_quote           [] = {CB_RT1,         CB_RT3,         CB_X_};
 const uint16_t PROGMEM combo_plus                   [] = {CB_RT1,                 CB_RT4, CB_X_};
+const uint16_t PROGMEM combo_option_enter           [] = {        CB_RT2,         CB_RT4, CB_X_};
 const uint16_t PROGMEM combo_caps_word              [] = {        CB_RT2, CB_RT3,         CB_X_};
 const uint16_t PROGMEM combo_caps_lock              [] = {        CB_RT2, CB_RT3, CB_RT4, CB_X_};
 
@@ -42,7 +43,7 @@ combo_t key_combos[] = {
     COMBO(combo_grave, KC_GRAVE),
     COMBO(combo_tilde, KC_TILDE),
     COMBO(combo_escape, KC_ESCAPE),
-    COMBO(combo_window_swap, UKC_APP_SWITCH),
+    COMBO(combo_app_switch, UKC_APP_SWITCH),
     COMBO(combo_alfred, UKC_ALFRED),
     COMBO(combo_screen_capture, UKC_SCREEN_CAPTURE),
     COMBO(combo_window_management, OSL(_WINDOW)),
@@ -50,6 +51,7 @@ combo_t key_combos[] = {
     COMBO(combo_colon, KC_COLON),
     COMBO(combo_double_quote, KC_DOUBLE_QUOTE),
     COMBO(combo_plus, KC_PLUS),
+    COMBO(combo_option_enter, RALT(KC_ENTER)),
     COMBO(combo_caps_word, UKC_CAPS_WORD),
     COMBO(combo_caps_lock, KC_CAPS_LOCK),
 

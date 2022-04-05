@@ -17,8 +17,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MINS      , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O), KC_QUOT       ,
         KC_LEFT_PAREN, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMMA   , KC_DOT     , KC_SLASH   , KC_RIGHT_PAREN,
         
-        __x__, __x__, MT(MOD_MEH, KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), LT(_SYM, KC_ENTER), LT(_NUM, KC_SPACE), MEH_T(UKC_OSM_S), __x__, __x__
-    ),                                                                                                                            // MEH on hold, OSM-SHIFT on tap
+        __x__, __x__, MT(MOD_MEH, KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), LT(_SYM, KC_ENTER), LT(_NUM, KC_SPACE), MEH_T(UKC_APP_SWITCH), __x__, __x__
+    ),
 
     [_NUM] = LAYOUT(
         TO(_BASE), __x__   , __x__  , __x__  , __x__  , __x__ ,               __x__  , __x__  , __x__  , __x__  , __x__  , __x__       ,
@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ENTER, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
         KC_SPACE, G(KC_LEFT)   , UKC_CUT   , UKC_COPY, UKC_PASTE  , G(KC_RIGHT)   , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
-                                                        __x__, __x__, __x__, __o__, __x__, KC_ENTER, KC_SPACE, KC_MEH, __x__, __x__
+                                                        __x__, __x__, __x__, __o__, __x__, KC_ENTER, KC_SPACE, UKC_APP_SWITCH, __x__, __x__
         ),
 
     [_WINDOW] = LAYOUT(
@@ -111,10 +111,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #endif
 
     switch (keycode) {
-        // MEH on hold and OSM-SHIFT on tap
-        case MEH_T(UKC_OSM_S):
+        case MEH_T(UKC_APP_SWITCH):
             if (record->tap.count && record->event.pressed) {
-                set_oneshot_mods(MOD_BIT(KC_LEFT_SHIFT));
+                tap_code16(UKC_APP_SWITCH);
                 return false;
             }
             break;
