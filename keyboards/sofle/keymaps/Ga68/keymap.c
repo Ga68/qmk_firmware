@@ -57,12 +57,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_MOUSE] = LAYOUT(
-        __x__ , __x__    , __x__  , __x__   , __x__   , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
-        __x__ , __x__    , KC_BTN1, KC_MS_U , KC_BTN2 , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
-        __x__ , MEH(KC_Q), KC_MS_L, KC_MS_D , KC_MS_R , KC_WH_D ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
-        __x__ , __x__    , KC_WH_L, __x__   , KC_WH_R , KC_WH_U , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
+        __x__   , __x__    , __x__  , __x__   , __x__   , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        __x__   , __x__    , KC_BTN1, KC_MS_U , KC_BTN2 , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        KC_ENTER, MEH(KC_Q), KC_MS_L, KC_MS_D , KC_MS_R , KC_WH_D ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
+        KC_SPACE, __x__    , KC_WH_L, __x__   , KC_WH_R , KC_WH_U , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
-                                      __x__, __x__, __x__, __x__, __o__, __x__, KC_BTN1, KC_BTN2, __x__, __x__
+                                        __x__, __x__, __x__, __x__, __o__, __x__, KC_BTN1, KC_BTN2, __x__, __x__
         ),
 
     [_ZOOM] = LAYOUT(
