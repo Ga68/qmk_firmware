@@ -17,25 +17,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MINS      , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O), KC_QUOT       ,
         KC_LEFT_PAREN, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMMA   , KC_DOT     , KC_SLASH   , KC_RIGHT_PAREN,
         
-        __x__, __x__, MT(MOD_MEH, KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), LT(_SYM, KC_ENTER), LT(_NUM, KC_SPACE), MEH_T(UKC_APP_SWITCH), __x__, __x__
+        __x__, __x__, MT(MOD_MEH, KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), KC_ENTER, LT(_LOWER, KC_SPACE), MEH_T(UKC_APP_SWITCH), __x__, __x__
     ),
 
-    [_NUM] = LAYOUT(
-        TO(_BASE), __x__   , __x__  , __x__  , __x__  , __x__ ,               __x__  , __x__  , __x__  , __x__  , __x__  , __x__       ,
-        __x__    , KC_0    , KC_9   , KC_8   , KC_7   , KC_6  ,               __x__  , __x__  , __x__  , __x__  , __x__  , __x__       ,
-        KC_MINS  , KC_1    , KC_2   , KC_3   , KC_4   , KC_5  ,               KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_BACKSPACE,
-        KC_COMMA , KC_SLASH, KC_DOT , KC_ASTR, KC_PLUS, KC_EQL, __x__, __x__, __x__  , __x__  , __o__  , __o__  , __o__  , KC_DELETE   ,
+    [_LOWER] = LAYOUT(
+        __x__    , __x__   , __x__  , __x__  , __x__  , __x__  ,               __x__  , __x__  , __x__  , __x__  , __x__  , __x__  ,
+        KC_UNDS  , S(KC_1) , S(KC_2), S(KC_3), S(KC_4), S(KC_5),               S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), __x__  ,
+        KC_ENTER , KC_1    , KC_2   , KC_3   , KC_4   , KC_5   ,               KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DQUO,
+        KC_SPACE , KC_BSLS , KC_PIPE, KC_PLUS, KC_EQL , KC_LCBR, __x__, __x__, KC_RCBR, KC_LT  , KC_GT  , KC_LBRC, KC_RBRC, KC_MINS,
 
-                         __x__, __x__, KC_SPACE, KC_BACKSPACE, KC_TAB, KC_ENTER, __o__, __x__, __x__, __x__
-        ),
-
-    [_SYM] = LAYOUT(
-        __x__   , __x__   , __x__   , __x__  , __x__  , __x__  ,               __x__  , __x__  , __x__  , __x__  , __x__  , __x__       ,
-        __x__   , S(KC_0) , S(KC_9) , S(KC_8), S(KC_7), S(KC_6),               __x__  , __x__  , __x__  , __x__  , __x__  , __x__       ,
-        KC_ENTER, S(KC_1) , S(KC_2) , S(KC_3), S(KC_4), S(KC_5),               S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_BACKSPACE,
-        KC_SPACE, KC_GRAVE, KC_TILDE, __x__  , __x__  ,  __x__ , __x__, __x__, __x__  , __x__  , __x__  , KC_PIPE, KC_BSLS, KC_DELETE   ,
-
-                         __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __o__, __x__, __x__, __x__, __x__
+                         __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __x__, __o__, __x__, __x__, __x__
         ),
 
     [_NAV] = LAYOUT(

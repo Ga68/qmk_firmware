@@ -39,7 +39,6 @@ const uint16_t PROGMEM combo_window_management      [] = {        CB_LT3, CB_LT2
 // Right hand, top row
 const uint16_t PROGMEM combo_double_quote           [] = {CB_RT1,         CB_RT3,         CB_X_};
 const uint16_t PROGMEM combo_plus                   [] = {CB_RT1,                 CB_RT4, CB_X_};
-const uint16_t PROGMEM combo_option_enter           [] = {        CB_RT2,         CB_RT4, CB_X_};
 const uint16_t PROGMEM combo_semicolon              [] = {                CB_RT3, CB_RT4, CB_X_};
 const uint16_t PROGMEM combo_caps_word              [] = {        CB_RT2, CB_RT3,         CB_X_};
 const uint16_t PROGMEM combo_caps_lock              [] = {        CB_RT2, CB_RT3, CB_RT4, CB_X_};
@@ -77,7 +76,6 @@ combo_t key_combos[] = {
     COMBO(combo_semicolon, KC_SEMICOLON),
     COMBO(combo_double_quote, KC_DOUBLE_QUOTE),
     COMBO(combo_plus, KC_PLUS),
-    COMBO(combo_option_enter, RALT(KC_ENTER)),
     COMBO(combo_caps_word, UKC_CAPS_WORD),
     COMBO(combo_caps_lock, KC_CAPS_LOCK),
 
