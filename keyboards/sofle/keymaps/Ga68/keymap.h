@@ -59,6 +59,8 @@ enum my_keycodes {
 #define UKC_APP_SWITCH     LGUI(KC_TAB)
 #define UKC_ALFRED         LGUI(KC_SPACE)
 #define UKC_SCREEN_CAPTURE LGUI(LSFT(KC_3))
+#define UKC_MENU           LSFT(LCMD(KC_GRAVE))
+#define UKC_NEXT_WINDOW    LCMD(KC_GRAVE)
 
 // -------------------------------
 // --- Zoom Keyboard Shortcuts ---

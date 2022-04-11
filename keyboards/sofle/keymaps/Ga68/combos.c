@@ -30,6 +30,7 @@
 // Left hand, top row
 const uint16_t PROGMEM combo_grave                  [] = {CB_LT4, CB_LT3,                 CB_X_};
 const uint16_t PROGMEM combo_tilde                  [] = {CB_LT4,         CB_LT2,         CB_X_};
+const uint16_t PROGMEM combo_next_window            [] = {CB_LT4,                 CB_LT1, CB_X_};
 const uint16_t PROGMEM combo_escape                 [] = {        CB_LT3, CB_LT2,         CB_X_};
 const uint16_t PROGMEM combo_app_switch             [] = {        CB_LT3,         CB_LT1, CB_X_};
 const uint16_t PROGMEM combo_alfred                 [] = {                CB_LT2, CB_LT1, CB_X_};
@@ -67,6 +68,7 @@ combo_t key_combos[] = {
 
     COMBO(combo_grave, KC_GRAVE),
     COMBO(combo_tilde, KC_TILDE),
+    COMBO(combo_next_window, UKC_NEXT_WINDOW),
     COMBO(combo_escape, KC_ESCAPE),
     COMBO(combo_app_switch, UKC_APP_SWITCH),
     COMBO(combo_alfred, UKC_ALFRED),

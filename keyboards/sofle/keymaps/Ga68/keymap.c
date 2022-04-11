@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT(
         __x__   , __x__        , __x__     , __x__   , __x__      , __x__         ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
-        __x__   , S(A(KC_LEFT)), S(KC_LEFT), KC_UP   , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        UKC_MENU, S(A(KC_LEFT)), S(KC_LEFT), KC_UP   , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
         KC_ENTER, A(KC_LEFT)   , KC_LEFT   , KC_DOWN , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
         KC_SPACE, G(KC_LEFT)   , UKC_CUT   , UKC_COPY, UKC_PASTE  , G(KC_RIGHT)   , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
@@ -39,12 +39,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_WINDOW] = LAYOUT(
-        __x__ , __x__, __x__    , __x__    , __x__    , __x__,               __x__, __x__    , __x__    , __x__    , __x__, __x__,
-        __x__ , __x__, MEH(KC_7), MEH(KC_8), MEH(KC_9), __x__,               __x__, MEH(KC_7), MEH(KC_8), MEH(KC_9), __x__, __x__,
-        __x__ , __x__, MEH(KC_4), MEH(KC_5), MEH(KC_6), __x__,               __x__, MEH(KC_4), MEH(KC_5), MEH(KC_6), __x__, __x__,
-        __x__ , __x__, MEH(KC_1), MEH(KC_2), MEH(KC_3), __x__, __x__, __x__, __x__, MEH(KC_1), MEH(KC_2), MEH(KC_3), __x__, __x__,
+        __x__ , __x__    , __x__    , __x__    , __x__    , __x__      ,               __x__    , __x__    , __x__    , __x__    , __x__      , __x__,
+        __x__ , __x__    , MEH(KC_7), MEH(KC_8), MEH(KC_9), __x__      ,               __x__    , MEH(KC_7), MEH(KC_8), MEH(KC_9), __x__      , __x__,
+        __x__ , MEH(KC_0), MEH(KC_4), MEH(KC_5), MEH(KC_6), MEH(KC_DOT),               MEH(KC_0), MEH(KC_4), MEH(KC_5), MEH(KC_6), MEH(KC_DOT), __x__,
+        __x__ , __x__    , MEH(KC_1), MEH(KC_2), MEH(KC_3), __x__      , __x__, __x__, __x__    , MEH(KC_1), MEH(KC_2), MEH(KC_3), __x__      , __x__,
 
-                  __x__, __x__, MEH(KC_0), UKC_WDW_FULL, MEH(KC_DOT), MEH(KC_0), UKC_WDW_FULL, MEH(KC_DOT), __x__, __x__
+                            __x__, __x__, MEH(KC_0), UKC_WDW_FULL, MEH(KC_DOT), MEH(KC_0), UKC_WDW_FULL, MEH(KC_DOT), __x__, __x__
         ),
 
     [_MOUSE] = LAYOUT(
