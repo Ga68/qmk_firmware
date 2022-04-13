@@ -6,6 +6,7 @@ enum my_layers {
     _NAV,
     _WINDOW,
     _MOUSE,
+    _MOUSE_POS,
     _ZOOM,
     _CAPS_WORD,
 };

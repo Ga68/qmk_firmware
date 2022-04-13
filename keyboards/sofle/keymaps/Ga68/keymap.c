@@ -48,12 +48,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_MOUSE] = LAYOUT(
-        __x__   , __x__    , __x__  , __x__   , __x__   , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
-        __x__   , __x__    , KC_BTN1, KC_MS_U , KC_BTN2 , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
-        KC_ENTER, MEH(KC_Q), KC_MS_L, KC_MS_D , KC_MS_R , KC_WH_D ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
-        KC_SPACE, __x__    , KC_WH_L, __x__   , KC_WH_R , KC_WH_U , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
+        __x__   , __x__          , __x__  , __x__   , __x__   , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        __x__   , __x__          , KC_BTN1, KC_MS_U , KC_BTN2 , __x__   ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        KC_ENTER, MEH(KC_F12)    , KC_MS_L, KC_MS_D , KC_MS_R , KC_WH_D ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
+        KC_SPACE, OSL(_MOUSE_POS), KC_WH_L, __x__   , KC_WH_R , KC_WH_U , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
-                                        __x__, __x__, __x__, __x__, __o__, __x__, KC_BTN1, KC_BTN2, __x__, __x__
+                                              __x__, __x__, __x__, __x__, __o__, KC_BTN1, KC_BTN1, KC_BTN2, __x__, __x__
+        ),
+
+    [_MOUSE_POS] = LAYOUT(
+        __x__ , __x__      , __x__     , __x__     , __x__     , __x__      ,               __x__      , __x__     , __x__     , __x__     , __x__      , __x__,
+        __x__ , __x__      , MEH(KC_F7), MEH(KC_F8), MEH(KC_F9), __x__      ,               __x__      , MEH(KC_F7), MEH(KC_F8), MEH(KC_F9), __x__      , __x__,
+        __x__ , MEH(KC_F10), MEH(KC_F4), MEH(KC_F5), MEH(KC_F6), MEH(KC_F11),               MEH(KC_F10), MEH(KC_F4), MEH(KC_F5), MEH(KC_F6), MEH(KC_F11), __x__,
+        __x__ , __x__      , MEH(KC_F1), MEH(KC_F2), MEH(KC_F3), __x__      , __x__, __x__, __x__      , MEH(KC_F1), MEH(KC_F2), MEH(KC_F3), __x__      , __x__,
+
+                                                  __x__, __x__, __x__, __x__, __o__, MEH(KC_F10), MEH(KC_F11), MEH(KC_F11), __x__, __x__
         ),
 
     [_ZOOM] = LAYOUT(
