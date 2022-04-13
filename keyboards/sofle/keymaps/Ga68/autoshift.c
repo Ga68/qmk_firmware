@@ -18,6 +18,7 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
         case KC_MINUS:
         case KC_SLASH:
+        case KC_QUOTE:
         case KC_ENTER:
         case KC_LEFT_SQUARE_BRACE:
         case KC_LEFT_CURLY_BRACE:
