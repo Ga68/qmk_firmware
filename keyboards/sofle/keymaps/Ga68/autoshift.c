@@ -20,7 +20,6 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case KC_SLASH:
         case KC_ENTER:
         case KC_LEFT_SQUARE_BRACE:
-        case KC_RIGHT_SQUARE_BRACE:
         case KC_LEFT_CURLY_BRACE:
         case KC_LEFT_PAREN:
         case UKC_INV_QUESTION:
@@ -63,9 +62,6 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
             else {
                 register_code16(KC_LEFT_SQUARE_BRACE);
             }
-            break;
-        case KC_RIGHT_SQUARE_BRACE:
-            register_code16((!shifted) ? KC_RIGHT_SQUARE_BRACE : KC_DOT);
             break;
         case KC_LEFT_CURLY_BRACE:
             if (shifted) {
@@ -137,9 +133,6 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
             if (!shifted) {
                 unregister_code16(KC_LEFT_SQUARE_BRACE);
             }
-        case KC_RIGHT_SQUARE_BRACE:
-            unregister_code16((!shifted) ? KC_RIGHT_SQUARE_BRACE : KC_DOT);
-            break;
         case KC_LEFT_CURLY_BRACE:
             if (!shifted) {
                 unregister_code16(KC_LEFT_CURLY_BRACE);
