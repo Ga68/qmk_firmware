@@ -1,8 +1,8 @@
 #include "combos.h"
 #include "keymap.h"
 
-// L/R Left/Right hand
-// B/T Bottom/Top row
+// L/R   Left/Right hand
+// B/T/H Bottom/Top/Home row
 // 1 = index finger ... 4 = pinky
 
 #define CB_LB1 KC_V
@@ -24,6 +24,9 @@
 #define CB_RT2 KC_U
 #define CB_RT3 KC_Y
 #define CB_RT4 KC_COLON
+
+#define CB_LH3 MT_LA(KC_R)
+#define CB_LH2 MT_LS(KC_S)
 
 #define CB_X_ COMBO_END
 
@@ -64,6 +67,10 @@ const uint16_t PROGMEM combo_right_square_brace     [] = {        CB_RB2,       
 const uint16_t PROGMEM combo_left_curly_brace       [] = {CB_RB1, CB_RB2, CB_RB3,         CB_X_};
 const uint16_t PROGMEM combo_right_curly_brace      [] = {        CB_RB2, CB_RB3, CB_RB4, CB_X_};
 
+// Left hand, multi row
+const uint16_t PROGMEM combo_cmd_p                  [] = {        CB_LH3,         CB_LT1, CB_X_};
+const uint16_t PROGMEM combo_cmd_shift_p            [] = {        CB_LH3, CB_LH2, CB_LT1, CB_X_};
+
 combo_t key_combos[] = {
 
     COMBO(combo_grave, KC_GRAVE),
@@ -98,6 +105,9 @@ combo_t key_combos[] = {
     COMBO(combo_right_square_brace, KC_RIGHT_SQUARE_BRACE),
     COMBO(combo_left_curly_brace, KC_LEFT_CURLY_BRACE),
     COMBO(combo_right_curly_brace, KC_RIGHT_CURLY_BRACE),
+
+    COMBO(combo_cmd_p, LCMD(KC_P)),
+    COMBO(combo_cmd_shift_p, LCMD(LSFT(KC_P))),
 
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(combo_t);
