@@ -25,8 +25,9 @@
 #define CB_RT3 KC_Y
 #define CB_RT4 KC_COLON
 
-#define CB_LH3 MT_LA(KC_R)
+#define CB_LH1 MT_LG(KC_T)
 #define CB_LH2 MT_LS(KC_S)
+#define CB_LH3 MT_LA(KC_R)
 
 #define CB_X_ COMBO_END
 
@@ -70,6 +71,7 @@ const uint16_t PROGMEM combo_right_curly_brace      [] = {        CB_RB2, CB_RB3
 // Left hand, multi row
 const uint16_t PROGMEM combo_cmd_p                  [] = {        CB_LH3,         CB_LT1, CB_X_};
 const uint16_t PROGMEM combo_cmd_shift_p            [] = {        CB_LH3, CB_LH2, CB_LT1, CB_X_};
+const uint16_t PROGMEM combo_cmd_shift_f            [] = {        CB_LH3, CB_LT2, CB_LH1, CB_X_};
 
 combo_t key_combos[] = {
 
@@ -108,6 +110,7 @@ combo_t key_combos[] = {
 
     COMBO(combo_cmd_p, LCMD(KC_P)),
     COMBO(combo_cmd_shift_p, LCMD(LSFT(KC_P))),
+    COMBO(combo_cmd_shift_f, LCMD(LSFT(KC_F))),
 
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(combo_t);
