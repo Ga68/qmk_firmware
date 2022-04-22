@@ -56,7 +56,6 @@ const uint16_t PROGMEM combo_copy                   [] = {        CB_LB3, CB_LB2
 const uint16_t PROGMEM combo_paste                  [] = {                CB_LB2, CB_LB1, CB_X_};
 const uint16_t PROGMEM combo_paste_plain            [] = {        CB_LB3, CB_LB2, CB_LB1, CB_X_};
 const uint16_t PROGMEM combo_select_all             [] = {CB_LB4,                 CB_LB1, CB_X_};
-const uint16_t PROGMEM combo_cmd_t                  [] = {        CB_LB3,         CB_LB1, CB_X_};
 
 // Right hand, bottom row
 const uint16_t PROGMEM combo_inverted_question_mark [] = {CB_RB1, CB_RB2,                 CB_X_};
@@ -67,6 +66,9 @@ const uint16_t PROGMEM combo_left_square_brace      [] = {CB_RB1,               
 const uint16_t PROGMEM combo_right_square_brace     [] = {        CB_RB2,         CB_RB4, CB_X_};
 const uint16_t PROGMEM combo_left_curly_brace       [] = {CB_RB1, CB_RB2, CB_RB3,         CB_X_};
 const uint16_t PROGMEM combo_right_curly_brace      [] = {        CB_RB2, CB_RB3, CB_RB4, CB_X_};
+
+// Left hand, home row
+const uint16_t PROGMEM combo_cmd_t                  [] = {        CB_LH3,         CB_LH1, CB_X_};
 
 // Left hand, multi row
 const uint16_t PROGMEM combo_cmd_p                  [] = {        CB_LH3,         CB_LT1, CB_X_};
@@ -97,7 +99,6 @@ combo_t key_combos[] = {
     COMBO(combo_paste, UKC_PASTE),
     COMBO(combo_paste_plain, UKC_PLAIN_PASTE),
     COMBO(combo_select_all, UKC_SELECT_ALL),
-    COMBO(combo_cmd_t, LCMD(KC_T)),
 
     COMBO(combo_inverted_question_mark, UKC_INV_QUESTION),
     COMBO(combo_question_mark, KC_QUESTION),
@@ -107,6 +108,8 @@ combo_t key_combos[] = {
     COMBO(combo_right_square_brace, KC_RIGHT_SQUARE_BRACE),
     COMBO(combo_left_curly_brace, KC_LEFT_CURLY_BRACE),
     COMBO(combo_right_curly_brace, KC_RIGHT_CURLY_BRACE),
+    
+    COMBO(combo_cmd_t, LCMD(KC_T)),
 
     COMBO(combo_cmd_p, LCMD(KC_P)),
     COMBO(combo_cmd_shift_p, LCMD(LSFT(KC_P))),
