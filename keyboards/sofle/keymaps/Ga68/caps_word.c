@@ -67,29 +67,31 @@ bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
       return false;
   }
   
-  if (!g_caps_word_enabled) { return true; }
+  if (g_caps_word_enabled) {
 
-  switch (keycode) {
-    case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-    case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-      // Earlier return if this has not been considered tapped yet.
-      if (record->tap.count == 0) { return true; }
-      // Get the base tapping keycode of a mod- or layer-tap key.
-      keycode &= 0xff;
+    switch (keycode) {
+      case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+      case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+        // Earlier return if this has not been considered tapped yet.
+        if (record->tap.count == 0) { return true; }
+        // Get the base tapping keycode of a mod- or layer-tap key.
+        keycode &= 0xff;
+    }
+
+    switch (keycode) {
+      // Keys that do NOT turn off caps lock.
+      case KC_A ... KC_Z:
+      case KC_1 ... KC_0:
+      case KC_BSPC:
+      case KC_MINS:
+      case KC_UNDS:
+        return true;
+    }
+
+    // Anything other than the above keys, disables caps word and returns true so that the keypress
+    // is handled as normal
+    caps_word_off();
+  
   }
-
-  switch (keycode) {
-    // Letter keys that do NOT turn off caps lock.
-    case KC_A ... KC_Z:
-    case KC_1 ... KC_0:
-    case KC_BSPC:
-    case KC_MINS:
-    case KC_UNDS:
-      return true;
-  }
-
-  // Anything other than the above keys, disables caps word and returns true so that the keypress
-  // is handled as normal
-  caps_word_off();
   return true;
 }

@@ -81,13 +81,10 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
             }
             break;
         case UKC_INV_QUESTION:
+            tap_code16(UKC_INV_QUESTION);
             if (shifted) {
-                tap_code16(UKC_INV_QUESTION);
                 tap_code16(KC_QUESTION);
                 tap_code16(KC_LEFT);
-            }
-            else {
-                tap_code16(UKC_INV_QUESTION);
             }
             break;
         case KC_LEFT_ANGLE_BRACE:
