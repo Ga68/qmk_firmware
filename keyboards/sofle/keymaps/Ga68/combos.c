@@ -28,6 +28,12 @@
 #define CB_LH1 MT_LG(KC_T)
 #define CB_LH2 MT_LS(KC_S)
 #define CB_LH3 MT_LA(KC_R)
+#define CB_LH4 MT_LC(KC_A)
+
+#define CB_RH1 MT_RG(KC_N)
+#define CB_RH2 MT_RS(KC_E)
+#define CB_RH3 MT_RA(KC_I)
+#define CB_RH4 MT_RC(KC_O)
 
 #define CB_X_ COMBO_END
 
@@ -42,9 +48,9 @@ const uint16_t PROGMEM combo_screen_capture         [] = {CB_LT4, CB_LT3, CB_LT2
 const uint16_t PROGMEM combo_window_management      [] = {        CB_LT3, CB_LT2, CB_LT1, CB_X_};
 
 // Right hand, top row
-const uint16_t PROGMEM combo_double_quote           [] = {CB_RT1,         CB_RT3,         CB_X_};
-const uint16_t PROGMEM combo_plus                   [] = {CB_RT1,                 CB_RT4, CB_X_};
-const uint16_t PROGMEM combo_semicolon              [] = {                CB_RT3, CB_RT4, CB_X_};
+const uint16_t PROGMEM combo_double_quote           [] = {CB_RT1, CB_RT2,                 CB_X_};
+const uint16_t PROGMEM combo_plus                   [] = {CB_RT1,         CB_RT3,         CB_X_};
+const uint16_t PROGMEM combo_semicolon              [] = {CB_RT1,                 CB_RT4, CB_X_};
 const uint16_t PROGMEM combo_caps_word              [] = {        CB_RT2, CB_RT3,         CB_X_};
 const uint16_t PROGMEM combo_caps_lock              [] = {        CB_RT2, CB_RT3, CB_RT4, CB_X_};
 
@@ -70,10 +76,16 @@ const uint16_t PROGMEM combo_right_curly_brace      [] = {        CB_RB2, CB_RB3
 // Left hand, home row
 const uint16_t PROGMEM combo_cmd_t                  [] = {        CB_LH3,         CB_LH1, CB_X_};
 
+// Right hand, home row
+const uint16_t PROGMEM combo_cmd_n                  [] = {CB_RH1,         CB_RH3,         CB_X_};
+
 // Left hand, multi row
 const uint16_t PROGMEM combo_cmd_p                  [] = {        CB_LH3,         CB_LT1, CB_X_};
 const uint16_t PROGMEM combo_cmd_shift_p            [] = {        CB_LH3, CB_LH2, CB_LT1, CB_X_};
 const uint16_t PROGMEM combo_cmd_shift_f            [] = {        CB_LH3, CB_LT2, CB_LH1, CB_X_};
+
+// Right hand, multi row
+const uint16_t PROGMEM combo_cmd_l                  [] = {CB_RT1,         CB_RH3,         CB_X_};
 
 combo_t key_combos[] = {
 
@@ -111,9 +123,13 @@ combo_t key_combos[] = {
     
     COMBO(combo_cmd_t, LCMD(KC_T)),
 
+    COMBO(combo_cmd_n, LCMD(KC_N)),
+
     COMBO(combo_cmd_p, LCMD(KC_P)),
     COMBO(combo_cmd_shift_p, LCMD(LSFT(KC_P))),
     COMBO(combo_cmd_shift_f, LCMD(LSFT(KC_F))),
+
+    COMBO(combo_cmd_l, LCMD(KC_L)),
 
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(combo_t);
