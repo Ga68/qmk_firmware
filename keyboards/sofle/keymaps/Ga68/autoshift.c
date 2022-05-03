@@ -35,6 +35,9 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case MT_RS(KC_E): 
         case MT_RA(KC_I):
         case MT_RC(KC_O):
+        case CB_DOLLAR_M:
+        case CB_DOLLAR_K:
+        case CB_DOLLAR_B:
             return true;
     }
     return false;
@@ -45,6 +48,30 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
 // https://docs.qmk.fm/#/feature_auto_shift?id=custom-shifted-values
 void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
     switch(keycode) {
+        case CB_DOLLAR_M:
+            if (shifted) {
+                SEND_STRING("$M");
+            }
+            else {
+                SEND_STRING("M");
+            }
+            break;
+        case CB_DOLLAR_K:
+            if (shifted) {
+                SEND_STRING("$K");
+            }
+            else {
+                SEND_STRING("K");
+            }
+            break;
+        case CB_DOLLAR_B:
+            if (shifted) {
+                SEND_STRING("$B");
+            }
+            else {
+                SEND_STRING("B");
+            }
+            break;
         case KC_SLASH:
             register_code16((!shifted) ? KC_SLASH : KC_BSLS);
             break;
@@ -149,6 +176,9 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
             }
         case UKC_INV_QUESTION:
         case UKC_ZOOM_LAYER:
+        case CB_DOLLAR_M:
+        case CB_DOLLAR_K:
+        case CB_DOLLAR_B:
             break;
         default:
             // & 0xFF gets the Tap key for Tap Holds, required when using Retro Shift
