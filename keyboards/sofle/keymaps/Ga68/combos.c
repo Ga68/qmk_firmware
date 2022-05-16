@@ -139,3 +139,11 @@ bool process_combo_keycode_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
+
+#ifdef COMBO_TERM_PER_COMBO
+    uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+        switch (index) {
+        }
+        return COMBO_TERM;
+    }
+#endif

@@ -11,6 +11,7 @@
   #define EXTRA_SHORT_COMBOS
   #define COMBO_ONLY_FROM_LAYER _BASE
   #define COMBO_TERM 22
+  #define COMBO_TERM_PER_COMBO
 
 #endif
 
