@@ -7,6 +7,8 @@
         switch(keycode) {
             case UKC_ZOOM_LAYER:
                 return 2 * get_generic_autoshift_timeout();
+            case KC_MINUS:
+                return 0.7 * get_generic_autoshift_timeout();
             default:
                 return get_generic_autoshift_timeout();
         }

@@ -1,6 +1,6 @@
-# ###############
-# ### Enabled ###
-# ###############
+# ############
+# ### Used ###
+# ############
 
 SRC += caps_word.c
 
@@ -8,16 +8,17 @@ AUTO_SHIFT_ENABLE   = yes
   SRC += autoshift.c
 COMBO_ENABLE        = yes
   SRC += combos.c
-ENCODER_ENABLE      = yes
-EXTRAKEY_ENABLE     = yes # Audio control and System control
 MOUSEKEY_ENABLE     = yes # Controlling mouse movement and clicks
 OLED_ENABLE         = yes
   OLED_DRIVER = SSD1306
   SRC += oled.c
 
-# ################
-# ### Disabled ###
-# ################
+ENCODER_ENABLE      = no
+EXTRAKEY_ENABLE     = no # Audio control and System control
+
+# ##############
+# ### Unused ###
+# ##############
 
 KEY_OVERRIDE_ENABLE = no
 #   SRC += overrides.c
