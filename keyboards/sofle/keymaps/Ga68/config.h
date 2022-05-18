@@ -1,5 +1,4 @@
 #pragma once
-#include "layers.h"
 
 
 // --------------
@@ -9,7 +8,7 @@
 #ifdef COMBO_ENABLE
   
   #define EXTRA_SHORT_COMBOS
-  #define COMBO_ONLY_FROM_LAYER _BASE
+  #define COMBO_ONLY_FROM_LAYER 0
   #define COMBO_TERM 22
   #define COMBO_TERM_PER_COMBO
 
@@ -91,9 +90,12 @@
 // --- Space Saving ---
 // --- ------------ ---
 
+#define DISABLE_LEADER
+
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
-#define DISABLE_LEADER
+#define NO_MUSIC_MODE
+#define LAYER_STATE_8BITL
 
 #ifndef NO_DEBUG
   #define NO_DEBUG
@@ -101,3 +103,9 @@
 #if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
   #define NO_PRINT
 #endif
+
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+
+// Features that are currently used
+// #define NO_ACTION_ONESHOT

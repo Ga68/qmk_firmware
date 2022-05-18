@@ -23,8 +23,10 @@ EXTRAKEY_ENABLE     = no # Audio control and System control
 KEY_OVERRIDE_ENABLE = no
 #   SRC += overrides.c
 TAP_DANCE_ENABLE    = no
-COMMAND_ENABLE      = no # To avoid problems with Space Cadet (LSPO, RSPO, etc.)
-SPACE_CADET_ENABLE  = no
+LEADER_ENABLE       = no
+# if you want LEADER key, be sure to comment
+#   #define DISABLE_LEADER
+# in config.h
 
 
 # ####################
@@ -32,11 +34,15 @@ SPACE_CADET_ENABLE  = no
 # ####################
 
 EXTRAFLAGS += -flto
+LTO_ENABLE  = yes
 
-BOOTMAGIC_ENABLE   = no
 CONSOLE_ENABLE     = no
+COMMAND_ENABLE     = no # To avoid problems with Space Cadet (LSPO, RSPO, etc.)
+SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE   = no
 MAGIC_ENABLE       = no
+
+BOOTMAGIC_ENABLE   = no
 RGBLIGHT_ENABLE    = no
 SWAP_HANDS_ENABLE  = no
 UNICODE_ENABLE     = no
