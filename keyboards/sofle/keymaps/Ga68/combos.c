@@ -5,8 +5,11 @@
 #ifdef COMBO_TERM_PER_COMBO
     uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         switch (combo->keycode) {
-            case UKC_APP_SWITCH:
-            case UKC_SELECT_ALL:
+            case LCMD(KC_N):            // cmd-n is also 'in', which is such a commond word, the
+                return .8 * COMBO_TERM; //  combo term needs to be extra short
+            case UKC_APP_SWITCH:  // These ones are less frequent bi(tri)grams, so can afford
+            case UKC_SELECT_ALL:  // to have a longer combo term with fear of mis-fires
+            case UKC_ALFRED:
                 return 1.5 * COMBO_TERM;
         }
         return COMBO_TERM;

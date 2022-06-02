@@ -46,7 +46,7 @@
 // ------------------
 #ifdef AUTO_SHIFT_ENABLE
 
-  #define AUTO_SHIFT_TIMEOUT 170
+  #define AUTO_SHIFT_TIMEOUT 160
   #define AUTO_SHIFT_TIMEOUT_PER_KEY
 
   // Don't do special characters, but DO do letters and numbers
