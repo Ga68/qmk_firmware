@@ -5,7 +5,7 @@
 // B/T/H Bottom/Top/Home row
 // 1 = index finger ... 4 = pinky
 
-#define CB_LB1 KC_V
+#define CB_LB1 KC_D
 #define CB_LB2 KC_C
 #define CB_LB3 KC_X
 #define CB_LB4 KC_Z
@@ -15,7 +15,7 @@
 #define CB_LT3 KC_W
 #define CB_LT4 KC_Q
 
-#define CB_RB1 KC_M
+#define CB_RB1 KC_H
 #define CB_RB2 KC_COMMA
 #define CB_RB3 KC_DOT
 #define CB_RB4 KC_SLASH
