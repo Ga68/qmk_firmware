@@ -5,8 +5,6 @@
 #ifdef AUTO_SHIFT_TIMEOUT_PER_KEY
     uint16_t get_autoshift_timeout(uint16_t keycode, keyrecord_t *record) {
         switch(keycode) {
-            case UKC_ZOOM_LAYER:
-                return 2 * get_generic_autoshift_timeout();
             case KC_MINUS:
                 return 0.8 * get_generic_autoshift_timeout();
             default:
@@ -29,7 +27,6 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case UKC_INV_QUESTION:
         case KC_LEFT_ANGLE_BRACE:
         case KC_RIGHT_ANGLE_BRACE:
-        case UKC_ZOOM_LAYER:
         case MT_LC(KC_A):
         case MT_LA(KC_R):
         case MT_LS(KC_S):
@@ -141,11 +138,6 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
                 register_code16(KC_RIGHT_ANGLE_BRACE);
             }
             break;
-        case UKC_ZOOM_LAYER:
-            if (shifted) {
-                layer_on(_ZOOM);
-            }
-            break;
         default:
             if (shifted) {
                 add_weak_mods(MOD_BIT(KC_LSFT));
@@ -190,7 +182,6 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
                 unregister_code16(KC_RIGHT_ANGLE_BRACE);
             }
         case UKC_INV_QUESTION:
-        case UKC_ZOOM_LAYER:
         case CB_DOLLAR_M:
         case CB_DOLLAR_K:
         case CB_DOLLAR_B:

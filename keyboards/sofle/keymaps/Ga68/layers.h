@@ -7,7 +7,6 @@ enum my_layers {
     _WINDOW,
     _MOUSE,
     _MOUSE_POS,
-    _ZOOM,
     _CAPS_WORD,
     // if you need more than 8 layers, you need to remove
     //   #define LAYER_STATE_8BIT

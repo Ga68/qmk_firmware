@@ -31,7 +31,6 @@ enum my_keycodes {
 
     UKC_CAPS_WORD,
     UKC_OSM_S,
-    UKC_ZOOM_LAYER,
 
     CB_DOLLAR_M,
     CB_DOLLAR_K,
