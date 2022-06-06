@@ -46,6 +46,7 @@ const uint16_t PROGMEM combo_paste                  [] = {                 CB_LB
 const uint16_t PROGMEM combo_super_app_switch       [] = {         CB_LB3,         CB_LB1, CB___ };
 const uint16_t PROGMEM combo_paste_plain            [] = {         CB_LB3, CB_LB2, CB_LB1, CB___ };
 const uint16_t PROGMEM combo_select_all             [] = { CB_LB4,                 CB_LB1, CB___ };
+const uint16_t PROGMEM combo_lock_computer          [] = { CB_LB4, CB_LB3, CB_LB2, CB_LB1, CB___ };
 
 // Right hand, bottom row
 const uint16_t PROGMEM combo_inverted_question_mark [] = { CB_RB1, CB_RB2,                 CB___ };
@@ -98,6 +99,7 @@ combo_t key_combos[] = {
     COMBO(combo_paste_plain,      UKC_PLAIN_PASTE),
     COMBO(combo_select_all,       UKC_SELECT_ALL),
     COMBO(combo_super_app_switch, UKC_SUPER_APP_SWITCH),
+    COMBO(combo_lock_computer,    UKC_LOCK_COMPUTER),
 
 
     COMBO(combo_inverted_question_mark, UKC_INV_QUESTION),
