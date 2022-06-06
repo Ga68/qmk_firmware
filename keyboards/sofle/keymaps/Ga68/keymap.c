@@ -5,6 +5,15 @@
     #include "combos.h"
 #endif
 
+// ------------------------
+// --- Super App Switch ---
+// ------------------------
+
+uint16_t super_app_switch_time_out = 700;
+
+bool is_super_app_switch_active = false;
+uint16_t super_app_switch_timer = 0;
+
 // ---------------------------------
 // --- Keymap and Key Processing ---
 // ---------------------------------
@@ -108,6 +117,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        case UKC_SUPER_APP_SWITCH:
+            if (record->event.pressed) {
+                if (!is_super_app_switch_active) {
+                    is_super_app_switch_active = true;
+                    register_code(KC_LCMD);
+                }
+                super_app_switch_timer = timer_read();
+                register_code(KC_TAB);
+            } else {
+                unregister_code(KC_TAB);
+            }
+            break;
     }
     return true;
+}
+
+void matrix_scan_user(void) {
+    if (is_super_app_switch_active) {
+        if (timer_elapsed(super_app_switch_timer) >= super_app_switch_time_out) {
+            unregister_code(KC_LCMD);
+            is_super_app_switch_active = false;
+        }
+    }
 }

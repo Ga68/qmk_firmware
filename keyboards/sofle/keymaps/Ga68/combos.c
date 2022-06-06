@@ -43,6 +43,7 @@ const uint16_t PROGMEM combo_redo                   [] = { CB_LB4, CB_LB3, CB_LB
 const uint16_t PROGMEM combo_cut                    [] = { CB_LB4,         CB_LB2,         CB___ };
 const uint16_t PROGMEM combo_copy                   [] = {         CB_LB3, CB_LB2,         CB___ };
 const uint16_t PROGMEM combo_paste                  [] = {                 CB_LB2, CB_LB1, CB___ };
+const uint16_t PROGMEM combo_super_app_switch       [] = {         CB_LB3,         CB_LB1, CB___ };
 const uint16_t PROGMEM combo_paste_plain            [] = {         CB_LB3, CB_LB2, CB_LB1, CB___ };
 const uint16_t PROGMEM combo_select_all             [] = { CB_LB4,                 CB_LB1, CB___ };
 
@@ -89,13 +90,14 @@ combo_t key_combos[] = {
     COMBO(combo_caps_lock,    KC_CAPS_LOCK),
 
 
-    COMBO(combo_undo,        UKC_UNDO),
-    COMBO(combo_redo,        UKC_REDO),
-    COMBO(combo_cut,         UKC_CUT),
-    COMBO(combo_copy,        UKC_COPY),
-    COMBO(combo_paste,       UKC_PASTE),
-    COMBO(combo_paste_plain, UKC_PLAIN_PASTE),
-    COMBO(combo_select_all,  UKC_SELECT_ALL),
+    COMBO(combo_undo,             UKC_UNDO),
+    COMBO(combo_redo,             UKC_REDO),
+    COMBO(combo_cut,              UKC_CUT),
+    COMBO(combo_copy,             UKC_COPY),
+    COMBO(combo_paste,            UKC_PASTE),
+    COMBO(combo_paste_plain,      UKC_PLAIN_PASTE),
+    COMBO(combo_select_all,       UKC_SELECT_ALL),
+    COMBO(combo_super_app_switch, UKC_SUPER_APP_SWITCH),
 
 
     COMBO(combo_inverted_question_mark, UKC_INV_QUESTION),
