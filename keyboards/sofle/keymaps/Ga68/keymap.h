@@ -29,8 +29,7 @@
 enum my_keycodes {
     UKC_STARTING_POINT = SAFE_RANGE,
 
-    UKC_CAPS_WORD,
-    UKC_OSM_S,
+    UKC_CAPS_WORD,    
 
     CB_DOLLAR_M,
     CB_DOLLAR_K,
@@ -60,9 +59,9 @@ enum my_keycodes {
 #define UKC_WINDOW_RIGHT_HALF         MEH(KC_6)
 #define UKC_WDW_RH                    UKC_WINDOW_RIGHT_HALF
 
-#define UKC_APP_SWITCH     LGUI(KC_TAB)
-#define UKC_ALFRED         LGUI(KC_SPACE)
-#define UKC_SCREEN_CAPTURE LGUI(LSFT(KC_3))
+#define UKC_APP_SWITCH     LCMD(KC_TAB)
+#define UKC_ALFRED         LCMD(KC_SPACE)
+#define UKC_SCREEN_CAPTURE LCMD(LSFT(KC_3))
 #define UKC_MENU           LSFT(LCMD(KC_GRAVE))
 #define UKC_NEXT_WINDOW    LCMD(KC_GRAVE)
 
