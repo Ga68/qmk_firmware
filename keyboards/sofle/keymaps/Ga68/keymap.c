@@ -30,12 +30,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_LOWER] = LAYOUT(
-        __x__   , __x__   , __x__  , __x__  , __x__   , __x__      ,               __x__      , __x__      , __x__  , __x__  , __x__   , __x__  ,
-        KC_SPACE, S(KC_1) , S(KC_2), S(KC_3), S(KC_4) , S(KC_5)    ,               S(KC_6)    , S(KC_7)    , S(KC_8), KC_PIPE, KC_SPACE, __o__  ,
-        __o__   , KC_1    , KC_2   , KC_3   , KC_4    , KC_5       ,               KC_6       , KC_7       , KC_8   , KC_9   , KC_0    , KC_PLUS,
-        __o__   , KC_LEFT , KC_UP  , KC_DOWN, KC_RIGHT, CB_DOLLAR_B, __x__, __x__, CB_DOLLAR_K, CB_DOLLAR_M, __o__  , __o__  , __o__   , __o__  ,
+        __x__   , __x__   , __x__  , __x__  , __x__   , __x__       ,               __x__       , __x__       , __x__  , __x__  , __x__   , __x__  ,
+        KC_SPACE, S(KC_1) , S(KC_2), S(KC_3), S(KC_4) , S(KC_5)     ,               S(KC_6)     , S(KC_7)     , S(KC_8), KC_PIPE, KC_SPACE, __o__  ,
+        __o__   , KC_1    , KC_2   , KC_3   , KC_4    , KC_5        ,               KC_6        , KC_7        , KC_8   , KC_9   , KC_0    , KC_PLUS,
+        __o__   , KC_LEFT , KC_UP  , KC_DOWN, KC_RIGHT, UKC_DOLLAR_B, __x__, __x__, UKC_DOLLAR_K, UKC_DOLLAR_M, __o__  , __o__  , __o__   , __o__  ,
 
-                             __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __x__, __o__, __x__, __x__, __x__
+                              __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, __x__, __o__, __x__, __x__, __x__
         ),
 
     [_NAV] = LAYOUT(

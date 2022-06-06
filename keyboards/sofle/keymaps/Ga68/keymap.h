@@ -32,9 +32,9 @@ enum my_keycodes {
     UKC_CAPS_WORD,
     UKC_SUPER_APP_SWITCH,    
 
-    CB_DOLLAR_M,
-    CB_DOLLAR_K,
-    CB_DOLLAR_B,
+    UKC_DOLLAR_M,
+    UKC_DOLLAR_K,
+    UKC_DOLLAR_B,
 };
 
 #define UKC_CUT         LCMD(KC_X)
