@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MINS      , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O), KC_QUOT       ,
         KC_LEFT_PAREN, KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMMA   , KC_DOT     , KC_SLASH   , KC_RIGHT_PAREN,
         
-              __x__, __x__, MEH_T(KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), KC_ENTER, LT(_LOWER, KC_SPACE), MEH_T(UKC_APP_SWITCH), __x__, __x__
+              __x__, __x__, MEH_T(KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), KC_ENTER, LT(_LOWER, KC_SPACE), KC_MEH, __x__, __x__
     ),
 
     [_LOWER] = LAYOUT(
@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ENTER, A(KC_LEFT)   , KC_LEFT   , KC_DOWN   , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
         KC_SPACE, S(G(KC_LEFT)), G(KC_LEFT), G(KC_DOWN), G(KC_RIGHT), S(G(KC_RIGHT)), __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
-                                                          __x__, __x__, __x__, __o__, __x__, KC_ENTER, KC_SPACE, UKC_APP_SWITCH, __x__, __x__
+                                                          __x__, __x__, __x__, __o__, __x__, KC_ENTER, KC_SPACE, __o__, __x__, __x__
         ),
 
     [_WINDOW] = LAYOUT(
@@ -111,12 +111,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #endif
 
     switch (keycode) {
-        case MEH_T(UKC_APP_SWITCH):
-            if (record->tap.count && record->event.pressed) {
-                tap_code16(UKC_APP_SWITCH);
-                return false;
-            }
-            break;
         case UKC_SUPER_APP_SWITCH:
             if (record->event.pressed) {
                 if (!is_super_app_switch_active) {
