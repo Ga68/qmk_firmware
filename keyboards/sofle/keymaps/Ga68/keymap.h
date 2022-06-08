@@ -2,6 +2,10 @@
 #include QMK_KEYBOARD_H
 #include "layers.h"
 
+#define DELAY_LONG  wait_ms(900)
+#define DELAY       wait_ms(600)
+#define DELAY_SHORT wait_ms(300)
+
 // ------------
 // --- Mods ---
 // ------------
@@ -31,6 +35,7 @@ enum my_keycodes {
 
     UKC_CAPS_WORD,
     UKC_SUPER_APP_SWITCH,    
+    UKC_LEADER,
 
     UKC_DOLLAR_M,
     UKC_DOLLAR_K,

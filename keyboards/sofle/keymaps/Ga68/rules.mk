@@ -3,6 +3,8 @@
 # ############
 
 SRC += caps_word.c
+SRC += leader.c
+
 
 AUTO_SHIFT_ENABLE   = yes
   SRC += autoshift.c
