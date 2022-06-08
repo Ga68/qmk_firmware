@@ -14,7 +14,8 @@
             case KC_TILDE:
             case UKC_NEXT_WINDOW:
             case UKC_PASTE:
-                return 1.5 * COMBO_TERM;
+            case UKC_SUPER_APP_SWITCH:
+                return 1.7 * COMBO_TERM;
         }
         return COMBO_TERM;
     }
@@ -57,6 +58,7 @@ const uint16_t PROGMEM combo_left_square_brace      [] = { CB_RB1,              
 const uint16_t PROGMEM combo_right_square_brace     [] = {         CB_RB2,         CB_RB4, CB___ };
 const uint16_t PROGMEM combo_left_curly_brace       [] = { CB_RB1, CB_RB2, CB_RB3,         CB___ };
 const uint16_t PROGMEM combo_right_curly_brace      [] = {         CB_RB2, CB_RB3, CB_RB4, CB___ };
+const uint16_t PROGMEM combo_bootloader             [] = { CB_RB1, CB_RB2, CB_RB3, CB_RB4, CB___ };
 
 // Left hand, home row
 const uint16_t PROGMEM combo_cmd_t                  [] = {         CB_LH3,         CB_LH1, CB___ };
@@ -110,6 +112,7 @@ combo_t key_combos[] = {
     COMBO(combo_right_square_brace,     KC_RIGHT_SQUARE_BRACE),
     COMBO(combo_left_curly_brace,       KC_LEFT_CURLY_BRACE),
     COMBO(combo_right_curly_brace,      KC_RIGHT_CURLY_BRACE),
+    COMBO(combo_bootloader,             QK_BOOTLOADER),
     
 
     COMBO(combo_cmd_t, LCMD(KC_T)),
