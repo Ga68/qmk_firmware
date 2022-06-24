@@ -15,6 +15,8 @@
             case UKC_NEXT_WINDOW:
             case UKC_PASTE:
             case UKC_SUPER_APP_SWITCH:
+            case KC_SEMICOLON:
+            case UKC_LEADER:
                 return 1.7 * COMBO_TERM;
         }
         return COMBO_TERM;
@@ -30,6 +32,7 @@ const uint16_t PROGMEM combo_app_switch             [] = {         CB_LT3,      
 const uint16_t PROGMEM combo_alfred                 [] = {                 CB_LT2, CB_LT1, CB___ };
 const uint16_t PROGMEM combo_screen_capture         [] = { CB_LT4, CB_LT3, CB_LT2,         CB___ };
 const uint16_t PROGMEM combo_window_management      [] = {         CB_LT3, CB_LT2, CB_LT1, CB___ };
+const uint16_t PROGMEM combo_leader                 [] = { CB_LT4, CB_LT3, CB_LT2, CB_LT1, CB___ };
 
 // Right hand, top row
 const uint16_t PROGMEM combo_double_quote           [] = { CB_RT1, CB_RT2,                 CB___ };
@@ -68,7 +71,7 @@ const uint16_t PROGMEM combo_cmd_n                  [] = { CB_RH1,         CB_RH
 
 // Left hand, multi row
 const uint16_t PROGMEM combo_cmd_p                  [] = {         CB_LH3,         CB_LT1, CB___ };
-const uint16_t PROGMEM combo_cmd_shift_p            [] = {         CB_LH3, CB_LH2, CB_LT1, CB___ };
+const uint16_t PROGMEM combo_cmd_shift_p            [] = {         CB_LH3, CB_LT2, CB_LT1, CB___ };
 const uint16_t PROGMEM combo_cmd_shift_f            [] = {         CB_LH3, CB_LT2, CB_LH1, CB___ };
 
 // Right hand, multi row
@@ -84,6 +87,7 @@ combo_t key_combos[] = {
     COMBO(combo_alfred,            UKC_ALFRED),
     COMBO(combo_screen_capture,    UKC_SCREEN_CAPTURE),
     COMBO(combo_window_management, OSL(_WINDOW)),
+    COMBO(combo_leader,            UKC_LEADER),
 
 
     COMBO(combo_semicolon,    KC_SEMICOLON),

@@ -129,7 +129,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case UKC_LEADER:
         case MEH_T(UKC_LEADER):
-            if (record->tap.count && record->event.pressed) {
+            if (
+                // must be pressed and...
+                // either it's just the raw keycode (not-MEH) or it is the MEH_T version, in which
+                // case we need to make sure of the tap.count
+                record->event.pressed &&
+                (keycode!=MEH_T(UKC_LEADER) || record->tap.count)
+            ) {
                 start_leading();
                 return false;
             }
