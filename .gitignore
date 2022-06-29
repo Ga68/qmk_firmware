@@ -67,11 +67,12 @@ CMakeLists.txt
 .vscode/temp.sql
 tags
 
-# Ignore image files
+# Ignore image/font files
 *.gif
 *.jpg
 *.png
-!**/Ga68/**/*.png
+*.ttf
+*.otf
 
 # Things Travis sees
 /.vs
