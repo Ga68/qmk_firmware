@@ -35,6 +35,8 @@
 #define CB_RH3 MT_RA(KC_I)
 #define CB_RH4 MT_RC(KC_O)
 
+#define CB_LX0 LT(_NAV, KC_BACKSPACE) // Left thumb home position
+
 #define CB___  COMBO_END
 
 bool process_combo_keycode_user(uint16_t keycode, keyrecord_t *record);
