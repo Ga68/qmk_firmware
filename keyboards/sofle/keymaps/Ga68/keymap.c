@@ -12,7 +12,7 @@
 // --- Super App Switch ---
 // ------------------------
 
-uint16_t super_app_switch_time_out = 850;
+uint16_t super_app_switch_time_out = 1500;
 
 bool is_super_app_switch_active = false;
 uint16_t super_app_switch_timer = 0;

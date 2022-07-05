@@ -49,6 +49,7 @@ void *leader_slack_func(uint16_t keycode) {
     switch (keycode) {
         case KC_T: // Jump to Slack conversation (reference to the cmd-T keystroke)
             tap_code16(MEH(KC_S));  // Open Slack
+            DELAY_SHORT;
             tap_code16(LCMD(KC_T)); // Jump to...
             return NULL;
         case KC_A: // Jump to All Slack conversations (reference to the cmd-shift-A keystroke)

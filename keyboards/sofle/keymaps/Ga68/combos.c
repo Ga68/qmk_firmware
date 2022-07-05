@@ -74,7 +74,8 @@ const uint16_t PROGMEM combo_cmd_n                  [] = { CB_RH1,         CB_RH
 const uint16_t PROGMEM combo_cmd_p                  [] = {         CB_LH3,         CB_LT1, CB___ };
 const uint16_t PROGMEM combo_cmd_shift_p            [] = {         CB_LH3, CB_LT2, CB_LT1, CB___ };
 const uint16_t PROGMEM combo_cmd_shift_f            [] = {         CB_LH3, CB_LT2, CB_LH1, CB___ };
-const uint16_t PROGMEM combo_leader                 [] = {                 CB_LX0, CB_LH1, CB___ };
+const uint16_t PROGMEM combo_leader_left_5          [] = { CB_LH5, CB_LT4,                 CB___ };
+const uint16_t PROGMEM combo_leader_left_1          [] = {                 CB_LT2, CB_LH1, CB___ };
 
 // Right hand, multi row
 const uint16_t PROGMEM combo_cmd_l                  [] = { CB_RT1,         CB_RH3,         CB___ };
@@ -126,10 +127,11 @@ combo_t key_combos[] = {
     COMBO(combo_cmd_n, LCMD(KC_N)),
 
 
-    COMBO(combo_cmd_p,       LCMD(KC_P)),
-    COMBO(combo_cmd_shift_p, LCMD(LSFT(KC_P))),
-    COMBO(combo_cmd_shift_f, LCMD(LSFT(KC_F))),
-    COMBO(combo_leader,      UKC_LEADER),
+    COMBO(combo_cmd_p,         LCMD(KC_P)),
+    COMBO(combo_cmd_shift_p,   LCMD(LSFT(KC_P))),
+    COMBO(combo_cmd_shift_f,   LCMD(LSFT(KC_F))),
+    COMBO(combo_leader_left_1, UKC_LEADER),
+    COMBO(combo_leader_left_5, UKC_LEADER),
 
 
     COMBO(combo_cmd_l, LCMD(KC_L)),

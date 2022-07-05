@@ -29,6 +29,7 @@
 #define CB_LH2 MT_LS(KC_S)
 #define CB_LH3 MT_LA(KC_R)
 #define CB_LH4 MT_LC(KC_A)
+#define CB_LH5 KC_MINS
 
 #define CB_RH1 MT_RG(KC_N)
 #define CB_RH2 MT_RS(KC_E)
