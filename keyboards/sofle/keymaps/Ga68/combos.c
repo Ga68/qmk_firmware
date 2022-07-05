@@ -5,8 +5,9 @@
 #ifdef COMBO_TERM_PER_COMBO
     uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         switch (combo->keycode) {
-            case LCMD(KC_N):            // cmd-n is also 'in', which is such a commond word, the
-                return .8 * COMBO_TERM; // combo term needs to be extra short
+            case LCMD(KC_N):             // cmd-n is also 'in', which is such a commond word, the
+                return SHORT_COMBO_TERM; // combo term needs to be extra short
+            
             case UKC_APP_SWITCH:  // These ones are less frequent bi(tri)grams, so can afford
             case UKC_SELECT_ALL:  // to have a longer combo term with fear of mis-fires
             case UKC_ALFRED:
@@ -19,7 +20,7 @@
             case UKC_SUPER_APP_SWITCH:
             case KC_SEMICOLON:
             case UKC_LEADER:
-                return 1.7 * COMBO_TERM;
+                return LONG_COMBO_TERM;
         }
         return COMBO_TERM;
     }
@@ -65,17 +66,16 @@ const uint16_t PROGMEM combo_right_curly_brace      [] = {         CB_RB2, CB_RB
 const uint16_t PROGMEM combo_bootloader             [] = { CB_RB1, CB_RB2, CB_RB3, CB_RB4, CB___ };
 
 // Left hand, home row
-const uint16_t PROGMEM combo_cmd_t                  [] = {         CB_LH3,         CB_LH1, CB___ };
+const uint16_t PROGMEM combo_cmd_t                  [] = {                         CB_LH1, CB_LH0, CB___ };
 
 // Right hand, home row
-const uint16_t PROGMEM combo_cmd_n                  [] = { CB_RH1,         CB_RH3,         CB___ };
+const uint16_t PROGMEM combo_cmd_n          [] = { CB_RH0, CB_RH1,                         CB___ };
 
 // Left hand, multi row
 const uint16_t PROGMEM combo_cmd_p                  [] = {         CB_LH3,         CB_LT1, CB___ };
 const uint16_t PROGMEM combo_cmd_shift_p            [] = {         CB_LH3, CB_LT2, CB_LT1, CB___ };
 const uint16_t PROGMEM combo_cmd_shift_f            [] = {         CB_LH3, CB_LT2, CB_LH1, CB___ };
-const uint16_t PROGMEM combo_leader_left_5          [] = { CB_LH5, CB_LT4,                 CB___ };
-const uint16_t PROGMEM combo_leader_left_1          [] = {                 CB_LT2, CB_LH1, CB___ };
+const uint16_t PROGMEM combo_leader_left            [] = {                 CB_LT2, CB_LH1, CB___ };
 
 // Right hand, multi row
 const uint16_t PROGMEM combo_cmd_l                  [] = { CB_RT1,         CB_RH3,         CB___ };
@@ -127,11 +127,10 @@ combo_t key_combos[] = {
     COMBO(combo_cmd_n, LCMD(KC_N)),
 
 
-    COMBO(combo_cmd_p,         LCMD(KC_P)),
-    COMBO(combo_cmd_shift_p,   LCMD(LSFT(KC_P))),
-    COMBO(combo_cmd_shift_f,   LCMD(LSFT(KC_F))),
-    COMBO(combo_leader_left_1, UKC_LEADER),
-    COMBO(combo_leader_left_5, UKC_LEADER),
+    COMBO(combo_cmd_p,       LCMD(KC_P)),
+    COMBO(combo_cmd_shift_p, LCMD(LSFT(KC_P))),
+    COMBO(combo_cmd_shift_f, LCMD(LSFT(KC_F))),
+    COMBO(combo_leader_left, UKC_LEADER),
 
 
     COMBO(combo_cmd_l, LCMD(KC_L)),

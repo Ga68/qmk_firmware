@@ -2,9 +2,11 @@
 #include QMK_KEYBOARD_H
 #include "layers.h"
 
+
 #define DELAY_LONG  wait_ms(900)
 #define DELAY       wait_ms(600)
 #define DELAY_SHORT wait_ms(300)
+
 
 // ------------
 // --- Mods ---
@@ -19,12 +21,14 @@
 #define MT_RC(k) MT(MOD_RCTL, k)
 #define MT_RS(k) MT(MOD_RSFT, k)
 
+
 // ----------------------
 // --- Keycode Legend ---
 // ----------------------
 //   UKC = User Keycode
 //   ZM = Zoom
 //   CB = Combo
+
 
 // ---------------------
 // --- User Keycodes ---
@@ -72,6 +76,7 @@ enum my_keycodes {
 #define UKC_NEXT_WINDOW    LCMD(KC_GRAVE)
 
 #define UKC_LOCK_COMPUTER  LCMD(LCTL(KC_Q))
+
 
 // -------------------------------
 // --- Zoom Keyboard Shortcuts ---
