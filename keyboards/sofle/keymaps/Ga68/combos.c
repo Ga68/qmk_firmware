@@ -19,7 +19,7 @@
             case UKC_COPY:
             case UKC_SUPER_APP_SWITCH:
             case KC_SEMICOLON:
-            case UKC_LEADER:
+            case UKC_INV_QUESTION:
                 return LONG_COMBO_TERM;
         }
         return COMBO_TERM;
@@ -79,6 +79,7 @@ const uint16_t PROGMEM combo_leader_left            [] = {                 CB_LT
 
 // Right hand, multi row
 const uint16_t PROGMEM combo_cmd_l                  [] = { CB_RT1,         CB_RH3,         CB___ };
+const uint16_t PROGMEM combo_leader_right           [] = { CB_RH1, CB_RT2,                 CB___ };
 
 combo_t key_combos[] = {
 
@@ -133,7 +134,8 @@ combo_t key_combos[] = {
     COMBO(combo_leader_left, UKC_LEADER),
 
 
-    COMBO(combo_cmd_l, LCMD(KC_L)),
+    COMBO(combo_cmd_l,        LCMD(KC_L)),
+    COMBO(combo_leader_right, UKC_LEADER),
 
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(combo_t);

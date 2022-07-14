@@ -2,7 +2,7 @@
 #include QMK_KEYBOARD_H
 
 #define SHORT_COMBO_TERM (0.8 * COMBO_TERM)
-#define LONG_COMBO_TERM  (1.8 * COMBO_TERM)
+#define LONG_COMBO_TERM  (1.9 * COMBO_TERM)
 
 // L/R   Left/Right hand
 // B/T/H Bottom/Top/Home row
