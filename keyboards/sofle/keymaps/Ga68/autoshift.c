@@ -50,7 +50,7 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
     switch(keycode) {
         case UKC_DOLLAR_M:
             if (shifted) {
-                SEND_STRING("$M");
+                SEND_STRING("md/"); // relies on Typinator shortcut to add $XM around a number
             }
             else {
                 SEND_STRING("M");
@@ -58,7 +58,7 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
             break;
         case UKC_DOLLAR_K:
             if (shifted) {
-                SEND_STRING("$K");
+                SEND_STRING("kd/"); // relies on Typinator shortcut to add $XK around a number
             }
             else {
                 SEND_STRING("K");
@@ -66,7 +66,7 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
             break;
         case UKC_DOLLAR_B:
             if (shifted) {
-                SEND_STRING("$B");
+                SEND_STRING("bd/"); // relies on Typinator shortcut to add $XB around a number
             }
             else {
                 SEND_STRING("B");
