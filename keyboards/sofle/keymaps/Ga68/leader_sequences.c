@@ -25,22 +25,32 @@ void *leader_outlook_func(uint16_t keycode) {
             return NULL;
         case KC_M:
             tap_code16(MEH(KC_O));  // Go to Outlook
+            DELAY_SHORT;
             tap_code16(LCMD(KC_1)); // Mail pane
             return NULL;
         case KC_C:
             tap_code16(MEH(KC_O));  // Go to Outlook
+            DELAY_SHORT;
             tap_code16(LCMD(KC_2)); // Calendarpane
             return NULL;
         case KC_R:
             tap_code16(MEH(KC_O));  // Go to Outlook
+            DELAY_SHORT;
             tap_code16(LCMD(KC_G)); // Go to folder
             SEND_STRING("calendar requests\n");
             return NULL;        
         case KC_I:
             tap_code16(MEH(KC_O));  // Go to Outlook
+            DELAY_SHORT;
             tap_code16(LCMD(KC_G)); // Go to folder
             SEND_STRING("inbox\n");
-            return NULL;   
+            return NULL;
+        case KC_S:
+            tap_code16(MEH(KC_O));  // Go to Outlook
+            DELAY_SHORT;
+            tap_code16(LCMD(KC_G)); // Go to folder
+            SEND_STRING("sent\n");
+            return NULL;  
     }
     return NULL;
 }
