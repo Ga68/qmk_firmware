@@ -38,6 +38,7 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case UKC_DOLLAR_M:
         case UKC_DOLLAR_K:
         case UKC_DOLLAR_B:
+        case UKC_DOLLAR:
             return true;
     }
     return false;
@@ -48,6 +49,11 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
 // https://docs.qmk.fm/#/feature_auto_shift?id=custom-shifted-values
 void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
     switch(keycode) {
+        case UKC_DOLLAR:
+            if (shifted) {
+                SEND_STRING("d/"); // relies on Typinator shortcut to add $X before a number
+            }
+            break;
         case UKC_DOLLAR_M:
             if (shifted) {
                 SEND_STRING("md/"); // relies on Typinator shortcut to add $XM around a number
@@ -182,6 +188,7 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
                 unregister_code16(KC_RIGHT_ANGLE_BRACE);
             }
         case UKC_INV_QUESTION:
+        case UKC_DOLLAR:
         case UKC_DOLLAR_M:
         case UKC_DOLLAR_K:
         case UKC_DOLLAR_B:

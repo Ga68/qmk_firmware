@@ -41,6 +41,7 @@ enum my_keycodes {
     UKC_SUPER_APP_SWITCH,    
     UKC_LEADER,
 
+    UKC_DOLLAR,
     UKC_DOLLAR_M,
     UKC_DOLLAR_K,
     UKC_DOLLAR_B,
