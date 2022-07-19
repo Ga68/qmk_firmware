@@ -21,7 +21,9 @@ void *leader_zoom_func(uint16_t keycode) {
 void *leader_outlook_func(uint16_t keycode) {
     switch (keycode) {
         case KC_U: // Mark message as unread
-            tap_code16(LCMD(LSFT(KC_T)));
+            tap_code16(LCMD(KC_T)); // Mark it as read
+            DELAY_SHORT;
+            tap_code16(LCMD(LSFT(KC_T))); // Mark it as unread
             return NULL;
         case KC_M:
             tap_code16(MEH(KC_O));  // Go to Outlook

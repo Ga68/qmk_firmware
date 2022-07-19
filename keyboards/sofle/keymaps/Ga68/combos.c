@@ -27,8 +27,6 @@
 #endif
 
 // Left hand, top row
-const uint16_t PROGMEM combo_tilde                  [] = { CB_LT4, CB_LT3,                 CB___ };
-const uint16_t PROGMEM combo_grave                  [] = { CB_LT4,         CB_LT2,         CB___ };
 const uint16_t PROGMEM combo_next_window            [] = { CB_LT4,                 CB_LT1, CB___ };
 const uint16_t PROGMEM combo_escape                 [] = {         CB_LT3, CB_LT2,         CB___ };
 const uint16_t PROGMEM combo_super_app_switch       [] = {         CB_LT3,         CB_LT1, CB___ };
@@ -76,6 +74,8 @@ const uint16_t PROGMEM combo_cmd_p                  [] = {         CB_LH3,      
 const uint16_t PROGMEM combo_cmd_shift_p            [] = {         CB_LH3, CB_LT2, CB_LT1, CB___ };
 const uint16_t PROGMEM combo_cmd_shift_f            [] = {         CB_LH3, CB_LT2, CB_LH1, CB___ };
 const uint16_t PROGMEM combo_leader_left            [] = {                 CB_LT2, CB_LH1, CB___ };
+const uint16_t PROGMEM combo_grave                  [] = { CB_LB4,         CB_LH2,         CB___ };
+const uint16_t PROGMEM combo_tilde                  [] = { CB_LB4, CB_LH3,                 CB___ };
 
 // Right hand, multi row
 const uint16_t PROGMEM combo_cmd_l                  [] = { CB_RT1,         CB_RH3,         CB___ };
@@ -83,8 +83,6 @@ const uint16_t PROGMEM combo_leader_right           [] = { CB_RH1, CB_RT2,      
 
 combo_t key_combos[] = {
 
-    COMBO(combo_grave,             KC_GRAVE),
-    COMBO(combo_tilde,             KC_TILDE),
     COMBO(combo_next_window,       UKC_NEXT_WINDOW),
     COMBO(combo_escape,            KC_ESCAPE),
     COMBO(combo_alfred,            UKC_ALFRED),
@@ -132,6 +130,8 @@ combo_t key_combos[] = {
     COMBO(combo_cmd_shift_p, LCMD(LSFT(KC_P))),
     COMBO(combo_cmd_shift_f, LCMD(LSFT(KC_F))),
     COMBO(combo_leader_left, UKC_LEADER),
+    COMBO(combo_grave,       KC_GRAVE),
+    COMBO(combo_tilde,       KC_TILDE),
 
 
     COMBO(combo_cmd_l,        LCMD(KC_L)),
