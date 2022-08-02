@@ -39,6 +39,7 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case UKC_DOLLAR_K:
         case UKC_DOLLAR_B:
         case UKC_DOLLAR:
+        case KC_PLUS:
             return true;
     }
     return false;
@@ -144,6 +145,14 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
                 register_code16(KC_RIGHT_ANGLE_BRACE);
             }
             break;
+        case KC_PLUS:
+            if (shifted) {
+                SEND_STRING("+=");
+            }
+            else {
+                register_code16(KC_PLUS);
+            }
+            break;
         default:
             if (shifted) {
                 add_weak_mods(MOD_BIT(KC_LSFT));
@@ -186,6 +195,10 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
         case KC_RIGHT_ANGLE_BRACE:
             if (!shifted) {
                 unregister_code16(KC_RIGHT_ANGLE_BRACE);
+            }
+        case KC_PLUS:
+            if (!shifted) {
+                unregister_code16(KC_PLUS);
             }
         case UKC_INV_QUESTION:
         case UKC_DOLLAR:
