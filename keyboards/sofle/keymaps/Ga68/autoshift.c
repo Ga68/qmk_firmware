@@ -7,6 +7,9 @@
         switch(keycode) {
             case KC_MINUS:
                 return 0.8 * get_generic_autoshift_timeout();
+            case KC_ENTER:
+            case KC_PLUS:
+                return 1.5 * get_generic_autoshift_timeout();
             default:
                 return get_generic_autoshift_timeout();
         }
