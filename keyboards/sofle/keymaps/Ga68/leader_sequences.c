@@ -74,6 +74,16 @@ void *leader_calendar_func(uint16_t keycode) {
     return NULL;
 }
 
+void *leader_preview_func(uint16_t keycode) {
+    switch (keycode) {
+        case KC_S: // Sketch mode
+            // This relies on a custom made app/service/AppleScript that moves Preview into
+            // Sketch mode, since there is no native keyboard shortcut.
+            tap_code16(LCMD(LALT(KC_S)));
+            return NULL;
+    }
+    return NULL;
+}
 void *leader_start_func(uint16_t keycode) {
     switch (keycode) {
         case KC_O:
@@ -88,6 +98,9 @@ void *leader_start_func(uint16_t keycode) {
         case KC_C:
             tap_code16(MEH(KC_C));  // Open Calendar
             return leader_calendar_func;
+        case KC_P:
+            tap_code16(MEH(KC_P));  // Open Preview
+            return leader_preview_func;
     }
     return NULL;
 }
