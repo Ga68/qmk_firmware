@@ -34,11 +34,11 @@ void *leader_outlook_func(uint16_t keycode) {
             return NULL;
         case KC_R:
             tap_code16(LCMD(KC_G)); // Go to folder
-            SEND_STRING("calendar requests\n");
+            SEND_STRING("cal\n");
             return NULL;        
         case KC_I:
             tap_code16(LCMD(KC_G)); // Go to folder
-            SEND_STRING("inbox\n");
+            SEND_STRING("in\n");
             return NULL;
         case KC_S:
             tap_code16(LCMD(KC_G)); // Go to folder
@@ -69,6 +69,9 @@ void *leader_calendar_func(uint16_t keycode) {
         case KC_T: // Jump to today in Calendar
             tap_code16(LCMD(KC_1)); // Single-day view
             tap_code16(LCMD(KC_T)); // Jump to today
+            return NULL;
+        case KC_D: // Jump to a day in Calendar
+            tap_code16(LCMD(LSFT(KC_T)));
             return NULL;
     }
     return NULL;
