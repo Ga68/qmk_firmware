@@ -79,6 +79,11 @@ void *leader_calendar_func(uint16_t keycode) {
 
 void *leader_preview_func(uint16_t keycode) {
     switch (keycode) {
+        case KC_N: // New doc (from clipboard) and into sketch mode
+            tap_code16(LCMD(KC_N));
+            // The lack of return NULL is on purpose because I want it to flow into the
+            // Sketch Mode sequence below
+            DELAY_SHORT;
         case KC_S: // Sketch mode
             // This relies on a custom made app/service/AppleScript that moves Preview into
             // Sketch mode, since there is no native keyboard shortcut.
