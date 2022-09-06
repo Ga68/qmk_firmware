@@ -20,6 +20,9 @@
             case UKC_SUPER_APP_SWITCH:
             case KC_SEMICOLON:
             case UKC_INV_QUESTION:
+            case KC_QUESTION:
+            case KC_BTN1:
+            case KC_BTN2:
                 return LONG_COMBO_TERM;
         }
         return COMBO_TERM;
