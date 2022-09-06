@@ -77,6 +77,10 @@ const uint16_t PROGMEM combo_leader_left            [] = {                 CB_LT
 const uint16_t PROGMEM combo_grave                  [] = { CB_LB4,         CB_LH2,         CB___ };
 const uint16_t PROGMEM combo_tilde                  [] = { CB_LB4, CB_LH3,                 CB___ };
 
+const uint16_t PROGMEM combo_mouse_click_left       [] = {         CB_LB3,                 CB_LPR, CB___ };
+const uint16_t PROGMEM combo_mouse_click_right      [] = {                         CB_LB1, CB_LPR, CB___ };
+
+
 // Right hand, multi row
 const uint16_t PROGMEM combo_cmd_l                  [] = { CB_RT1,         CB_RH3,         CB___ };
 const uint16_t PROGMEM combo_leader_right           [] = { CB_RH1, CB_RT2,                 CB___ };
@@ -132,6 +136,10 @@ combo_t key_combos[] = {
     COMBO(combo_leader_left, UKC_LEADER),
     COMBO(combo_grave,       KC_GRAVE),
     COMBO(combo_tilde,       KC_TILDE),
+
+
+    COMBO(combo_mouse_click_left,  KC_BTN1),
+    COMBO(combo_mouse_click_right, KC_BTN2),
 
 
     COMBO(combo_cmd_l,        LCMD(KC_L)),

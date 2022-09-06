@@ -40,6 +40,10 @@
 #define CB_RH3 MT_RA(KC_I)
 #define CB_RH4 MT_RC(KC_O)
 
+// "Pollex" is the medical term for "thumb", since T, B, and H would
+// be confusing (for top, bottom, and home)
+#define CB_LPR LT(_MOUSE, KC_TAB)
+
 #define CB___  COMBO_END
 
 bool process_combo_keycode_user(uint16_t keycode, keyrecord_t *record);
