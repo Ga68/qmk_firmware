@@ -9,6 +9,7 @@
                 return 0.8 * get_generic_autoshift_timeout();
             case KC_ENTER:
             case KC_PLUS:
+            case KC_PERIOD:
                 return 1.5 * get_generic_autoshift_timeout();
             default:
                 return get_generic_autoshift_timeout();
@@ -21,7 +22,6 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
         case KC_MINUS:
         case KC_SLASH:
-        case KC_QUOTE:
         case KC_ENTER:
         case KC_GRAVE:
         case KC_LEFT_SQUARE_BRACE:
@@ -43,6 +43,7 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case UKC_DOLLAR_B:
         case UKC_DOLLAR:
         case KC_PLUS:
+        case KC_PERIOD:
             return true;
     }
     return false;
@@ -156,6 +157,14 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
                 register_code16(KC_PLUS);
             }
             break;
+        case KC_PERIOD:
+            if (shifted) {
+                SEND_STRING("...");
+            }
+            else {
+                register_code16(KC_PERIOD);
+            }
+            break;
         default:
             if (shifted) {
                 add_weak_mods(MOD_BIT(KC_LSFT));
@@ -202,6 +211,10 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
         case KC_PLUS:
             if (!shifted) {
                 unregister_code16(KC_PLUS);
+            }
+        case KC_PERIOD:
+            if (!shifted) {
+                unregister_code16(KC_PERIOD);
             }
         case UKC_INV_QUESTION:
         case UKC_DOLLAR:
