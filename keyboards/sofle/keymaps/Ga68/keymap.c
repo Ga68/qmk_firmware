@@ -39,10 +39,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_NAV] = LAYOUT(
-        __x__   , __x__        , __x__     , G(KC_UP)  , __x__      , __x__         ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
-        UKC_MENU, S(A(KC_LEFT)), S(KC_LEFT), KC_UP     , S(KC_RIGHT), S(A(KC_RIGHT)),               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
-        KC_ENTER, A(KC_LEFT)   , KC_LEFT   , KC_DOWN   , KC_RIGHT   , A(KC_RIGHT)   ,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
-        KC_SPACE, S(G(KC_LEFT)), G(KC_LEFT), G(KC_DOWN), G(KC_RIGHT), S(G(KC_RIGHT)), __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
+        __x__   , __x__     , __x__   , __x__     , __x__      , __x__,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        UKC_MENU, G(KC_LEFT), G(KC_UP), G(KC_DOWN), G(KC_RIGHT), __x__,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        KC_ENTER, KC_LEFT   , KC_UP   , KC_DOWN   , KC_RIGHT   , __x__,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
+        KC_SPACE, A(KC_LEFT), A(KC_UP), A(KC_DOWN), A(KC_RIGHT), __x__, __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
                                                           __x__, __x__, __x__, __o__, __x__, KC_ENTER, KC_SPACE, UKC_LEADER, __x__, __x__
         ),
