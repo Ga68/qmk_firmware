@@ -37,7 +37,6 @@
 enum my_keycodes {
     UKC_STARTING_POINT = SAFE_RANGE,
 
-    UKC_CAPS_WORD,
     UKC_SUPER_APP_SWITCH,    
     UKC_LEADER,
 

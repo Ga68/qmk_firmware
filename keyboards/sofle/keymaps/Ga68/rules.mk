@@ -2,10 +2,10 @@
 # ### Used ###
 # ############
 
-SRC += caps_word.c
 SRC += leader.c
 
-
+CAPS_WORD_ENABLE    = yes
+  SRC += caps_word.c
 AUTO_SHIFT_ENABLE   = yes
   SRC += autoshift.c
 COMBO_ENABLE        = yes

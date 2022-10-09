@@ -99,7 +99,7 @@ combo_t key_combos[] = {
     COMBO(combo_semicolon,    KC_SEMICOLON),
     COMBO(combo_double_quote, KC_DOUBLE_QUOTE),
     COMBO(combo_plus,         KC_PLUS),
-    COMBO(combo_caps_word,    UKC_CAPS_WORD),
+    COMBO(combo_caps_word,    CAPS_WORD),
     COMBO(combo_caps_lock,    KC_CAPS_LOCK),
 
 
