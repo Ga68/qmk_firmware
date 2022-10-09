@@ -10,6 +10,7 @@
             case KC_ENTER:
             case KC_PLUS:
             case KC_PERIOD:
+            case KC_SLASH:
                 return 1.5 * get_generic_autoshift_timeout();
             default:
                 return get_generic_autoshift_timeout();

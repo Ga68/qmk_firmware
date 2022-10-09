@@ -3,6 +3,8 @@
 # ############
 
 SRC += leader.c
+SRC += leader_sequences.c
+
 
 CAPS_WORD_ENABLE    = yes
   SRC += caps_word.c

@@ -1,7 +1,5 @@
 #include "keymap.h"
-
 #include "leader.h"
-    #include "leader_sequences.c"
 
 #ifdef COMBO_ENABLE
     #include "combos.h"

@@ -15,7 +15,6 @@
  */
 
 #pragma once
-
 #include QMK_KEYBOARD_H
 
 typedef void *(*leader_func_t)(uint16_t);

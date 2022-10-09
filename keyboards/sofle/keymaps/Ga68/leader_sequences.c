@@ -1,5 +1,5 @@
 #include "leader.h"
-
+#include "keymap.h"
 
 void *leader_zoom_func(uint16_t keycode) {
     switch (keycode) {
