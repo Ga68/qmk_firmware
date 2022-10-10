@@ -31,6 +31,10 @@ bool caps_word_press_user(uint16_t keycode) {
                 case KC_1 ... KC_0:
                 case KC_PERIOD:
                 case KC_COMMA:
+                case KC_SLASH:
+                case KC_STAR:
+                case KC_PLUS:
+                case KC_MINUS:
                 case KC_BSPC:
                     return true;
 
