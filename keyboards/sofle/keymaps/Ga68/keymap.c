@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef ENCODER_ENABLE
     bool encoder_update_user(uint8_t index, bool clockwise) {
         int layer = get_highest_layer(layer_state);
-        if (layer == _ZOOM || layer == _BASE) {
+        if (layer == _BASE) {
             // For now I'm doing the same thing for both encoders' rotation actions
             if (clockwise) {
                 tap_code(KC_AUDIO_VOL_UP);
