@@ -45,6 +45,12 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
         case UKC_DOLLAR:
         case KC_PLUS:
         case KC_PERIOD:
+        case A(KC_LEFT):
+        case A(KC_RIGHT):
+        case G(KC_LEFT):
+        case G(KC_RIGHT):
+        case G(KC_UP):
+        case G(KC_DOWN):
             return true;
     }
     return false;
@@ -166,6 +172,24 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
                 register_code16(KC_PERIOD);
             }
             break;
+        case A(KC_LEFT):
+            register_code16((!shifted) ? A(KC_LEFT) : S(A(KC_LEFT)));
+            break;
+        case A(KC_RIGHT):
+            register_code16((!shifted) ? A(KC_RIGHT) : S(A(KC_RIGHT)));
+            break;
+        case G(KC_LEFT):
+            register_code16((!shifted) ? G(KC_LEFT) : S(G(KC_LEFT)));
+            break;
+        case G(KC_RIGHT):
+            register_code16((!shifted) ? G(KC_RIGHT) : S(G(KC_RIGHT)));
+            break;
+        case G(KC_UP):
+            register_code16((!shifted) ? G(KC_UP) : S(G(KC_UP)));
+            break;
+        case G(KC_DOWN):
+            register_code16((!shifted) ? G(KC_DOWN) : S(G(KC_DOWN)));
+            break;
         default:
             if (shifted) {
                 add_weak_mods(MOD_BIT(KC_LSFT));
@@ -185,38 +209,65 @@ void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record)
             if (!shifted) {
                 unregister_code16(KC_ENTER);
             }
+            break;
         case KC_GRAVE:
             if (!shifted) {
                 unregister_code16(KC_GRAVE);
             }
+            break;
         case KC_LEFT_SQUARE_BRACE:
             if (!shifted) {
                 unregister_code16(KC_LEFT_SQUARE_BRACE);
             }
+            break;
         case KC_LEFT_CURLY_BRACE:
             if (!shifted) {
                 unregister_code16(KC_LEFT_CURLY_BRACE);
             }
+            break;
         case KC_LEFT_PAREN:
             if (!shifted) {
                 unregister_code16(KC_LEFT_PAREN);
             }
+            break;
         case KC_LEFT_ANGLE_BRACE:
             if (!shifted) {
                 unregister_code16(KC_LEFT_ANGLE_BRACE);
             }
+            break;
         case KC_RIGHT_ANGLE_BRACE:
             if (!shifted) {
                 unregister_code16(KC_RIGHT_ANGLE_BRACE);
             }
+            break;
         case KC_PLUS:
             if (!shifted) {
                 unregister_code16(KC_PLUS);
             }
+            break;
         case KC_PERIOD:
             if (!shifted) {
                 unregister_code16(KC_PERIOD);
             }
+            break;
+        case A(KC_LEFT):
+            unregister_code16((!shifted) ? A(KC_LEFT) : S(A(KC_LEFT)));
+            break;
+        case A(KC_RIGHT):
+            unregister_code16((!shifted) ? A(KC_RIGHT) : S(A(KC_RIGHT)));
+            break;
+        case G(KC_LEFT):
+            unregister_code16((!shifted) ? G(KC_LEFT) : S(G(KC_LEFT)));
+            break;
+        case G(KC_RIGHT):
+            unregister_code16((!shifted) ? G(KC_RIGHT) : S(G(KC_RIGHT)));
+            break;
+        case G(KC_UP):
+            unregister_code16((!shifted) ? G(KC_UP) : S(G(KC_UP)));
+            break;
+        case G(KC_DOWN):
+            unregister_code16((!shifted) ? G(KC_DOWN) : S(G(KC_DOWN)));
+            break;
         case UKC_INV_QUESTION:
         case UKC_DOLLAR:
         case UKC_DOLLAR_M:
