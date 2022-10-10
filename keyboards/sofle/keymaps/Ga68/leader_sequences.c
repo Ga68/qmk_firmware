@@ -1,5 +1,6 @@
 #include "leader.h"
 #include "keymap.h"
+#include "caps_word.h"
 
 void *leader_zoom_func(uint16_t keycode) {
     switch (keycode) {
@@ -92,23 +93,47 @@ void *leader_preview_func(uint16_t keycode) {
     }
     return NULL;
 }
+
+void *leader_caps_func(uint16_t keycode) {
+    switch (keycode) {
+        case KC_K:  // K "for" "konstant"
+            toggle_caps_word_mode(CWMODE_CONSTANT_CASE);
+            return NULL;
+        case KC_D:  // D for dash
+            toggle_caps_word_mode(CWMODE_KEBAB_CASE);
+            return NULL;
+        case KC_U:  // U for underscore
+            toggle_caps_word_mode(CWMODE_SNAKE_CASE);
+            return NULL;
+        case KC_C:  // C for camel
+            toggle_caps_word_mode(CWMODE_CAMEL_CASE);
+            return NULL;
+        case KC_N:  // N for number
+            toggle_caps_word_mode(CWMODE_NUM_LOCK);
+            return NULL;
+    }
+    return NULL;
+}
+
 void *leader_start_func(uint16_t keycode) {
     switch (keycode) {
         case KC_O:
-            tap_code16(MEH(KC_O));  // Go to Outlook
+            tap_code16(MEH(KC_O));  // Switch to Outlook
             return leader_outlook_func;
         case KC_Z:
             tap_code16(MEH(KC_Z));  // Switch to Zoom
             return leader_zoom_func;
         case KC_S:
-            tap_code16(MEH(KC_S));    // Open Slack
+            tap_code16(MEH(KC_S));    // Switch to Slack
             return leader_slack_func;
         case KC_C:
-            tap_code16(MEH(KC_C));  // Open Calendar
+            tap_code16(MEH(KC_C));  // Switch to Calendar
             return leader_calendar_func;
         case KC_P:
-            tap_code16(MEH(KC_P));  // Open Preview
+            tap_code16(MEH(KC_P));  // Switch to Preview
             return leader_preview_func;
+        case KC_W:
+            return leader_caps_func;
     }
     return NULL;
 }
