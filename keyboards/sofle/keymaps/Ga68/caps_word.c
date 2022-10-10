@@ -66,9 +66,11 @@ void caps_word_set_user(bool active) {
     if (active) {
         // Do something when Caps Word activates.
         layer_on(_CAPS_WORD);
+        autoshift_disable();
     } else {
         // Do something when Caps Word deactivates.
         layer_off(_CAPS_WORD);
+        autoshift_enable();
         // If leaving the num_lock mode, then we need to exit that layer
         if (g_caps_word_mode == CWMODE_NUM_LOCK) {
             layer_off(_LOWER);  // leave the numbers layer
@@ -80,7 +82,7 @@ void caps_word_set_user(bool active) {
 }
 
 // Toggles caps word for the given mode. If that mode is already on, then it's getting turned off.
-// If it's a new mode (or caps word isn't on at all), then the old one will cycle off, then the new
+// If it's a new mode (or caps word isn't on at all), the old one will cycle off, then the new
 // one will turn on. Returns true if caps word (in any mode) is on after the call.
 bool toggle_caps_word_mode(caps_word_mode_t new_mode) {
     // remember the old settings before we turn it off since that will clear these values

@@ -7,7 +7,8 @@ typedef enum {
     CWMODE_ARROW_SHIFT
 } caps_word_mode_t;
 
+#define CAPS_WORD_MODE_DEFAULT CWMODE_NORMAL
+
 caps_word_mode_t g_caps_word_mode;
-#define CAPS_WORD_MODE_DEFAULT CWMODE_NORMAL;
 
 bool toggle_caps_word_mode(caps_word_mode_t new_mode);
