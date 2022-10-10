@@ -61,6 +61,7 @@ bool caps_word_press_user(uint16_t keycode) {
         case CWMODE_KEBAB_CASE:
         case CWMODE_SNAKE_CASE:
         case CWMODE_CAMEL_CASE:
+        case CWMODE_SLASH_CASE:
             switch (keycode) {
                 case KC_SPACE:
                     // If the last key was NOT a space, then register it having been pressed and
@@ -94,6 +95,9 @@ bool caps_word_press_user(uint16_t keycode) {
                                 break;
                             case CWMODE_KEBAB_CASE:
                                 tap_code16(KC_DASH);
+                                break;
+                            case CWMODE_SLASH_CASE:
+                                tap_code16(KC_SLASH);
                                 break;
                             case CWMODE_CAMEL_CASE:
                                 add_oneshot_mods(MOD_LSFT);
