@@ -3,6 +3,7 @@
 #include "keymap.h"
 
 caps_word_mode_t g_caps_word_mode = CAPS_WORD_MODE_DEFAULT;
+bool g_caps_word_last_key_was_space = false;
 
 bool caps_word_press_user(uint16_t keycode) {
     switch(g_caps_word_mode) {
@@ -56,6 +57,64 @@ bool caps_word_press_user(uint16_t keycode) {
                 default:
                     return false;  // Deactivate Caps Word.
             }
+        case CWMODE_CONSTANT_CASE:
+        case CWMODE_KEBAB_CASE:
+        case CWMODE_SNAKE_CASE:
+        case CWMODE_CAMEL_CASE:
+            switch (keycode) {
+                case KC_SPACE:
+                    // If the last key was NOT a space, then register it having been pressed and
+                    // move on as normal
+                    if (!g_caps_word_last_key_was_space) {
+                        g_caps_word_last_key_was_space = true;
+                        return true;
+                    }
+                    // if this is the second space in a row, delete one and exit Caps Word
+                    else {
+                        tap_code16(KC_BACKSPACE);
+                        return false;
+                    }
+
+                // Keys that do NOT break the Caps Word state
+                case KC_A ... KC_Z:
+                case KC_1 ... KC_0:
+                // case 
+                case KC_BACKSPACE:
+                    // If we're continuing on after a space, then we need to "address" that prior
+                    // space in some way. The way we do that depends on what mode we're in. But
+                    // in all cases, first we need to remove that space and then replace it with
+                    // another character or another operating mode (ex. OSM)
+                    if (g_caps_word_last_key_was_space) {
+                        tap_code16(KC_BACKSPACE);
+                        switch (g_caps_word_mode) {
+                            case CWMODE_CONSTANT_CASE:
+                            case CWMODE_SNAKE_CASE:
+                                tap_code16(KC_UNDERSCORE);
+                                break;
+                            case CWMODE_KEBAB_CASE:
+                                tap_code16(KC_DASH);
+                                break;
+                            case CWMODE_CAMEL_CASE:
+                                add_oneshot_mods(MOD_LSFT);
+                                break;
+                            default:
+                                break;
+
+                        }
+                        g_caps_word_last_key_was_space = false;
+                    }
+                    // If we're in CONSTANT_CASE, then we need to upper case letters
+                    if (
+                        g_caps_word_mode == CWMODE_CONSTANT_CASE
+                        && (KC_A <= keycode && keycode <= KC_Z)
+                    ) {
+                        add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+                    }
+                    return true;
+
+                default:
+                    return false;  // Deactivate Caps Word
+            }
 
         default:
             return false;
@@ -66,11 +125,10 @@ void caps_word_set_user(bool active) {
     if (active) {
         // Do something when Caps Word activates.
         layer_on(_CAPS_WORD);
-        autoshift_disable();
+        g_caps_word_last_key_was_space = false;
     } else {
         // Do something when Caps Word deactivates.
         layer_off(_CAPS_WORD);
-        autoshift_enable();
         // If leaving the num_lock mode, then we need to exit that layer
         if (g_caps_word_mode == CWMODE_NUM_LOCK) {
             layer_off(_LOWER);  // leave the numbers layer

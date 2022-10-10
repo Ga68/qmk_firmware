@@ -98,12 +98,13 @@ enum my_keycodes {
 
 #define KC_CARROT KC_CIRCUMFLEX
 #define KC_CROT   KC_CARROT
+#define KC_PERIOD KC_DOT
+#define KC_DASH KC_MINUS
 
 #define _____ KC_TRANSPARENT
 #define __o__ KC_TRANSPARENT
 #define __x__ KC_NO
 
-#define KC_PERIOD KC_DOT
 
 // Space Cadet Shifts
 #ifdef SPACE_CADET_ENABLE

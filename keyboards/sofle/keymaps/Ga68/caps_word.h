@@ -4,7 +4,11 @@
 typedef enum {
     CWMODE_NORMAL = 0,
     CWMODE_NUM_LOCK,
-    CWMODE_ARROW_SHIFT
+    CWMODE_ARROW_SHIFT,
+    CWMODE_CONSTANT_CASE,  // CONSTANT_CASE
+    CWMODE_KEBAB_CASE,     // kebab-case
+    CWMODE_SNAKE_CASE,     // snake_case
+    CWMODE_CAMEL_CASE      // camelCase
 } caps_word_mode_t;
 
 #define CAPS_WORD_MODE_DEFAULT CWMODE_NORMAL
