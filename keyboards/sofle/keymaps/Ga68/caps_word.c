@@ -78,7 +78,8 @@ bool caps_word_press_user(uint16_t keycode) {
                 // Keys that do NOT break the Caps Word state
                 case KC_A ... KC_Z:
                 case KC_1 ... KC_0:
-                // case 
+                case KC_DASH:
+                case KC_UNDERSCORE:
                 case KC_BACKSPACE:
                     // If we're continuing on after a space, then we need to "address" that prior
                     // space in some way. The way we do that depends on what mode we're in. But

@@ -144,7 +144,7 @@ combo_t key_combos[] = {
     COMBO(combo_mouse_click_right, KC_BTN2),
 
 
-    COMBO(combo_cmd_l,        LCMD(KC_L)),
+    COMBO(combo_cmd_l, LCMD(KC_L)),
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(combo_t);
 
