@@ -4,6 +4,7 @@
 
 caps_word_mode_t g_caps_word_mode = CAPS_WORD_MODE_DEFAULT;
 bool g_caps_word_last_key_was_space = false;
+uint16_t g_caps_word_space_substitute = CAPS_WORD_SPACE_SUB_DEFAULT;
 
 bool caps_word_press_user(uint16_t keycode) {
     switch(g_caps_word_mode) {
@@ -58,10 +59,8 @@ bool caps_word_press_user(uint16_t keycode) {
                     return false;  // Deactivate Caps Word.
             }
         case CWMODE_CONSTANT_CASE:
-        case CWMODE_KEBAB_CASE:
-        case CWMODE_SNAKE_CASE:
         case CWMODE_CAMEL_CASE:
-        case CWMODE_SLASH_CASE:
+        case CWMODE_SPACE_SUB:
             switch (keycode) {
                 case KC_SPACE:
                     // If the last key was NOT a space, then register it having been pressed and
@@ -90,17 +89,13 @@ bool caps_word_press_user(uint16_t keycode) {
                         tap_code16(KC_BACKSPACE);
                         switch (g_caps_word_mode) {
                             case CWMODE_CONSTANT_CASE:
-                            case CWMODE_SNAKE_CASE:
                                 tap_code16(KC_UNDERSCORE);
-                                break;
-                            case CWMODE_KEBAB_CASE:
-                                tap_code16(KC_DASH);
-                                break;
-                            case CWMODE_SLASH_CASE:
-                                tap_code16(KC_SLASH);
                                 break;
                             case CWMODE_CAMEL_CASE:
                                 add_oneshot_mods(MOD_LSFT);
+                                break;
+                            case CWMODE_SPACE_SUB:
+                                tap_code16(g_caps_word_space_substitute);
                                 break;
                             default:
                                 break;
@@ -139,8 +134,9 @@ void caps_word_set_user(bool active) {
             layer_off(_LOWER);  // leave the numbers layer
         }
         // Go back to make sure that when it turns on next without any sepcification (ex. through
-        // the CAPS_WORD key), it's in the default caps_word mode
+        // the CAPS_WORD key), it's in the default settings
         g_caps_word_mode = CAPS_WORD_MODE_DEFAULT;
+        g_caps_word_space_substitute = CAPS_WORD_SPACE_SUB_DEFAULT;
     }
 }
 
@@ -164,4 +160,11 @@ bool toggle_caps_word_mode(caps_word_mode_t new_mode) {
         }
     }
     return is_caps_word_on();
+}
+
+// Sets up caps word where every space is substituted with the provided key code. This can be used
+// for kebab-case (dash/hyphen), snake_case (underscore), or others.
+bool toggle_caps_word_space_sub(uint16_t sub_keycode) {
+    g_caps_word_space_substitute = sub_keycode;
+    return toggle_caps_word_mode(CWMODE_SPACE_SUB);
 }

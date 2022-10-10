@@ -100,11 +100,10 @@ void *leader_caps_func(uint16_t keycode) {
             toggle_caps_word_mode(CWMODE_CONSTANT_CASE);
             return NULL;
         case KC_DASH:
-            toggle_caps_word_mode(CWMODE_KEBAB_CASE);
+            toggle_caps_word_space_sub(KC_DASH);
             return NULL;
-        case KC_UNDERSCORE:
         case KC_U:  // U for underscore
-            toggle_caps_word_mode(CWMODE_SNAKE_CASE);
+            toggle_caps_word_space_sub(KC_UNDERSCORE);
             return NULL;
         case KC_C:  // C for camel
             toggle_caps_word_mode(CWMODE_CAMEL_CASE);
@@ -113,7 +112,7 @@ void *leader_caps_func(uint16_t keycode) {
             toggle_caps_word_mode(CWMODE_NUM_LOCK);
             return NULL;
         case KC_SLASH:
-            toggle_caps_word_mode(CWMODE_SLASH_CASE);
+            toggle_caps_word_space_sub(KC_SLASH);
             return NULL;
     }
     return NULL;
