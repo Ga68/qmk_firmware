@@ -3,7 +3,7 @@
 
 typedef enum {
     CWMODE_NORMAL = 0,
-    CWMODE_NUMBERS,
+    CWMODE_NUM_LOCK,
     CWMODE_ARROW_SHIFT
 } caps_word_mode_t;
 

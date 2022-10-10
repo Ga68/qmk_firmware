@@ -147,6 +147,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        case UKC_NUM_LOCK:
+            if (record->event.pressed) {
+                toggle_caps_word_mode(CWMODE_NUM_LOCK);
+                return false;
+            }
+            break;
     }
     return true;
 }
