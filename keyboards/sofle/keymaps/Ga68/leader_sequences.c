@@ -16,6 +16,10 @@ void *leader_zoom_func(uint16_t keycode) {
         case KC_R:
             tap_code16(LCMD(LSFT(KC_R))); // toggle video
             tap_code16(LCMD(LSFT(KC_A))); // toggle audio
+            return NULL;
+        case KC_C:
+            tap_code16(LCMD(LSFT(KC_H))); // toggle chat
+            return NULL;
     }
     return NULL;
 }
@@ -96,22 +100,22 @@ void *leader_preview_func(uint16_t keycode) {
 
 void *leader_caps_func(uint16_t keycode) {
     switch (keycode) {
-        case KC_K:  // K "for" "konstant"
+        case KC_K:  // K "for" "K"ONSTANT_CASE
             toggle_caps_word_mode(CWMODE_CONSTANT_CASE);
             return NULL;
-        case KC_DASH:
+        case KC_DASH:  // kebab-case
             toggle_caps_word_space_sub(KC_DASH);
             return NULL;
-        case KC_U:  // U for underscore
+        case KC_U:  // U for underscore ... snake_case
             toggle_caps_word_space_sub(KC_UNDERSCORE);
             return NULL;
-        case KC_C:  // C for camel
+        case KC_C:  // C for camelCase
             toggle_caps_word_mode(CWMODE_CAMEL_CASE);
             return NULL;
         case KC_N:  // N for number
             toggle_caps_word_mode(CWMODE_NUM_LOCK);
             return NULL;
-        case KC_SLASH:
+        case KC_SLASH:  // slash/case (ex. path/to/file)
             toggle_caps_word_space_sub(KC_SLASH);
             return NULL;
     }
