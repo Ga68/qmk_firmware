@@ -77,6 +77,7 @@ const uint16_t PROGMEM combo_cmd_n          [] = { CB_RH0, CB_RH1,              
 const uint16_t PROGMEM combo_cmd_p                  [] = {         CB_LH3,         CB_LT1, CB___ };
 const uint16_t PROGMEM combo_cmd_shift_p            [] = {         CB_LH3, CB_LT2, CB_LT1, CB___ };
 const uint16_t PROGMEM combo_cmd_shift_f            [] = {         CB_LH3, CB_LT2, CB_LH1, CB___ };
+const uint16_t PROGMEM combo_cmd_shift_x            [] = {         CB_LB3, CB_LH2, CB_LH1, CB___ };
 const uint16_t PROGMEM combo_grave                  [] = { CB_LB4,         CB_LH2,         CB___ };
 const uint16_t PROGMEM combo_tilde                  [] = { CB_LB4, CB_LH3,                 CB___ };
 
@@ -136,6 +137,7 @@ combo_t key_combos[] = {
     COMBO(combo_cmd_p,       LCMD(KC_P)),
     COMBO(combo_cmd_shift_p, LCMD(LSFT(KC_P))),
     COMBO(combo_cmd_shift_f, LCMD(LSFT(KC_F))),
+    COMBO(combo_cmd_shift_x, LCMD(LSFT(KC_X))),
     COMBO(combo_grave,       KC_GRAVE),
     COMBO(combo_tilde,       KC_TILDE),
 
