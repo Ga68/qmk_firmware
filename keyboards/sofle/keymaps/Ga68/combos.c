@@ -81,8 +81,10 @@ const uint16_t PROGMEM combo_cmd_shift_x            [] = {         CB_LB3, CB_LH
 const uint16_t PROGMEM combo_grave                  [] = { CB_LB4,         CB_LH2,         CB___ };
 const uint16_t PROGMEM combo_tilde                  [] = { CB_LB4, CB_LH3,                 CB___ };
 
-const uint16_t PROGMEM combo_mouse_click_left       [] = {         CB_LH3,                 CB_LPR, CB___ };
-const uint16_t PROGMEM combo_mouse_click_right      [] = {                         CB_LH1, CB_LPR, CB___ };
+const uint16_t PROGMEM combo_mouse_click_left       [] = {                 CB_LB2,         CB_LPR, CB___ };
+const uint16_t PROGMEM combo_mouse_click_right      [] = {                         CB_LB1, CB_LPR, CB___ };
+const uint16_t PROGMEM combo_mouse_find             [] = {                         CB_LH1, CB_LPR, CB___ };
+const uint16_t PROGMEM combo_mouse_position_osl     [] = { CB_LH4,                         CB_LPR, CB___ };
 
 
 // Right hand, multi row
@@ -142,8 +144,10 @@ combo_t key_combos[] = {
     COMBO(combo_tilde,       KC_TILDE),
 
 
-    COMBO(combo_mouse_click_left,  KC_BTN1),
-    COMBO(combo_mouse_click_right, KC_BTN2),
+    COMBO(combo_mouse_click_left,   KC_BTN1),
+    COMBO(combo_mouse_click_right,  KC_BTN2),
+    COMBO(combo_mouse_find,         MEH(KC_F12)),
+    COMBO(combo_mouse_position_osl, OSL(_MOUSE_POS)),
 
 
     COMBO(combo_cmd_l, LCMD(KC_L)),
