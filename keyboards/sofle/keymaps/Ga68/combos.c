@@ -83,7 +83,7 @@ const uint16_t PROGMEM combo_tilde                  [] = { CB_LB4, CB_LH3,      
 
 const uint16_t PROGMEM combo_mouse_click_left       [] = {                 CB_LB2,         CB_LPR, CB___ };
 const uint16_t PROGMEM combo_mouse_click_right      [] = {                         CB_LB1, CB_LPR, CB___ };
-const uint16_t PROGMEM combo_mouse_find             [] = {                         CB_LH1, CB_LPR, CB___ };
+const uint16_t PROGMEM combo_mouse_find             [] = {         CB_LH3,                 CB_LPR, CB___ };
 const uint16_t PROGMEM combo_mouse_position_osl     [] = { CB_LH4,                         CB_LPR, CB___ };
 
 
