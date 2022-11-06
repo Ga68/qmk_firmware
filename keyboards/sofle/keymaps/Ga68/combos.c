@@ -74,6 +74,7 @@ const uint16_t PROGMEM combo_cmd_t                  [] = {                      
 const uint16_t PROGMEM combo_cmd_n          [] = { CB_RH0, CB_RH1,                         CB___ };
 
 // Left hand, multi row
+const uint16_t PROGMEM combo_cmd_b                  [] = {                         CB_LH1, CB_LB0, CB___ };
 const uint16_t PROGMEM combo_cmd_p                  [] = {         CB_LH3,         CB_LT1, CB___ };
 const uint16_t PROGMEM combo_cmd_shift_p            [] = {         CB_LH3, CB_LT2, CB_LT1, CB___ };
 const uint16_t PROGMEM combo_cmd_shift_f            [] = {         CB_LH3, CB_LT2, CB_LH1, CB___ };
@@ -135,7 +136,7 @@ combo_t key_combos[] = {
 
     COMBO(combo_cmd_n, LCMD(KC_N)),
 
-
+    COMBO(combo_cmd_b,       LCMD(KC_B)),
     COMBO(combo_cmd_p,       LCMD(KC_P)),
     COMBO(combo_cmd_shift_p, LCMD(LSFT(KC_P))),
     COMBO(combo_cmd_shift_f, LCMD(LSFT(KC_F))),

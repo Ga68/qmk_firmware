@@ -8,6 +8,7 @@
 // B/T/H Bottom/Top/Home row
 // 1 = index finger ... 4 = pinky
 
+#define CB_LB0 KC_B
 #define CB_LB1 KC_V
 #define CB_LB2 KC_C
 #define CB_LB3 KC_X
