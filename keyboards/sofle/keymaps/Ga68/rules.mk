@@ -16,14 +16,13 @@ MOUSEKEY_ENABLE     = yes # Controlling mouse movement and clicks
 OLED_ENABLE         = yes
   OLED_DRIVER = SSD1306
   SRC += oled.c
-
-ENCODER_ENABLE      = no
-EXTRAKEY_ENABLE     = no # Audio control and System control
+EXTRAKEY_ENABLE     = yes # Audio control and System control
 
 # ##############
 # ### Unused ###
 # ##############
 
+ENCODER_ENABLE      = no
 KEY_OVERRIDE_ENABLE = no
 #   SRC += overrides.c
 TAP_DANCE_ENABLE    = no
