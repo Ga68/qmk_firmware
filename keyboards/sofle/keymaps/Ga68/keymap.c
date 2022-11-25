@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_BASE] = LAYOUT(
         KC_MEDIA_PLAY_PAUSE, KC_1       , KC_2       , KC_3       , KC_4       , KC_5,                   KC_6, KC_7       , KC_8       , KC_9       , KC_0       , __x__         ,
-        UKC_LEADER         , KC_Q       , KC_W       , KC_F       , KC_P       , KC_G,                   KC_J, KC_L       , KC_U       , KC_Y       , KC_COLON   , KC_EQL        ,
+        __x__              , KC_Q       , KC_W       , KC_F       , KC_P       , KC_G,                   KC_J, KC_L       , KC_U       , KC_Y       , KC_COLON   , KC_EQL        ,
         KC_MINS            , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O), KC_QUOT       ,
         KC_LEFT_PAREN      , KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMMA   , KC_DOT     , KC_SLASH   , KC_RIGHT_PAREN,
         
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __o__, KC_1      , KC_2        , KC_3        , KC_4        , KC_5   ,               KC_6   , KC_7   , KC_8   , KC_9   , KC_0 , KC_PLUS,
         __o__, UKC_DOLLAR, UKC_DOLLAR_K, UKC_DOLLAR_M, UKC_DOLLAR_B, __x__  , __x__, __x__, __x__  , __x__  , __o__  , __o__  , __o__, __o__  ,
 
-                                    __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_SPACE, __x__, __o__, __x__, __x__, __x__
+                                    __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_SPACE, __x__, _LYR_, __x__, __x__, __x__
         ),
 
     [_NAV] = LAYOUT(
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ENTER, KC_LEFT   , KC_UP   , KC_DOWN   , KC_RIGHT   , UKC_ARROW_SHIFT_LOCK,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
         KC_SPACE, A(KC_LEFT), A(KC_UP), A(KC_DOWN), A(KC_RIGHT), __x__               , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
-                                                           __x__, __x__, __x__, __o__, __x__, KC_ENTER, KC_SPACE, UKC_LEADER, __x__, __x__
+                                                           __x__, __x__, __x__, _LYR_, __x__, KC_ENTER, KC_SPACE, UKC_LEADER, __x__, __x__
         ),
 
     [_WINDOW] = LAYOUT(
@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ENTER, KC_MS_L, KC_MS_U, KC_MS_D , KC_MS_R , __x__,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
         KC_SPACE, __x__  , __x__  , KC_BTN1 , KC_BTN2 , __x__, __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
-                                              __x__, __x__, __x__, __x__, __o__, KC_BTN1, KC_BTN1, KC_BTN2, __x__, __x__
+                                   __x__, __x__, __x__, __x__, _LYR_, __x__, KC_BTN1, KC_BTN2, __x__, __x__
         ),
 
     [_MOUSE_POS] = LAYOUT(
@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__ , MEH(KC_F10), MEH(KC_F4), MEH(KC_F5), MEH(KC_F6), MEH(KC_F11),               MEH(KC_F10), MEH(KC_F4), MEH(KC_F5), MEH(KC_F6), MEH(KC_F11), __x__,
         __x__ , __x__      , MEH(KC_F1), MEH(KC_F2), MEH(KC_F3), __x__      , __x__, __x__, __x__      , MEH(KC_F1), MEH(KC_F2), MEH(KC_F3), __x__      , __x__,
 
-                                                  __x__, __x__, __x__, __x__, __o__, MEH(KC_F10), MEH(KC_F11), MEH(KC_F11), __x__, __x__
+                                      __x__, __x__, MEH(KC_F10), __x__, MEH(KC_F11), MEH(KC_F10), __x__, MEH(KC_F11), __x__, __x__
         ),
 
     // Used to make OLED indication of caps word on the non-master side easier (than custom communication protocols).

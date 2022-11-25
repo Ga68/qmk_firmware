@@ -105,6 +105,7 @@ enum my_keycodes {
 
 #define _____ KC_TRANSPARENT
 #define __o__ KC_TRANSPARENT
+#define _LYR_ KC_TRANSPARENT
 #define __x__ KC_NO
 
 
