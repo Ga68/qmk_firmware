@@ -2,7 +2,7 @@
 
 enum my_layers {
     _BASE = 0,
-    _LOWER,
+    _NUMBERS,
     _NAV,
     _WINDOW,
     _MOUSE,

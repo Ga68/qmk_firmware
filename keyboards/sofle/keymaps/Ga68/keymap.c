@@ -34,13 +34,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     __x__, __x__, MEH_T(KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), KC_ENTER, LT(_LOWER, KC_SPACE), MEH_T(UKC_LEADER), __x__, __x__
     ),
 
-    [_LOWER] = LAYOUT(
-        __x__, __x__     , __x__       , __x__       , __x__       , __x__  ,               __x__  , __x__  , __x__  , __x__  , __x__, __x__  ,
-        __x__, S(KC_1)   , S(KC_2)     , S(KC_3)     , S(KC_4)     , S(KC_5),               S(KC_6), S(KC_7), S(KC_8), KC_PIPE, __o__, __o__  ,
-        __o__, KC_1      , KC_2        , KC_3        , KC_4        , KC_5   ,               KC_6   , KC_7   , KC_8   , KC_9   , KC_0 , KC_PLUS,
-        __o__, UKC_DOLLAR, UKC_DOLLAR_K, UKC_DOLLAR_M, UKC_DOLLAR_B, __x__  , __x__, __x__, __x__  , __x__  , __o__  , __o__  , __o__, __o__  ,
+    [_NUMBERS] = LAYOUT(
+        __x__, __x__       , __x__  , __x__  , __x__  , __x__     ,               __x__   , __x__, __x__, __x__, __x__, __x__ ,
+        __x__, UKC_DOLLAR_K, S(KC_7), S(KC_8), KC_PIPE, __x__     ,               __x__   , KC_7 , KC_8 , KC_9 , __o__, __o__ ,
+        __o__, UKC_DOLLAR_M, S(KC_1), S(KC_2), S(KC_3), UKC_DOLLAR,               KC_MINS , KC_1 , KC_2 , KC_3 , KC_0 , KC_DOT,
+        __o__, UKC_DOLLAR_B, S(KC_4), S(KC_5), S(KC_6), __x__     , __x__, __x__, KC_COMMA, KC_4 , KC_5 , KC_6 , __o__, __o__ ,
 
-                                    __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_SPACE, __x__, _LYR_, __x__, __x__, __x__
+                          __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_SPACE, KC_ENTER, _LYR_, __x__, __x__, __x__
         ),
 
     [_NAV] = LAYOUT(

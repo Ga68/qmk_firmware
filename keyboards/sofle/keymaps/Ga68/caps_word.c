@@ -135,7 +135,7 @@ void caps_word_set_user(bool active) {
         layer_off(_CAPS_WORD);
         // If leaving the num_lock mode, then we need to exit that layer
         if (g_caps_word_mode == CWMODE_NUM_LOCK) {
-            layer_off(_LOWER);  // leave the numbers layer
+            layer_off(_NUMBERS);  // leave the numbers layer
         }
         // Go back to make sure that when it turns on next without any sepcification (ex. through
         // the CAPS_WORD key), it's in the default settings
@@ -160,7 +160,7 @@ bool toggle_caps_word_mode(caps_word_mode_t new_mode) {
         g_caps_word_mode = new_mode;
         // if we're going into num_lock, then switch into the numbers layer
         if (g_caps_word_mode == CWMODE_NUM_LOCK) {
-            layer_on(_LOWER);
+            layer_on(_NUMBERS);
         }
     }
     return is_caps_word_on();
