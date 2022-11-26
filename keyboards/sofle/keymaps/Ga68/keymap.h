@@ -98,14 +98,16 @@ enum my_keycodes {
 
 #define KC_CARROT KC_CIRCUMFLEX
 #define KC_CROT   KC_CARROT
+#define KC_KROT   KC_CARROT
 #define KC_PERIOD KC_DOT
 #define KC_DASH   KC_MINUS
+#define KC_TACK   KC_MINUS
 #define KC_STAR   KC_ASTERISK
 
 
 #define _____ KC_TRANSPARENT
 #define __o__ KC_TRANSPARENT
-#define _LYR_ KC_TRANSPARENT
+#define _LYR_ KC_TRANSPARENT  // Used for indicating which key is being held for the layer
 #define __x__ KC_NO
 
 
