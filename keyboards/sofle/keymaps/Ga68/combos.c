@@ -43,7 +43,6 @@ const uint16_t PROGMEM combo_plus                   [] = { CB_RT1,         CB_RT
 const uint16_t PROGMEM combo_semicolon              [] = { CB_RT1,                 CB_RT4, CB___ };
 const uint16_t PROGMEM combo_caps_word              [] = {         CB_RT2, CB_RT3,         CB___ };
 const uint16_t PROGMEM combo_caps_lock              [] = {         CB_RT2, CB_RT3, CB_RT4, CB___ };
-const uint16_t PROGMEM combo_num_lock       [] = { CB_RT0, CB_RT1,                         CB___ };
 
 // Left hand, bottom row
 const uint16_t PROGMEM combo_undo                   [] = { CB_LB4, CB_LB3,                 CB___ };
@@ -90,6 +89,7 @@ const uint16_t PROGMEM combo_mouse_position_osl     [] = { CB_LH4,              
 
 // Right hand, multi row
 const uint16_t PROGMEM combo_cmd_l                  [] = { CB_RT1,         CB_RH3,         CB___ };
+const uint16_t PROGMEM combo_num_lock               [] = { CB_RH1, CB_RT2, CB_RH3,         CB___ };
 
 combo_t key_combos[] = {
 
