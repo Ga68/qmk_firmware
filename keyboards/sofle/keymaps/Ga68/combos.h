@@ -24,6 +24,7 @@
 #define CB_RB3 KC_DOT
 #define CB_RB4 KC_SLASH
 
+#define CB_RT0 KC_J
 #define CB_RT1 KC_L
 #define CB_RT2 KC_U
 #define CB_RT3 KC_Y

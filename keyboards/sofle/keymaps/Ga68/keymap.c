@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __o__, UKC_DOLLAR_M, S(KC_4), S(KC_5), S(KC_6), UKC_DOLLAR,               KC_PLUS , KC_4 , KC_5 , KC_6 , KC_0  , KC_MINS ,
         __o__, UKC_DOLLAR_B, S(KC_1), S(KC_2), S(KC_3), __x__     , __x__, __x__, KC_STAR , KC_1 , KC_2 , KC_3 , KC_DOT, KC_SLASH,
 
-                          __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_SPACE, KC_ENTER, _LYR_, __x__, __x__, __x__
+                            __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, KC_ENTER, KC_SPACE, KC_0, __x__, __x__
         ),
 
     [_NAV] = LAYOUT(
