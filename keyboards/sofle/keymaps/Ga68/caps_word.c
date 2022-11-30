@@ -38,6 +38,13 @@ bool caps_word_press_user(uint16_t keycode) {
                 case KC_BSPC:
                     return true;
 
+                // I don't currently have any idea why I need this; however,
+                // without it, SPACE only breaks the Caps Word mode without
+                // typing a space. This problem doesn't happen on any other
+                // mode and I can't explain it (yet!).
+                case KC_SPACE:
+                    tap_code16(KC_SPACE);
+                    // purposefully no return, so it just continues to the default
                 default:
                     return false;  // Deactivate Caps Word.
             }
