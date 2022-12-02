@@ -26,8 +26,6 @@
 // --- Keycode Legend ---
 // ----------------------
 //   UKC = User Keycode
-//   ZM = Zoom
-//   CB = Combo
 
 
 // ---------------------
@@ -35,9 +33,7 @@
 // ---------------------
 
 enum my_keycodes {
-    UKC_STARTING_POINT = SAFE_RANGE,
-
-    UKC_SUPER_APP_SWITCH,    
+    UKC_SUPER_APP_SWITCH = SAFE_RANGE,
     UKC_LEADER,
     UKC_ARROW_SHIFT_LOCK,
     UKC_NUM_LOCK,
@@ -66,10 +62,6 @@ enum my_keycodes {
 #define UKC_TOGGLE_WINDOW_FULL_SCREEN LCMD(LCTL(KC_F))
 #define UKC_TOGGLE_WINDOW_FULL        UKC_TOGGLE_WINDOW_FULL_SCREEN
 #define UKC_WDW_FULL                  UKC_TOGGLE_WINDOW_FULL_SCREEN
-#define UKC_WINDOW_SWAP_SCREENS       MEH(KC_0)
-#define UKC_WDW_SWAP                  UKC_WINDOW_SWAP_SCREENS
-#define UKC_WINDOW_RIGHT_HALF         MEH(KC_6)
-#define UKC_WDW_RH                    UKC_WINDOW_RIGHT_HALF
 
 #define UKC_APP_SWITCH     LCMD(KC_TAB)
 #define UKC_ALFRED         LCMD(KC_SPACE)
@@ -78,16 +70,6 @@ enum my_keycodes {
 #define UKC_NEXT_WINDOW    LCMD(KC_GRAVE)
 
 #define UKC_LOCK_COMPUTER  LCMD(LCTL(KC_Q))
-
-
-// -------------------------------
-// --- Zoom Keyboard Shortcuts ---
-// -------------------------------
-#define ZM_TG_AUDO  MEH(KC_A)
-#define ZM_TG_VIDO  LCMD(LSFT(KC_V))
-#define ZM_TG_VIEW  LCMD(LSFT(KC_W))
-#define ZM_CLS_MEET LCMD(KC_W)
-#define ZM_FOCUS    MEH(KC_Z)
 
 
 // ---------------
@@ -117,12 +99,13 @@ enum my_keycodes {
     #define KC_RSFT_RPRN KC_RSPC
 #endif
 
+
 // Allow for "brace" and "bracket" to be used interchangeably
 //   Braces [ ], Curly Braces { }, Angled Braces < >
-#define KC_RIGHT_BRACE         KC_RBRACKET
-#define KC_LEFT_BRACE          KC_LBRACKET
-#define KC_RIGHT_SQUARE_BRACE  KC_RBRACKET
-#define KC_LEFT_SQUARE_BRACE   KC_LBRACKET
+#define KC_RIGHT_BRACE         KC_RIGHT_BRACKET
+#define KC_LEFT_BRACE          KC_LEFT_BRACKET
+#define KC_RIGHT_SQUARE_BRACE  KC_RIGHT_BRACKET
+#define KC_LEFT_SQUARE_BRACE   KC_LEFT_BRACKET
 #define KC_RIGHT_CURLY_BRACKET KC_RIGHT_CURLY_BRACE
 #define KC_LEFT_CURLY_BRACKET  KC_LEFT_CURLY_BRACE
 #define KC_RIGHT_ANGLE_BRACE   KC_RIGHT_ANGLE_BRACKET
