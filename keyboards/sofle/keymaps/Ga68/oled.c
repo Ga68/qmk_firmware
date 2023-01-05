@@ -141,6 +141,9 @@ bool oled_task_user(void) {
     if (get_highest_layer(layer_state) == _CAPS_WORD) {
         render_caps_word();
     }
+    else if (get_highest_layer(layer_state) == _NUMPAD) {
+        render_caps_word();
+    }
     else if (led_usb_state.caps_lock) {
         render_caps();
     }

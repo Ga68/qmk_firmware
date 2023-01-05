@@ -3,7 +3,6 @@
 
 typedef enum {
     CWMODE_NORMAL = 0,
-    CWMODE_NUM_LOCK,
     CWMODE_ARROW_SHIFT,
     CWMODE_CONSTANT_CASE,  // CONSTANT_CASE
     CWMODE_CAMEL_CASE,     // camelCase

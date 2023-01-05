@@ -25,29 +25,6 @@ bool caps_word_press_user(uint16_t keycode) {
                 default:
                     return false;  // Deactivate Caps Word.
             }
-        case CWMODE_NUM_LOCK:
-            switch (keycode) {
-                // Keycodes that continue Caps Word, without shifting.
-                case KC_1 ... KC_0:
-                case KC_PERIOD:
-                case KC_COMMA:
-                case KC_SLASH:
-                case KC_STAR:
-                case KC_PLUS:
-                case KC_MINUS:
-                case KC_BSPC:
-                    return true;
-
-                // I don't currently have any idea why I need this; however,
-                // without it, SPACE only breaks the Caps Word mode without
-                // typing a space. This problem doesn't happen on any other
-                // mode and I can't explain it (yet!).
-                case KC_SPACE:
-                    tap_code16(KC_SPACE);
-                    // purposefully no return, so it just continues to the default
-                default:
-                    return false;  // Deactivate Caps Word.
-            }
         case CWMODE_ARROW_SHIFT:
             switch (keycode) {
                 // Keycodes that continue Caps Word, without shifting.
@@ -140,10 +117,6 @@ void caps_word_set_user(bool active) {
     } else {
         // Do something when Caps Word deactivates.
         layer_off(_CAPS_WORD);
-        // If leaving the num_lock mode, then we need to exit that layer
-        if (g_caps_word_mode == CWMODE_NUM_LOCK) {
-            layer_off(_NUMBERS);  // leave the numbers layer
-        }
         // Go back to make sure that when it turns on next without any sepcification (ex. through
         // the CAPS_WORD key), it's in the default settings
         g_caps_word_mode = CAPS_WORD_MODE_DEFAULT;
@@ -165,10 +138,6 @@ bool toggle_caps_word_mode(caps_word_mode_t new_mode) {
     if (caps_word_was_off || prior_mode != new_mode) {
         caps_word_on();
         g_caps_word_mode = new_mode;
-        // if we're going into num_lock, then switch into the numbers layer
-        if (g_caps_word_mode == CWMODE_NUM_LOCK) {
-            layer_on(_NUMBERS);
-        }
     }
     return is_caps_word_on();
 }

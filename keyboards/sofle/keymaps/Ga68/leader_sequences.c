@@ -112,9 +112,6 @@ void *leader_caps_func(uint16_t keycode) {
         case KC_C:  // C for camelCase
             toggle_caps_word_mode(CWMODE_CAMEL_CASE);
             return NULL;
-        case KC_N:  // N for number
-            toggle_caps_word_mode(CWMODE_NUM_LOCK);
-            return NULL;
         case KC_SLASH:  // slash/case (ex. path/to/file)
             toggle_caps_word_space_sub(KC_SLASH);
             return NULL;

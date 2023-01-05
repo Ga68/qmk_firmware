@@ -41,7 +41,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __o__   , UKC_DOLLAR, UKC_DOLLAR_K, UKC_DOLLAR_M, UKC_DOLLAR_B, __x__  , __x__, __x__, __x__  , __x__  , __o__  , __o__  , __o__, __o__  ,
 
                                          __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, KC_ENTER, KC_SPACE, __x__, __x__, __x__
-        ),
+    ),
+
+    [_NUMPAD] = LAYOUT(
+        _XIT_, _XIT_, _XIT_, _XIT_, _XIT_, _XIT_,               _XIT_   , _XIT_, _XIT_, _XIT_, _XIT_   , _XIT_   ,
+        _XIT_, _XIT_, _XIT_, _XIT_, _XIT_, _XIT_,               KC_SPACE, KC_7 , KC_8 , KC_9 , __o__   , __o__   ,
+        _XIT_, _XIT_, _XIT_, _XIT_, _XIT_, _XIT_,               KC_PLUS , KC_4 , KC_5 , KC_6 , KC_0    , KC_MINS ,
+        _XIT_, _XIT_, _XIT_, _XIT_, _XIT_, _XIT_, __x__, __x__, KC_STAR , KC_1 , KC_2 , KC_3 , KC_COMMA, KC_SLASH,
+
+         __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, KC_ENTER, KC_0, KC_DOT, __x__, __x__
+    ),
 
     [_NAV] = LAYOUT(
         __x__   , __x__     , __x__   , __x__     , __x__      , __x__               ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
@@ -50,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_SPACE, A(KC_LEFT), A(KC_UP), A(KC_DOWN), A(KC_RIGHT), __x__               , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
                                                            __x__, __x__, __x__, _LYR_, __x__, KC_ENTER, KC_SPACE, UKC_LEADER, __x__, __x__
-        ),
+    ),
 
     [_WINDOW] = LAYOUT(
         __x__ , __x__    , __x__    , __x__    , __x__    , __x__      ,               __x__    , __x__    , __x__    , __x__    , __x__      , __x__,
@@ -59,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__ , __x__    , MEH(KC_1), MEH(KC_2), MEH(KC_3), __x__      , __x__, __x__, __x__    , MEH(KC_1), MEH(KC_2), MEH(KC_3), __x__      , __x__,
 
                             __x__, __x__, MEH(KC_0), UKC_WDW_FULL, MEH(KC_DOT), MEH(KC_0), UKC_WDW_FULL, MEH(KC_DOT), __x__, __x__
-        ),
+    ),
 
     [_MOUSE] = LAYOUT(
         __x__   , __x__  , __x__  , __x__   , __x__   , __x__,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
@@ -68,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_SPACE, __x__  , __x__  , KC_BTN1 , KC_BTN2 , __x__, __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
                                    __x__, __x__, __x__, __x__, _LYR_, KC_BTN1, KC_BTN1, KC_BTN2, __x__, __x__
-        ),
+    ),
 
     [_MOUSE_POS] = LAYOUT(
         __x__ , __x__      , __x__     , __x__     , __x__     , __x__      ,               __x__      , __x__     , __x__     , __x__     , __x__      , __x__,
@@ -77,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __x__ , __x__      , MEH(KC_F1), MEH(KC_F2), MEH(KC_F3), __x__      , __x__, __x__, __x__      , MEH(KC_F1), MEH(KC_F2), MEH(KC_F3), __x__      , __x__,
 
                                       __x__, __x__, MEH(KC_F10), __x__, MEH(KC_F11), MEH(KC_F10), __x__, MEH(KC_F11), __x__, __x__
-        ),
+    ),
 
     // Used to make OLED indication of caps word on the non-master side easier (than custom communication protocols).
     // See caps_word.c for more details.
@@ -88,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __o__, __o__, __o__, __o__, __o__, __o__, __o__, __o__, __o__, __o__, __o__, __o__, __o__, __o__,
 
                       __o__, __o__, __o__, __o__, __o__, __o__, __o__, __o__, __o__, __o__
-        ),
+    ),
 };
 
 
@@ -144,12 +153,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case UKC_ARROW_SHIFT_LOCK:
             if (record->event.pressed) {
                 toggle_caps_word_mode(CWMODE_ARROW_SHIFT);
-                return false;
-            }
-            break;
-        case UKC_NUM_LOCK:
-            if (record->event.pressed) {
-                toggle_caps_word_mode(CWMODE_NUM_LOCK);
                 return false;
             }
             break;

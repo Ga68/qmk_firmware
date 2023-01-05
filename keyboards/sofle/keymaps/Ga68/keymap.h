@@ -36,7 +36,6 @@ enum my_keycodes {
     UKC_SUPER_APP_SWITCH = SAFE_RANGE,
     UKC_LEADER,
     UKC_ARROW_SHIFT_LOCK,
-    UKC_NUM_LOCK,
 
     UKC_DOLLAR,
     UKC_DOLLAR_M,
@@ -91,6 +90,7 @@ enum my_keycodes {
 #define __o__ KC_TRANSPARENT
 #define _LYR_ KC_TRANSPARENT  // Used for indicating which key is being held for the layer
 #define __x__ KC_NO
+#define _XIT_ TO(_BASE)      // To "exit" a layer
 
 
 // Space Cadet Shifts
