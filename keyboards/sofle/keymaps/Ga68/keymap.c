@@ -44,12 +44,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUMPAD] = LAYOUT(
-        _XIT_, _XIT_, _XIT_, _XIT_, _XIT_, _XIT_,               _XIT_   , _XIT_, _XIT_, _XIT_, _XIT_   , _XIT_   ,
-        _XIT_, _XIT_, _XIT_, _XIT_, _XIT_, _XIT_,               KC_SPACE, KC_7 , KC_8 , KC_9 , __o__   , __o__   ,
-        _XIT_, _XIT_, _XIT_, _XIT_, _XIT_, _XIT_,               KC_PLUS , KC_4 , KC_5 , KC_6 , KC_0    , KC_MINS ,
-        _XIT_, _XIT_, _XIT_, _XIT_, _XIT_, _XIT_, __x__, __x__, KC_STAR , KC_1 , KC_2 , KC_3 , KC_COMMA, KC_SLASH,
+        _XIT_   , __x__     , __x__       , __x__       , __x__       , __x__     ,               __x__   , __x__, __x__, __x__, __x__ , _XIT_   ,
+        KC_EQUAL, KC_BANG   , KC_CARROT   , KC_COLON    , KC_DOLLAR   , KC_PERCENT,               KC_SPACE, KC_7 , KC_8 , KC_9 , __o__ , __o__   ,
+        __o__   , KC_SLASH  , KC_COMMA    , KC_STAR     , KC_PLUS     , KC_SPACE  ,               KC_PLUS , KC_4 , KC_5 , KC_6 , KC_0  , KC_MINS ,
+        __o__   , UKC_DOLLAR, UKC_DOLLAR_K, UKC_DOLLAR_M, UKC_DOLLAR_B, KC_RPAREN , __x__, __x__, KC_STAR , KC_1 , KC_2 , KC_3 , KC_DOT, KC_SLASH,
 
-         __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, KC_ENTER, KC_0, KC_DOT, __x__, __x__
+                                            __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, KC_ENTER, KC_0, KC_COMMA, __x__, __x__
     ),
 
     [_NAV] = LAYOUT(

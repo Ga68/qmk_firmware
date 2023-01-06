@@ -84,13 +84,16 @@ enum my_keycodes {
 #define KC_DASH   KC_MINUS
 #define KC_TACK   KC_MINUS
 #define KC_STAR   KC_ASTERISK
+#define KC_BANG   KC_EXCLAIM
+#define KC_LPAREN KC_LEFT_PAREN
+#define KC_RPAREN KC_RIGHT_PAREN
 
 
 #define _____ KC_TRANSPARENT
 #define __o__ KC_TRANSPARENT
-#define _LYR_ KC_TRANSPARENT  // Used for indicating which key is being held for the layer
+#define _LYR_ KC_TRANSPARENT  // Used for indicating (in code) which key is being held for the layer
 #define __x__ KC_NO
-#define _XIT_ TO(_BASE)      // To "exit" a layer
+#define _XIT_ TO(_BASE)       // To "exit" a layer
 
 
 // Space Cadet Shifts
