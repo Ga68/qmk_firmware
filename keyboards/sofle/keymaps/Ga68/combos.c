@@ -23,6 +23,7 @@
             case KC_QUESTION:
             case KC_BTN1:
             case KC_BTN2:
+            case UKC_CLIPBOARD_HISTORY:
                 return LONG_COMBO_TERM;
         }
         return COMBO_TERM;
@@ -80,6 +81,7 @@ const uint16_t PROGMEM combo_cmd_shift_f            [] = {         CB_LH3, CB_LT
 const uint16_t PROGMEM combo_cmd_shift_x            [] = {         CB_LB3, CB_LH2, CB_LH1, CB___ };
 const uint16_t PROGMEM combo_grave                  [] = { CB_LB4,         CB_LH2,         CB___ };
 const uint16_t PROGMEM combo_tilde                  [] = { CB_LB4, CB_LH3,                 CB___ };
+const uint16_t PROGMEM combo_clipboard_history      [] = { CB_LH4,         CB_LB2, CB_LB1, CB___ };
 
 const uint16_t PROGMEM combo_mouse_click_left       [] = {                 CB_LB2,         CB_LPR, CB___ };
 const uint16_t PROGMEM combo_mouse_click_right      [] = {                         CB_LB1, CB_LPR, CB___ };
@@ -136,13 +138,14 @@ combo_t key_combos[] = {
 
     COMBO(combo_cmd_n, LCMD(KC_N)),
 
-    COMBO(combo_cmd_b,       LCMD(KC_B)),
-    COMBO(combo_cmd_p,       LCMD(KC_P)),
-    COMBO(combo_cmd_shift_p, LCMD(LSFT(KC_P))),
-    COMBO(combo_cmd_shift_f, LCMD(LSFT(KC_F))),
-    COMBO(combo_cmd_shift_x, LCMD(LSFT(KC_X))),
-    COMBO(combo_grave,       KC_GRAVE),
-    COMBO(combo_tilde,       KC_TILDE),
+    COMBO(combo_cmd_b,             LCMD(KC_B)),
+    COMBO(combo_cmd_p,             LCMD(KC_P)),
+    COMBO(combo_cmd_shift_p,       LCMD(LSFT(KC_P))),
+    COMBO(combo_cmd_shift_f,       LCMD(LSFT(KC_F))),
+    COMBO(combo_cmd_shift_x,       LCMD(LSFT(KC_X))),
+    COMBO(combo_grave,             KC_GRAVE),
+    COMBO(combo_tilde,             KC_TILDE),
+    COMBO(combo_clipboard_history, UKC_CLIPBOARD_HISTORY),
 
 
     COMBO(combo_mouse_click_left,   KC_BTN1),

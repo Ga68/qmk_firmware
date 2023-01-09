@@ -1,8 +1,20 @@
 #pragma once
 #include QMK_KEYBOARD_H
 
+// I've found these values work for me by trial and error. I use the short term
+// for letter combinations (bi/trigrams) that are more common and thus I want to
+// avoid the combo during normal typing. I use the long term for unusual letter
+// combinations when I wouldn't normally ever type it, so even a "sloppy"
+// application of the combo (with some finger roll in it) is almost certainly
+// still an attempt to get a combo.
+
 #define SHORT_COMBO_TERM (0.8 * COMBO_TERM)
 #define LONG_COMBO_TERM  (2.3 * COMBO_TERM)
+
+// Making all the positions generic (for the combos.c file) so that if I change
+// my layout, I don't have to re-do all the combos. This works for me because 
+// primarily (not exclusively) I'm doing combos by shape/position, not by letter
+// and modifier
 
 // L/R   Left/Right hand
 // B/T/H Bottom/Top/Home row

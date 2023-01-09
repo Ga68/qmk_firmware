@@ -47,7 +47,7 @@ enum my_keycodes {
 #define UKC_COPY        LCMD(KC_C)
 #define UKC_PASTE       LCMD(KC_V)
 #define UKC_PSTE        UKC_PASTE
-#define UKC_PLAIN_PASTE LALT(LSFT(UKC_PASTE)) // Plain Paste = paste a plain copy of the text
+#define UKC_PLAIN_PASTE LSFT(UKC_PASTE) // Plain Paste = paste a plain copy of the text
 #define UKC_PPST        UKC_PLAIN_PASTE
 #define UKC_UNDO        LCMD(KC_Z)
 #define UKC_REDO        LSFT(UKC_UNDO)
@@ -62,11 +62,13 @@ enum my_keycodes {
 #define UKC_TOGGLE_WINDOW_FULL        UKC_TOGGLE_WINDOW_FULL_SCREEN
 #define UKC_WDW_FULL                  UKC_TOGGLE_WINDOW_FULL_SCREEN
 
-#define UKC_APP_SWITCH     LCMD(KC_TAB)
-#define UKC_ALFRED         LCMD(KC_SPACE)
-#define UKC_SCREEN_CAPTURE LCMD(LSFT(KC_3))
-#define UKC_MENU           LSFT(LCMD(KC_GRAVE))
-#define UKC_NEXT_WINDOW    LCMD(KC_GRAVE)
+#define UKC_APP_SWITCH        LCMD(KC_TAB)
+#define UKC_ALFRED            LCMD(KC_SPACE)
+#define UKC_CLIPBOARD_HISTORY LALT(UKC_ALFRED)
+#define UKC_CPBD_HIST         UKC_CLIPBOARD_HISTORY
+#define UKC_SCREEN_CAPTURE    LCMD(LSFT(KC_3))
+#define UKC_MENU              LSFT(LCMD(KC_GRAVE))
+#define UKC_NEXT_WINDOW       LCMD(KC_GRAVE)
 
 #define UKC_LOCK_COMPUTER  LCMD(LCTL(KC_Q))
 
