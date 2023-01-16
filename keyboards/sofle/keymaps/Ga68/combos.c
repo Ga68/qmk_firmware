@@ -85,8 +85,8 @@ const uint16_t PROGMEM combo_clipboard_history      [] = { CB_LH4,         CB_LB
 
 const uint16_t PROGMEM combo_mouse_click_left       [] = {                 CB_LB2,         CB_LPR, CB___ };
 const uint16_t PROGMEM combo_mouse_click_right      [] = {                         CB_LB1, CB_LPR, CB___ };
-const uint16_t PROGMEM combo_mouse_find             [] = {         CB_LH3,                 CB_LPR, CB___ };
-const uint16_t PROGMEM combo_mouse_position_osl     [] = { CB_LH4,                         CB_LPR, CB___ };
+const uint16_t PROGMEM combo_mouse_find             [] = {         CB_LB3,                 CB_LPR, CB___ };
+const uint16_t PROGMEM combo_mouse_position_osl     [] = { CB_LB4,                         CB_LPR, CB___ };
 
 
 // Right hand, multi row
@@ -150,7 +150,7 @@ combo_t key_combos[] = {
 
     COMBO(combo_mouse_click_left,   KC_BTN1),
     COMBO(combo_mouse_click_right,  KC_BTN2),
-    COMBO(combo_mouse_find,         MEH(KC_F12)),
+    COMBO(combo_mouse_find,         UKC_FIND_MOUSE),
     COMBO(combo_mouse_position_osl, OSL(_MOUSE_POS)),
 
 

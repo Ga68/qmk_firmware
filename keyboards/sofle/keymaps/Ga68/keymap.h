@@ -70,8 +70,9 @@ enum my_keycodes {
 #define UKC_MENU              LSFT(LCMD(KC_GRAVE))
 #define UKC_NEXT_WINDOW       LCMD(KC_GRAVE)
 
-#define UKC_LOCK_COMPUTER  LCMD(LCTL(KC_Q))
+#define UKC_LOCK_COMPUTER LCMD(LCTL(KC_Q))
 
+#define UKC_FIND_MOUSE MEH(KC_F12)
 
 // ---------------
 // --- Clarity ---
