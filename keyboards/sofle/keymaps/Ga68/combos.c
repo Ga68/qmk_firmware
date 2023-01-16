@@ -33,7 +33,6 @@
 // Left hand, top row
 const uint16_t PROGMEM combo_next_window            [] = { CB_LT4,                 CB_LT1, CB___ };
 const uint16_t PROGMEM combo_escape                 [] = {         CB_LT3, CB_LT2,         CB___ };
-const uint16_t PROGMEM combo_super_app_switch       [] = {         CB_LT3,         CB_LT1, CB___ };
 const uint16_t PROGMEM combo_alfred                 [] = {                 CB_LT2, CB_LT1, CB___ };
 const uint16_t PROGMEM combo_screen_capture         [] = { CB_LT4, CB_LT3, CB_LT2,         CB___ };
 const uint16_t PROGMEM combo_window_management      [] = {         CB_LT3, CB_LT2, CB_LT1, CB___ };
@@ -47,14 +46,17 @@ const uint16_t PROGMEM combo_caps_lock              [] = {         CB_RT2, CB_RT
 
 // Left hand, bottom row
 const uint16_t PROGMEM combo_undo                   [] = { CB_LB4, CB_LB3,                 CB___ };
-const uint16_t PROGMEM combo_redo                   [] = { CB_LB4, CB_LB3, CB_LB2,         CB___ };
 const uint16_t PROGMEM combo_cut                    [] = { CB_LB4,         CB_LB2,         CB___ };
 const uint16_t PROGMEM combo_copy                   [] = {         CB_LB3, CB_LB2,         CB___ };
 const uint16_t PROGMEM combo_paste                  [] = {                 CB_LB2, CB_LB1, CB___ };
 const uint16_t PROGMEM combo_app_switch             [] = {         CB_LB3,         CB_LB1, CB___ };
-const uint16_t PROGMEM combo_paste_plain            [] = {         CB_LB3, CB_LB2, CB_LB1, CB___ };
 const uint16_t PROGMEM combo_select_all             [] = { CB_LB4,                 CB_LB1, CB___ };
 const uint16_t PROGMEM combo_lock_computer          [] = { CB_LB4, CB_LB3, CB_LB2, CB_LB1, CB___ };
+// modifiers
+const uint16_t PROGMEM combo_super_app_switch       [] = {         CB_LB3, CB_LH2, CB_LB1, CB___ };  // modified app_switch  LH2
+const uint16_t PROGMEM combo_clipboard_history      [] = {         CB_LH3, CB_LB2, CB_LB1, CB___ };  // modified paste       LH3
+const uint16_t PROGMEM combo_paste_plain            [] = {         CB_LB3, CB_LB2, CB_LB1, CB___ };  // modified paste       LB3
+const uint16_t PROGMEM combo_redo                   [] = { CB_LB4, CB_LB3, CB_LB2,         CB___ };  // modified undo        LB2
 
 // Right hand, bottom row
 const uint16_t PROGMEM combo_inverted_question_mark [] = { CB_RB1, CB_RB2,                 CB___ };
@@ -81,7 +83,6 @@ const uint16_t PROGMEM combo_cmd_shift_f            [] = {         CB_LH3, CB_LT
 const uint16_t PROGMEM combo_cmd_shift_x            [] = {         CB_LB3, CB_LH2, CB_LH1, CB___ };
 const uint16_t PROGMEM combo_grave                  [] = { CB_LB4,         CB_LH2,         CB___ };
 const uint16_t PROGMEM combo_tilde                  [] = { CB_LB4, CB_LH3,                 CB___ };
-const uint16_t PROGMEM combo_clipboard_history      [] = { CB_LH4,         CB_LB2, CB_LB1, CB___ };
 
 const uint16_t PROGMEM combo_mouse_click_left       [] = {                 CB_LB2,         CB_LPR, CB___ };
 const uint16_t PROGMEM combo_mouse_click_right      [] = {                         CB_LB1, CB_LPR, CB___ };

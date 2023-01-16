@@ -47,7 +47,7 @@ enum my_keycodes {
 #define UKC_COPY        LCMD(KC_C)
 #define UKC_PASTE       LCMD(KC_V)
 #define UKC_PSTE        UKC_PASTE
-#define UKC_PLAIN_PASTE LSFT(UKC_PASTE) // Plain Paste = paste a plain copy of the text
+#define UKC_PLAIN_PASTE LALT(LSFT(UKC_PASTE)) // Plain Paste = paste a plain copy of the text
 #define UKC_PPST        UKC_PLAIN_PASTE
 #define UKC_UNDO        LCMD(KC_Z)
 #define UKC_REDO        LSFT(UKC_UNDO)

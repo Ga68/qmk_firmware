@@ -119,25 +119,47 @@ void *leader_caps_func(uint16_t keycode) {
     return NULL;
 }
 
+#define DELAY_INSTA_PRESET DELAY_LONG; DELAY;
+void *leader_insta_func(uint16_t keycode) {
+    switch (keycode) {
+        case KC_U:  // U just because it's physically close, therefore fast
+            DELAY_INSTA_PRESET;
+            tap_code16(LALT(KC_1));  // Go to a preset position
+            return NULL;
+        case KC_Y:  // Y just because it's physically in the "second" position
+            DELAY_INSTA_PRESET;
+            tap_code16(LALT(KC_2));  // Go to a preset position
+            return NULL;
+        case KC_N:  // N just because it's below, so convenient relation to L
+            DELAY;
+            tap_code16(LALT(KC_M));  // Toggle the video image
+            return NULL;
+    }
+    return NULL;
+}
+
 void *leader_start_func(uint16_t keycode) {
     switch (keycode) {
-        case KC_O:
-            tap_code16(MEH(KC_O));  // Switch to Outlook
-            return leader_outlook_func;
-        case KC_Z:
-            tap_code16(MEH(KC_Z));  // Switch to Zoom
-            return leader_zoom_func;
-        case KC_S:
-            tap_code16(MEH(KC_S));    // Switch to Slack
-            return leader_slack_func;
         case KC_C:
             tap_code16(MEH(KC_C));  // Switch to Calendar
             return leader_calendar_func;
+        case KC_L:
+            tap_code16(MEH(KC_L));  // Switch to Insta360 Link Controller
+            return leader_insta_func;
+        case KC_O:
+            tap_code16(MEH(KC_O));  // Switch to Outlook
+            return leader_outlook_func;
         case KC_P:
             tap_code16(MEH(KC_P));  // Switch to Preview
             return leader_preview_func;
+        case KC_S:
+            tap_code16(MEH(KC_S));    // Switch to Slack
+            return leader_slack_func;
         case KC_W:
             return leader_caps_func;
+        case KC_Z:
+            tap_code16(MEH(KC_Z));  // Switch to Zoom
+            return leader_zoom_func;
     }
     return NULL;
 }
