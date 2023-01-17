@@ -31,7 +31,7 @@
 #endif
 
 // Left hand, top row
-const uint16_t PROGMEM combo_next_window            [] = { CB_LT4,                 CB_LT1, CB___ };
+const uint16_t PROGMEM combo_next_window            [] = {         CB_LT3,         CB_LT1, CB___ };
 const uint16_t PROGMEM combo_escape                 [] = {         CB_LT3, CB_LT2,         CB___ };
 const uint16_t PROGMEM combo_alfred                 [] = {                 CB_LT2, CB_LT1, CB___ };
 const uint16_t PROGMEM combo_screen_capture         [] = { CB_LT4, CB_LT3, CB_LT2,         CB___ };
