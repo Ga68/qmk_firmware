@@ -89,7 +89,6 @@ const uint16_t PROGMEM combo_mouse_click_right      [] = {                      
 const uint16_t PROGMEM combo_mouse_find             [] = {         CB_LB3,                 CB_LPR, CB___ };
 const uint16_t PROGMEM combo_mouse_position_osl     [] = { CB_LB4,                         CB_LPR, CB___ };
 
-
 // Right hand, multi row
 const uint16_t PROGMEM combo_cmd_l                  [] = { CB_RT1,         CB_RH3,         CB___ };
 const uint16_t PROGMEM combo_num_lock               [] = { CB_RH1, CB_RH2, CB_RB3,         CB___ };
@@ -102,7 +101,6 @@ combo_t key_combos[] = {
     COMBO(combo_screen_capture,    UKC_SCREEN_CAPTURE),
     COMBO(combo_window_management, OSL(_WINDOW)),
     COMBO(combo_super_app_switch,  UKC_SUPER_APP_SWITCH),
-
 
     COMBO(combo_semicolon,    KC_SEMICOLON),
     COMBO(combo_double_quote, KC_DOUBLE_QUOTE),
@@ -122,7 +120,6 @@ combo_t key_combos[] = {
     COMBO(combo_app_switch,    UKC_APP_SWITCH),
     COMBO(combo_lock_computer, UKC_LOCK_COMPUTER),
 
-
     COMBO(combo_inverted_question_mark, UKC_INV_QUESTION),
     COMBO(combo_question_mark,          KC_QUESTION),
     COMBO(combo_left_angle_brace,       KC_LEFT_ANGLE_BRACE),
@@ -131,11 +128,9 @@ combo_t key_combos[] = {
     COMBO(combo_right_square_brace,     KC_RIGHT_SQUARE_BRACE),
     COMBO(combo_left_curly_brace,       KC_LEFT_CURLY_BRACE),
     COMBO(combo_right_curly_brace,      KC_RIGHT_CURLY_BRACE),
-    COMBO(combo_bootloader,             QK_BOOTLOADER),
-    
+    COMBO(combo_bootloader,             QK_BOOTLOADER),  
 
     COMBO(combo_cmd_t, LCMD(KC_T)),
-
 
     COMBO(combo_cmd_n, LCMD(KC_N)),
 
@@ -148,12 +143,10 @@ combo_t key_combos[] = {
     COMBO(combo_tilde,             KC_TILDE),
     COMBO(combo_clipboard_history, UKC_CLIPBOARD_HISTORY),
 
-
     COMBO(combo_mouse_click_left,   KC_BTN1),
     COMBO(combo_mouse_click_right,  KC_BTN2),
     COMBO(combo_mouse_find,         UKC_FIND_MOUSE),
     COMBO(combo_mouse_position_osl, OSL(_MOUSE_POS)),
-
 
     COMBO(combo_cmd_l, LCMD(KC_L)),
 };

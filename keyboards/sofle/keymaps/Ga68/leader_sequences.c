@@ -119,15 +119,15 @@ void *leader_caps_func(uint16_t keycode) {
     return NULL;
 }
 
-#define DELAY_INSTA_PRESET DELAY_LONG; DELAY;
+#define DELAY_INSTA DELAY_LONG; DELAY;
 void *leader_insta_func(uint16_t keycode) {
     switch (keycode) {
         case KC_U:  // U just because it's physically close, therefore fast
-            DELAY_INSTA_PRESET;
+            DELAY_INSTA;
             tap_code16(LALT(KC_1));  // Go to a preset position
             return NULL;
         case KC_Y:  // Y just because it's physically in the "second" position
-            DELAY_INSTA_PRESET;
+            DELAY_INSTA;
             tap_code16(LALT(KC_2));  // Go to a preset position
             return NULL;
         case KC_N:  // N just because it's below, so convenient relation to L
