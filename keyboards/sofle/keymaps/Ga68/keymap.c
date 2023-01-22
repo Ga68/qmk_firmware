@@ -162,6 +162,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        case UKC_TOGGLE_NUM_LOCK:
+            if (record->event.pressed) {
+                layer_invert(_NUMPAD);
+                return false;
+            }
+            break;
     }
     return true;
 }

@@ -107,8 +107,7 @@ combo_t key_combos[] = {
     COMBO(combo_plus,         KC_PLUS),
     COMBO(combo_caps_word,    CAPS_WORD),
     COMBO(combo_caps_lock,    KC_CAPS_LOCK),
-    COMBO(combo_num_lock,     TO(_NUMPAD)),
-
+    COMBO(combo_num_lock,     UKC_TOGGLE_NUM_LOCK),
 
     COMBO(combo_undo,          UKC_UNDO),
     COMBO(combo_redo,          UKC_REDO),
