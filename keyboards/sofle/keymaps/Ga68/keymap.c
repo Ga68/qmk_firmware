@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TACK            , MT_LC(KC_A), MT_LA(KC_R), MT_LS(KC_S), MT_LG(KC_T), KC_D,                   KC_H, MT_RG(KC_N), MT_RS(KC_E), MT_RA(KC_I), MT_RC(KC_O), KC_QUOT       ,
         KC_LEFT_PAREN      , KC_Z       , KC_X       , KC_C       , KC_V       , KC_B, KC_MUTE, KC_MUTE, KC_K, KC_M       , KC_COMMA   , KC_DOT     , KC_SLASH   , KC_RIGHT_PAREN,
         
-                    __x__, __x__, MEH_T(KC_DELETE), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), KC_ENTER, LT(_NUMBERS, KC_SPACE), MEH_T(UKC_LEADER), __x__, __x__
+                   __x__, __x__, MEH_T(UKC_LEADER), LT(_NAV, KC_BACKSPACE), LT(_MOUSE, KC_TAB), KC_ENTER, LT(_NUMBERS, KC_SPACE), MEH_T(UKC_LEADER), __x__, __x__
     ),
 
     [_NUMBERS] = LAYOUT(
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __o__   , KC_1      , KC_2        , KC_3        , KC_4        , KC_5   ,               KC_6   , KC_7   , KC_8   , KC_9   , KC_0 , KC_PLUS,
         __o__   , UKC_DOLLAR, UKC_DOLLAR_K, UKC_DOLLAR_M, UKC_DOLLAR_B, __x__  , __x__, __x__, __x__  , __x__  , __o__  , __o__  , __o__, __o__  ,
 
-                                         __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, KC_ENTER, KC_SPACE, __x__, __x__, __x__
+                                             __x__, __x__, __x__, KC_BACKSPACE, KC_TAB, KC_ENTER, KC_SPACE, __x__, __x__, __x__
     ),
 
     [_NUMPAD] = LAYOUT(
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __o__   , KC_SLASH  , KC_COMMA    , KC_STAR     , KC_PLUS     , KC_SPACE  ,               KC_PLUS , KC_4 , KC_5 , KC_6 , KC_0  , KC_MINS ,
         __o__   , UKC_DOLLAR, UKC_DOLLAR_K, UKC_DOLLAR_M, UKC_DOLLAR_B, KC_RPAREN , __x__, __x__, KC_STAR , KC_1 , KC_2 , KC_3 , KC_DOT, KC_SLASH,
 
-                                            __x__, __x__, KC_DELETE, KC_BACKSPACE, KC_TAB, KC_ENTER, KC_0, KC_COMMA, __x__, __x__
+                                                __x__, __x__, __x__, KC_BACKSPACE, KC_TAB, KC_ENTER, KC_0, KC_COMMA, __x__, __x__
     ),
 
     [_NAV] = LAYOUT(
