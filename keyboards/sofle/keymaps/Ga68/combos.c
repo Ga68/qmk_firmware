@@ -92,6 +92,7 @@ const uint16_t PROGMEM combo_mouse_position_osl     [] = { CB_LB4,              
 // Right hand, multi row
 const uint16_t PROGMEM combo_cmd_l                  [] = { CB_RT1,         CB_RH3,         CB___ };
 const uint16_t PROGMEM combo_num_lock               [] = { CB_RH1, CB_RH2, CB_RB3,         CB___ };
+const uint16_t PROGMEM combo_help_menu              [] = { CB_RH1, CB_RH2,         CB_RB4, CB___ };
 
 combo_t key_combos[] = {
 
@@ -107,7 +108,6 @@ combo_t key_combos[] = {
     COMBO(combo_plus,         KC_PLUS),
     COMBO(combo_caps_word,    CAPS_WORD),
     COMBO(combo_caps_lock,    KC_CAPS_LOCK),
-    COMBO(combo_num_lock,     UKC_TOGGLE_NUM_LOCK),
 
     COMBO(combo_undo,          UKC_UNDO),
     COMBO(combo_redo,          UKC_REDO),
@@ -147,7 +147,9 @@ combo_t key_combos[] = {
     COMBO(combo_mouse_find,         UKC_FIND_MOUSE),
     COMBO(combo_mouse_position_osl, OSL(_MOUSE_POS)),
 
-    COMBO(combo_cmd_l, LCMD(KC_L)),
+    COMBO(combo_cmd_l,     LCMD(KC_L)),
+    COMBO(combo_num_lock,  UKC_TOGGLE_NUM_LOCK),
+    COMBO(combo_help_menu, UKC_HELP_MENU),
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(combo_t);
 

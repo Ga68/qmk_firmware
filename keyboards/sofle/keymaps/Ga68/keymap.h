@@ -70,6 +70,7 @@ enum my_keycodes {
 #define UKC_SCREEN_CAPTURE    LCMD(LSFT(KC_3))
 #define UKC_MENU              LSFT(LCMD(KC_GRAVE))
 #define UKC_NEXT_WINDOW       LCMD(KC_GRAVE)
+#define UKC_HELP_MENU         LSFT(LCMD(KC_SLASH))
 
 #define UKC_LOCK_COMPUTER LCMD(LCTL(KC_Q))
 
