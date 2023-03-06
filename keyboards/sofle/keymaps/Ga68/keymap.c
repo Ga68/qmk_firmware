@@ -54,9 +54,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT(
         __x__   , __x__     , __x__   , __x__     , __x__      , __x__               ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
-        UKC_MENU, G(KC_LEFT), G(KC_UP), G(KC_DOWN), G(KC_RIGHT), __x__               ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
+        __o__   , G(KC_LEFT), G(KC_UP), G(KC_DOWN), G(KC_RIGHT), __x__               ,               __x__, __x__  , __x__  , __x__  , __x__  , __x__       ,
         KC_ENTER, KC_LEFT   , KC_UP   , KC_DOWN   , KC_RIGHT   , UKC_ARROW_SHIFT_LOCK,               __x__, KC_RGUI, KC_RSFT, KC_RALT, KC_RCTL, KC_BACKSPACE,
-        KC_SPACE, A(KC_LEFT), A(KC_UP), A(KC_DOWN), A(KC_RIGHT), __x__               , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
+        KC_SPACE, A(KC_LEFT), A(KC_UP), A(KC_DOWN), A(KC_RIGHT), KC_BACKSPACE        , __x__, __x__, __x__, __x__  , __x__  , __x__  , __x__  , KC_DELETE   ,
 
                                                            __x__, __x__, __x__, _LYR_, __x__, KC_ENTER, KC_SPACE, UKC_LEADER, __x__, __x__
     ),
