@@ -65,6 +65,9 @@ void *leader_slack_func(uint16_t keycode) {
         case KC_A: // Jump to All Slack conversations (reference to the cmd-shift-A keystroke)
             tap_code16(LCMD(LSFT(KC_A))); // Jump to...
             return NULL;
+        case KC_R: // Jump to Threads (reference to the cmd-shift-T keystroke)
+            tap_code16(LCMD(LSFT(KC_T))); // Jump to...
+            return NULL;
     }
     return NULL;
 }
